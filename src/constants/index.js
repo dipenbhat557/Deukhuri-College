@@ -25,8 +25,8 @@ export const navLinks = [
     title: "ACADEMICS",
   },
   {
-    id: "facilities",
-    title: "FACILITIES",
+    id: "contact",
+    title: "CONTACT",
   },
   {
     id: "blog",
@@ -131,5 +131,47 @@ export const messageItems = [
     title: "Message from Founder",
     content:
       "Education is the basis of all progress. It is for this very reason that we forayed into education, about 22 years ago. Over 22 years of experience has taught us that progress is possible only, if men and women are equally well-educated. ",
+  },
+];
+
+export const graduateItems = [
+  {
+    title: "MED",
+    fullTitle: "Masters in Education",
+    content:
+      "Through a steadfast commitment to excellence in education, our program strives to foster a community of passionate educators dedicated to inspiring minds and empowering futures.",
+  },
+  {
+    title: "MBS",
+    fullTitle: "Masters in Business Studies",
+    content:
+      "The Master of Business Studies program at DMC provides our students with an analytical and critical viewpoint in terms of industries, corporate curriculum and strategic organizational growth on a global level.",
+  },
+  {
+    title: "MBA",
+    fullTitle: "Masters in Business Studies",
+    content:
+      "The MBA at Deukhuri multiple campus helps you develop your own personalized, comprehensive view of the education world and provides you the skills to navigate your way to the top.",
+  },
+];
+
+export const underGraduateItems = [
+  {
+    title: "B.ED",
+    fullTitle: "Bachelors Of Education",
+    content:
+      "Through a steadfast commitment to excellence in education, our program strives to foster a community of passionate educators dedicated to inspiring minds and empowering futures.",
+  },
+  {
+    title: "BA",
+    fullTitle: "Bachelors in Administration",
+    content:
+      "Guided by a commitment to excellence and a passion for leadership, our Bachelor's in Administration program is dedicated to nurturing a community of dynamic professionals equipped with the skills and knowledge to thrive in the ever-evolving world of business.",
+  },
+  {
+    title: "BBS",
+    fullTitle: "Bachelors in Business Studies",
+    content:
+      "The Bachelor of Business Studies program at DMC provides our students with an analytical and critical viewpoint in terms of industries, corporate curriculum and strategic organizational growth on a global level.",
   },
 ];

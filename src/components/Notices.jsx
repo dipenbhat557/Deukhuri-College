@@ -13,7 +13,7 @@ const Notices = () => {
   // Function to update the current events based on the currentIndex
   const updateCurrentNotices = () => {
     const startIndex = currentIndex;
-    const endIndex = startIndex + 2;
+    const endIndex = startIndex + 3;
     const nextIndex = endIndex % notices.length;
     if (endIndex !== notices.length - 1) {
       setCurrentNotices(

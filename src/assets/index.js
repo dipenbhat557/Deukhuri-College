@@ -20,6 +20,17 @@ import s4 from "./specImages/s4.png";
 
 import register from "./registerTeacher.png";
 
+import founder1 from "./messageImages/founder1.png";
+import founder2 from "./messageImages/founder2.png";
+import principal from "./messageImages/principal.png";
+
+import graduate from "./programImages/program1.png";
+import undergraduate from "./programImages/program2.png";
+
+import instagram from "./socialMedias/insta.png";
+import facebook from "./socialMedias/facebook.png";
+import twitter from "./socialMedias/twitter.png";
+
 export {
   logo,
   vid1,
@@ -37,4 +48,12 @@ export {
   s3,
   s4,
   register,
+  founder1,
+  founder2,
+  principal,
+  graduate,
+  undergraduate,
+  instagram,
+  facebook,
+  twitter,
 };

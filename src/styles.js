@@ -4,9 +4,8 @@ const styles = {
   padding: "sm:px-16 px-6 sm:py-6 py-5",
 
   sectionHeadText:
-    "text-dark  md:text-[35px] sm:text-[25px] xs:text-[20px] text-[18px]",
-  sectionSubText:
-    "sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
+    "text-dark  md:text-[30px] sm:text-[25px] xs:text-[20px] text-[18px]",
+  sectionSubText: "sm:text-[18px] text-[16px] text-secondary tracking-wider",
 };
 
 export { styles };

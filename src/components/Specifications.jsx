@@ -8,7 +8,7 @@ const Specifications = () => {
           return (
             <div
               key={index}
-              className="flex items-center  flex-col h-full w-[18%] pt-2 hover:bg-red-950 hover:rounded-lg hover:m-2"
+              className="flex items-center  flex-col h-full w-[18%] pt-2 "
             >
               <div className="h-[35%] w-[35%] md:pb-2">
                 <img

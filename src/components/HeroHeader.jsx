@@ -7,7 +7,7 @@ const HeroHeader = () => {
   return (
     <>
       <div
-        className={`${styles.padding} max-w-7xl relative z-0 min-w-full h-[80px] mt-0 mx-auto flex items-center justify-between`}
+        className={`${styles.padding} max-w-7xl relative z-0 min-w-full h-[80px] my-1 mx-auto flex items-center justify-between`}
       >
         <img src={logo} alt="logo" className="object-contain w-20 h-20" />
 
