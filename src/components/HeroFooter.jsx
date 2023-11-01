@@ -13,7 +13,7 @@ const HeroFooter = () => {
             <img
               src={`${item.img}`}
               alt={`Image ${item.index}`}
-              className="h-[15%] md:h-[25%] rounded-md object-contain"
+              className="h-[24%] md:h-[32%] rounded-md object-contain"
             />
             <div className="ml-1 md:ml-8 mt-0">
               <p className="text-[14px] md:text-[18px] font-semibold">

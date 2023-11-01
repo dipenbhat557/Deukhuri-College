@@ -30,7 +30,7 @@ const Hero = () => {
   }, [currentElement]);
 
   return (
-    <div className="w-full h-[600px] bg-gray-300 relative">
+    <div className="w-full h-[600px] bg-gray-300 relative mb-4">
       <Navbar />
       <div className="w-full h-full">
         {heroElements.map((element, index) => (

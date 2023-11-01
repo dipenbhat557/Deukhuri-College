@@ -11,4 +11,30 @@ import f1 from "./footerImages/f1.png";
 import f2 from "./footerImages/f2.png";
 import f3 from "./footerImages/f3.png";
 
-export { logo, vid1, vid2, vid3, vid4, vid5, vid6, f1, f2, f3 };
+import n1 from "./noticesImages/notice1.jpg";
+
+import s1 from "./specImages/s1.png";
+import s2 from "./specImages/s2.png";
+import s3 from "./specImages/s3.png";
+import s4 from "./specImages/s4.png";
+
+import register from "./registerTeacher.png";
+
+export {
+  logo,
+  vid1,
+  vid2,
+  vid3,
+  vid4,
+  vid5,
+  vid6,
+  f1,
+  f2,
+  f3,
+  n1,
+  s1,
+  s2,
+  s3,
+  s4,
+  register,
+};
