@@ -26,10 +26,17 @@ import principal from "./messageImages/principal.png";
 
 import graduate from "./programImages/program1.png";
 import undergraduate from "./programImages/program2.png";
+import BA from "./programImages/BA.png";
+import BBS from "./programImages/BBS.png";
+import BEd from "./programImages/BEd.png";
+import MBA from "./programImages/MBA.png";
+import MEd from "./programImages/MEd.png";
 
 import instagram from "./socialMedias/insta.png";
 import facebook from "./socialMedias/facebook.png";
 import twitter from "./socialMedias/twitter.png";
+
+import program from "./program.png";
 
 export {
   logo,
@@ -56,4 +63,10 @@ export {
   instagram,
   facebook,
   twitter,
+  program,
+  BA,
+  BBS,
+  BEd,
+  MBA,
+  MEd,
 };

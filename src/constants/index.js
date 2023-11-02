@@ -13,36 +13,48 @@ import {
   principal,
   founder1,
   founder2,
+  BEd,
+  BA,
+  BBS,
+  MBA,
+  MEd,
 } from "../assets";
 
 export const navLinks = [
   {
     id: "home",
     title: "HOME",
+    route: "/",
   },
   {
     id: "academics",
     title: "ACADEMICS",
+    route: "#",
   },
   {
     id: "contact",
     title: "CONTACT",
+    route: "#",
   },
   {
     id: "blog",
     title: "BLOG",
+    route: "#",
   },
   {
     id: "admission",
     title: "ADMISSION",
+    route: "#",
   },
   {
     id: "about",
     title: "ABOUT",
+    route: "#",
   },
   {
     id: "faculty",
     title: "FACULTY",
+    route: "#",
   },
 ];
 
@@ -136,22 +148,25 @@ export const messageItems = [
 
 export const graduateItems = [
   {
+    title: "MBA",
+    fullTitle: "Masters in Business Studies",
+    img: MBA,
+    content:
+      "The MBA at Deukhuri multiple campus helps you develop your own personalized, comprehensive view of the education world and provides you the skills to navigate your way to the top.",
+  },
+  {
     title: "MED",
     fullTitle: "Masters in Education",
+    img: BA,
     content:
       "Through a steadfast commitment to excellence in education, our program strives to foster a community of passionate educators dedicated to inspiring minds and empowering futures.",
   },
   {
     title: "MBS",
     fullTitle: "Masters in Business Studies",
+    img: BEd,
     content:
       "The Master of Business Studies program at DMC provides our students with an analytical and critical viewpoint in terms of industries, corporate curriculum and strategic organizational growth on a global level.",
-  },
-  {
-    title: "MBA",
-    fullTitle: "Masters in Business Studies",
-    content:
-      "The MBA at Deukhuri multiple campus helps you develop your own personalized, comprehensive view of the education world and provides you the skills to navigate your way to the top.",
   },
 ];
 
@@ -159,19 +174,34 @@ export const underGraduateItems = [
   {
     title: "B.ED",
     fullTitle: "Bachelors Of Education",
+    img: BEd,
     content:
       "Through a steadfast commitment to excellence in education, our program strives to foster a community of passionate educators dedicated to inspiring minds and empowering futures.",
+  },
+
+  {
+    title: "BBS",
+    fullTitle: "Bachelors in Business Studies",
+    img: BBS,
+    content:
+      "The Bachelor of Business Studies program at DMC provides our students with an analytical and critical viewpoint in terms of industries, corporate curriculum and strategic organizational growth on a global level.",
   },
   {
     title: "BA",
     fullTitle: "Bachelors in Administration",
+    img: BA,
     content:
       "Guided by a commitment to excellence and a passion for leadership, our Bachelor's in Administration program is dedicated to nurturing a community of dynamic professionals equipped with the skills and knowledge to thrive in the ever-evolving world of business.",
   },
+];
+
+export const programs = [
   {
-    title: "BBS",
-    fullTitle: "Bachelors in Business Studies",
-    content:
-      "The Bachelor of Business Studies program at DMC provides our students with an analytical and critical viewpoint in terms of industries, corporate curriculum and strategic organizational growth on a global level.",
+    title: "Graduate Programs",
+    items: graduateItems,
+  },
+  {
+    title: "Undergraduate Programs",
+    items: underGraduateItems,
   },
 ];

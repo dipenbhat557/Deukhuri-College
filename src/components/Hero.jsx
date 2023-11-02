@@ -30,13 +30,12 @@ const Hero = () => {
   }, [currentElement]);
 
   return (
-    <div className="w-full h-[600px] bg-gray-300 relative mb-4">
-      <Navbar />
-      <div className="w-full h-full">
+    <>
+      <div className="w-full h-[600px] relative">
         {heroElements.map((element, index) => (
           <div
             key={index}
-            className={`absolute w-full h-full transition-opacity duration-300 ${
+            className={`absolute w-full h-full transition-opacity -z-40 duration-300 ${
               index === currentElement ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -52,9 +51,10 @@ const Hero = () => {
                 width: "100%",
                 height: "100%",
               }}
-              className="h-full object-cover"
+              className="h-full w-full object-cover -z-50"
             />
-            <div className=" h-[40%] flex ml-0 items-center justify-between absolute bottom-7  w-[45%] gap-3 text-black z-10">
+
+            <div className="h-[40%] flex items-center justify-between absolute bottom-7 w-[45%] gap-3 text-slate-800 z-10">
               <BiSolidRightArrow className="text-red-900 text-9xl mb-2 ml-0 w-[16%]" />
               <p className="font-semibold sm:text-[30px] text-[20px] leading-loose md:text-[40px] w-[60%]">
                 {element.text}
@@ -63,8 +63,12 @@ const Hero = () => {
             </div>
           </div>
         ))}
+
+        <div className="w-full z-30 h-full bg-black bg-opacity-5 absolute top-0 left-0 flex flex-col justify-between text-white">
+          <Navbar active="HOME" style={{ background: "transparent" }} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

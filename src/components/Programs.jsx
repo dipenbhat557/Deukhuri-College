@@ -98,7 +98,7 @@ const Programs = () => {
                     <button
                       key={index}
                       className={`p-2 rounded-md w-[15%] uppercase text-white ${
-                        index == currentGraduateProgramIndex
+                        index == currentUnderGraduateProgramIndex
                           ? "bg-red-950"
                           : "bg-red-900"
                       } hover:w-[17%] hover:p-3`}
