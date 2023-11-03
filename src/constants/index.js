@@ -22,6 +22,10 @@ import {
   administrativeProfessor2,
   administrativeProfessor3,
   administrativeProfessor4,
+  academicProfessor1,
+  academicProfessor2,
+  academicProfessor3,
+  academicProfessor4,
 } from "../assets";
 
 export const navLinks = [
@@ -48,7 +52,7 @@ export const navLinks = [
   {
     id: "admission",
     title: "ADMISSION",
-    route: "#",
+    route: "/admission",
   },
   {
     id: "about",
@@ -133,18 +137,28 @@ export const messageItems = [
   {
     img: principal,
     title: "Message from Principal",
+    name: "Avash Neupane",
     content:
       "Whether you visit us online or in person, we hope you will get a sense of what Gorkha School is and the mission that drives us. We are a progressive learning community that works to educate the whole person and prepare them for life.",
   },
   {
     img: founder1,
     title: "Message from Founder",
+    name: "Pawan Pandey",
     content:
       "Education is the basis of all progress. It is for this very reason that we forayed into education, about 22 years ago. Over 22 years of experience has taught us that progress is possible only, if men and women are equally well-educated. ",
   },
   {
     img: founder2,
     title: "Message from Founder",
+    name: "Kiran Sharma",
+    content:
+      "Education is the basis of all progress. It is for this very reason that we forayed into education, about 22 years ago. Over 22 years of experience has taught us that progress is possible only, if men and women are equally well-educated. ",
+  },
+  {
+    img: founder2,
+    title: "Message from Founder",
+    name: "Kiran Sharma",
     content:
       "Education is the basis of all progress. It is for this very reason that we forayed into education, about 22 years ago. Over 22 years of experience has taught us that progress is possible only, if men and women are equally well-educated. ",
   },
@@ -210,6 +224,7 @@ export const programs = [
   },
 ];
 
+
 export const administrativeTeam =[
   {
     img:administrativeProfessor1,
@@ -233,30 +248,29 @@ export const administrativeTeam =[
   }
 ]
 
-export const academicTeam =[
+export const academicTeam = [
   {
-    img:administrativeProfessor2,
-    name:"Arsal Akhtar",
-    post:"Deputy Professor"
+    img: academicProfessor1,
+    name: "Kiran Sharma",
+    post: "Deputy Professor",
   },
   {
-    img:administrativeProfessor1,
-    name:"Kiran Sharma",
-    post:"Deputy Professor"
-  },
-  
-  {
-    img:administrativeProfessor3,
-    name:"Dipendra Bhatta",
-    post:"Deputy Professor"
+    img: academicProfessor2,
+    name: "Pawan Pandey",
+    post: "Deputy Professor",
   },
   {
-    img:administrativeProfessor4,
-    name:"Avash Neupane",
-    post:"Deputy Professor"
-  }
-]
+    img: academicProfessor3,
+    name: "Avash Neupane",
+    post: "Deputy Professor",
+  },
+  {
+    img: academicProfessor4,
+    name: "Dipendra Bhatta",
+    post: "Deputy Professor",
+  },
+];
 
-export const faculties=[
-  academicTeam,administrativeTeam
-]
+
+export const faculties = [academicTeam, administrativeTeam];
+

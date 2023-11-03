@@ -36,15 +36,24 @@ import instagram from "./socialMedias/insta.png";
 import facebook from "./socialMedias/facebook.png";
 import twitter from "./socialMedias/twitter.png";
 
-import program from "./program.png";
+import program from "./backgrounds/programBg.png";
+
+import aboutBg from "./backgrounds/aboutBg.png";
+import admissionBg from "./backgrounds/admissionBg.png";
+import blogBg from "./backgrounds/blogBg.png";
+import contactBg from "./backgrounds/contactBg.png";
+import facultyAdminBg from "./backgrounds/facultyAdministrationBg.png";
+import facultyAcademicsBg from "./backgrounds/facultyAcademicsBg.png";
+
+import academicProfessor1 from "./academicTeam/academicProfessor1.png";
+import academicProfessor2 from "./academicTeam/academicProfessor2.png";
+import academicProfessor3 from "./academicTeam/academicProfessor3.png";
+import academicProfessor4 from "./academicTeam/academicProfessor4.png";
 
 import administrativeProfessor1 from "./administrativeteam/administrativeProfessor1.png"
 import administrativeProfessor2 from "./administrativeteam/administrativeProfessor2.png"
 import administrativeProfessor3 from "./administrativeteam/administrativeProfessor3.png"
 import administrativeProfessor4 from "./administrativeteam/administrativeProfessor4.png"
-
-
-import facultyAdminBg from "./backgrounds/facultyAdministrationBg.png"
 
 export {
   logo,
@@ -81,5 +90,15 @@ export {
   administrativeProfessor2,
   administrativeProfessor3,
   administrativeProfessor4,
-  facultyAdminBg
+  facultyAdminBg,
+  aboutBg,
+  admissionBg,
+  blogBg,
+  contactBg,
+  facultyAcademicsBg,
+  facultyAdminBg,
+  academicProfessor1,
+  academicProfessor2,
+  academicProfessor3,
+  academicProfessor4,
 };
