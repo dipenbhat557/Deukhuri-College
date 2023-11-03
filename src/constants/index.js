@@ -18,6 +18,10 @@ import {
   BBS,
   MBA,
   MEd,
+  administrativeProfessor1,
+  administrativeProfessor2,
+  administrativeProfessor3,
+  administrativeProfessor4,
   academicProfessor1,
   academicProfessor2,
   academicProfessor3,
@@ -220,6 +224,30 @@ export const programs = [
   },
 ];
 
+
+export const administrativeTeam =[
+  {
+    img:administrativeProfessor1,
+    name:"Kiran Sharma",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor2,
+    name:"Pawan Pandey",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor3,
+    name:"Dipendra Bhatta",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor4,
+    name:"Avash Neupane",
+    post:"Deputy Professor"
+  }
+]
+
 export const academicTeam = [
   {
     img: academicProfessor1,
@@ -243,27 +271,6 @@ export const academicTeam = [
   },
 ];
 
-export const administrativeTeam = [
-  {
-    img: academicProfessor1,
-    name: "Kiran Sharma",
-    post: "Deputy Professor",
-  },
-  {
-    img: academicProfessor2,
-    name: "Pawan Pandey",
-    post: "Deputy Professor",
-  },
-  {
-    img: academicProfessor3,
-    name: "Avash Neupane",
-    post: "Deputy Professor",
-  },
-  {
-    img: academicProfessor4,
-    name: "Dipendra Bhatta",
-    post: "Deputy Professor",
-  },
-];
 
 export const faculties = [academicTeam, administrativeTeam];
+

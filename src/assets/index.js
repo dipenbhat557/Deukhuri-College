@@ -50,6 +50,11 @@ import academicProfessor2 from "./academicTeam/academicProfessor2.png";
 import academicProfessor3 from "./academicTeam/academicProfessor3.png";
 import academicProfessor4 from "./academicTeam/academicProfessor4.png";
 
+import administrativeProfessor1 from "./administrativeteam/administrativeProfessor1.png"
+import administrativeProfessor2 from "./administrativeteam/administrativeProfessor2.png"
+import administrativeProfessor3 from "./administrativeteam/administrativeProfessor3.png"
+import administrativeProfessor4 from "./administrativeteam/administrativeProfessor4.png"
+
 export {
   logo,
   vid1,
@@ -81,6 +86,11 @@ export {
   BEd,
   MBA,
   MEd,
+  administrativeProfessor1,
+  administrativeProfessor2,
+  administrativeProfessor3,
+  administrativeProfessor4,
+  facultyAdminBg,
   aboutBg,
   admissionBg,
   blogBg,
