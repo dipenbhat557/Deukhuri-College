@@ -36,7 +36,14 @@ import instagram from "./socialMedias/insta.png";
 import facebook from "./socialMedias/facebook.png";
 import twitter from "./socialMedias/twitter.png";
 
-import program from "./program.png";
+import program from "./backgrounds/programBg.png";
+
+import aboutBg from "./backgrounds/aboutBg.png";
+import admissionBg from "./backgrounds/admissionBg.png";
+import blogBg from "./backgrounds/blogBg.png";
+import contactBg from "./backgrounds/contactBg.png";
+import facultyAdminBg from "./backgrounds/facultyAdministrationBg.png";
+import facultyAcademicsBg from "./backgrounds/facultyAcademicsBg.png";
 
 export {
   logo,
@@ -69,4 +76,10 @@ export {
   BEd,
   MBA,
   MEd,
+  aboutBg,
+  admissionBg,
+  blogBg,
+  contactBg,
+  facultyAcademicsBg,
+  facultyAdminBg,
 };
