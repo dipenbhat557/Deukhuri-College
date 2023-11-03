@@ -45,6 +45,11 @@ import contactBg from "./backgrounds/contactBg.png";
 import facultyAdminBg from "./backgrounds/facultyAdministrationBg.png";
 import facultyAcademicsBg from "./backgrounds/facultyAcademicsBg.png";
 
+import academicProfessor1 from "./academicTeam/academicProfessor1.png";
+import academicProfessor2 from "./academicTeam/academicProfessor2.png";
+import academicProfessor3 from "./academicTeam/academicProfessor3.png";
+import academicProfessor4 from "./academicTeam/academicProfessor4.png";
+
 export {
   logo,
   vid1,
@@ -82,4 +87,8 @@ export {
   contactBg,
   facultyAcademicsBg,
   facultyAdminBg,
+  academicProfessor1,
+  academicProfessor2,
+  academicProfessor3,
+  academicProfessor4,
 };

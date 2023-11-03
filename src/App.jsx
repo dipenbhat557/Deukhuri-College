@@ -4,6 +4,7 @@ import Graduate from "./components/Graduate";
 import UnderGraduate from "./components/UnderGraduate";
 import Blog from "./components/Blog";
 import Admission from "./components/Admission";
+import FacultyAcademics from "./components/FacultyAcademics";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/undergraduate" element={<UnderGraduate />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/admission" element={<Admission />} />
+        <Route path="/faculty/academics" element={<FacultyAcademics />} />
       </Routes>
     </BrowserRouter>
   );

@@ -31,7 +31,7 @@ const Hero = () => {
 
   return (
     <>
-      <div className="w-full h-[600px] relative">
+      <div className="w-full h-[620px] relative">
         {heroElements.map((element, index) => (
           <div
             key={index}
@@ -64,7 +64,7 @@ const Hero = () => {
           </div>
         ))}
 
-        <div className="w-full z-30 h-full bg-black bg-opacity-5 absolute top-0 left-0 flex flex-col justify-between text-white">
+        <div className="w-full z-30 h-full bg-black bg-opacity-30 absolute top-0 left-0 flex flex-col justify-between text-white">
           <Navbar active="HOME" style={{ background: "transparent" }} />
         </div>
       </div>
