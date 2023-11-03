@@ -34,10 +34,10 @@ const FacultyAdministrative = () => {
         </div>
       </div>
 
-      <div className={`p-3 flex w-full h-auto justify-between`}>
+      <div className={`p-4 flex w-full h-auto  justify-between`}>
         <div className="h-full w-[18%] flex flex-col shadow-xl p-3">
           <div
-            className={`${
+            className={` ${
               facultyIndex == 0
                 ? "bg-red-900 text-white"
                 : "bg-slate-400 text-black"
@@ -47,7 +47,7 @@ const FacultyAdministrative = () => {
             Academic Team
           </div>
           <div
-            className={`${
+            className={` ${
               facultyIndex == 1
                 ? "bg-red-900 text-white"
                 : "bg-slate-400 text-black"
@@ -57,52 +57,52 @@ const FacultyAdministrative = () => {
             Administrative Team
           </div>
         </div>
-        <div>
-          <div className="flex flex-col h-full w-[75%]">
-            <p className="text-[14px] font-light w-full">
-              Our college is supported by an administrative faculty renowned for
-              their dedication to providing seamless and comprehensive support
-              services to our students, faculty, and staff. Committed to the
-              highest standards of efficiency and professionalism, our
-              administrative team plays a pivotal role in ensuring the smooth
-              operation of all college functions. From admissions and student
-              services to financial aid and facilities management, our
-              administrative staff members are passionate about creating an
-              inclusive and supportive environment for our college community.
-              Their tireless efforts and expertise contribute to the overall
-              success of our institution, fostering an atmosphere conducive to
-              academic achievement and personal growth.
-            </p>
-            <p className="text-[16px] font-semibold my-3">
-              {" "}
-              Meet Our Administrative Team
-            </p>
 
-            <div className="w-full h-auto flex flex-wrap items-center justify-between">
-              {faculties[facultyIndex].map((faculty, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="w-[28%] h-auto flex flex-col justify-around m-3 p-3 shadow-xl hover:bg-red-900 hover:text-white"
-                  >
-                    <img
-                      className="w-full h-[70%] object-contain"
-                      src={faculty.img}
-                      alt={`faculty-${index}`}
-                    />
-                    <p className="text-[18px] font-semibold h-[15%]">
-                      {faculty.name}
-                    </p>
-                    <p className="text-[16px] h-[15%] text-slate-400 hover:text-slate-200">
-                      {faculty.post}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+        <div className="flex flex-col h-full w-[75%] ">
+          <p className="text-[14px] font-light w-full ">
+            At our campus DMC, we pride ourselves on our exceptional academic
+            faculty, comprising a diverse and accomplished group of educators
+            and scholars. Our faculty members are experts in their respective
+            fields, dedicated to fostering a vibrant learning environment that
+            encourages intellectual curiosity and critical thinking. With a
+            commitment to excellence in teaching, research, and mentorship, they
+            bring a wealth of real-world experience and a passion for imparting
+            knowledge to the next generation of leaders. Through their guidance
+            and support, students have the opportunity to engage in rigorous
+            academic exploration, interdisciplinary collaboration, and practical
+            application, ensuring a holistic and enriching educational
+            experience that prepares them for success in their chosen careers
+            and beyond."
+          </p>
+          <p className="text-[16px] font-semibold my-3">
+            {faculties[facultyIndex].title}
+          </p>
+
+          <div className="w-full h-auto flex flex-wrap items-center justify-between">
+            {faculties[facultyIndex].content.map((faculty, index) => {
+              return (
+                <div
+                  key={index}
+                  className="w-[28%] h-auto flex flex-col justify-around m-3 p-3 shadow-xl hover:bg-red-900 hover:text-white "
+                >
+                  <img
+                    className="w-full h-[65%] object-contain"
+                    src={faculty.img}
+                    alt={`faculty-${index}`}
+                  />
+                  <p className="text-[18px] font-semibold h-[18%]">
+                    {faculty.name}
+                  </p>
+                  <p className="text-[16px] h-[18%] text-slate-400 hover:text-slate-200">
+                    {faculty.post}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
+
       <div className="w-full">
         <Subscription />
         <Footer />

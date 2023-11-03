@@ -75,11 +75,11 @@ const FacultyAcademics = () => {
             and beyond."
           </p>
           <p className="text-[16px] font-semibold my-3">
-            Meet Our Academic Team
+            {faculties[facultyIndex].title}
           </p>
 
           <div className="w-full h-auto flex flex-wrap items-center justify-between">
-            {faculties[facultyIndex].map((faculty, index) => {
+            {faculties[facultyIndex].content.map((faculty, index) => {
               return (
                 <div
                   key={index}

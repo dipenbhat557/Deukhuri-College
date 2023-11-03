@@ -49,7 +49,7 @@ const Blog = () => {
                 scale: 1,
                 speed: 450,
               }}
-              className="bg-tertiary mt-2 rounded-2xl h-[550px] w-full sm:w-[35%]"
+              className="bg-tertiary mt-2 rounded-2xl h-[590px] w-full sm:w-[35%]"
             >
               <div className=" flex mt-10 flex-col justify-center items-center w-full h-full shadow-2xl p-4">
                 <img
