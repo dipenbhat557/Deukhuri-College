@@ -18,6 +18,10 @@ import {
   BBS,
   MBA,
   MEd,
+  administrativeProfessor1,
+  administrativeProfessor2,
+  administrativeProfessor3,
+  administrativeProfessor4,
 } from "../assets";
 
 export const navLinks = [
@@ -39,7 +43,7 @@ export const navLinks = [
   {
     id: "blog",
     title: "BLOG",
-    route: "#",
+    route: "/blog",
   },
   {
     id: "admission",
@@ -205,3 +209,54 @@ export const programs = [
     items: underGraduateItems,
   },
 ];
+
+export const administrativeTeam =[
+  {
+    img:administrativeProfessor1,
+    name:"Kiran Sharma",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor2,
+    name:"Pawan Pandey",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor3,
+    name:"Dipendra Bhatta",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor4,
+    name:"Avash Neupane",
+    post:"Deputy Professor"
+  }
+]
+
+export const academicTeam =[
+  {
+    img:administrativeProfessor2,
+    name:"Arsal Akhtar",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor1,
+    name:"Kiran Sharma",
+    post:"Deputy Professor"
+  },
+  
+  {
+    img:administrativeProfessor3,
+    name:"Dipendra Bhatta",
+    post:"Deputy Professor"
+  },
+  {
+    img:administrativeProfessor4,
+    name:"Avash Neupane",
+    post:"Deputy Professor"
+  }
+]
+
+export const faculties=[
+  academicTeam,administrativeTeam
+]

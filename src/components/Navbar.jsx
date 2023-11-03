@@ -73,12 +73,12 @@ const Navbar = ({ active }) => {
           <ul>
             {/* Add your dropdown 2 list items here */}
             <li>
-              <a href="#" onClick={toggleDropdown2}>
+              <a href="/faculty/academics" onClick={toggleDropdown2}>
                 Academics Team
               </a>
             </li>
             <li>
-              <a href="#" onClick={toggleDropdown2}>
+              <a href="/faculty/administration" onClick={toggleDropdown2}>
                 Administrative Team
               </a>
             </li>

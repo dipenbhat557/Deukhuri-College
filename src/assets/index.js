@@ -38,6 +38,14 @@ import twitter from "./socialMedias/twitter.png";
 
 import program from "./program.png";
 
+import administrativeProfessor1 from "./administrativeteam/administrativeProfessor1.png"
+import administrativeProfessor2 from "./administrativeteam/administrativeProfessor2.png"
+import administrativeProfessor3 from "./administrativeteam/administrativeProfessor3.png"
+import administrativeProfessor4 from "./administrativeteam/administrativeProfessor4.png"
+
+
+import facultyAdminBg from "./backgrounds/facultyAdministrationBg.png"
+
 export {
   logo,
   vid1,
@@ -69,4 +77,9 @@ export {
   BEd,
   MBA,
   MEd,
+  administrativeProfessor1,
+  administrativeProfessor2,
+  administrativeProfessor3,
+  administrativeProfessor4,
+  facultyAdminBg
 };
