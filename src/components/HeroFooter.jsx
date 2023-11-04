@@ -8,7 +8,7 @@ const HeroFooter = () => {
         return (
           <div
             key={index}
-            className="flex flex-row h-[80%] md:h-full w-[25%] md:w-[22%]  md:ml-6 p-3 hover:bg-red-950 hover:rounded-xl"
+            className="flex flex-row h-[80%] md:h-full w-[25%] md:w-[22%]  md:ml-6 p-3 hover:rounded-xl"
           >
             <img
               src={`${item.img}`}

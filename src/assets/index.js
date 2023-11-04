@@ -12,6 +12,7 @@ import f2 from "./footerImages/f2.png";
 import f3 from "./footerImages/f3.png";
 
 import n1 from "./noticesImages/notice1.jpg";
+import n2 from "./noticesImages/notice2.png";
 
 import s1 from "./specImages/s1.png";
 import s2 from "./specImages/s2.png";
@@ -44,6 +45,7 @@ import blogBg from "./backgrounds/blogBg.png";
 import contactBg from "./backgrounds/contactBg.png";
 import facultyAdminBg from "./backgrounds/facultyAdministrationBg.png";
 import facultyAcademicsBg from "./backgrounds/facultyAcademicsBg.png";
+import noticeBg from "./backgrounds/noticeBg.png";
 
 import academicProfessor1 from "./academicTeam/academicProfessor1.png";
 import academicProfessor2 from "./academicTeam/academicProfessor2.png";
@@ -67,6 +69,7 @@ export {
   f2,
   f3,
   n1,
+  n2,
   s1,
   s2,
   s3,
@@ -95,6 +98,7 @@ export {
   blogBg,
   contactBg,
   facultyAcademicsBg,
+  noticeBg,
   facultyAdminBg,
   academicProfessor1,
   academicProfessor2,

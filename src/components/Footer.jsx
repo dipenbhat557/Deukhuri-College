@@ -31,12 +31,30 @@ const Footer = () => {
         </div>
         <div className="h-full w-[20%] flex flex-col items-center justify-around">
           <p className="text-[18px]">Other Links</p>
-          <p className="text-[16px] text-slate-300 cursor-pointer">Admission</p>
-          <p className="text-[16px] text-slate-300 cursor-pointer">Contact</p>
-          <p className="text-[16px] text-slate-300 cursor-pointer">Location</p>
-          <p className="text-[16px] text-slate-300 cursor-pointer">
+          <a
+            href="/admission"
+            className="text-[16px] text-slate-300 cursor-pointer"
+          >
+            Admission
+          </a>
+          <a
+            href="/contact"
+            className="text-[16px] text-slate-300 cursor-pointer"
+          >
+            Contact
+          </a>
+          <a
+            href="/contact"
+            className="text-[16px] text-slate-300 cursor-pointer"
+          >
+            Location
+          </a>
+          <a
+            href="/about"
+            className="text-[16px] text-slate-300 cursor-pointer"
+          >
             Life At DMC
-          </p>
+          </a>
         </div>
         <div className="h-full w-[35%] flex flex-col items-center justify-around">
           <p className="text-[18px]"> Social Links</p>

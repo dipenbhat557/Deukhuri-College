@@ -4,13 +4,14 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/motion";
 import { vid1 } from "../assets";
 import { styles } from "../styles";
+import { useNavigate } from "react-router-dom";
 
 const VideoTour = () => {
-  const [autoplay, setAutoplay] = useState(false);
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleReadmore = () => {
-    // Implement your read more logic here
+    navigate("/about");
   };
 
   useEffect(() => {
@@ -22,8 +23,8 @@ const VideoTour = () => {
 
     const callback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setAutoplay(true);
+        if (entry.isIntersecting && videoRef.current) {
+          videoRef.current.play(); // Play the video when it becomes visible
         }
       });
     };
@@ -57,13 +58,14 @@ const VideoTour = () => {
       </div>
       <div className="h-[85%] w-full flex flex-wrap items-center justify-between mt-8">
         <div className="relative h-full w-[48%]">
-          <iframe
+          <video
             ref={videoRef}
             src={vid1}
             title="Video"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
+            autoPlay
+            loop
+            muted
+            controls={false}
             style={{
               position: "absolute",
               top: 0,
@@ -71,7 +73,7 @@ const VideoTour = () => {
               width: "100%",
               height: "100%",
             }}
-            className="rounded-2xl bg-slate-500"
+            className="rounded-2xl bg-red-900"
           />
         </div>
         <motion.div
@@ -107,4 +109,5 @@ const VideoTour = () => {
     </div>
   );
 };
+
 export default VideoTour;

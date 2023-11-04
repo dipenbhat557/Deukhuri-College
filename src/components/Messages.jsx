@@ -3,8 +3,51 @@ import { messageItems } from "../constants";
 import { motion } from "framer-motion";
 import { fadeIn } from "../utils/motion";
 import { styles } from "../styles";
+import { useEffect, useState } from "react";
 
 const Messages = () => {
+  const [currentMessages, setCurrentMessages] = useState([
+    messageItems[0],
+    messageItems[1],
+  ]);
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Function to update the current events based on the currentIndex
+  const updateCurrentMessages = () => {
+    const startIndex = currentIndex;
+    const endIndex = startIndex + 3;
+    const nextIndex = endIndex % messageItems.length;
+    if (endIndex !== messageItems.length - 1) {
+      setCurrentMessages(
+        messageItems
+          .slice(startIndex, endIndex)
+          .concat(messageItems.slice(0, nextIndex))
+      );
+    } else {
+      setCurrentMessages(messageItems.slice(startIndex, endIndex));
+    }
+  };
+
+  // Function to handle automatic switching of events
+  const handleAutoSwitch = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % messageItems.length;
+      return newIndex;
+    });
+  };
+
+  useEffect(() => {
+    // Initialize current events
+    updateCurrentMessages();
+
+    // Set up automatic switching every 5 seconds (adjust as needed)
+    const interval = setInterval(handleAutoSwitch, 5000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
   return (
     <div className={`${styles.padding} h-[930px] md:h-[680px]`}>
       <div className="border-dashed border-b-4 rounded-xl  border-red-900" />
@@ -13,7 +56,7 @@ const Messages = () => {
         style={{ position: "absolute", zIndex: -1 }}
       ></div>
       <div className="w-full h-[95%] flex flex-wrap justify-around items-center">
-        {messageItems.map((message, index) => (
+        {currentMessages.map((message, index) => (
           <motion.div
             key={index}
             variants={fadeIn("up", "spring", index * 0.5, 0.75)}

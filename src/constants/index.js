@@ -26,6 +26,7 @@ import {
   academicProfessor2,
   academicProfessor3,
   academicProfessor4,
+  n2,
 } from "../assets";
 
 export const navLinks = [
@@ -42,7 +43,7 @@ export const navLinks = [
   {
     id: "contact",
     title: "CONTACT",
-    route: "#",
+    route: "/contact",
   },
   {
     id: "blog",
@@ -57,7 +58,7 @@ export const navLinks = [
   {
     id: "about",
     title: "ABOUT",
-    route: "#",
+    route: "/about",
   },
   {
     id: "faculty",
@@ -73,11 +74,11 @@ export const heroElements = [
   },
   {
     video: vid2,
-    text: "Building Human Capital",
+    text: "Building Human Capital2",
   },
   {
     video: vid3,
-    text: "Building Human Capital",
+    text: "Building Human Capital3",
   },
 ];
 
@@ -102,15 +103,19 @@ export const footerConstants = [
 export const notices = [
   {
     img: n1,
-    title: "College semester exam postponed",
+    title: "Holiday on the ocassion of Bhanujyanti",
+  },
+  {
+    img: n2,
+    title: "Class starts from tommorow for students",
   },
   {
     img: n1,
-    title: "Nothing's here",
+    title: "Class will be halted for tommorow",
   },
   {
-    img: n1,
-    title: "What do you want",
+    img: n2,
+    title: "Class starts from tommorow for 1st year students",
   },
 ];
 
@@ -216,10 +221,12 @@ export const underGraduateItems = [
 export const programs = [
   {
     title: "Graduate Programs",
+    desc: "Our graduate programs transform you into top-flight managers and business leaders.",
     items: graduateItems,
   },
   {
     title: "Undergraduate Programs",
+    desc: "Our programs–featuring the perfect blend of theory-, experience-, and observation- based learning–are taught in participative environments that extend beyond the classroom walls.",
     items: underGraduateItems,
   },
 ];
@@ -278,5 +285,28 @@ export const faculties = [
   {
     title: "Meet our Administrative Team",
     content: administrativeTeam,
+  },
+];
+
+export const aboutItems = [
+  {
+    title: "Integrity",
+    content:
+      "We emphasize personal integrity and responsibility, as these are qualities essential for leadership at all levels of academic involvement. Through our policies, actions and teaching, we promote and emphasize upon uprightness and honesty among our students, faculty and staff.",
+  },
+  {
+    title: "Excellence",
+    content:
+      "We strive for excellence in everything we do, and thus the high standards we have set for our programmes, students, faculty, staff, and the organisation as a whole.",
+  },
+  {
+    title: "Respect for Individual and Intellectual Differences",
+    content:
+      "We believe in and appreciate the value of diversity of cultures and opinions in society. We are inclusive of and treat diversity as a source of learning. We attempt to create an environment where the values of diversity are understood, nurtured, and celebrated.",
+  },
+  {
+    title: "Diversity and Inclusiveness",
+    content:
+      "We recognise individual and intellectual differences among our students, faculty, and staff. We respect ourselves and others and honour each other as individuals.",
   },
 ];

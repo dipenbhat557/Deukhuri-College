@@ -17,3 +17,40 @@
 body {
   overflow-x: hidden;
 }
+
+.video-slide {
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+.video-fade-in {
+  animation-name: fade-in;
+  animation-fill-mode: forwards;
+}
+
+.video-fade-out {
+  animation-name: fade-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
