@@ -83,17 +83,17 @@ const FacultyAcademics = () => {
               return (
                 <div
                   key={index}
-                  className="w-[28%] h-auto flex flex-col justify-around m-3 p-3 shadow-xl hover:bg-red-900 hover:text-white "
+                  className="w-[28%] h-auto flex flex-col justify-around m-3 shadow-xl hover:bg-red-900 hover:text-white "
                 >
                   <img
                     className="w-full h-[65%] object-contain"
                     src={faculty.img}
                     alt={`faculty-${index}`}
                   />
-                  <p className="text-[18px] font-semibold h-[18%]">
+                  <p className="text-[18px] font-semibold h-[18%] p-3">
                     {faculty.name}
                   </p>
-                  <p className="text-[16px] h-[18%] text-slate-400 hover:text-slate-200">
+                  <p className="text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3">
                     {faculty.post}
                   </p>
                 </div>

@@ -32,11 +32,11 @@ const Admission = () => {
 
       {programs.map((program, index) => {
         return (
-          <div className="flex flex-col items-center justify-around w-full p-3  ">
+          <div className="flex flex-col items-center justify-around w-full p-3  px-8">
             <p className="uppercase text-[20px] font-semibold ">
               {program.title}
             </p>
-            <p className="text-[15px] font-semibold m-3 text-slate-700 w-[70%] text-center">
+            <p className="text-[15px] font-semibold m-3 text-slate-600 w-[70%] text-center">
               {program.desc}
             </p>
 
@@ -45,7 +45,7 @@ const Admission = () => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col h-[90%] md:h-full w-[40%] hover:w-[42%] mx-5 hover:bg-red-900 hover:text-white  justify-around"
+                    className="flex flex-col h-[90%] md:h-full w-[40%] mt-8 pb-6  mx-5 hover:bg-red-900 hover:text-white  justify-around"
                   >
                     <img
                       src={`${item.img}`}
@@ -58,9 +58,9 @@ const Admission = () => {
                     <p className="text-[14px] h-[18%] md:h-[22%]  md:text-[15px]  my-2 px-3">
                       {item.content}
                     </p>
-                    <div className="w-full flex items-center justify-center px-3">
+                    <div className="w-full flex items-center justify-center px-3 mt-4">
                       <button
-                        className="h-[10%]  border-l-2 border-r-4 border-t-2 border-b-8 shadow-2xl border-slate-300  w-[50%] md:w-[30%] p-2 text-[14px] hover:bg-red-950 mb-2"
+                        className="h-[10%]   shadow-lg shadow-black  w-[50%] md:w-[30%] p-2 text-[14px] hover:bg-red-950 mb-2"
                         onClick={handleApply}
                       >
                         Apply

@@ -32,12 +32,12 @@ const Blog = () => {
           </div>
         </div>
       </div>
-      <div className={`${styles.padding} w-full h-auto relative flex flex-col`}>
+      <div className={`${styles.padding} w-full h-auto relative`}>
         <div className="w-full h-[10%] flex items-start justify-center">
           <p className="text-[25px] font-bold">Message's from our Faculty</p>
         </div>
         <div
-          className="bg-red-900 w-[80px] h-[100px] flex justify-start top-8 ml-[30px] rounded-t-xl"
+          className="bg-red-950 w-[80px] h-[100px] flex justify-start top-20 ml-[40px] rounded-t-xl"
           style={{ position: "absolute", zIndex: -1 }}
         ></div>
 
@@ -49,7 +49,7 @@ const Blog = () => {
                 scale: 1,
                 speed: 450,
               }}
-              className="bg-tertiary mt-2 rounded-2xl h-[590px] w-full sm:w-[35%]"
+              className=" mt-9 rounded-2xl h-[590px] w-full sm:w-[35%]"
             >
               <div className=" flex mt-10 flex-col justify-center items-center w-full h-full shadow-2xl p-4">
                 <img
@@ -76,7 +76,7 @@ const Blog = () => {
           ))}
         </div>
         <div
-          className="bg-red-900 w-[80px] h-[90px] flex justify-end mt-5 bottom-0 right-24 rounded-b-xl"
+          className="bg-red-900 w-[80px] h-[90px] flex justify-end bottom-4 right-28 rounded-b-xl"
           style={{ position: "absolute", zIndex: -1 }}
         ></div>
       </div>

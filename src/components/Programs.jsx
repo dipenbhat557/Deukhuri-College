@@ -28,21 +28,21 @@ const Programs = () => {
           <div className="w-[60%] h-full flex flex-col justify-around">
             <div className="flex flex-col justify-around w-full mx-4 h-[40%] my-4">
               <div className="flex flex-col justify-center h-[70%]">
-                <p className="text-[23px] font-light ">GRADUATE PROGRAMS</p>
+                <p className="text-[23px]  ">GRADUATE PROGRAMS</p>
                 <p className="text-[16px] text-slate-600 my-2">
                   Our graduate programs transform you into top-flight managers
                   and business leaders.
                 </p>
               </div>
-              <div className="flex items-center gap-4 w-full h-[30%] text-white">
+              <div className="flex items-center gap-4 w-full h-[30%] ">
                 {graduateItems.map((item, index) => {
                   return (
                     <button
                       key={index}
-                      className={`p-2 rounded-md w-[15%] uppercase ${
+                      className={`p-2  w-[15%] uppercase ${
                         index == currentGraduateProgramIndex
-                          ? "bg-red-950"
-                          : "bg-red-900"
+                          ? "bg-red-900 text-white"
+                          : "bg-red-700 text-slate-200"
                       } hover:w-[17%] hover:p-3`}
                       onClick={() => setCurrentGraduateProgramIndex(index)}
                     >
@@ -82,9 +82,7 @@ const Programs = () => {
           <div className="w-[60%] h-full flex flex-col justify-center">
             <div className="flex flex-col justify-around w-full mx-2 h-[70%]">
               <div className="flex flex-col justify-center">
-                <p className="text-[20px] font-light my-2">
-                  UNDER-GRADUATE PROGRAMS
-                </p>
+                <p className="text-[20px] my-2">UNDER-GRADUATE PROGRAMS</p>
                 <p className="text-[16px] text-slate-600 my-2">
                   Our programs–featuring the perfect blend of theory-,
                   experience-, and observation- based learning–are taught in
@@ -97,10 +95,10 @@ const Programs = () => {
                   return (
                     <button
                       key={index}
-                      className={`p-2 rounded-md w-[15%] uppercase text-white ${
+                      className={`p-2  w-[15%] uppercase text-white ${
                         index == currentUnderGraduateProgramIndex
-                          ? "bg-red-950"
-                          : "bg-red-900"
+                          ? "bg-red-900 text-white"
+                          : "bg-red-700 text-slate-200"
                       } hover:w-[17%] hover:p-3`}
                       onClick={() => setCurrentUnderGraduateProgramIndex(index)}
                     >

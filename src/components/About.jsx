@@ -37,7 +37,7 @@ const About = () => {
           About Deukhuri Multiple Campus
         </div>
 
-        <div className="flex flex-col h-full w-[75%] ">
+        <div className="flex flex-col h-full w-[70%]  mr-32">
           <p className="text-[14px] font-light w-full text-justify">
             Deukhuri Multiple Campus was established in 2005 AD (2062 BS) as a
             community campus located in Lamahi, Deukhuri, Dang district of
@@ -45,13 +45,14 @@ const About = () => {
             and University Grants Commission of Nepal. It is affiliated to
             Tribhuvan University (TU) for Bachelor and Master Degree programs.
             It has been imparting quality education in the facilities of
-            Management, Arts and Science. Deukhuri Multiple Campus offers
-            Bachelor level and Master level programs such as Bachelor of Arts
-            (BA), Bachelor of Education (B.Ed.), Bachelor of Business Studies
-            (BBS), Master of Education (M.Ed.) programs. It provides various
-            Facilities such as Library, Sports, Cafeteria, Labs, Multimedia,
-            Internet, E-library, Journal, Counselling, Educational Tours,
-            Scholarship, Conference and Internship for deserving students.
+            Management, Arts and Science. <br /> <br /> Deukhuri Multiple Campus
+            offers Bachelor level and Master level programs such as Bachelor of
+            Arts (BA), Bachelor of Education (B.Ed.), Bachelor of Business
+            Studies (BBS), Master of Education (M.Ed.) programs. It provides
+            various Facilities such as Library, Sports, Cafeteria, Labs,
+            Multimedia, Internet, E-library, Journal, Counselling, Educational
+            Tours, Scholarship, Conference and Internship for deserving
+            students.
           </p>
 
           <Specifications />
@@ -68,7 +69,7 @@ const About = () => {
             these values, we strive for excellence in everything we do.
           </p>
 
-          <div className="flex flex-wrap w-full h-auto">
+          <div className="flex flex-wrap justify-between w-full h-auto">
             {aboutItems.map((item, index) => {
               return (
                 <div className="flex flex-col justify-around m-3 w-[40%] h-[150px] text-justify">

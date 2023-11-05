@@ -92,10 +92,13 @@ const VideoTour = () => {
               Introduction
             </p>
             <p className="md:text-[18px] text-[12.5px] text-center">
-              Deukhuri Group was established in 1998 AD, Dang founded by a group
-              of Gurkhas (Lahures) to provide quality education for current and
-              future generation of students. The Gorkha Group has been running 3
-              schools
+              Deukhuri Multiple Campus was established in 2005 AD (2062 BS) as a
+              community campus located in Lamahi, Deukhuri, Dang district of
+              Nepal. This campus is running with the supports of community
+              people and University Grants Commission of Nepal. It is affiliated
+              to Tribhuvan University (TU) for Bachelor and Master Degree
+              programs. It has been imparting quality education in the
+              facilities of Management, Arts and Science.
             </p>
             <button
               className="bg-red-900 text-white font-semibold rounded-md p-2 mt-3 hover:bg-red-950 cursor-pointer"

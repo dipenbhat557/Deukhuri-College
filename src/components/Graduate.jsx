@@ -68,7 +68,7 @@ const Graduate = () => {
           {programs[programIndex].items.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col h-[90%] md:h-full w-[28%] hover:w-[33%]  hover:bg-red-900 hover:text-white items-center justify-center"
+              className="flex flex-col h-[90%] md:h-full w-[28%]   hover:bg-red-900 hover:text-white items-center justify-center"
             >
               <img
                 src={`${item.img}`}

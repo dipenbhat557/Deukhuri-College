@@ -49,7 +49,7 @@ const Hero = () => {
           {heroElements.map((element, index) => (
             <div
               key={index}
-              className={`video-slide absolute w-full h-full ${
+              className={`video-slide absolute w-full h-full  ${
                 index === currentElement ? "video-fade-in" : "video-fade-out"
               }`}
             >
@@ -69,9 +69,9 @@ const Hero = () => {
                 className="h-full w-full object-cover"
               />
 
-              <div className="h-[40%] flex items-center justify-between absolute bottom-7 w-[45%] gap-3 text-slate-800 z-10">
+              <div className="h-[40%] flex items-center text-white justify-between absolute bottom-7 w-[45%] gap-3 z-10">
                 <BiSolidRightArrow className="text-red-900 text-9xl mb-2 ml-0 w-[16%]" />
-                <p className="font-semibold sm:text-[30px] text-[20px] leading-loose md:text-[40px] w-[60%]">
+                <p className="font-semibold sm:text-[35px] text-[20px] leading-snug tracking-wide md:text-[45px] w-[60%]">
                   {element.text}
                 </p>
                 <MdOutlineArrowForwardIos className="text-9xl text-red-900 w-[19%] cursor-pointer" />

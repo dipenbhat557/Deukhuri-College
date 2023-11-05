@@ -5,8 +5,8 @@ import { styles } from "../styles";
 const RegisterSection = () => {
   const navigate = useNavigate();
   return (
-    <div className={` ${styles.padding} h-[500px] w-full flex `}>
-      <div className="w-[40%] h-full">
+    <div className={`  h-[450px] w-full flex bg-[#F2F2F2] mb-5`}>
+      <div className="w-[35%] h-full">
         <img src={register} alt="register Teacher" className="object-cover" />
       </div>
       <div className="w-[60%] h-full flex-col flex items-center justify-center">

@@ -5,7 +5,7 @@ const styles = {
 
   sectionHeadText:
     "text-dark  md:text-[30px] sm:text-[25px] xs:text-[20px] text-[18px]",
-  sectionSubText: "sm:text-[18px] text-[16px] text-secondary tracking-wider",
+  sectionSubText: "sm:text-[18px] text-[16px]  tracking-wider",
 };
 
 export { styles };

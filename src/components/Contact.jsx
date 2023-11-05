@@ -80,7 +80,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-start w-full h-auto mx-8">
+      <div className="flex justify-between items-start w-full h-auto mx-8 pl-24">
         <div className=" flex w-[50%] h-auto ml-10">
           {/* Contact form section */}
           <motion.div
