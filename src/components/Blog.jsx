@@ -9,10 +9,31 @@ import Navbar from "./Navbar";
 import RegisterSection from "./RegisterSection";
 import { motion } from "framer-motion";
 import Subscription from "./Subscriptions";
+import { useEffect, useState } from "react";
 
 const Blog = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 105) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
+    <div className={`${scrolled ? "flex flex-col" : ""}`}>
+      {scrolled && <Navbar active="BLOG" scrolled={scrolled} />}
+
       <HeroHeader />
       <div className="w-full h-[616px] relative">
         <img
@@ -21,8 +42,12 @@ const Blog = () => {
           className="w-full h-full object-cover -z-10"
         />
 
-        <div className="w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col justify-between items-center text-white">
-          <Navbar active="BLOG" style={{ background: "transparent" }} />
+        <div
+          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+            scrolled ? "justify-end" : "justify-between"
+          } items-center text-white`}
+        >
+          {scrolled || <Navbar active="BLOG" scrolled={scrolled} />}
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
@@ -44,6 +69,7 @@ const Blog = () => {
         <div className="w-full h-[80%] flex flex-wrap justify-around items-center mb-16">
           {messageItems.map((message, index) => (
             <Tilt
+              key={index}
               options={{
                 max: 45,
                 scale: 1,
@@ -86,7 +112,7 @@ const Blog = () => {
         <Subscription />
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default Blog;

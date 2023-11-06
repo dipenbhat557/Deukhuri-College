@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { admissionBg } from "../assets";
 import { programs } from "../constants";
 import Footer from "./Footer";
@@ -8,8 +9,27 @@ import Subscription from "./Subscriptions";
 const Admission = () => {
   const handleApply = () => {};
 
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 105) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
+    <div className={`${scrolled ? "flex flex-col" : ""}`}>
+      {scrolled && <Navbar active="ADMISSION" scrolled={scrolled} />}
       <HeroHeader />
       <div className="w-full h-[616px] relative">
         <img
@@ -18,8 +38,12 @@ const Admission = () => {
           className="w-full h-full object-cover -z-10"
         />
 
-        <div className="w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col justify-between items-center text-white">
-          <Navbar active="ADMISSION" style={{ background: "transparent" }} />
+        <div
+          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+            scrolled ? "justify-end" : "justify-between"
+          } items-center text-white`}
+        >
+          {scrolled || <Navbar active="ADMISSION" scrolled={scrolled} />}
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
@@ -32,7 +56,10 @@ const Admission = () => {
 
       {programs.map((program, index) => {
         return (
-          <div className="flex flex-col items-center justify-around w-full p-3  px-8">
+          <div
+            key={index}
+            className="flex flex-col items-center justify-around w-full p-3  px-8"
+          >
             <p className="uppercase text-[20px] font-semibold ">
               {program.title}
             </p>
@@ -78,7 +105,7 @@ const Admission = () => {
         <Subscription />
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default Admission;

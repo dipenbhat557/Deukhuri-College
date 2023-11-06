@@ -1,4 +1,4 @@
-import { lazy, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import RegisterSection from "./RegisterSection";
@@ -11,23 +11,50 @@ const HeroHeader = lazy(() => import("./HeroHeader"));
 const UnderGraduate = () => {
   const [programIndex, setProgramIndex] = useState(1);
 
+  const [scrolled, setScrolled] = useState(false);
+
+  // const debounce = (func, delay) => {
+  //   let timer;
+  //   return function () {
+  //     clearTimeout(timer);
+  //     timer = setTimeout(() => {
+  //       func.apply(this, arguments);
+  //     }, delay);
+  //   };
+  // };
+
+  const handleScroll = () => {
+    if (window.scrollY >= 105) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleReadMore = () => {
     // Implement your functionality here
   };
 
   return (
-    <>
+    <div className={`${scrolled ? "flex flex-col" : ""}`}>
+      {scrolled && <Navbar active="ACADEMICS" scrolled={scrolled} />}
       <HeroHeader />
 
-      <div className="w-full h-[560px] relative">
-        <img
-          src={program}
-          alt="Graduate BG"
-          className="w-full h-full object-cover -z-10"
-        />
-
-        <div className="w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col justify-between items-center text-white">
-          <Navbar active="ACADEMICS" style={{ background: "transparent" }} />
+      <div className="w-full h-[616px] relative">
+        <div
+          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+            scrolled ? "justify-end" : "justify-between"
+          } items-center text-white`}
+        >
+          {scrolled || <Navbar active="ACADEMICS" scrolled={scrolled} />}
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
@@ -38,6 +65,11 @@ const UnderGraduate = () => {
             <div className="w-full h-[40%] bg-white" />
           </div>
         </div>
+        <img
+          src={program}
+          alt="Graduate BG"
+          className="w-full h-full object-cover -z-10"
+        />
       </div>
 
       <div className="flex w-full h-auto justify-around items-center ">
@@ -101,7 +133,7 @@ const UnderGraduate = () => {
         <RegisterSection />
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default UnderGraduate;

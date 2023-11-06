@@ -29,6 +29,7 @@ const Notices = () => {
         {notices.map((notice, index) => {
           return (
             <div
+              key={index}
               className={`${
                 index == currentIndex ? "border-l-4 border-red-900 " : ""
               } w-full h-[20%] border-b-2  flex  items-center pl-4 cursor-pointer`}

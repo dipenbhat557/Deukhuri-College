@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { aboutBg } from "../assets";
 import { aboutItems } from "../constants";
 import Footer from "./Footer";
@@ -7,19 +8,36 @@ import RegisterSection from "./RegisterSection";
 import Specifications from "./Specifications";
 
 const About = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 105) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
+    <div className={`${scrolled ? "flex flex-col" : ""}`}>
+      {scrolled && <Navbar active="ABOUT" scrolled={scrolled} />}
       <HeroHeader />
 
       <div className="w-full h-[616px] relative">
-        <img
-          src={aboutBg}
-          alt="Graduate BG"
-          className="w-full h-full object-cover -z-10"
-        />
-
-        <div className="w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col justify-between items-center text-white">
-          <Navbar active="ABOUT" style={{ background: "transparent" }} />
+        <div
+          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+            scrolled ? "justify-end" : "justify-between"
+          } items-center text-white`}
+        >
+          {scrolled || <Navbar active="ABOUT" scrolled={scrolled} />}
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
@@ -30,6 +48,11 @@ const About = () => {
             <div className="w-full h-[40%] bg-white" />
           </div>
         </div>
+        <img
+          src={aboutBg}
+          alt="Graduate BG"
+          className="w-full h-full object-cover -z-10"
+        />
       </div>
 
       <div className={`p-4 flex w-full h-auto  justify-between`}>
@@ -88,7 +111,7 @@ const About = () => {
         <RegisterSection />
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default About;

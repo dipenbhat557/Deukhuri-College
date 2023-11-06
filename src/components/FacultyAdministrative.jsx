@@ -11,19 +11,42 @@ import { faculties } from "../constants";
 const FacultyAdministrative = () => {
   const [facultyIndex, setFacultyIndex] = useState(1);
 
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 105) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
+    <div className={`${scrolled ? "flex flex-col" : ""}`}>
+      {scrolled && <Navbar active="FACULTY" scrolled={scrolled} />}
       <HeroHeader />
 
       <div className="w-full h-[616px] relative">
         <img
-          src={facultyAdminBg}
+          src={facultyAcademicsBg}
           alt="Graduate BG"
           className="w-full h-full object-cover -z-10"
         />
 
-        <div className="w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col justify-between items-center text-white">
-          <Navbar active="FACULTY" style={{ background: "transparent" }} />
+        <div
+          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+            scrolled ? "justify-end" : "justify-between"
+          } items-center text-white`}
+        >
+          {scrolled || <Navbar active="FACULTY" scrolled={scrolled} />}
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
@@ -83,7 +106,7 @@ const FacultyAdministrative = () => {
               return (
                 <div
                   key={index}
-                  className="w-[28%] h-auto flex flex-col justify-around m-3  shadow-xl hover:bg-red-900 hover:text-white "
+                  className="w-[28%] h-auto flex flex-col justify-around m-3 shadow-xl hover:bg-red-900 hover:text-white "
                 >
                   <img
                     className="w-full h-[65%] object-contain"
@@ -107,7 +130,7 @@ const FacultyAdministrative = () => {
         <Subscription />
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default FacultyAdministrative;

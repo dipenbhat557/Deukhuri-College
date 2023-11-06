@@ -5,7 +5,7 @@ import { BiSolidRightArrow } from "react-icons/bi";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import "../index.css"; // Import your CSS file for animations
 
-const Hero = () => {
+const Hero = ({ scrolled }) => {
   const [currentElement, setCurrentElement] = useState(0);
   const videoRefs = heroElements.map(() => useRef(null));
 
@@ -81,7 +81,7 @@ const Hero = () => {
         </div>
 
         <div className="w-full z-30 h-full bg-black bg-opacity-30 absolute top-0 left-0 flex flex-col justify-between text-white">
-          <Navbar active="HOME" style={{ background: "transparent" }} />
+          {scrolled || <Navbar active="HOME" scrolled={scrolled} />}
         </div>
       </div>
     </>

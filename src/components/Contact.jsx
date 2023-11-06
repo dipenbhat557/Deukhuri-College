@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { contactBg, facebook, instagram, twitter } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
@@ -9,6 +9,8 @@ import { styles } from "../styles";
 import { slideIn } from "../utils/motion";
 
 const Contact = () => {
+  const [scrolled, setScrolled] = useState(false);
+
   const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
@@ -58,9 +60,27 @@ const Contact = () => {
       );
   };
 
+  const handleScroll = () => {
+    if (window.scrollY >= 105) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
+    <div className={`${scrolled ? "flex flex-col" : ""}`}>
+      {scrolled && <Navbar active="CONTACT" scrolled={scrolled} />}
       <HeroHeader />
+
       <div className="w-full h-[616px] relative">
         <img
           src={contactBg}
@@ -68,8 +88,12 @@ const Contact = () => {
           className="w-full h-full object-cover -z-10"
         />
 
-        <div className="w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col justify-between items-center text-white">
-          <Navbar active="CONTACT" style={{ background: "transparent" }} />
+        <div
+          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+            scrolled ? "justify-end" : "justify-between"
+          } items-center text-white`}
+        >
+          {scrolled || <Navbar active="CONTACT" scrolled={scrolled} />}
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
@@ -171,10 +195,10 @@ const Contact = () => {
 
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3526.8379558822553!2d82.51065539999999!3d27.8762477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399799b1acfbe8b9%3A0x3cbacc276efcd797!2sDeukhuri%20Multiple%20Campus!5e0!3m2!1sen!2sin!4v1699093685673!5m2!1sen!2sin"
-        allowfullscreen=""
+        allowFullScreen=""
         id="location"
         loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
+        referrerPolicy="no-referrer-when-downgrade"
         className="w-full h-[350px]  mt-4"
       ></iframe>
 
@@ -182,7 +206,7 @@ const Contact = () => {
         <Subscription />
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 export default Contact;
