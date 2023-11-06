@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { styles } from "../../../3d-portfolio/src/styles";
-import { staggerContainer } from "../../../3d-portfolio/src/utils/motion";
+import { staggerContainer } from "../utils/motion";
 
 const SectionWrapper = (Component, idName) =>
   function HOC() {
