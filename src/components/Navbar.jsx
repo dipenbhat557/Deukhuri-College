@@ -60,12 +60,12 @@ const Navbar = ({ active, scrolled }) => {
       {showDropdown1 && (
         <div className="dropdown-menu mt-2 ml-60 p-3 rounded-b-xl rounded-r-xl text-black bg-slate-200 w-[16%] absolute z-30">
           <ul>
-            <li>
+            <li className="hover:bg-[#D9D9D9] click:bg-red-900 p-2 rounded-sm">
               <a href="/graduate" onClick={toggleDropdown1}>
                 Graduate Programs
               </a>
             </li>
-            <li>
+            <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
               <a href="/undergraduate" onClick={toggleDropdown2}>
                 Undergraduate Programs
               </a>
@@ -77,12 +77,12 @@ const Navbar = ({ active, scrolled }) => {
       {showDropdown2 && (
         <div className="dropdown-menu mt-2 right-1 p-3 rounded-b-xl rounded-r-xl text-black bg-slate-200 w-[14%] absolute z-30">
           <ul>
-            <li>
+            <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
               <a href="/faculty/academics" onClick={toggleDropdown2}>
                 Academics Team
               </a>
             </li>
-            <li>
+            <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
               <a href="/faculty/administration" onClick={toggleDropdown2}>
                 Administrative Team
               </a>
