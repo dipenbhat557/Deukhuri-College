@@ -72,12 +72,12 @@ const Navbar = ({ active }) => {
       {showDropdown1 && (
         <div className="dropdown-menu mt-2 ml-60 p-3 rounded-b-xl text-black bg-white w-[18%] absolute z-30">
           <ul>
-            <li className="hover:bg-slate-400 click:bg-red-900 p-2 rounded-sm">
+            <li className="hover:bg-[#D9D9D9] click:bg-red-900 p-2 rounded-sm">
               <a href="/graduate" onClick={toggleDropdown1}>
                 Graduate Programs
               </a>
             </li>
-            <li className="hover:bg-slate-400 click:bg-red-900 p-2 rounded-sm">
+            <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
               <a href="/undergraduate" onClick={toggleDropdown2}>
                 Undergraduate Programs
               </a>
@@ -89,12 +89,12 @@ const Navbar = ({ active }) => {
       {showDropdown2 && (
         <div className="dropdown-menu mt-2 right-1 p-3 rounded-b-xl text-black bg-white w-[14%] absolute z-30">
           <ul>
-            <li className="hover:bg-slate-400 click:bg-red-900 p-2 rounded-sm">
+            <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
               <a href="/faculty/academics" onClick={toggleDropdown2}>
                 Academics Team
               </a>
             </li>
-            <li className="hover:bg-slate-400 click:bg-red-900 p-2 rounded-sm">
+            <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
               <a href="/faculty/administration" onClick={toggleDropdown2}>
                 Administrative Team
               </a>

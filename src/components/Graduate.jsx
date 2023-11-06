@@ -46,9 +46,9 @@ const Graduate = () => {
             <div
               className={`${
                 program.title === programs[programIndex].title
-                  ? "bg-red-900"
-                  : "bg-slate-500"
-              } w-full h-[80px] p-3 hover:bg-red-900 flex items-center text-slate-300`}
+                  ? "bg-red-900 text-white"
+                  : "bg-[#D9D9D9] "
+              } w-full h-[80px] p-3 hover:bg-red-900 flex items-center `}
               key={index}
               onClick={() => setProgramIndex(index)}
             >
@@ -57,7 +57,7 @@ const Graduate = () => {
           ))}
           {programs[programIndex].items.map((item, index) => (
             <div
-              className="w-full h-[80px] bg-slate-400 hover:bg-slate-500 p-3 pl-10 flex items-center text-slate-800 text-[15px]"
+              className="w-full h-[80px] bg-[#D9D9D9] hover:text-slate-600 cursor-pointer p-3 pl-10 flex items-center text-slate-800 text-[15px]"
               key={index}
             >
               {item.title} | {item.fullTitle}
