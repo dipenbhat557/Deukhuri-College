@@ -89,7 +89,7 @@ const Contact = () => {
         />
 
         <div
-          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+          className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
             scrolled ? "justify-end" : "justify-between"
           } items-center text-white`}
         >

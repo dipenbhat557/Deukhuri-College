@@ -43,7 +43,7 @@ const Blog = () => {
         />
 
         <div
-          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+          className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
             scrolled ? "justify-end" : "justify-between"
           } items-center text-white`}
         >
@@ -57,6 +57,7 @@ const Blog = () => {
           </div>
         </div>
       </div>
+
       <div className={`${styles.padding} w-full h-auto relative`}>
         <div className="w-full h-[10%] flex items-start justify-center">
           <p className="text-[25px] font-bold">Message's from our Faculty</p>
@@ -75,7 +76,7 @@ const Blog = () => {
                 scale: 1,
                 speed: 450,
               }}
-              className=" mt-9 rounded-2xl h-[590px] w-full sm:w-[35%]"
+              className=" mt-9 rounded-2xl h-[670px] w-full sm:w-[35%]"
             >
               <div className=" flex mt-10 flex-col justify-center items-center w-full h-full shadow-2xl p-4">
                 <img
@@ -84,16 +85,16 @@ const Blog = () => {
                   alt={message.title}
                 />
                 <div className="flex flex-col w-full h-[40%]">
-                  <div className="flex items-center w-full h-[15%] ml-1 md:ml-3 font-semibold">
+                  <div className="flex items-center w-full h-[15%] font-semibold">
                     <p className="text-red-900 text-[8px] md:text-[20px] ml-3 md:ml-9">
                       {message.title}
                     </p>
                     <div className="ml-2 w-[8%] h-[2px] border-b-4 border-red-900 rounded-3xl" />
                   </div>
-                  <p className="text-[14px] md:text-[18px] h-[85%] font-semibold text-2xl ml-3 md:ml-10">
+                  <p className="text-[14px] md:text-[18px] h-[85%] font-semibold text-2xl ml-3 md:ml-9">
                     {message.name}
                   </p>
-                  <p className="text-[12px] md:text-[16px] h-[85%] text-center text-2xl mx-8">
+                  <p className="text-[12px] md:text-[16px] h-[85%]  text-2xl mx-8 text-justify">
                     {message.content}
                   </p>
                 </div>

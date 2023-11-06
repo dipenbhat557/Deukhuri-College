@@ -42,7 +42,7 @@ const FacultyAcademics = () => {
         />
 
         <div
-          className={`w-full h-full bg-black bg-opacity-5 absolute top-2 left-0 flex flex-col ${
+          className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
             scrolled ? "justify-end" : "justify-between"
           } items-center text-white`}
         >
@@ -63,8 +63,8 @@ const FacultyAcademics = () => {
             className={` ${
               facultyIndex == 0
                 ? "bg-red-900 text-white"
-                : "bg-slate-400 text-black"
-            } text-[16px] p-3`}
+                : "bg-[#D9D9D9] text-black"
+            } text-[16px] p-3 cursor-pointer`}
             onClick={() => setFacultyIndex(0)}
           >
             Academic Team
@@ -73,8 +73,8 @@ const FacultyAcademics = () => {
             className={` ${
               facultyIndex == 1
                 ? "bg-red-900 text-white"
-                : "bg-slate-400 text-black"
-            } text-[16px] p-3`}
+                : "bg-[#D9D9D9] text-black"
+            } text-[16px] p-3 cursor-pointer`}
             onClick={() => setFacultyIndex(1)}
           >
             Administrative Team
@@ -82,7 +82,7 @@ const FacultyAcademics = () => {
         </div>
 
         <div className="flex flex-col h-full w-[75%] ">
-          <p className="text-[14px] font-light w-full ">
+          <p className="text-[14px] font-light w-full text-justify">
             At our campus DMC, we pride ourselves on our exceptional academic
             faculty, comprising a diverse and accomplished group of educators
             and scholars. Our faculty members are experts in their respective
