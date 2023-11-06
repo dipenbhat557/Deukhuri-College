@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { BrowserRouter } from "react-router-dom";
-import Navbar from "./Navbar";
+import Loading from "./Loading";
+
+const Navbar = lazy(() => import("./Navbar"));
 
 const HeroHeader = lazy(() => import("./HeroHeader"));
 const Hero = lazy(() => import("./Hero"));
@@ -33,9 +34,9 @@ const HomePage = () => {
     };
   }, []);
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <div className={`${scrolled ? "flex flex-col" : ""}`}>
-        {scrolled && <Navbar active="ACADEMICS" scrolled={scrolled} />}
+        {scrolled && <Navbar active="HOME" scrolled={scrolled} />}
         <HeroHeader />
         <Hero scrolled={scrolled} />
         <HeroFooter />

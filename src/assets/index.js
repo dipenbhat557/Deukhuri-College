@@ -4,15 +4,15 @@ import vid1 from "./videos/1.mp4";
 import vid2 from "./videos/2.mp4";
 import vid3 from "./videos/3.mp4";
 import vid4 from "./videos/4.mp4";
-import vid5 from "./videos/5.mp4";
-import vid6 from "./videos/6.mp4";
 
 import f1 from "./footerImages/f1.png";
 import f2 from "./footerImages/f2.png";
 import f3 from "./footerImages/f3.png";
 
 import n1 from "./noticesImages/notice1.jpg";
-import n2 from "./noticesImages/notice2.png";
+import n2 from "./noticesImages/notice2.jpg";
+import n3 from "./noticesImages/notice3.jpg";
+import n4 from "./noticesImages/notice4.jpg";
 
 import s1 from "./specImages/s1.png";
 import s2 from "./specImages/s2.png";
@@ -45,6 +45,8 @@ import blogBg from "./backgrounds/blogBg.png";
 import contactBg from "./backgrounds/contactBg.png";
 import facultyAdminBg from "./backgrounds/facultyAdministrationBg.png";
 import facultyAcademicsBg from "./backgrounds/facultyAcademicsBg.png";
+import facultyAdministrationBg from "./backgrounds/facultyAdministrationBg.png";
+
 import noticeBg from "./backgrounds/noticeBg.png";
 
 import academicProfessor1 from "./academicTeam/academicProfessor1.png";
@@ -63,13 +65,13 @@ export {
   vid2,
   vid3,
   vid4,
-  vid5,
-  vid6,
   f1,
   f2,
   f3,
   n1,
   n2,
+  n3,
+  n4,
   s1,
   s2,
   s3,
@@ -98,6 +100,7 @@ export {
   blogBg,
   contactBg,
   facultyAcademicsBg,
+  facultyAdministrationBg,
   noticeBg,
   facultyAdminBg,
   academicProfessor1,

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../utils/motion";
 import { styles } from "../styles";
 import { useEffect, useState } from "react";
+import { SectionWrapper } from "../hoc";
 
 const Messages = () => {
   const [currentMessages, setCurrentMessages] = useState([
@@ -35,7 +36,7 @@ const Messages = () => {
 
   return (
     <div
-      className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%]   h-[900px] md:h-[750px]`}
+      className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%]   h-[900px] md:h-[760px]`}
     >
       <div
         className="bg-[#212529] w-[80px] h-[14%] flex justify-start mt-0.5  rounded-t-xl"
@@ -81,7 +82,7 @@ const Messages = () => {
                     <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
                       {message.name}
                     </p>
-                    <p className="text-[12px] md:text-[16px] h-[85%] text-justify text-2xl mx-8">
+                    <p className="text-[10px] md:text-[14px] h-[85%] text-justify text-2xl mx-8">
                       {message.content}
                     </p>
                   </div>
@@ -99,4 +100,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default SectionWrapper(Messages, "messages");

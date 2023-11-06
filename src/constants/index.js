@@ -6,6 +6,7 @@ import {
   vid1,
   vid2,
   vid3,
+  vid4,
   s1,
   s2,
   s3,
@@ -27,6 +28,8 @@ import {
   academicProfessor3,
   academicProfessor4,
   n2,
+  n3,
+  n4,
 } from "../assets";
 
 export const navLinks = [
@@ -74,11 +77,15 @@ export const heroElements = [
   },
   {
     video: vid2,
-    text: "Building Human Capital2",
+    text: "Inspiring Learning Journeys",
   },
   {
     video: vid3,
-    text: "Building Human Capital3",
+    text: "Igniting Future Leaders",
+  },
+  {
+    video: vid4,
+    text: "Fostering Brilliance Here",
   },
 ];
 
@@ -103,26 +110,26 @@ export const footerConstants = [
 export const notices = [
   {
     img: n1,
-    title: "Holiday on the ocassion of Bhanujyanti",
+    title: "अतिथि उपबोधन: गर्नका लागि आईटीमा पेशामा संवाद",
   },
   {
     img: n2,
-    title: "Class starts from tommorow for students",
+    title: "नोटिस: कलेज बन्द",
   },
   {
-    img: n1,
-    title: "Class will be halted for tommorow",
+    img: n3,
+    title: "महत्त्वपूर्ण सूचना: शुल्क सबमिशन मिति",
   },
   {
-    img: n2,
-    title: "Class starts from tommorow for 1st year students",
+    img: n4,
+    title: "सेमेस्टर परिक्षा तालिका",
   },
 ];
 
 export const specConst = [
   {
     img: s1,
-    content: "20+ year of excellence",
+    content: "18+ year of excellence",
   },
   {
     img: s2,
@@ -144,28 +151,21 @@ export const messageItems = [
     title: "Message from Principal",
     name: "Avash Neupane",
     content:
-      "Whether you visit us online or in person, we hope you will get a sense of what Gorkha School is and the mission that drives us. We are a progressive learning community that works to educate the whole person and prepare them for life.",
+      "प्रिय छात्र-छात्रा हरु, कलेज एक विद्यापीठ हो, जसमा ज्ञानको मार्गमा हाम्रो संगठन रहेको छ। यहाँ, हाम्रो प्राध्यापकहरू, शिक्षकहरू, र संघकका सभै सदस्यहरू तपाइँको शिक्षा र पेशामा उनको सहयोग गर्नका लागि यस कलेजमा उपस्थित छन्। हाम्रो उद्देश्य छ र थाहा छ आफ्नो शिक्षामा सफल हुनका लागि अपार प्राशासनिक र सांस्कृतिक संरचना प्रदान गर्दैछ।",
   },
   {
     img: founder1,
     title: "Message from Founder",
-    name: "Pawan Pandey",
+    name: "Shiva Oli",
     content:
-      "Education is the basis of all progress. It is for this very reason that we forayed into education, about 22 years ago. Over 22 years of experience has taught us that progress is possible only, if men and women are equally well-educated. ",
+      "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
   },
   {
     img: founder2,
     title: "Message from Founder",
     name: "Kiran Sharma",
     content:
-      "Education is the basis of all progress. It is for this very reason that we forayed into education, about 22 years ago. Over 22 years of experience has taught us that progress is possible only, if men and women are equally well-educated. ",
-  },
-  {
-    img: founder2,
-    title: "Message from Founder",
-    name: "Kiran Sharma",
-    content:
-      "Education is the basis of all progress. It is for this very reason that we forayed into education, about 22 years ago. Over 22 years of experience has taught us that progress is possible only, if men and women are equally well-educated. ",
+      "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
   },
 ];
 
@@ -175,7 +175,7 @@ export const graduateItems = [
     fullTitle: "Masters in Business Studies",
     img: MBA,
     content:
-      "The MBA at Deukhuri multiple campus helps you develop your own personalized, comprehensive view of the education world and provides you the skills to navigate your way to the top.",
+      "Elevate your career with our MBA program, where strategic leadership, innovative thinking, and industry-relevant skills converge to shape the business leaders of tomorrow.",
   },
   {
     title: "MED",
@@ -221,12 +221,12 @@ export const underGraduateItems = [
 export const programs = [
   {
     title: "Graduate Programs",
-    desc: "Our graduate programs transform you into top-flight managers and business leaders.",
+    desc: "Explore our graduate programs, where academic excellence meets real-world management challenges, preparing you for a successful career in the dynamic business landscape.",
     items: graduateItems,
   },
   {
     title: "Undergraduate Programs",
-    desc: "Our programs–featuring the perfect blend of theory-, experience-, and observation- based learning–are taught in participative environments that extend beyond the classroom walls.",
+    desc: "Unlock your potential with our undergraduate courses, designed to provide a strong foundation in management and equip you with the skills to thrive in the competitive world of business.",
     items: underGraduateItems,
   },
 ];

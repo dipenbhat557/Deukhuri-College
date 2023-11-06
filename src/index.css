@@ -36,7 +36,7 @@ body {
 @keyframes fade-in {
   0% {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   100% {
     opacity: 1;
@@ -45,6 +45,43 @@ body {
 }
 
 @keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.5);
+  }
+}
+
+.text-slide {
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+.text-fade-in {
+  animation-name: tfade-in;
+  animation-fill-mode: forwards;
+}
+
+.text-fade-out {
+  animation-name: tfade-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes tfade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(10%);
+  }
+}
+
+@keyframes tfade-out {
   0% {
     opacity: 1;
     transform: translateX(0);

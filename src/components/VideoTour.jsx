@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
-import { fadeIn } from "../utils/motion";
+import { fadeIn, textVariant } from "../utils/motion";
 import { vid1 } from "../assets";
 import { styles } from "../styles";
 import { useNavigate } from "react-router-dom";
+import { SectionWrapper } from "../hoc";
 
 const VideoTour = () => {
   const videoRef = useRef(null);
@@ -45,7 +46,7 @@ const VideoTour = () => {
     <div
       className={`${styles.padding} w-[98%] h-[450px] md:h-[510px] mt-4 mb-0 mx-auto bg-white`}
     >
-      <div className="h-[10%] w-full">
+      <motion.div variants={textVariant()} className="h-[10%] w-full">
         <div className="flex items-center h-[15%]  font-semibold">
           <p className=" text-[10px] text-red-900 md:text-[15px]">
             A SHORT VIDEO TOUR
@@ -55,9 +56,12 @@ const VideoTour = () => {
           Welcome to
           <br /> Deukhuri Multiple Campus
         </p>
-      </div>
+      </motion.div>
       <div className="h-[85%] w-full flex flex-wrap items-center justify-between mt-8">
-        <div className="relative h-full w-[48%]">
+        <motion.div
+          variants={fadeIn("right", "spring", 1, 0.75)}
+          className="relative h-full w-[48%]"
+        >
           <video
             ref={videoRef}
             src={vid1}
@@ -75,10 +79,10 @@ const VideoTour = () => {
             }}
             className="rounded-2xl bg-red-900"
           />
-        </div>
+        </motion.div>
         <motion.div
           className="h-full w-[40%] flex items-center justify-center flex-col bg-gradient-to-b from-red-900 to-red-50 mb-4 p-auto rounded-2xl"
-          variants={fadeIn("up", "spring", 1, 0.75)}
+          variants={fadeIn("left", "spring", 1, 0.75)}
         >
           <Tilt
             options={{
@@ -113,4 +117,4 @@ const VideoTour = () => {
   );
 };
 
-export default VideoTour;
+export default SectionWrapper(VideoTour, "");

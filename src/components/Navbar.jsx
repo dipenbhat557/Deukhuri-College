@@ -24,7 +24,7 @@ const Navbar = ({ active, scrolled }) => {
   return (
     <nav
       className={`w-full py-4 z-20  ${
-        scrolled ? "bg-[#212529] sticky top-0 z-10" : "relative bg-transparent"
+        scrolled ? "bg-[#212529] sticky top-0 z-50" : "relative bg-transparent"
       }`}
     >
       <ul className="list-none sm:flex sm:justify-evenly gap-6 relative">

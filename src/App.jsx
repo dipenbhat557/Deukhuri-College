@@ -8,6 +8,7 @@ import Admission from "./components/Admission";
 import FacultyAcademics from "./components/FacultyAcademics";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Loading from "./components/Loading";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { facultyAdminBg } from "../assets";
+import { useEffect, useState } from "react";
+import { facultyAdminBg, facultyAdministrationBg } from "../assets";
 import { styles } from "../styles";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
@@ -36,7 +36,7 @@ const FacultyAdministrative = () => {
 
       <div className="w-full h-[616px] relative">
         <img
-          src={facultyAcademicsBg}
+          src={facultyAdministrationBg}
           alt="Graduate BG"
           className="w-full h-full object-cover -z-10"
         />

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { notices } from "../constants";
+import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { noticeBg } from "../assets";
 import { IoMdInformationCircle } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
+import { slideIn } from "../utils/motion";
+import { SectionWrapper } from "../hoc";
 
 const Notices = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,7 +15,10 @@ const Notices = () => {
     <div
       className={`${styles.padding} flex justify-between items-center w-full h-[400px] mt-4`}
     >
-      <div className="w-[30%] h-full flex flex-col justify-around items-center">
+      <motion.div
+        variants={slideIn("left", "tween", 0.2, 1)}
+        className="w-[30%] h-full flex flex-col justify-around items-center"
+      >
         <div className="flex w-full h-[25%] justify-start items-center">
           <img
             src={noticeBg}
@@ -48,9 +54,12 @@ const Notices = () => {
             </div>
           );
         })}
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col w-[60%] h-[400px] items-center justify-around border-x-2 pb-9 border-y-2 border-red-900 rounded-xl p-4">
+      <motion.div
+        variants={slideIn("right", "tween", 0.2, 1)}
+        className="flex flex-col w-[60%] h-[400px] items-center justify-around border-x-2 pb-9 border-y-2 border-red-900 rounded-xl p-4"
+      >
         <p className="w-[50%] text-[16px] font-semibold h-auto my-4">
           {notices[currentIndex].title}
         </p>
@@ -65,8 +74,8 @@ const Notices = () => {
             <AiOutlineSearch />
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
-export default Notices;
+export default SectionWrapper(Notices, "notices");

@@ -1,15 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { register } from "../assets";
 import { styles } from "../styles";
+import { slideIn } from "../utils/motion";
+import { motion } from "framer-motion";
+import { SectionWrapper } from "../hoc";
 
 const RegisterSection = () => {
   const navigate = useNavigate();
   return (
     <div className={`  h-[450px] w-full flex bg-[#F2F2F2] mb-5`}>
-      <div className="w-[35%] h-full">
+      <motion.div
+        variants={slideIn("left", "spring", 0.5, 0.75)}
+        className="w-[35%] h-full"
+      >
         <img src={register} alt="register Teacher" className="object-cover" />
-      </div>
-      <div className="w-[60%] h-full flex-col flex items-center justify-center">
+      </motion.div>
+      <motion.div
+        variants={slideIn("right", "spring", 0.5, 0.75)}
+        className="w-[60%] h-full flex-col flex items-center justify-center"
+      >
         <p className={`${styles.sectionHeadText} h-[15%] w-[90%] `}>
           JOIN DMC FOR 2023
         </p>
@@ -32,8 +41,8 @@ const RegisterSection = () => {
             Register for Under Graduate program
           </button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
-export default RegisterSection;
+export default SectionWrapper(RegisterSection, "");

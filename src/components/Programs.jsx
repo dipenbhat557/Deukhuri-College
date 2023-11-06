@@ -2,6 +2,9 @@ import { useState } from "react";
 import { graduate, undergraduate } from "../assets";
 import { graduateItems, underGraduateItems } from "../constants";
 import { styles } from "../styles";
+import { motion } from "framer-motion";
+import { slideIn, textVariant } from "../utils/motion";
+import { SectionWrapper } from "../hoc";
 
 const Programs = () => {
   const [currentGraduateProgramIndex, setCurrentGraduateProgramIndex] =
@@ -13,7 +16,10 @@ const Programs = () => {
 
   return (
     <div className={`${styles.padding} bg-slate-200 w-full h-[1000px]`}>
-      <div className="w-full h-[13%] flex flex-col justify-center items-center mb-4">
+      <motion.div
+        variants={textVariant()}
+        className="w-full h-[13%] flex flex-col justify-center items-center mb-4"
+      >
         <p className={`${styles.sectionHeadText}`}>ACADEMIC PROGRAMS</p>
         <p
           className={`${styles.sectionSubText} text-center text-slate-700 my-2`}
@@ -22,9 +28,12 @@ const Programs = () => {
           rigorous academics
           <br /> and industry-relevant learning opportunities
         </p>
-      </div>
+      </motion.div>
       <div className="w-full h-[90%] flex flex-col">
-        <div className="w-full h-[50%] flex justify-between bg-white">
+        <motion.div
+          variants={slideIn("left", "spring", 0.5, 1.5)}
+          className="w-full h-[50%] flex justify-between bg-white"
+        >
           <div className="w-[60%] h-full flex flex-col justify-around">
             <div className="flex flex-col justify-around w-full mx-4 h-[40%] my-4">
               <div className="flex flex-col justify-center h-[70%]">
@@ -69,9 +78,12 @@ const Programs = () => {
               className="object-contain"
             />
           </div>
-        </div>
+        </motion.div>
 
-        <div className="w-full h-[49%] flex justify-between items-center mt-1 bg-white">
+        <motion.div
+          variants={slideIn("right", "spring", 1, 1.5)}
+          className="w-full h-[49%] flex justify-between items-center mt-1 bg-white"
+        >
           <div className="w-[27%] h-full ">
             <img
               src={undergraduate}
@@ -118,9 +130,9 @@ const Programs = () => {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 };
-export default Programs;
+export default SectionWrapper(Programs, "");

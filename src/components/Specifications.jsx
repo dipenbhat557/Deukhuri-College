@@ -1,9 +1,15 @@
 import { specConst } from "../constants";
+import { SectionWrapper } from "../hoc";
+import { fadeIn } from "../utils/motion";
+import { motion } from "framer-motion";
 
 const Specifications = () => {
   return (
     <div className="flex w-[80%] mx-auto mt-2 h-[100px] md:h-[160px] py-3 px-7">
-      <div className="flex h-full  w-full items-center justify-around bg-red-900 rounded-2xl">
+      <motion.div
+        variants={fadeIn("", "", 0.5, 1.5)}
+        className="flex h-full  w-full items-center justify-around bg-red-900 rounded-2xl"
+      >
         {specConst.map((spec, index) => {
           return (
             <div
@@ -23,8 +29,8 @@ const Specifications = () => {
             </div>
           );
         })}
-      </div>
+      </motion.div>
     </div>
   );
 };
-export default Specifications;
+export default SectionWrapper(Specifications, "");
