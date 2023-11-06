@@ -72,29 +72,39 @@ const UnderGraduate = () => {
         />
       </div>
 
-      <div className="flex w-full h-auto justify-around items-center">
-        <div className={`${styles.padding} h-full w-[24%] flex flex-col `}>
-          {programs.map((program, index) => (
-            <div
-              className={`${
-                program.title === programs[programIndex].title
-                  ? "bg-red-900 text-white"
-                  : "bg-[#D9D9D9] "
-              } w-full h-[80px] p-3 hover:bg-red-900 flex items-center `}
-              key={index}
-              onClick={() => setProgramIndex(index)}
-            >
-              {program.title}
-            </div>
-          ))}
-          {programs[programIndex].items.map((item, index) => (
-            <div
-              className="w-full h-[80px] bg-[#D9D9D9] hover:text-slate-600 cursor-pointer p-3 pl-10 flex items-center text-slate-800 text-[15px]"
-              key={index}
-            >
-              {item.title} | {item.fullTitle}
-            </div>
-          ))}
+      <div className="flex w-full h-auto justify-around items-center ">
+        <div
+          className={`w-[14%] h-[340px] px-4 py-3 flex items-start shadow-2xl shadow-black m-4`}
+        >
+          <div className={` h-full w-full flex flex-col `}>
+            {programs.map((program, index) => (
+              <div
+                className={`${
+                  program.title === programs[programIndex].title
+                    ? "bg-red-900 text-[#D9D9D9]"
+                    : "bg-[#D9D9D9] text-black"
+                } w-full h-[60px] p-3 hover:bg-red-700 flex items-center`}
+                key={index}
+                onClick={() => setProgramIndex(index)}
+              >
+                {program.title}
+              </div>
+            ))}
+            {programs[programIndex].items.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center flex-col justify-center w-full h-auto bg-[#D9D9D9]"
+              >
+                <div className=" border-t-2  border-slate-600 border-opacity-50 w-[80%]" />
+                <div
+                  className="w-full h-[60px] bg-[#D9D9D9] hover:text-slate-500 p-1 pl-10 flex items-center cursor-pointer text-slate-800 text-[15px]"
+                  key={index}
+                >
+                  {item.title} | {item.fullTitle}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-wrap items-center justify-around w-[80%] h-auto">
