@@ -34,7 +34,7 @@ const HeroHeader = () => {
 
           <ImLocation2
             className="text-red-900 mx-3 text-2xl hover:bg-red-950  hover:text-4xl hover:rounded-xl hover:text-white hover:p-2"
-            onClick={() => navigate("/contact")}
+            onClick={() => navigate("/contact#location")}
           />
         </div>
       </div>
