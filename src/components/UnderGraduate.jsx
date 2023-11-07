@@ -83,7 +83,7 @@ const UnderGraduate = () => {
                   program.title === programs[programIndex].title
                     ? "bg-red-900 text-[#D9D9D9]"
                     : "bg-[#D9D9D9] text-black"
-                } w-full h-[60px] p-3 hover:bg-red-700 flex items-center`}
+                } w-full h-[60px] p-3 hover:bg-red-700 flex items-center cursor-pointer`}
                 key={index}
                 onClick={() => setProgramIndex(index)}
               >
@@ -94,7 +94,7 @@ const UnderGraduate = () => {
               <div className="flex items-center flex-col justify-center w-full h-auto bg-[#D9D9D9]">
                 <div className=" border-t-2  border-slate-600 border-opacity-50 w-[80%]" />
                 <div
-                  className="w-full h-[60px] bg-[#D9D9D9] hover:text-slate-500 p-1 pl-10 flex items-center cursor-pointer text-slate-800 text-[15px]"
+                  className="w-full h-[64px] bg-[#D9D9D9] hover:text-slate-500 p-1 pl-8 flex items-center cursor-pointer text-slate-800 text-[15px]"
                   key={index}
                 >
                   {item.title} | {item.fullTitle}

@@ -70,18 +70,19 @@ export const navLinks = [
   },
 ];
 
+
 export const heroElements = [
   {
     video: vid1,
-    text: "Building Human Capital",
+    text: "High Quality Education",
   },
   {
     video: vid2,
-    text: "Inspiring Learning Journeys",
+    text: "Igniting Future Leaders",
   },
   {
     video: vid3,
-    text: "Igniting Future Leaders",
+    text: "Home of Quality Education",
   },
   {
     video: vid4,
@@ -187,17 +188,11 @@ export const graduateItems = [
   {
     title: "MED",
     fullTitle: "Masters in Education",
-    img: BA,
+    img: MEd,
     content:
       "Through a steadfast commitment to excellence in education, our program strives to foster a community of passionate educators dedicated to inspiring minds and empowering futures.",
   },
-  {
-    title: "MBS",
-    fullTitle: "Masters in Business Studies",
-    img: BEd,
-    content:
-      "The Master of Business Studies program at DMC provides our students with an analytical and critical viewpoint in terms of industries, corporate curriculum and strategic organizational growth on a global level.",
-  },
+  
 ];
 
 export const underGraduateItems = [

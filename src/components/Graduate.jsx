@@ -83,7 +83,7 @@ const UnderGraduate = () => {
                   program.title === programs[programIndex].title
                     ? "bg-red-900 text-[#D9D9D9]"
                     : "bg-[#D9D9D9] text-black"
-                } w-full h-[60px] p-3 hover:bg-red-700 flex items-center`}
+                } w-full h-[60px] p-3 hover:bg-red-700 flex items-center cursor-pointer`}
                 key={index}
                 onClick={() => setProgramIndex(index)}
               >
