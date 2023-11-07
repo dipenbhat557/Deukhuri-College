@@ -74,7 +74,7 @@ export const navLinks = [
 export const heroElements = [
   {
     video: vid1,
-    text: "Home of Students",
+    text: "High Quality Education",
   },
   {
     video: vid2,
@@ -82,7 +82,7 @@ export const heroElements = [
   },
   {
     video: vid3,
-    text: "Building Human Capital",
+    text: "Home of Quality Education",
   },
   {
     video: vid4,
