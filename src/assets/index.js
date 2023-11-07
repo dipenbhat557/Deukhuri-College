@@ -30,7 +30,7 @@ import undergraduate from "./programImages/program2.png";
 import BA from "./programImages/BA.png";
 import BBS from "./programImages/BBS.png";
 import BEd from "./programImages/BEd.png";
-import MBA from "./programImages/MBA.png";
+import MBS from "./programImages/MBS.png";
 import MEd from "./programImages/MEd.png";
 
 import instagram from "./socialMedias/insta.png";
@@ -89,7 +89,7 @@ export {
   BA,
   BBS,
   BEd,
-  MBA,
+  MBS,
   MEd,
   administrativeProfessor1,
   administrativeProfessor2,

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { facultyAcademicsBg } from "../assets";
-import { styles } from "../styles";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
@@ -8,8 +7,8 @@ import RegisterSection from "./RegisterSection";
 import Subscription from "./Subscriptions";
 import { faculties } from "../constants";
 
-const FacultyAcademics = () => {
-  const [facultyIndex, setFacultyIndex] = useState(0);
+const FacultyAcademics = ({ fIndex }) => {
+  const [facultyIndex, setFacultyIndex] = useState(fIndex);
 
   const [scrolled, setScrolled] = useState(false);
 
