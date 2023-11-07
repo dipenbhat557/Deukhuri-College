@@ -44,7 +44,7 @@ const VideoTour = () => {
 
   return (
     <div
-      className={`${styles.padding} w-[98%] h-[450px] md:h-[510px] mt-4 mb-0 mx-auto bg-white`}
+      className={`${styles.padding} w-[98%] h-[700px] flex flex-col sm:flex-row sm:h-[510px] mt-4 mb-0 mx-auto bg-white`}
     >
       <motion.div variants={textVariant()} className="h-[10%] w-full">
         <div className="flex items-center h-[15%]  font-semibold">
@@ -57,10 +57,10 @@ const VideoTour = () => {
           <br /> Deukhuri Multiple Campus
         </p>
       </motion.div>
-      <div className="h-[85%] w-full flex flex-wrap items-center justify-between mt-8">
+      <div className="h-[30%] sm:h-[85%] w-full flex flex-wrap items-center justify-between mt-8">
         <motion.div
           variants={fadeIn("right", "spring", 1, 0.75)}
-          className="relative h-full w-[48%]"
+          className="relative h-full w-full sm:w-[48%]"
         >
           <video
             ref={videoRef}
@@ -81,7 +81,7 @@ const VideoTour = () => {
           />
         </motion.div>
         <motion.div
-          className="h-full w-[40%] flex items-center justify-center flex-col bg-gradient-to-b from-red-900 to-red-50 mb-4 p-auto rounded-2xl"
+          className="h-[350px] sm:h-full w-full sm:w-[40%] mt-4 sm:mt-0 flex items-center justify-center flex-col bg-gradient-to-b from-red-900 to-red-50 mb-4 p-auto rounded-2xl"
           variants={fadeIn("left", "spring", 1, 0.75)}
         >
           <Tilt

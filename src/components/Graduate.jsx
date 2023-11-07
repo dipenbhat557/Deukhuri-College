@@ -37,7 +37,7 @@ const Graduate = ({ pIndex }) => {
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
       {scrolled && <Navbar active="ACADEMICS" scrolled={scrolled} />}
       <HeroHeader />
-      <div className="w-full h-[616px] relative">
+      <div className="w-full h-[500px] sm:h-[616px] relative">
         <div
           className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
             scrolled ? "justify-end" : "justify-between"
@@ -48,7 +48,7 @@ const Graduate = ({ pIndex }) => {
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
               {course == "" ? (
-                <p className="text-[20px] font-bold text-white">
+                <p className="text-[16px] sm:text-[20px] font-bold text-white">
                   {programs[programIndex].title}
                 </p>
               ) : (
@@ -67,9 +67,9 @@ const Graduate = ({ pIndex }) => {
         />
       </div>
 
-      <div className="flex w-full h-auto justify-around  ">
+      <div className="flex flex-col sm:flex-row w-full h-auto justify-around  ">
         <div
-          className={` h-[350px] w-[14%] flex flex-col justify-center px-4 py-3 my-4 shadow-2xl shadow-black`}
+          className={`h-[300px] sm:h-[350px] w-[90%] mx-4 sm:mx-0 sm:w-[14%] flex flex-col justify-center px-4 py-3 my-4 shadow-2xl shadow-black`}
         >
           {programs.map((program, index) => (
             <div
@@ -77,7 +77,7 @@ const Graduate = ({ pIndex }) => {
                 program.title === programs[programIndex].title
                   ? "bg-red-900 text-[#D9D9D9]"
                   : "bg-[#D9D9D9] text-black"
-              } w-full h-[60px] p-3 hover:bg-red-700 flex items-center`}
+              } w-full h-[50px] sm:h-[60px] p-3 hover:bg-red-700 flex items-center text-[14px] sm:text-[16px]`}
               key={index}
               onClick={() => {
                 setProgramIndex(index);
@@ -96,7 +96,7 @@ const Graduate = ({ pIndex }) => {
               <div
                 className={`${
                   item == course ? "text-slate-900" : "text-slate-600"
-                } w-full h-[60px] bg-[#D9D9D9] hover:text-slate-500 p-1 pl-10 flex items-center cursor-pointer  text-[15px]`}
+                } w-full h-[50px] sm:h-[60px] bg-[#D9D9D9] hover:text-slate-500 p-1 pl-10 flex items-center cursor-pointer text-[13px] sm:text-[15px]`}
                 key={index}
                 onClick={() => {
                   setCourse(item);
@@ -109,11 +109,11 @@ const Graduate = ({ pIndex }) => {
         </div>
 
         {course == "" ? (
-          <div className="flex flex-wrap my-4 items-center justify-around w-[80%] h-auto">
+          <div className="flex flex-wrap my-4 items-center justify-around w-full sm:w-[80%] h-auto">
             {programs[programIndex].items.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col h-[90%] md:h-full w-[28%] my-3  hover:bg-red-900 hover:text-white items-center justify-center"
+                className="flex flex-col h-[90%] md:h-full w-[45%] sm:w-[28%] my-3  hover:bg-red-900 hover:text-white items-center justify-center"
               >
                 <img
                   src={`${item.img}`}
@@ -134,13 +134,13 @@ const Graduate = ({ pIndex }) => {
           </div>
         ) : (
           <div className="flex flex-col justify-around w-[80%] h-auto my-4">
-            <p className="w-full text-justify my-2 h-auto text-[14px] text-black font-light">
+            <p className="w-full text-justify ml-9 sm:ml-0 my-2 h-auto text-[14px] text-black font-light">
               {course.desc}
             </p>
-            <p className="w-full text-center text-[22px] font-semibold my-3">
+            <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
               Salient Features
             </p>
-            <ol className="w-full h-auto my-3 list-disc">
+            <ol className="w-full h-auto ml-9 sm:ml-0 my-3 list-disc">
               {course.features.map((feature, index) => {
                 return (
                   <li className="font-light text-[14px] my-2">{feature}</li>
@@ -148,10 +148,10 @@ const Graduate = ({ pIndex }) => {
               })}
             </ol>
 
-            <p className="w-full text-center text-[22px] font-semibold my-3">
+            <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
               Requirements
             </p>
-            <ol className="w-full h-auto my-3 list-disc">
+            <ol className="w-full ml-9 sm:ml-0 h-auto my-3 list-disc">
               {course.requirements.map((requirement, index) => {
                 return (
                   <li className="font-light text-[14px] my-2">{requirement}</li>
@@ -159,7 +159,7 @@ const Graduate = ({ pIndex }) => {
               })}
             </ol>
 
-            <div className="w-full flex  justify-center my-3">
+            <div className="w-full flex ml-9 sm:ml-0  justify-center my-3">
               <button className="px-3 py-1 w-[20%] bg-red-900 text-white shadow-lg shadow-black">
                 Apply
               </button>

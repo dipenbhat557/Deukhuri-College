@@ -47,7 +47,7 @@ const Hero = ({ scrolled }) => {
 
   return (
     <>
-      <div className="w-full h-[620px] relative">
+      <div className="w-full h-[500px] sm:h-[616px] relative">
         <div className="video-container">
           {heroElements.map((element, index) => (
             <div

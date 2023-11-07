@@ -35,9 +35,7 @@ const Messages = () => {
   }, [currentIndex]);
 
   return (
-    <div
-      className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%]   h-[900px] md:h-[760px]`}
-    >
+    <div className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%] h-auto md:h-[760px]`}>
       <div
         className="bg-[#212529] w-[80px] h-[14%] flex justify-start mt-0.5  rounded-t-xl"
         style={{ position: "absolute", zIndex: -1 }}
@@ -56,7 +54,7 @@ const Messages = () => {
                   scale: 1,
                   speed: 450,
                 }}
-                className=" h-full mt-2 rounded-2xl w-full"
+                className="h-auto sm:h-full mt-2 rounded-2xl w-full"
               >
                 <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                   <img
@@ -69,7 +67,7 @@ const Messages = () => {
                       <p
                         className={`${
                           index == 0 ? "text-[#212529] " : "text-red-900 "
-                        }  text-[8px] md:text-[20px] ml-3 md:ml-8`}
+                        }  text-[14px] md:text-[20px] ml-3 md:ml-8`}
                       >
                         {message.title}
                       </p>
@@ -93,7 +91,7 @@ const Messages = () => {
         </div>
       </div>
       <div
-        className="bg-red-900 w-[80px] h-[14%] flex justify-end -mt-24 right-40 rounded-b-xl"
+        className="bg-red-900 w-[80px] h-[14%] hidden sm:flex justify-end -mt-24 right-40 rounded-b-xl"
         style={{ position: "absolute", zIndex: -1 }}
       ></div>
     </div>

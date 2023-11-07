@@ -10,6 +10,7 @@ import { BiSolidDownArrow } from "react-icons/bi";
 const Navbar = ({ active, scrolled }) => {
   const [showDropdown1, setShowDropdown1] = useState(false);
   const [showDropdown2, setShowDropdown2] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   const toggleDropdown1 = () => {
     setShowDropdown1(!showDropdown1);
@@ -27,7 +28,7 @@ const Navbar = ({ active, scrolled }) => {
         scrolled ? "bg-[#212529] sticky top-0 z-50" : "relative bg-transparent"
       }`}
     >
-      <ul className="list-none sm:flex sm:justify-evenly gap-6 relative">
+      <ul className="list-none hidden sm:flex sm:justify-evenly gap-6 relative">
         {navLinks.map((link) => (
           <li
             key={link.id}
@@ -90,6 +91,44 @@ const Navbar = ({ active, scrolled }) => {
           </ul>
         </div>
       )}
+
+      {/* Mobile menu */}
+      <div className="sm:hidden flex items-center w-[90%] mr-3 justify-end ">
+        {toggle ? (
+          <AiOutlineMenuUnfold
+            className="text-2xl text-white"
+            onClick={() => setToggle(!toggle)}
+          />
+        ) : (
+          <AiOutlineMenuFold
+            className="text-2xl text-white"
+            onClick={() => setToggle(!toggle)}
+          />
+        )}
+        <ul
+          className={`${
+            !toggle ? "hidden" : "flex"
+          } p-6 bg-slate-400 absolute top-12 right-0 mx-4 my-4 min-w-[140px] z-10 rounded-xl flex flex-col items-end gap-4`}
+        >
+          {navLinks.map((link) => (
+            <li
+              key={link.id}
+              className={`${
+                active === link.title ? "text-white" : "text-secondary"
+              } font-poppins text-[16px] font-medium cursor-pointer`}
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+            >
+              {link.title === "ACADEMICS" || link.title === "FACULTY" ? (
+                <a href={link.title}>{link.title}</a>
+              ) : (
+                <a href={link.route}>{link.title}</a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };

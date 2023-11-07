@@ -16,7 +16,7 @@ const HeroFooter = () => {
               className="h-[24%] md:h-[32%] rounded-md object-contain"
             />
             <div className="ml-1 md:ml-8 mt-0">
-              <p className="text-[14px] md:text-[18px] font-semibold">
+              <p className="text-[8px] sm:text-[14px] md:text-[18px] font-semibold">
                 {item.header}
               </p>
               <p className=" text-[10px] font-light md:text-[14px]">

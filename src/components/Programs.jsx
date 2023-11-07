@@ -15,7 +15,9 @@ const Programs = () => {
   ] = useState(0);
 
   return (
-    <div className={`${styles.padding} bg-slate-200 w-full h-[1000px]`}>
+    <div
+      className={`${styles.padding} bg-slate-200 w-full h-auto sm:h-[1000px]`}
+    >
       <motion.div
         variants={textVariant()}
         className="w-full h-[13%] flex flex-col justify-center items-center mb-4"
@@ -32,13 +34,15 @@ const Programs = () => {
       <div className="w-full h-[90%] flex flex-col">
         <motion.div
           variants={slideIn("left", "spring", 0.5, 1.5)}
-          className="w-full h-[50%] flex justify-between bg-white"
+          className="w-full h-[50%] flex flex-col sm:flex-row justify-between bg-white"
         >
-          <div className="w-[60%] h-full flex flex-col justify-around">
+          <div className="w-full sm:w-[60%] h-full flex flex-col justify-around">
             <div className="flex flex-col justify-around w-full mx-4 h-[40%] my-4">
               <div className="flex flex-col justify-center h-[70%]">
-                <p className="text-[23px]  ">GRADUATE PROGRAMS</p>
-                <p className="text-[16px] text-slate-600 my-2">
+                <p className="text-[16px] sm:text-[23px]  ">
+                  GRADUATE PROGRAMS
+                </p>
+                <p className="text-[14px] sm:text-[16px] text-slate-600 my-2">
                   Our graduate programs transform you into top-flight managers
                   and business leaders.
                 </p>
@@ -48,11 +52,11 @@ const Programs = () => {
                   return (
                     <button
                       key={index}
-                      className={`p-2  w-[15%] uppercase ${
+                      className={`p-2 sm:w-[15%] uppercase ${
                         index == currentGraduateProgramIndex
                           ? "bg-red-900 text-white"
                           : "bg-red-700 text-slate-200"
-                      } hover:w-[17%] hover:p-3`}
+                      } hover:w-[17%] hover:p-3 text-[14px] sm:text-[16px]`}
                       onClick={() => setCurrentGraduateProgramIndex(index)}
                     >
                       {item.title}
@@ -63,15 +67,15 @@ const Programs = () => {
             </div>
             <hr className="text-slate-500 mx-3" />
             <div className="w-full h-[60%] flex flex-col items-start justify-center mx-4 my-auto">
-              <p className="text-[22px] font-light my-2">
+              <p className="text-[16px] sm:text-[22px] font-light my-2">
                 {graduateItems[currentGraduateProgramIndex].fullTitle}
               </p>
-              <p className="text-slate-600 text-[16px] my-2">
+              <p className="text-slate-600 text-[14px] sm:text-[16px] my-2">
                 {graduateItems[currentGraduateProgramIndex].content}
               </p>
             </div>
           </div>
-          <div className="w-[29%] h-auto ">
+          <div className="hidden sm:flex w-[29%] h-auto ">
             <img
               src={graduate}
               alt="graduate Image"
@@ -84,18 +88,20 @@ const Programs = () => {
           variants={slideIn("right", "spring", 1, 1.5)}
           className="w-full h-[49%] flex justify-between items-center mt-1 bg-white"
         >
-          <div className="w-[27%] h-full ">
+          <div className="hidden sm:flex w-[27%] h-full ">
             <img
               src={undergraduate}
               alt="under-graduate Image"
               className="object-contain"
             />
           </div>
-          <div className="w-[60%] h-full flex flex-col justify-center">
+          <div className="w-full sm:w-[60%] h-full flex flex-col justify-center">
             <div className="flex flex-col justify-around w-full mx-2 h-[70%]">
               <div className="flex flex-col justify-center">
-                <p className="text-[20px] my-2">UNDER-GRADUATE PROGRAMS</p>
-                <p className="text-[16px] text-slate-600 my-2">
+                <p className="text-[16px] sm:text-[20px] my-2">
+                  UNDER-GRADUATE PROGRAMS
+                </p>
+                <p className="text-[14px] sm:text-[16px] text-slate-600 my-2">
                   Our programs–featuring the perfect blend of theory-,
                   experience-, and observation- based learning–are taught in
                   participative environments that extend beyond the classroom
@@ -111,7 +117,7 @@ const Programs = () => {
                         index == currentUnderGraduateProgramIndex
                           ? "bg-red-900 text-white"
                           : "bg-red-700 text-slate-200"
-                      } hover:w-[17%] hover:p-3`}
+                      } hover:w-[17%] text-[14px] sm:text-[16px] hover:p-3`}
                       onClick={() => setCurrentUnderGraduateProgramIndex(index)}
                     >
                       {item.title}
@@ -122,10 +128,10 @@ const Programs = () => {
             </div>
             <hr className="text-slate-500 mx-3" />
             <div className="w-full h-[65%] flex flex-col items-start mx-2 justify-center">
-              <p className="text-[22px] font-light my-2">
+              <p className="text-[16px] sm:text-[22px] font-light my-2">
                 {underGraduateItems[currentUnderGraduateProgramIndex].fullTitle}
               </p>
-              <p className="text-slate-600 my-2 text-[16px]">
+              <p className="text-slate-600 my-2 text-[14px] sm:text-[16px]">
                 {underGraduateItems[currentUnderGraduateProgramIndex].content}
               </p>
             </div>

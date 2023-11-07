@@ -23,7 +23,7 @@ const Specifications = () => {
                   alt={`Spec ${index}`}
                 />
               </div>
-              <p className="text-white text-center w-[43%] h-[50%] md:w-[45%] mt-4 md:mt-10 text-[6px] md:text-[10px] font-semibold">
+              <p className="text-white text-center w-[43%] h-[50%] md:w-[45%] mt-3 md:mt-10 text-[6px] md:text-[10px] font-semibold">
                 {spec.content}
               </p>
             </div>

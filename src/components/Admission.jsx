@@ -31,7 +31,7 @@ const Admission = () => {
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
       {scrolled && <Navbar active="ADMISSION" scrolled={scrolled} />}
       <HeroHeader />
-      <div className="w-full h-[616px] relative">
+      <div className="w-full h-[500px] sm:h-[616px] relative">
         <img
           src={admissionBg}
           alt="Admission BG"
@@ -58,12 +58,12 @@ const Admission = () => {
         return (
           <div
             key={index}
-            className="flex flex-col items-center justify-around w-full p-3  px-8"
+            className="flex flex-col items-center justify-around w-full p-3 px-3 sm:px-8"
           >
-            <p className="uppercase text-[20px] font-semibold ">
+            <p className="uppercase text-[16px] sm:text-[20px] font-semibold ">
               {program.title}
             </p>
-            <p className="text-[15px] font-semibold m-3 text-slate-600 w-[70%] text-center">
+            <p className="text-[13px] sm:text-[15px] font-semibold m-3 text-slate-600 w-[70%] text-center">
               {program.desc}
             </p>
 
@@ -72,7 +72,7 @@ const Admission = () => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col h-[90%] md:h-full w-[40%] mt-8 pb-6  mx-5 hover:bg-red-900 hover:text-white  justify-around"
+                    className="flex flex-col h-[90%] md:h-full w-full sm:w-[40%] mt-8 pb-6  mx-5 hover:bg-red-900 hover:text-white  justify-around"
                   >
                     <img
                       src={`${item.img}`}

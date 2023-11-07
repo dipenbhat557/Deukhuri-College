@@ -29,6 +29,7 @@ import {
   n3,
   n4,
   MBS,
+  MEd,
 } from "../assets";
 
 export const navLinks = [

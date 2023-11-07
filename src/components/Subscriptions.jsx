@@ -13,10 +13,10 @@ const Subscription = () => {
         <p className="font-extrabold text-xl sm:text-2xl">SUBSCRIPTION</p>
         <div className="w-[8%] h-[5px] border-b-4 ml-2 border-[#DB0E0E] flex-grow" />
       </div>
-      <p className="font-extrabold my-2 sm:my-3 text-[17px] sm:text-[20px]">
+      <p className="font-extrabold my-2 sm:my-3 text-[16px] sm:text-[20px]">
         Join our Newsletter
       </p>
-      <p className="w-[25%] text-center font-semibold text-[12px] md:text-[16px] md:leading-loose m-2">
+      <p className="w-[40%] sm:w-[25%] text-center font-semibold text-[12px] md:text-[16px] md:leading-loose m-2">
         Subscribe to our Newsletter to get the latest news, updates delivered
         directly to your inbox.
       </p>
@@ -24,7 +24,7 @@ const Subscription = () => {
         <input
           type="text"
           placeholder="Enter your mail address"
-          className="p-2 px-10 rounded-xl"
+          className="p-2 px-4 sm:px-10 rounded-xl"
         />
         <button
           onClick={handleSubscribe}

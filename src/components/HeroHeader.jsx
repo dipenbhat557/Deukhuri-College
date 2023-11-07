@@ -18,16 +18,16 @@ const HeroHeader = () => {
           onClick={() => navigate("/")}
         />
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2 sm:gap-6">
           <a
             href="/admission"
-            className="bg-red-900 text-[13px] md:text-18px p-3 rounded-xl text-white mr-4 hover:bg-red-950"
+            className="bg-red-900 text-[10px] sm:text-[13px] md:text-18px p-1 sm:p-3 rounded-md sm:rounded-xl text-white mr-4 hover:bg-red-950"
           >
             ADMISSION FORM
           </a>
           <a
             href="/contact"
-            className="text-[13px] md:text-18px text-white p-3 rounded-xl bg-red-900 hover:bg-red-950"
+            className="text-[10px] sm:text-[13px] md:text-18px text-white p-1 sm:p-3 rounded-md sm:rounded-xl bg-red-900 hover:bg-red-950"
           >
             CONNECT WITH US
           </a>

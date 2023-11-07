@@ -81,7 +81,7 @@ const Contact = () => {
       {scrolled && <Navbar active="CONTACT" scrolled={scrolled} />}
       <HeroHeader />
 
-      <div className="w-full h-[616px] relative">
+      <div className="w-full h-[500px] sm:h-[616px] relative">
         <img
           src={contactBg}
           alt="Graduate BG"
@@ -97,15 +97,17 @@ const Contact = () => {
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
-              <p className="text-[20px] font-bold text-white">Contact</p>
+              <p className="text-[18px] sm:text-[20px] font-bold text-white">
+                Contact
+              </p>
             </div>
             <div className="w-full h-[40%] bg-white" />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-between items-start w-full h-auto mx-8 pl-24">
-        <div className=" flex w-[50%] h-auto ml-10">
+      <div className="flex flex-col sm:flex-row justify-between items-start w-full h-auto sm:mx-8 pl-24">
+        <div className=" flex w-full sm:w-[50%] h-auto ml-0  sm:ml-10">
           {/* Contact form section */}
           <motion.div
             variants={slideIn("left", "tween", 0.2, 1)}
@@ -162,7 +164,7 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        <div className="h-auto w-[35%] flex flex-col my-4 ">
+        <div className="h-auto w-[80% ] sm:w-[35%] flex flex-col my-4 ">
           <p className="text-[18px] p-3">Deukhuri Multiple Campus</p>
           <p className="text-[16px] text-slate-600 p-2">
             Lamahi-6, Dang, Nepal

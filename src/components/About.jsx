@@ -31,7 +31,7 @@ const About = () => {
       {scrolled && <Navbar active="ABOUT" scrolled={scrolled} />}
       <HeroHeader />
 
-      <div className="w-full h-[616px] relative">
+      <div className="w-full h-[500px] sm:h-[616px] relative">
         <div
           className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
             scrolled ? "justify-end" : "justify-between"
@@ -56,11 +56,11 @@ const About = () => {
       </div>
 
       <div className={`p-4 flex w-full h-auto  justify-between`}>
-        <div className="h-full w-[18%] flex flex-col shadow-xl p-3 bg-red-900 text-white">
+        <div className="h-full w-[18%] hidden  sm:flex flex-col shadow-xl p-3 bg-red-900 text-white">
           About Deukhuri Multiple Campus
         </div>
 
-        <div className="flex flex-col h-full w-[70%]  mr-32">
+        <div className="flex flex-col h-full w-[90%] sm:w-[70%] mx-2 sm:mr-32">
           <p className="text-[14px] font-light w-full text-justify">
             Deukhuri Multiple Campus was established in 2005 AD (2062 BS) as a
             community campus located in Lamahi, Deukhuri, Dang district of
@@ -95,7 +95,7 @@ const About = () => {
           <div className="flex flex-wrap justify-between w-full h-auto">
             {aboutItems.map((item, index) => {
               return (
-                <div className="flex flex-col justify-around m-3 w-[40%] h-[150px] text-justify">
+                <div className="flex flex-col justify-around m-3 w-full sm:w-[40%] h-auto sm:h-[150px] text-justify">
                   <p className="text-[16px] font-semibold">{item.title}</p>
                   <p className="text-[14px] font-light text-slate-600">
                     {item.content}

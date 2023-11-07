@@ -35,7 +35,7 @@ const Blog = () => {
       {scrolled && <Navbar active="BLOG" scrolled={scrolled} />}
 
       <HeroHeader />
-      <div className="w-full h-[616px] relative">
+      <div className="w-full h-[500px] sm:h-[616px] relative">
         <img
           src={blogBg}
           alt="Graduate BG"
@@ -60,7 +60,9 @@ const Blog = () => {
 
       <div className={`${styles.padding} w-full h-auto relative`}>
         <div className="w-full h-[10%] flex items-start justify-center">
-          <p className="text-[25px] font-bold">Message's from our Faculty</p>
+          <p className="text-[20px] sm:text-[25px] font-bold">
+            Message's from our Faculty
+          </p>
         </div>
         <div
           className="bg-red-950 w-[80px] h-[100px] flex justify-start top-20 ml-[40px] rounded-t-xl"
@@ -86,7 +88,7 @@ const Blog = () => {
                 />
                 <div className="flex flex-col w-full h-[40%]">
                   <div className="flex items-center w-full h-[15%] font-semibold">
-                    <p className="text-red-900 text-[8px] md:text-[20px] ml-3 md:ml-9">
+                    <p className="text-red-900 text-[12px] md:text-[20px] ml-3 md:ml-9">
                       {message.title}
                     </p>
                     <div className="ml-2 w-[8%] h-[2px] border-b-4 border-red-900 rounded-3xl" />
@@ -103,7 +105,7 @@ const Blog = () => {
           ))}
         </div>
         <div
-          className="bg-red-900 w-[80px] h-[90px] flex justify-end bottom-4 right-28 rounded-b-xl"
+          className="hidden sm:flex bg-red-900 w-[80px] h-[90px] justify-end bottom-4 right-28 rounded-b-xl"
           style={{ position: "absolute", zIndex: -1 }}
         ></div>
       </div>

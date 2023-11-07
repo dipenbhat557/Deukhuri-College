@@ -13,11 +13,11 @@ const Notices = () => {
 
   return (
     <div
-      className={`${styles.padding} flex justify-between items-center w-full h-[400px] mt-4`}
+      className={`${styles.padding} flex flex-col sm:flex-row justify-between items-center w-full h-auto sm:h-[400px]  mt-4`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="w-[30%] h-full flex flex-col justify-around items-center"
+        className="w-full sm:w-[30%] h-full flex flex-col justify-around items-center mb-5 sm:mb-0"
       >
         <div className="flex w-full h-[25%] justify-start items-center">
           <img
@@ -47,7 +47,7 @@ const Notices = () => {
               <p
                 className={`${
                   index == currentIndex ? "font-semibold" : "font-light"
-                } text-[14px]  ml-4`}
+                }text-[10px] sm:text-[14px] ml-1 sm:ml-4 py-1`}
               >
                 {notice.title}
               </p>
@@ -58,9 +58,9 @@ const Notices = () => {
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className="flex flex-col w-[60%] h-[400px] items-center justify-around border-x-2 pb-9 border-y-2 border-red-900 rounded-xl p-4"
+        className="flex flex-col w-full sm:w-[60%] h-[400px] items-center justify-around border-x-2 pb-9 border-y-2 border-red-900 rounded-xl p-4"
       >
-        <p className="w-[50%] text-[16px] font-semibold h-auto my-4">
+        <p className="w-[50%] text-[13px] sm:text-[16px] font-semibold h-auto my-4">
           {notices[currentIndex].title}
         </p>
         <div className="w-[80%] h-[95%] relative flex justify-center items-center">
@@ -69,7 +69,7 @@ const Notices = () => {
             alt="Notice Image"
             className="w-[95%] h-[90%] object-contain  -z-1 "
           />
-          <div className="w-[82%] h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
+          <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
           <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
             <AiOutlineSearch />
           </div>

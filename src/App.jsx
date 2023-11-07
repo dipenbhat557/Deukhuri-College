@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Graduate from "./components/Graduate";
 import Blog from "./components/Blog";
@@ -14,7 +14,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/graduate" element={<Graduate pIndex="0" />} />
         <Route path="/undergraduate" element={<Graduate pIndex="1" />} />
-
+        <Route
+          path="/ACADEMICS"
+          element={<Navigate to="/graduate" replace />}
+        />
         <Route path="/blog" element={<Blog />} />
         <Route path="/admission" element={<Admission />} />
         <Route
@@ -24,6 +27,11 @@ function App() {
         <Route
           path="/faculty/administration"
           element={<FacultyAcademics fIndex="1" />}
+        />
+
+        <Route
+          path="/FACULTY"
+          element={<Navigate to="/faculty/academics" replace />}
         />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

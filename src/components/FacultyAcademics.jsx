@@ -3,7 +3,6 @@ import { facultyAcademicsBg } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
-import RegisterSection from "./RegisterSection";
 import Subscription from "./Subscriptions";
 import { faculties } from "../constants";
 
@@ -33,7 +32,7 @@ const FacultyAcademics = ({ fIndex }) => {
       {scrolled && <Navbar active="FACULTY" scrolled={scrolled} />}
       <HeroHeader />
 
-      <div className="w-full h-[616px] relative">
+      <div className="w-full h-[500px] sm:h-[616px]  relative">
         <img
           src={facultyAcademicsBg}
           alt="Graduate BG"
@@ -56,8 +55,10 @@ const FacultyAcademics = ({ fIndex }) => {
         </div>
       </div>
 
-      <div className={`p-4 flex w-full h-auto  justify-between`}>
-        <div className="h-full w-[18%] flex flex-col shadow-xl p-3">
+      <div
+        className={`p-4 flex flex-col sm:flex-row w-full h-auto  justify-between`}
+      >
+        <div className="h-full w-full sm:w-[18%] flex flex-col shadow-xl p-3">
           <div
             className={` ${
               facultyIndex == 0
@@ -80,7 +81,7 @@ const FacultyAcademics = ({ fIndex }) => {
           </div>
         </div>
 
-        <div className="flex flex-col h-full w-[75%] ">
+        <div className="flex flex-col h-full mt-3 sm:my-0 w-full sm:w-[75%] ">
           <p className="text-[14px] font-light w-full text-justify">
             At our campus DMC, we pride ourselves on our exceptional academic
             faculty, comprising a diverse and accomplished group of educators
@@ -105,17 +106,17 @@ const FacultyAcademics = ({ fIndex }) => {
               return (
                 <div
                   key={index}
-                  className="w-[28%] h-auto flex flex-col justify-around m-3 shadow-xl hover:bg-red-900 hover:text-white "
+                  className="w-[40%] sm:w-[28%] h-auto flex flex-col justify-around m-3 shadow-xl hover:bg-red-900 hover:text-white "
                 >
                   <img
                     className="w-full h-[65%] object-contain"
                     src={faculty.img}
                     alt={`faculty-${index}`}
                   />
-                  <p className="text-[18px] font-semibold h-[18%] p-3">
+                  <p className="text-[16px] sm:text-[18px] font-semibold h-[18%] p-3">
                     {faculty.name}
                   </p>
-                  <p className="text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3">
+                  <p className="text-[14px] sm:text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3">
                     {faculty.post}
                   </p>
                 </div>
