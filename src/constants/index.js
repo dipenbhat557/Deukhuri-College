@@ -72,15 +72,15 @@ export const navLinks = [
 export const heroElements = [
   {
     video: vid1,
-    text: "Building Human Capital",
+    text: "High Quality Education",
   },
   {
     video: vid2,
-    text: "Inspiring Learning Journeys",
+    text: "Igniting Future Leaders",
   },
   {
     video: vid3,
-    text: "Igniting Future Leaders",
+    text: "Home of Quality Education",
   },
   {
     video: vid4,
@@ -221,7 +221,7 @@ export const graduateItems = [
   {
     title: "MED",
     fullTitle: "Masters in Education",
-    img: BEd,
+    img: MEd,
     content:
       "Through a steadfast commitment to excellence in education, our program strives to foster a community of passionate educators dedicated to inspiring minds and empowering futures.",
     desc: "A Master's in Education is a postgraduate degree program designed to provide educators with advanced knowledge, skills, and expertise in various aspects of teaching, learning, and educational leadership. The program is tailored to meet the needs of educators who seek to enhance their understanding of educational theories, instructional strategies, curriculum development, and educational research. The Master's in Education curriculum in our campus DMC typically includes a comprehensive range of subjects such as educational psychology, curriculum design and assessment, educational technology, leadership in education, and special education. Through a combination of theoretical learning, practical applications, and research-based projects, students develop a deep understanding of effective teaching methodologies and strategies for addressing diverse learning needs. Furthermore, the program emphasizes the development of critical thinking, problem-solving skills, and effective communication, essential for effective instructional design and educational leadership. Students often engage in research projects and case studies, allowing them to apply theoretical concepts to real-world educational settings and develop innovative solutions to complex educational challenges. In addition to the core education subjects, many Master's in Education programs offer specialized elective courses that allow students to focus on specific areas such as educational policy, curriculum development, or educational administration. This customization enables students to tailor their education according to their career aspirations and interests within the field of education. Moreover, Master's in Education programs often incorporate practical components such as teaching internships, field experiences, or educational leadership projects, providing students with valuable hands-on experience and networking opportunities within the education community. These practical experiences enable students to gain a deeper understanding of the practical challenges and opportunities within the education sector, preparing them for leadership roles in schools, colleges, educational organizations, or policy-making institutions. Overall, the Master's in Education degree equips graduates with the necessary knowledge, skills, and practical experience to excel in various educational leadership and instructional roles. The program aims to produce ethical and innovative educators who can make significant contributions to the improvement of educational practices and policies, thereby shaping the future of education locally and globally.",
