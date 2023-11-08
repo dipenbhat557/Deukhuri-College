@@ -30,6 +30,7 @@ import {
   n4,
   MBS,
   MEd,
+  def,
 } from "../assets";
 
 export const navLinks = [
@@ -290,47 +291,192 @@ export const programs = [
 
 export const administrativeTeam = [
   {
-    img: administrativeProfessor1,
-    name: "Kiran Sharma",
-    post: "Deputy Professor",
+    img: def,
+    name: "शिव ओली",
+    post: "प्रमुख क्याम्पस",
   },
   {
-    img: administrativeProfessor2,
-    name: "Pawan Pandey",
-    post: "Deputy Professor",
+    img: def,
+    name: "भेष राज पोखरेल",
+    post: "सहायक प्रमुख क्याम्पस",
   },
   {
-    img: administrativeProfessor3,
-    name: "Dipendra Bhatta",
-    post: "Deputy Professor",
+    img: def,
+    name: "खोपेन्द्र ग्यावाली",
+    post: "सहायक प्रमुख क्याम्पस",
   },
   {
-    img: administrativeProfessor4,
-    name: "Avash Neupane",
-    post: "Deputy Professor",
+    img: def,
+    name: "दिवाकर पोखरेल",
+    post: "लेखापाल",
+  },
+  {
+    img: def,
+    name: "कृष्ण बहादुर छेत्री",
+    post: "पुस्तकालय सहायक",
+  },
+  {
+    img: def,
+    name: "गोमा कुँवर",
+    post: "कम्प्युटर सहायक",
+  },
+  {
+    img: def,
+    name: "जय प्रकाश पौडेल",
+    post: "कार्यालय सहायक",
+  },
+  {
+    img: def,
+    name: "जनकीराम चौधरी",
+    post: "कार्यालय सहयोगी",
+  },
+  {
+    img: def,
+    name: "सोभाराम गिरी",
+    post: "ड्राइभर",
   },
 ];
 
 export const academicTeam = [
   {
-    img: academicProfessor1,
-    name: "Kiran Sharma",
-    post: "Deputy Professor",
+    img: def,
+    name: "सुधीर कुमार अधिकारी",
+    post: "सहायक प्राध्यापक",
   },
   {
-    img: academicProfessor2,
-    name: "Pawan Pandey",
-    post: "Deputy Professor",
+    img: def,
+    name: "शेषमणि गौतम",
+    post: "सहायक प्राध्यापक",
   },
   {
-    img: academicProfessor3,
-    name: "Avash Neupane",
-    post: "Deputy Professor",
+    img: def,
+    name: "शेर बहादुर गिरी",
+    post: "सहायक प्राध्यापक",
   },
   {
-    img: academicProfessor4,
-    name: "Dipendra Bhatta",
-    post: "Deputy Professor",
+    img: def,
+    name: "माधव प्रसाद शर्मा",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "विशेश्वर पौडेल",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "बिनोद भट्टराई",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "प्रदिप पुलामी",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "कान्ता प्रसाद चौधरी",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "हरेकृष्ण ग्यावाली",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "हुर्मत कुमार पोखरेल",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "तेज बहादुर कुँवर",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "मधु न्यौपाने",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "नरेश्वर सुबेदी",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "भेस बहादुर बि.सी.",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "नारायण प्रसाद भुसाल",
+    post: "शिक्षा सहायक",
+  },
+  {
+    img: def,
+    name: "बसन्त राज अधिकारी",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "राम बहादुर के.सी.",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "दिपेन्द्र खड्का",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "शेर बहादुर डाङ्गी",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "तेज प्रसाद खनाल",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "केशव राम यादव",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "सम्झना शर्मा",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "चिरञ्जीबी रेग्मी",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "रिशि राम के.सी.",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "गोविन्द कुमार वाली",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "बसन्त न्यौपाने",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "थानेश्वर पौडेल",
+    post: "आंशिक शिक्षक",
+  },
+  {
+    img: def,
+    name: "लोक राज न्यौपाने",
+    post: "आंशिक शिक्षक",
   },
 ];
 

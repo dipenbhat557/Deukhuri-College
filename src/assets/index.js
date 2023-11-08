@@ -59,6 +59,8 @@ import administrativeProfessor2 from "./administrativeteam/administrativeProfess
 import administrativeProfessor3 from "./administrativeteam/administrativeProfessor3.png";
 import administrativeProfessor4 from "./administrativeteam/administrativeProfessor4.png";
 
+import def from "./default.png";
+
 export {
   logo,
   vid1,
@@ -107,4 +109,5 @@ export {
   academicProfessor2,
   academicProfessor3,
   academicProfessor4,
+  def,
 };
