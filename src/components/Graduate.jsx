@@ -30,7 +30,7 @@ const Graduate = ({ pIndex }) => {
   }, []);
 
   const handleReadMore = () => {
-    // Implement your functionality here
+
   };
 
   return (
@@ -98,9 +98,9 @@ const Graduate = ({ pIndex }) => {
                   item == course ? "text-slate-900" : "text-slate-600"
                 } w-full h-[50px] sm:h-[60px] bg-[#D9D9D9] hover:text-slate-500 p-1 pl-10 flex items-center cursor-pointer text-[13px] sm:text-[15px]`}
                 key={index}
-                onClick={() => {
-                  setCourse(item);
-                }}
+                onClick={()=>setCourse(item)}
+                
+               
               >
                 {item.title} | {item.fullTitle}
               </div>
@@ -125,7 +125,7 @@ const Graduate = ({ pIndex }) => {
                 </p>
                 <button
                   className="bg-red-800 drop-shadow-2xl h-[10%] text-white font-semibold w-[50%] md:w-[30%] p-2 text-[12px] hover:bg-red-950 mb-2"
-                  onClick={handleReadMore}
+                  onClick={()=>setCourse(item)}
                 >
                   Read more
                 </button>
