@@ -125,7 +125,7 @@ const Graduate = ({ pIndex }) => {
                 </p>
                 <button
                   className="bg-red-800 drop-shadow-2xl h-[10%] text-white font-semibold w-[50%] md:w-[30%] p-2 text-[12px] hover:bg-red-950 mb-2"
-                  onClick={handleReadMore}
+                  onClick={() => setCourse(item)}
                 >
                   Read more
                 </button>
