@@ -44,7 +44,7 @@ const VideoTour = () => {
 
   return (
     <div
-      className={`${styles.padding} w-[98%] h-[700px] flex flex-col sm:flex-row sm:h-[510px] mt-4 mb-0 mx-auto bg-white`}
+      className={`${styles.padding} w-[98%] h-[700px] flex flex-col  sm:h-[510px] mt-4 mb-0 mx-auto bg-white`}
     >
       <motion.div variants={textVariant()} className="h-[10%] w-full">
         <div className="flex items-center h-[15%]  font-semibold">
