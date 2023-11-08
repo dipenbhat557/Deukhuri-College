@@ -11,26 +11,21 @@ import {
   s2,
   s3,
   s4,
-  principal,
-  founder1,
   founder2,
   BEd,
   BA,
   BBS,
-  administrativeProfessor1,
-  administrativeProfessor2,
-  administrativeProfessor3,
-  administrativeProfessor4,
-  academicProfessor1,
-  academicProfessor2,
-  academicProfessor3,
-  academicProfessor4,
   n2,
   n3,
   n4,
   MBS,
   MEd,
   def,
+  principal,
+  management,
+  language,
+  humanities,
+  education,
 } from "../assets";
 
 export const navLinks = [
@@ -149,29 +144,22 @@ export const specConst = [
 export const messageItems = [
   {
     img: principal,
-    title: "Message from Principal",
-    name: "Avash Neupane",
+    title: "Message from Campus Chief",
+    name: "शिव ओली",
     content:
       "प्रिय छात्र-छात्रा हरु, कलेज एक विद्यापीठ हो, जसमा ज्ञानको मार्गमा हाम्रो संगठन रहेको छ। यहाँ, हाम्रो प्राध्यापकहरू, शिक्षकहरू, र संघकका सभै सदस्यहरू तपाइँको शिक्षा र पेशामा उनको सहयोग गर्नका लागि यस कलेजमा उपस्थित छन्। हाम्रो उद्देश्य छ र थाहा छ आफ्नो शिक्षामा सफल हुनका लागि अपार प्राशासनिक र सांस्कृतिक संरचना प्रदान गर्दैछ।",
   },
   {
-    img: founder1,
-    title: "Message from Founder",
-    name: "Shiva Oli",
+    img: language,
+    title: "Message from HOD Language",
+    name: "Hare Krishna Gyawali",
     content:
       "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
   },
   {
-    img: founder2,
-    title: "Message from Founder",
-    name: "Kiran Sharma",
-    content:
-      "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
-  },
-  {
-    img: founder2,
-    title: "Message from Founder",
-    name: "Kiran Sharma",
+    img: humanities,
+    title: "Message from HOD Humanities",
+    name: "Bisheswor Poudel",
     content:
       "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
   },
@@ -291,7 +279,7 @@ export const programs = [
 
 export const administrativeTeam = [
   {
-    img: def,
+    img: principal,
     name: "शिव ओली",
     post: "प्रमुख क्याम्पस",
   },
@@ -354,14 +342,16 @@ export const academicTeam = [
     post: "सहायक प्राध्यापक",
   },
   {
-    img: def,
+    img: education,
     name: "माधव प्रसाद शर्मा",
     post: "सहायक प्राध्यापक",
+    add: "HOD EDUCATION",
   },
   {
-    img: def,
+    img: humanities,
     name: "विशेश्वर पौडेल",
     post: "सहायक प्राध्यापक",
+    add: "HOD HUMANITIES",
   },
   {
     img: def,
@@ -379,9 +369,10 @@ export const academicTeam = [
     post: "सहायक प्राध्यापक",
   },
   {
-    img: def,
+    img: language,
     name: "हरेकृष्ण ग्यावाली",
     post: "सहायक प्राध्यापक",
+    add: "HOD LANGUAGE",
   },
   {
     img: def,
@@ -394,9 +385,10 @@ export const academicTeam = [
     post: "सहायक प्राध्यापक",
   },
   {
-    img: def,
+    img: management,
     name: "मधु न्यौपाने",
     post: "सहायक प्राध्यापक",
+    add: "HOD MANAGEMENT",
   },
   {
     img: def,

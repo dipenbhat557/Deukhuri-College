@@ -21,9 +21,7 @@ import s4 from "./specImages/s4.png";
 
 import register from "./registerTeacher.png";
 
-import founder1 from "./messageImages/founder1.png";
 import founder2 from "./messageImages/founder2.png";
-import principal from "./messageImages/principal.png";
 
 import graduate from "./programImages/program1.png";
 import undergraduate from "./programImages/program2.png";
@@ -49,15 +47,11 @@ import facultyAdministrationBg from "./backgrounds/facultyAdministrationBg.png";
 
 import noticeBg from "./backgrounds/noticeBg.png";
 
-import academicProfessor1 from "./academicTeam/academicProfessor1.png";
-import academicProfessor2 from "./academicTeam/academicProfessor2.png";
-import academicProfessor3 from "./academicTeam/academicProfessor3.png";
-import academicProfessor4 from "./academicTeam/academicProfessor4.png";
-
-import administrativeProfessor1 from "./administrativeteam/administrativeProfessor1.png";
-import administrativeProfessor2 from "./administrativeteam/administrativeProfessor2.png";
-import administrativeProfessor3 from "./administrativeteam/administrativeProfessor3.png";
-import administrativeProfessor4 from "./administrativeteam/administrativeProfessor4.png";
+import management from "./administrativeteam/management.png";
+import education from "./administrativeteam/education.png";
+import humanities from "./administrativeteam/humanities.png";
+import language from "./administrativeteam/language.png";
+import principal from "./administrativeteam/principal.png";
 
 import def from "./default.png";
 
@@ -79,9 +73,7 @@ export {
   s3,
   s4,
   register,
-  founder1,
   founder2,
-  principal,
   graduate,
   undergraduate,
   instagram,
@@ -93,10 +85,11 @@ export {
   BEd,
   MBS,
   MEd,
-  administrativeProfessor1,
-  administrativeProfessor2,
-  administrativeProfessor3,
-  administrativeProfessor4,
+  management,
+  education,
+  humanities,
+  language,
+  principal,
   aboutBg,
   admissionBg,
   blogBg,
@@ -105,9 +98,5 @@ export {
   facultyAdministrationBg,
   noticeBg,
   facultyAdminBg,
-  academicProfessor1,
-  academicProfessor2,
-  academicProfessor3,
-  academicProfessor4,
   def,
 };
