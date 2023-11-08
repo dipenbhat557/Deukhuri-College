@@ -29,9 +29,7 @@ const Graduate = ({ pIndex }) => {
     };
   }, []);
 
-  const handleReadMore = () => {
-    // Implement your functionality here
-  };
+  const handleReadMore = () => {};
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
@@ -98,9 +96,7 @@ const Graduate = ({ pIndex }) => {
                   item == course ? "text-slate-900" : "text-slate-600"
                 } w-full h-[50px] sm:h-[60px] bg-[#D9D9D9] hover:text-slate-500 p-1 pl-10 flex items-center cursor-pointer text-[13px] sm:text-[15px]`}
                 key={index}
-                onClick={() => {
-                  setCourse(item);
-                }}
+                onClick={() => setCourse(item)}
               >
                 {item.title} | {item.fullTitle}
               </div>

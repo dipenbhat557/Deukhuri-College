@@ -163,6 +163,13 @@ export const messageItems = [
     content:
       "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
   },
+  {
+    img: education,
+    title: "Message from HOD Education",
+    name: "Madhav Pd. Sharma",
+    content:
+      "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
+  },
 ];
 
 export const featureItems = [
@@ -284,15 +291,30 @@ export const administrativeTeam = [
     post: "प्रमुख क्याम्पस",
   },
   {
-    img: def,
-    name: "भेष राज पोखरेल",
-    post: "सहायक प्रमुख क्याम्पस",
+    img: language,
+    name: "हरेकृष्ण ग्यावाली",
+    post: "सहायक प्राध्यापक",
+    add: "HOD LANGUAGE",
   },
   {
-    img: def,
-    name: "खोपेन्द्र ग्यावाली",
-    post: "सहायक प्रमुख क्याम्पस",
+    img: management,
+    name: "मधु न्यौपाने",
+    post: "सहायक प्राध्यापक",
+    add: "HOD MANAGEMENT",
   },
+  {
+    img: education,
+    name: "माधव प्रसाद शर्मा",
+    post: "सहायक प्राध्यापक",
+    add: "HOD EDUCATION",
+  },
+  {
+    img: humanities,
+    name: "विशेश्वर पौडेल",
+    post: "सहायक प्राध्यापक",
+    add: "HOD HUMANITIES",
+  },
+  
   {
     img: def,
     name: "दिवाकर पोखरेल",
@@ -318,17 +340,25 @@ export const administrativeTeam = [
     name: "जनकीराम चौधरी",
     post: "कार्यालय सहयोगी",
   },
-  {
-    img: def,
-    name: "सोभाराम गिरी",
-    post: "ड्राइभर",
-  },
+ 
 ];
 
 export const academicTeam = [
+  
   {
     img: def,
     name: "सुधीर कुमार अधिकारी",
+    post: "सहायक प्राध्यापक",
+  },
+
+  {
+    img: def,
+    name: "भेष राज पोखरेल",
+    post: "सहायक प्राध्यापक",
+  },
+  {
+    img: def,
+    name: "खोपेन्द्र ग्यावाली",
     post: "सहायक प्राध्यापक",
   },
   {
@@ -341,18 +371,8 @@ export const academicTeam = [
     name: "शेर बहादुर गिरी",
     post: "सहायक प्राध्यापक",
   },
-  {
-    img: education,
-    name: "माधव प्रसाद शर्मा",
-    post: "सहायक प्राध्यापक",
-    add: "HOD EDUCATION",
-  },
-  {
-    img: humanities,
-    name: "विशेश्वर पौडेल",
-    post: "सहायक प्राध्यापक",
-    add: "HOD HUMANITIES",
-  },
+  
+  
   {
     img: def,
     name: "बिनोद भट्टराई",
@@ -368,12 +388,7 @@ export const academicTeam = [
     name: "कान्ता प्रसाद चौधरी",
     post: "सहायक प्राध्यापक",
   },
-  {
-    img: language,
-    name: "हरेकृष्ण ग्यावाली",
-    post: "सहायक प्राध्यापक",
-    add: "HOD LANGUAGE",
-  },
+  
   {
     img: def,
     name: "हुर्मत कुमार पोखरेल",
@@ -384,12 +399,7 @@ export const academicTeam = [
     name: "तेज बहादुर कुँवर",
     post: "सहायक प्राध्यापक",
   },
-  {
-    img: management,
-    name: "मधु न्यौपाने",
-    post: "सहायक प्राध्यापक",
-    add: "HOD MANAGEMENT",
-  },
+  
   {
     img: def,
     name: "नरेश्वर सुबेदी",

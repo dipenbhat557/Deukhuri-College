@@ -30,7 +30,7 @@ const Messages = () => {
 
   useEffect(() => {
     updateCurrentMessages();
-    const interval = setInterval(handleAutoSwitch, 5000);
+    const interval = setInterval(handleAutoSwitch, 7000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -67,7 +67,7 @@ const Messages = () => {
                       <p
                         className={`${
                           index == 0 ? "text-[#212529] " : "text-red-900 "
-                        }  text-[14px] md:text-[20px] ml-3 md:ml-8`}
+                        }  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                       >
                         {message.title}
                       </p>
