@@ -50,7 +50,7 @@ import basantRaj from "./academicsTeam/BASANTRAJADHIKARI.jpg";
 import bheshBahadur from "./academicsTeam/BheshBahadurBC.jpg";
 import binodBhattarai from "./academicsTeam/BINODBHATTARAI.jpg";
 import BISHESWORPOUDEL from "./academicsTeam/BISHESWORPOUDEL.jpg";
-import  ChiranjiviRegmi from "./academicsTeam/ChiranjiviRegmi.jpg";
+import ChiranjiviRegmi from "./academicsTeam/ChiranjiviRegmi.jpg";
 import DIPENDRAKHADKA from "./academicsTeam/DIPENDRAKHADKA.jpg";
 import GOVINDOLI from "./academicsTeam/GOVINDOLI.jpg";
 import HAREKRISHNAGYAWALI from "./academicsTeam/HAREKRISHNAGYAWALI.jpg";
@@ -116,10 +116,34 @@ export {
   MEd,
   basantNeupane,
   basantRaj,
-BISHESWORPOUDEL,
-ChiranjiviRegmi,DIPENDRAKHADKA,GOVINDOLI,HAREKRISHNAGYAWALI,HurmatPokhrel,KANTAPRASADCHAUDHARY,KHOPENDRAGYAWALI,KeshavRamYadav,LOKRAJNEUPANE,MADHAVPRASADSHARMA,MADHUNEUPANE,NARAYANPRASADBHUSAL,NARESHWORSUBEDI,PRADIPPULAMI,RAMBAHADURKC,RISHIRAMKC,SAMJHANASHARMA,SHESHMANIGAUTAM,SherBahadurGiri,SherBdrDangi,TEJPRASADKHANAL,TejBahadurKunwar,ThaneshworPoudel,VESHRAJPOKHREL,bheshBahadur,binodBhattarai,SUDHIRKUMARADHIKARI,
-  
-
+  BISHESWORPOUDEL,
+  ChiranjiviRegmi,
+  DIPENDRAKHADKA,
+  GOVINDOLI,
+  HAREKRISHNAGYAWALI,
+  HurmatPokhrel,
+  KANTAPRASADCHAUDHARY,
+  KHOPENDRAGYAWALI,
+  KeshavRamYadav,
+  LOKRAJNEUPANE,
+  MADHAVPRASADSHARMA,
+  MADHUNEUPANE,
+  NARAYANPRASADBHUSAL,
+  NARESHWORSUBEDI,
+  PRADIPPULAMI,
+  RAMBAHADURKC,
+  RISHIRAMKC,
+  SAMJHANASHARMA,
+  SHESHMANIGAUTAM,
+  SherBahadurGiri,
+  SherBdrDangi,
+  TEJPRASADKHANAL,
+  TejBahadurKunwar,
+  ThaneshworPoudel,
+  VESHRAJPOKHREL,
+  bheshBahadur,
+  binodBhattarai,
+  SUDHIRKUMARADHIKARI,
   principal,
   DIWAKARPOKHREL,
   GOMAKANWAR,
