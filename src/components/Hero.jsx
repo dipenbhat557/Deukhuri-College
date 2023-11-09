@@ -94,7 +94,7 @@ const Hero = ({ scrolled }) => {
         </div>
 
         <div className="w-full z-30 h-full bg-black bg-opacity-30 absolute top-0 left-0 flex flex-col justify-between text-white">
-          {scrolled || <Navbar active="HOME" scrolled={scrolled} />}
+          {!scrolled && <Navbar active="HOME" scrolled={scrolled} />}
         </div>
       </div>
     </>
