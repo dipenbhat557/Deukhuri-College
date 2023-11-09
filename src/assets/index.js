@@ -21,8 +21,6 @@ import s4 from "./specImages/s4.png";
 
 import register from "./registerTeacher.png";
 
-
-
 import graduate from "./programImages/program1.png";
 import undergraduate from "./programImages/program2.png";
 import BA from "./programImages/BA.png";
@@ -47,6 +45,35 @@ import facultyAdministrationBg from "./backgrounds/facultyAdministrationBg.png";
 
 import noticeBg from "./backgrounds/noticeBg.png";
 
+import basantNeupane from "./academicsTeam/BASANTNEUPANE.jpg";
+import basantRaj from "./academicsTeam/BASANTRAJADHIKARI.jpg";
+import bheshBahadur from "./academicsTeam/BheshBahadurBC.jpg";
+import binodBhattarai from "./academicsTeam/BINODBHATTARAI.jpg";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+// import binodBhattarai from "./academicsTeam/";
+
 import principal from "./administrativeteam/principal.png";
 
 import def from "./default.png";
@@ -69,7 +96,6 @@ export {
   s3,
   s4,
   register,
-
   graduate,
   undergraduate,
   instagram,
@@ -81,7 +107,8 @@ export {
   BEd,
   MBS,
   MEd,
-  
+  basantNeupane,
+  basantRaj,
   principal,
   aboutBg,
   admissionBg,
