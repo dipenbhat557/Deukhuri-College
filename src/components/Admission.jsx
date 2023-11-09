@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { admissionBg } from "../assets";
 import { programs } from "../constants";
-import Footer from "./Footer";
-import HeroHeader from "./HeroHeader";
-import Navbar from "./Navbar";
-import Subscription from "./Subscriptions";
+
+// Lazy-loaded components
+const Footer = lazy(() => import("./Footer"));
+const HeroHeader = lazy(() => import("./HeroHeader"));
+const Navbar = lazy(() => import("./Navbar"));
+const Subscription = lazy(() => import("./Subscriptions"));
 
 const Admission = () => {
   const handleApply = () => {};
@@ -20,8 +22,8 @@ const Admission = () => {
   };
 
   useEffect(() => {
-    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -29,8 +31,11 @@ const Admission = () => {
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
-      {scrolled && <Navbar active="ADMISSION" scrolled={scrolled} />}
-      <HeroHeader />
+      <Suspense fallback={<div>Loading...</div>}>
+        {scrolled && <Navbar active="ADMISSION" scrolled={scrolled} />}
+        <HeroHeader />
+      </Suspense>
+
       <div className="w-full h-[500px] sm:h-[616px] relative">
         <img
           src={admissionBg}
@@ -38,20 +43,22 @@ const Admission = () => {
           className="w-full h-full object-cover -z-10"
         />
 
-        <div
-          className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
-            scrolled ? "justify-end" : "justify-between"
-          } items-center text-white`}
-        >
-          {scrolled || <Navbar active="ADMISSION" scrolled={scrolled} />}
+        <Suspense fallback={<div>Loading...</div>}>
+          <div
+            className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
+              scrolled ? "justify-end" : "justify-between"
+            } items-center text-white`}
+          >
+            {scrolled || <Navbar active="ADMISSION" scrolled={scrolled} />}
 
-          <div className="w-[60%] h-[15%] flex flex-col ">
-            <div className="w-full h-[60%] text-center pt-2 bg-red-900">
-              <p className="text-[20px] font-bold text-white">Admission</p>
+            <div className="w-[60%] h-[15%] flex flex-col ">
+              <div className="w-full h-[60%] text-center pt-2 bg-red-900">
+                <p className="text-[20px] font-bold text-white">Admission</p>
+              </div>
+              <div className="w-full h-[40%] bg-white" />
             </div>
-            <div className="w-full h-[40%] bg-white" />
           </div>
-        </div>
+        </Suspense>
       </div>
 
       {programs.map((program, index) => {
@@ -101,11 +108,14 @@ const Admission = () => {
         );
       })}
 
-      <div className="w-full">
-        <Subscription />
-        <Footer />
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className="w-full">
+          <Subscription />
+          <Footer />
+        </div>
+      </Suspense>
     </div>
   );
 };
+
 export default Admission;

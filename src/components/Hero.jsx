@@ -8,9 +8,26 @@ import { motion } from "framer-motion";
 import { fadeIn, slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 
-const Hero = ({ scrolled }) => {
+const Hero = () => {
   const [currentElement, setCurrentElement] = useState(0);
   const videoRefs = heroElements.map(() => useRef(null));
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 105) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -94,7 +111,7 @@ const Hero = ({ scrolled }) => {
         </div>
 
         <div className="w-full z-30 h-full bg-black bg-opacity-30 absolute top-0 left-0 flex flex-col justify-between text-white">
-          {!scrolled && <Navbar active="HOME" scrolled={scrolled} />}
+          {scrolled || <Navbar active="HOME" scrolled={scrolled} />}
         </div>
       </div>
     </>

@@ -38,7 +38,7 @@ const HomePage = () => {
       <div className={`${scrolled ? "flex flex-col" : ""}`}>
         {scrolled && <Navbar active="HOME" scrolled={scrolled} />}
         <HeroHeader />
-        <Hero scrolled={scrolled} />
+        <Hero />
         <HeroFooter />
         <Notices />
         <VideoTour />

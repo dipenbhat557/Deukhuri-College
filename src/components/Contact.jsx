@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
+import emailjs from "emailjs-com";
 import { contactBg, facebook, instagram, twitter } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import { motion } from "framer-motion";
-import { styles } from "../styles";
 import { slideIn } from "../utils/motion";
+
+// Lazy-loaded components
+const Loading = lazy(() => import("./Loading"));
 
 const Contact = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -69,7 +72,6 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -78,8 +80,10 @@ const Contact = () => {
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
-      {scrolled && <Navbar active="CONTACT" scrolled={scrolled} />}
-      <HeroHeader />
+      <Suspense fallback={<Loading />}>
+        {scrolled && <Navbar active="CONTACT" scrolled={scrolled} />}
+        <HeroHeader />
+      </Suspense>
 
       <div className="w-full h-[500px] sm:h-[616px] relative">
         <img
@@ -88,111 +92,117 @@ const Contact = () => {
           className="w-full h-full object-cover -z-10"
         />
 
-        <div
-          className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
-            scrolled ? "justify-end" : "justify-between"
-          } items-center text-white`}
-        >
-          {scrolled || <Navbar active="CONTACT" scrolled={scrolled} />}
+        <Suspense fallback={<Loading />}>
+          <div
+            className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
+              scrolled ? "justify-end" : "justify-between"
+            } items-center text-white`}
+          >
+            {scrolled || <Navbar active="CONTACT" scrolled={scrolled} />}
 
-          <div className="w-[60%] h-[15%] flex flex-col ">
-            <div className="w-full h-[60%] text-center pt-2 bg-red-900">
-              <p className="text-[18px] sm:text-[20px] font-bold text-white">
-                Contact
-              </p>
+            <div className="w-[60%] h-[15%] flex flex-col ">
+              <div className="w-full h-[60%] text-center pt-2 bg-red-900">
+                <p className="text-[18px] sm:text-[20px] font-bold text-white">
+                  Contact
+                </p>
+              </div>
+              <div className="w-full h-[40%] bg-white" />
             </div>
-            <div className="w-full h-[40%] bg-white" />
           </div>
-        </div>
+        </Suspense>
       </div>
 
       <div className="flex flex-col sm:flex-row justify-between items-start w-full h-auto sm:mx-8 pl-24">
         <div className=" flex w-full sm:w-[50%] h-auto ml-0  sm:ml-10">
           {/* Contact form section */}
-          <motion.div
-            variants={slideIn("left", "tween", 0.2, 1)}
-            className="flex-[0.75]  rounded-2xl"
-          >
-            {/* Contact form */}
-            <form
-              ref={formRef}
-              onSubmit={handleSubmit}
-              className="mt-12 flex flex-col gap-8"
+          <Suspense fallback={<Loading />}>
+            <motion.div
+              variants={slideIn("left", "tween", 0.2, 1)}
+              className="flex-[0.75]  rounded-2xl"
             >
-              <label className="flex flex-col">
-                <span className=" font-medium my-4">Name *</span>
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="What's your good name?"
-                  className=" py-4 px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className=" font-medium my-4">Email *</span>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="What's your web address?"
-                  className=" py-4 px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
-                />
-              </label>
-              <label className="flex flex-col">
-                <span className="font-medium my-4">Message *</span>
-                <textarea
-                  rows={7}
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="What you want to say?"
-                  className=" py-4 px-6 placeholder:text-slate-400 rounded-lg bg-slate-100 font-medium"
-                />
-              </label>
-
-              {/* Submit button */}
-              <button
-                type="submit"
-                className="py-3 px-8 rounded-xl w-full text-white font-bold shadow-lg bg-red-900 shadow-black"
+              {/* Contact form */}
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="mt-12 flex flex-col gap-8"
               >
-                {loading ? "Sending..." : "Send"}
-              </button>
-            </form>
-          </motion.div>
+                <label className="flex flex-col">
+                  <span className=" font-medium my-4">Name *</span>
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="What's your good name?"
+                    className=" py-4 px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
+                  />
+                </label>
+                <label className="flex flex-col">
+                  <span className=" font-medium my-4">Email *</span>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    placeholder="What's your web address?"
+                    className=" py-4 px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
+                  />
+                </label>
+                <label className="flex flex-col">
+                  <span className="font-medium my-4">Message *</span>
+                  <textarea
+                    rows={7}
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="What you want to say?"
+                    className=" py-4 px-6 placeholder:text-slate-400 rounded-lg bg-slate-100 font-medium"
+                  />
+                </label>
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  className="py-3 px-8 rounded-xl w-full text-white font-bold shadow-lg bg-red-900 shadow-black"
+                >
+                  {loading ? "Sending..." : "Send"}
+                </button>
+              </form>
+            </motion.div>
+          </Suspense>
         </div>
 
-        <div className="h-auto w-[80% ] sm:w-[35%] flex flex-col my-4 ">
-          <p className="text-[18px] p-3">Deukhuri Multiple Campus</p>
-          <p className="text-[16px] text-slate-600 p-2">
-            Lamahi-6, Dang, Nepal
-          </p>
-          <p className="text-[16px] text-slate-600 p-2">
-            +977 98765789, 098769 , 098790
-          </p>
-          <p className="text-[16px] text-slate-600 p-2">
-            deukhuricampus@gmail.com
-          </p>
-          <div className="flex items-start gap-5 justify-start m-4">
-            <img
-              src={instagram}
-              alt="instagram"
-              className="rounded-2xl cursor-pointer h-[50px]"
-            />
-            <img
-              src={twitter}
-              alt="twitter"
-              className="rounded-2xl cursor-pointer h-[50px]"
-            />
-            <img
-              src={facebook}
-              alt="facebook"
-              className="rounded-2xl cursor-pointer h-[50px]"
-            />
+        <Suspense fallback={<Loading />}>
+          <div className="h-auto w-[80% ] sm:w-[35%] flex flex-col my-4 ">
+            <p className="text-[18px] p-3">Deukhuri Multiple Campus</p>
+            <p className="text-[16px] text-slate-600 p-2">
+              Lamahi-6, Dang, Nepal
+            </p>
+            <p className="text-[16px] text-slate-600 p-2">
+              +977 98765789, 098769 , 098790
+            </p>
+            <p className="text-[16px] text-slate-600 p-2">
+              deukhuricampus@gmail.com
+            </p>
+            <div className="flex items-start gap-5 justify-start m-4">
+              <img
+                src={instagram}
+                alt="instagram"
+                className="rounded-2xl cursor-pointer h-[50px]"
+              />
+              <img
+                src={twitter}
+                alt="twitter"
+                className="rounded-2xl cursor-pointer h-[50px]"
+              />
+              <img
+                src={facebook}
+                alt="facebook"
+                className="rounded-2xl cursor-pointer h-[50px]"
+              />
+            </div>
           </div>
-        </div>
+        </Suspense>
       </div>
 
       <iframe
@@ -204,10 +214,12 @@ const Contact = () => {
         className="w-full h-[350px]  mt-4"
       ></iframe>
 
-      <div className="w-full">
-        <Subscription />
-        <Footer />
-      </div>
+      <Suspense fallback={<Loading />}>
+        <div className="w-full">
+          <Subscription />
+          <Footer />
+        </div>
+      </Suspense>
     </div>
   );
 };

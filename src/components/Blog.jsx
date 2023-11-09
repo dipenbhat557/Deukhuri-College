@@ -1,15 +1,16 @@
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Tilt } from "react-tilt";
-import { blogBg, program } from "../assets";
-import { messageItems, programs } from "../constants";
+import { blogBg } from "../assets";
+import { messageItems } from "../constants";
 import { styles } from "../styles";
-import { fadeIn } from "../utils/motion";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import RegisterSection from "./RegisterSection";
-import { motion } from "framer-motion";
 import Subscription from "./Subscriptions";
-import { useEffect, useState } from "react";
+
+// Lazy-loaded components
+const Loading = lazy(() => import("./Loading"));
 
 const Blog = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +24,6 @@ const Blog = () => {
   };
 
   useEffect(() => {
-    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -32,9 +32,11 @@ const Blog = () => {
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
-      {scrolled && <Navbar active="BLOG" scrolled={scrolled} />}
+      <Suspense fallback={<Loading />}>
+        {scrolled && <Navbar active="BLOG" scrolled={scrolled} />}
+        <HeroHeader />
+      </Suspense>
 
-      <HeroHeader />
       <div className="w-full h-[500px] sm:h-[616px] relative">
         <img
           src={blogBg}
@@ -42,20 +44,22 @@ const Blog = () => {
           className="w-full h-full object-cover -z-10"
         />
 
-        <div
-          className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
-            scrolled ? "justify-end" : "justify-between"
-          } items-center text-white`}
-        >
-          {scrolled || <Navbar active="BLOG" scrolled={scrolled} />}
+        <Suspense fallback={<Loading />}>
+          <div
+            className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
+              scrolled ? "justify-end" : "justify-between"
+            } items-center text-white`}
+          >
+            {scrolled || <Navbar active="BLOG" scrolled={scrolled} />}
 
-          <div className="w-[60%] h-[15%] flex flex-col ">
-            <div className="w-full h-[60%] text-center pt-2 bg-red-900">
-              <p className="text-[20px] font-bold text-white">Blog</p>
+            <div className="w-[60%] h-[15%] flex flex-col ">
+              <div className="w-full h-[60%] text-center pt-2 bg-red-900">
+                <p className="text-[20px] font-bold text-white">Blog</p>
+              </div>
+              <div className="w-full h-[40%] bg-white" />
             </div>
-            <div className="w-full h-[40%] bg-white" />
           </div>
-        </div>
+        </Suspense>
       </div>
 
       <div className={`${styles.padding} w-full h-auto relative`}>
@@ -110,11 +114,13 @@ const Blog = () => {
         ></div>
       </div>
 
-      <div className="w-full">
-        <RegisterSection />
-        <Subscription />
-        <Footer />
-      </div>
+      <Suspense fallback={<Loading />}>
+        <div className="w-full">
+          <RegisterSection />
+          <Subscription />
+          <Footer />
+        </div>
+      </Suspense>
     </div>
   );
 };

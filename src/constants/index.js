@@ -11,7 +11,6 @@ import {
   s2,
   s3,
   s4,
-
   BEd,
   BA,
   BBS,
@@ -27,12 +26,7 @@ import {
   JAIPRAKASHPOUDEL,
   JANAKIRAMCHAUDHARY,
   KRISHNABAHADURCHHETRI,
-   SHOVARAMGIRI,
-
-  
-  
-  
-  
+  SHOVARAMGIRI,
 } from "../assets";
 
 export const navLinks = [
@@ -158,22 +152,22 @@ export const messageItems = [
   },
   {
     img: def,
-    title: "Message from HOD Language",
-    name: "Hare Krishna Gyawali",
+    title: "Message from Asst. Campus Chief",
+    name: "",
     content:
       "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
   },
   {
     img: def,
-    title: "Message from HOD Humanities",
-    name: "Bisheswor Poudel",
+    title: "Message from Asst. Campus Chief",
+    name: "",
     content:
       "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
   },
   {
     img: def,
-    title: "Message from HOD Education",
-    name: "Madhav Pd. Sharma",
+    title: "Message from Asst. Campus Chief",
+    name: "",
     content:
       "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
   },
@@ -223,7 +217,6 @@ export const requirementItems = [
 
 export const graduateItems = [
   {
-
     title: "MED",
     fullTitle: "Masters in Education",
     img: MEd,
@@ -298,7 +291,7 @@ export const administrativeTeam = [
     name: "शिव ओली",
     post: "प्रमुख क्याम्पस",
   },
-  
+
   {
     img: DIWAKARPOKHREL,
     name: "दिवाकर पोखरेल",
@@ -329,8 +322,6 @@ export const administrativeTeam = [
     name: "शोभा राम गिरि",
     post: "चालक",
   },
- 
- 
 ];
 
 export const academicTeam = [
@@ -371,7 +362,6 @@ export const academicTeam = [
     post: "HOD OF HUMANITIES",
     add: "HOD HUMANITIES",
   },
-  
 
   {
     img: def,
@@ -410,18 +400,6 @@ export const academicTeam = [
     post: "HOD OF MANAGEMENT",
     add: "HOD MANAGEMENT",
   },
-  
-  
-
-
-  
- 
-  
-  
-  
-  
-
-  
   {
     img: def,
     name: "नरेश्वर सुबेदी",
@@ -529,9 +507,7 @@ export const aboutItems = [
   {
     title: "Goals and objective",
     content:
-      "Based on vision and mission of DMC, this institution has the following goals and objectives to establish itself as a center of excellence . Goal One: Institutional capacity development, Goal Two: Academic. Objectives :-Objective 1: To meet the OAA assessment criteria and quality accreditation, Objective 2: To maintain required status of quality assurance , Objective 3: To develop appropriate organisation. "
-
-     
+      "Based on vision and mission of DMC, this institution has the following goals and objectives to establish itself as a center of excellence . Goal One: Institutional capacity development, Goal Two: Academic. Objectives :-Objective 1: To meet the OAA assessment criteria and quality accreditation, Objective 2: To maintain required status of quality assurance , Objective 3: To develop appropriate organisation. ",
   },
   {
     title: "Diversity and Inclusiveness",

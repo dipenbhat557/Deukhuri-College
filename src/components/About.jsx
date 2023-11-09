@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { aboutBg } from "../assets";
 import { aboutItems } from "../constants";
-import Footer from "./Footer";
-import HeroHeader from "./HeroHeader";
-import Navbar from "./Navbar";
-import RegisterSection from "./RegisterSection";
-import Specifications from "./Specifications";
+import Loading from "./Loading";
+
+const Footer = lazy(() => import("./Footer"));
+const HeroHeader = lazy(() => import("./HeroHeader"));
+const Navbar = lazy(() => import("./Navbar"));
+const RegisterSection = lazy(() => import("./RegisterSection"));
+const Specifications = lazy(() => import("./Specifications"));
 
 const About = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -19,8 +21,8 @@ const About = () => {
   };
 
   useEffect(() => {
-    // const debouncedHandleScroll = debounce(handleScroll, 100); // Adjust the delay time (in milliseconds) as needed
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -28,8 +30,10 @@ const About = () => {
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
-      {scrolled && <Navbar active="ABOUT" scrolled={scrolled} />}
-      <HeroHeader />
+      <Suspense fallback={<Loading />}>
+        {scrolled && <Navbar active="ABOUT" scrolled={scrolled} />}
+        <HeroHeader />
+      </Suspense>
 
       <div className="w-full h-[500px] sm:h-[616px] relative">
         <div
@@ -37,7 +41,9 @@ const About = () => {
             scrolled ? "justify-end" : "justify-between"
           } items-center text-white`}
         >
-          {scrolled || <Navbar active="ABOUT" scrolled={scrolled} />}
+          <Suspense fallback={<Loading />}>
+            {scrolled || <Navbar active="ABOUT" scrolled={scrolled} />}
+          </Suspense>
 
           <div className="w-[60%] h-[15%] flex flex-col ">
             <div className="w-full h-[60%] text-center pt-2 bg-red-900">
@@ -78,14 +84,21 @@ const About = () => {
             students.
           </p>
 
-          <Specifications />
+          <Suspense fallback={<Loading />}>
+            <Specifications />
+          </Suspense>
 
           <p className="text-[16px] font-semibold my-3">
             Our Missions and Values
           </p>
 
           <p className="text-[14px] my-3 font-light text-justify">
-            The mission of DMC is to develop itself as a leading academic institution ensuirng the quality education in various discipline and research activities through dedicated human resource at affordable cost to the marginalized and economically deprived students to improve their quality of life contributing local and national community. 
+            The mission of DMC is to develop itself as a leading academic
+            institution ensuring the quality education in various discipline and
+            research activities through dedicated human resource at affordable
+            cost to the marginalized and economically deprived students to
+            improve their quality of life contributing local and national
+            community.
           </p>
 
           <div className="flex flex-wrap justify-between w-full h-auto">
@@ -103,11 +116,14 @@ const About = () => {
         </div>
       </div>
 
-      <div className="w-full">
-        <RegisterSection />
-        <Footer />
-      </div>
+      <Suspense fallback={<Loading />}>
+        <div className="w-full">
+          <RegisterSection />
+          <Footer />
+        </div>
+      </Suspense>
     </div>
   );
 };
+
 export default About;
