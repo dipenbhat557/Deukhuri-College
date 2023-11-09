@@ -11,7 +11,7 @@ import {
   s2,
   s3,
   s4,
-  founder2,
+
   BEd,
   BA,
   BBS,
@@ -22,10 +22,8 @@ import {
   MEd,
   def,
   principal,
-  management,
-  language,
-  humanities,
-  education,
+  
+  
   
   
 } from "../assets";
@@ -152,21 +150,21 @@ export const messageItems = [
       "प्रिय छात्र-छात्रा हरु, कलेज एक विद्यापीठ हो, जसमा ज्ञानको मार्गमा हाम्रो संगठन रहेको छ। यहाँ, हाम्रो प्राध्यापकहरू, शिक्षकहरू, र संघकका सभै सदस्यहरू तपाइँको शिक्षा र पेशामा उनको सहयोग गर्नका लागि यस कलेजमा उपस्थित छन्। हाम्रो उद्देश्य छ र थाहा छ आफ्नो शिक्षामा सफल हुनका लागि अपार प्राशासनिक र सांस्कृतिक संरचना प्रदान गर्दैछ।",
   },
   {
-    img: language,
+    img: def,
     title: "Message from HOD Language",
     name: "Hare Krishna Gyawali",
     content:
       "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
   },
   {
-    img: humanities,
+    img: def,
     title: "Message from HOD Humanities",
     name: "Bisheswor Poudel",
     content:
       "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
   },
   {
-    img: education,
+    img: def,
     title: "Message from HOD Education",
     name: "Madhav Pd. Sharma",
     content:
@@ -218,6 +216,7 @@ export const requirementItems = [
 
 export const graduateItems = [
   {
+
     title: "MED",
     fullTitle: "Masters in Education",
     img: MEd,
@@ -329,25 +328,25 @@ export const administrativeTeam = [
 
 export const academicTeam = [
   {
-    img: language,
+    img: def,
     name: "हरेकृष्ण ग्यावाली",
     post: "HOD OF LANGUAGE",
     add: "HOD LANGUAGE",
   },
   {
-    img: management,
+    img: def,
     name: "मधु न्यौपाने",
     post: "HOD OF MANAGEMENT",
     add: "HOD MANAGEMENT",
   },
   {
-    img: education,
+    img: def,
     name: "माधव प्रसाद शर्मा",
     post: "HOD OF EDUCATION",
     add: "HOD EDUCATION",
   },
   {
-    img: humanities,
+    img: def,
     name: "विशेश्वर पौडेल",
     post: "HOD OF HUMANITIES",
     add: "HOD HUMANITIES",
