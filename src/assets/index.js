@@ -75,6 +75,12 @@ import binodBhattarai from "./academicsTeam/BINODBHATTARAI.jpg";
 // import binodBhattarai from "./academicsTeam/";
 
 import principal from "./administrativeteam/principal.png";
+import DIWAKARPOKHREL from "./administrativeteam/DIWAKARPOKHREL.jpg";
+import GOMAKANWAR from "./administrativeteam/GOMAKANWAR.jpg";
+import JAIPRAKASHPOUDEL from "./administrativeteam/JAIPRAKASHPOUDEL.jpg";
+import JANAKIRAMCHAUDHARY from "./administrativeteam/JANAKIRAMCHAUDHARY.jpg";
+import KRISHNABAHADURCHHETRI from "./administrativeteam/KRISHNABAHADURCHHETRI.jpg";
+import SHOVARAMGIRI from "./administrativeteam/SHOVARAMGIRI.jpg";
 
 import def from "./default.png";
 
@@ -110,6 +116,12 @@ export {
   basantNeupane,
   basantRaj,
   principal,
+  DIWAKARPOKHREL,
+  GOMAKANWAR,
+  JAIPRAKASHPOUDEL,
+  JANAKIRAMCHAUDHARY,
+  KRISHNABAHADURCHHETRI,
+  SHOVARAMGIRI,
   aboutBg,
   admissionBg,
   blogBg,

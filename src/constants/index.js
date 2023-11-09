@@ -22,6 +22,13 @@ import {
   MEd,
   def,
   principal,
+  DIWAKARPOKHREL,
+  GOMAKANWAR,
+  JAIPRAKASHPOUDEL,
+  JANAKIRAMCHAUDHARY,
+  KRISHNABAHADURCHHETRI,
+   SHOVARAMGIRI,
+
   
   
   
@@ -293,32 +300,32 @@ export const administrativeTeam = [
   },
   
   {
-    img: def,
+    img: DIWAKARPOKHREL,
     name: "दिवाकर पोखरेल",
     post: "लेखापाल",
   },
   {
-    img: def,
+    img: KRISHNABAHADURCHHETRI,
     name: "कृष्ण बहादुर छेत्री",
     post: "पुस्तकालय सहायक",
   },
   {
-    img: def,
+    img: GOMAKANWAR,
     name: "गोमा कुँवर",
     post: "कम्प्युटर सहायक",
   },
   {
-    img: def,
+    img: JAIPRAKASHPOUDEL,
     name: "जय प्रकाश पौडेल",
     post: "कार्यालय सहायक",
   },
   {
-    img: def,
+    img: JANAKIRAMCHAUDHARY,
     name: "जनकीराम चौधरी",
     post: "कार्यालय सहयोगी",
   },
   {
-    img: def,
+    img: SHOVARAMGIRI,
     name: "शोभा राम गिरि",
     post: "चालक",
   },
@@ -329,15 +336,28 @@ export const administrativeTeam = [
 export const academicTeam = [
   {
     img: def,
-    name: "हरेकृष्ण ग्यावाली",
-    post: "HOD OF LANGUAGE",
-    add: "HOD LANGUAGE",
+    name: "भेष राज पोखरेल",
+    post: "उपप्राध्यापकप",
   },
   {
     img: def,
-    name: "मधु न्यौपाने",
-    post: "HOD OF MANAGEMENT",
-    add: "HOD MANAGEMENT",
+    name: "खोपेन्द्र ग्यावाली",
+    post: "उपप्राध्यापक",
+  },
+  {
+    img: def,
+    name: "सुधीर कुमार अधिकारी",
+    post: "उपप्राध्यापक",
+  },
+  {
+    img: def,
+    name: "शेषमणि गौतम",
+    post: "उपप्राध्यापक",
+  },
+  {
+    img: def,
+    name: "शेर बहादुर गिरी",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
@@ -352,34 +372,7 @@ export const academicTeam = [
     add: "HOD HUMANITIES",
   },
   
-  {
-    img: def,
-    name: "सुधीर कुमार अधिकारी",
-    post: "उपप्राध्यापक",
-  },
 
-  {
-    img: def,
-    name: "भेष राज पोखरेल",
-    post: "उपप्राध्यापकप",
-  },
-  {
-    img: def,
-    name: "खोपेन्द्र ग्यावाली",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: def,
-    name: "शेषमणि गौतम",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: def,
-    name: "शेर बहादुर गिरी",
-    post: "उपप्राध्यापक",
-  },
-  
-  
   {
     img: def,
     name: "बिनोद भट्टराई",
@@ -395,7 +388,12 @@ export const academicTeam = [
     name: "कान्ता प्रसाद चौधरी",
     post: "उपप्राध्यापक",
   },
-  
+  {
+    img: def,
+    name: "हरेकृष्ण ग्यावाली",
+    post: "HOD OF LANGUAGE",
+    add: "HOD LANGUAGE",
+  },
   {
     img: def,
     name: "हुर्मत कुमार पोखरेल",
@@ -406,6 +404,23 @@ export const academicTeam = [
     name: "तेज बहादुर कुँवर",
     post: "उपप्राध्यापक",
   },
+  {
+    img: def,
+    name: "मधु न्यौपाने",
+    post: "HOD OF MANAGEMENT",
+    add: "HOD MANAGEMENT",
+  },
+  
+  
+
+
+  
+ 
+  
+  
+  
+  
+
   
   {
     img: def,
