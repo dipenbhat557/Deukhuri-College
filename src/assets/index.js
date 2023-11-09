@@ -21,7 +21,7 @@ import s4 from "./specImages/s4.png";
 
 import register from "./registerTeacher.png";
 
-import founder2 from "./messageImages/founder2.png";
+
 
 import graduate from "./programImages/program1.png";
 import undergraduate from "./programImages/program2.png";
@@ -47,10 +47,6 @@ import facultyAdministrationBg from "./backgrounds/facultyAdministrationBg.png";
 
 import noticeBg from "./backgrounds/noticeBg.png";
 
-import management from "./administrativeteam/management.png";
-import education from "./administrativeteam/education.png";
-import humanities from "./administrativeteam/humanities.png";
-import language from "./administrativeteam/language.png";
 import principal from "./administrativeteam/principal.png";
 
 import def from "./default.png";
@@ -73,7 +69,7 @@ export {
   s3,
   s4,
   register,
-  founder2,
+
   graduate,
   undergraduate,
   instagram,
@@ -85,10 +81,7 @@ export {
   BEd,
   MBS,
   MEd,
-  management,
-  education,
-  humanities,
-  language,
+  
   principal,
   aboutBg,
   admissionBg,
