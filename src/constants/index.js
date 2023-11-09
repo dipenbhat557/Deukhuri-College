@@ -30,7 +30,10 @@ import {
    SHOVARAMGIRI,
 
   
-  
+   basantNeupane,
+   basantRaj,
+ BISHESWORPOUDEL,
+ ChiranjiviRegmi,DIPENDRAKHADKA,GOVINDOLI,HAREKRISHNAGYAWALI,HurmatPokhrel,KANTAPRASADCHAUDHARY,KHOPENDRAGYAWALI,KeshavRamYadav,LOKRAJNEUPANE,MADHAVPRASADSHARMA,MADHUNEUPANE,NARAYANPRASADBHUSAL,NARESHWORSUBEDI,PRADIPPULAMI,RAMBAHADURKC,RISHIRAMKC,SAMJHANASHARMA,SHESHMANIGAUTAM,SherBahadurGiri,SherBdrDangi,TEJPRASADKHANAL,TejBahadurKunwar,ThaneshworPoudel,VESHRAJPOKHREL,bheshBahadur,binodBhattarai, SUDHIRKUMARADHIKARI,
   
   
 } from "../assets";
@@ -335,38 +338,38 @@ export const administrativeTeam = [
 
 export const academicTeam = [
   {
-    img: def,
+    img: VESHRAJPOKHREL,
     name: "भेष राज पोखरेल",
     post: "उपप्राध्यापकप",
   },
   {
-    img: def,
+    img: KHOPENDRAGYAWALI,
     name: "खोपेन्द्र ग्यावाली",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: SUDHIRKUMARADHIKARI,
     name: "सुधीर कुमार अधिकारी",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: SHESHMANIGAUTAM,
     name: "शेषमणि गौतम",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: SherBahadurGiri,
     name: "शेर बहादुर गिरी",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: MADHAVPRASADSHARMA,
     name: "माधव प्रसाद शर्मा",
     post: "HOD OF EDUCATION",
     add: "HOD EDUCATION",
   },
   {
-    img: def,
+    img: BISHESWORPOUDEL,
     name: "विशेश्वर पौडेल",
     post: "HOD OF HUMANITIES",
     add: "HOD HUMANITIES",
@@ -374,38 +377,38 @@ export const academicTeam = [
   
 
   {
-    img: def,
+    img: binodBhattarai,
     name: "बिनोद भट्टराई",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: PRADIPPULAMI,
     name: "प्रदिप पुलामी",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: KANTAPRASADCHAUDHARY,
     name: "कान्ता प्रसाद चौधरी",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: HAREKRISHNAGYAWALI,
     name: "हरेकृष्ण ग्यावाली",
     post: "HOD OF LANGUAGE",
     add: "HOD LANGUAGE",
   },
   {
-    img: def,
+    img: HurmatPokhrel,
     name: "हुर्मत कुमार पोखरेल",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: TejBahadurKunwar,
     name: "तेज बहादुर कुँवर",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: MADHUNEUPANE,
     name: "मधु न्यौपाने",
     post: "HOD OF MANAGEMENT",
     add: "HOD MANAGEMENT",
@@ -423,82 +426,82 @@ export const academicTeam = [
 
   
   {
-    img: def,
+    img: NARESHWORSUBEDI,
     name: "नरेश्वर सुबेदी",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: bheshBahadur,
     name: "भेस बहादुर बि.सी.",
     post: "उपप्राध्यापक",
   },
   {
-    img: def,
+    img: NARAYANPRASADBHUSAL,
     name: "नारायण प्रसाद भुसाल",
     post: "शिक्षा सहायक",
   },
   {
-    img: def,
+    img: basantRaj,
     name: "बसन्त राज अधिकारी",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: RAMBAHADURKC,
     name: "राम बहादुर के.सी.",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: DIPENDRAKHADKA,
     name: "दिपेन्द्र खड्का",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: SherBdrDangi,
     name: "शेर बहादुर डाङ्गी",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: TEJPRASADKHANAL,
     name: "तेज प्रसाद खनाल",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: KeshavRamYadav,
     name: "केशव राम यादव",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: SAMJHANASHARMA,
     name: "सम्झना शर्मा",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: ChiranjiviRegmi,
     name: "चिरञ्जीबी रेग्मी",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: RISHIRAMKC,
     name: "रिशि राम के.सी.",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: GOVINDOLI,
     name: "गोविन्द कुमार वाली",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: basantNeupane,
     name: "बसन्त न्यौपाने",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: ThaneshworPoudel,
     name: "थानेश्वर पौडेल",
     post: "आंशिक शिक्षक",
   },
   {
-    img: def,
+    img: LOKRAJNEUPANE,
     name: "लोक राज न्यौपाने",
     post: "आंशिक शिक्षक",
   },

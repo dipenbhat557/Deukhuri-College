@@ -49,31 +49,32 @@ import basantNeupane from "./academicsTeam/BASANTNEUPANE.jpg";
 import basantRaj from "./academicsTeam/BASANTRAJADHIKARI.jpg";
 import bheshBahadur from "./academicsTeam/BheshBahadurBC.jpg";
 import binodBhattarai from "./academicsTeam/BINODBHATTARAI.jpg";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-// import binodBhattarai from "./academicsTeam/";
-
+import BISHESWORPOUDEL from "./academicsTeam/BISHESWORPOUDEL.jpg";
+import  ChiranjiviRegmi from "./academicsTeam/ChiranjiviRegmi.jpg";
+import DIPENDRAKHADKA from "./academicsTeam/DIPENDRAKHADKA.jpg";
+import GOVINDOLI from "./academicsTeam/GOVINDOLI.jpg";
+import HAREKRISHNAGYAWALI from "./academicsTeam/HAREKRISHNAGYAWALI.jpg";
+import HurmatPokhrel from "./academicsTeam/HurmatPokhrel.jpg";
+import KANTAPRASADCHAUDHARY from "./academicsTeam/KANTAPRASADCHAUDHARY.jpg";
+import KeshavRamYadav from "./academicsTeam/KeshavRamYadav.jpg";
+import KHOPENDRAGYAWALI from "./academicsTeam/KHOPENDRAGYAWALI.jpg";
+import LOKRAJNEUPANE from "./academicsTeam/LOKRAJNEUPANE.jpg";
+import MADHAVPRASADSHARMA from "./academicsTeam/MADHAVPRASADSHARMA.jpg";
+import MADHUNEUPANE from "./academicsTeam/MADHUNEUPANE.jpg";
+import NARAYANPRASADBHUSAL from "./academicsTeam/NARAYANPRASADBHUSAL.jpg";
+import NARESHWORSUBEDI from "./academicsTeam/NARESHWORSUBEDI.jpg";
+import PRADIPPULAMI from "./academicsTeam/PRADIPPULAMI.jpg";
+import RAMBAHADURKC from "./academicsTeam/RAMBAHADURKC.jpg";
+import RISHIRAMKC from "./academicsTeam/RISHIRAMKC.jpg";
+import SAMJHANASHARMA from "./academicsTeam/SAMJHANASHARMA.jpg";
+import SherBahadurGiri from "./academicsTeam/SherBahadurGiri.jpg";
+import SUDHIRKUMARADHIKARI from "./academicsTeam/SUDHIRKUMARADHIKARI.jpg";
+import SherBdrDangi from "./academicsTeam/SherBdrDangi.jpg";
+import SHESHMANIGAUTAM from "./academicsTeam/SHESHMANIGAUTAM.jpg";
+import TejBahadurKunwar from "./academicsTeam/TejBahadurKunwar.jpg";
+import TEJPRASADKHANAL from "./academicsTeam/TEJPRASADKHANAL.jpg";
+import ThaneshworPoudel from "./academicsTeam/ThaneshworPoudel.jpg";
+import VESHRAJPOKHREL from "./academicsTeam/VESHRAJPOKHREL.jpg";
 import principal from "./administrativeteam/principal.png";
 import DIWAKARPOKHREL from "./administrativeteam/DIWAKARPOKHREL.jpg";
 import GOMAKANWAR from "./administrativeteam/GOMAKANWAR.jpg";
@@ -115,6 +116,10 @@ export {
   MEd,
   basantNeupane,
   basantRaj,
+BISHESWORPOUDEL,
+ChiranjiviRegmi,DIPENDRAKHADKA,GOVINDOLI,HAREKRISHNAGYAWALI,HurmatPokhrel,KANTAPRASADCHAUDHARY,KHOPENDRAGYAWALI,KeshavRamYadav,LOKRAJNEUPANE,MADHAVPRASADSHARMA,MADHUNEUPANE,NARAYANPRASADBHUSAL,NARESHWORSUBEDI,PRADIPPULAMI,RAMBAHADURKC,RISHIRAMKC,SAMJHANASHARMA,SHESHMANIGAUTAM,SherBahadurGiri,SherBdrDangi,TEJPRASADKHANAL,TejBahadurKunwar,ThaneshworPoudel,VESHRAJPOKHREL,bheshBahadur,binodBhattarai,SUDHIRKUMARADHIKARI,
+  
+
   principal,
   DIWAKARPOKHREL,
   GOMAKANWAR,
