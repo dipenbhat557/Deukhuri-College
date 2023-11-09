@@ -26,6 +26,8 @@ import {
   language,
   humanities,
   education,
+  
+  
 } from "../assets";
 
 export const navLinks = [
@@ -290,30 +292,6 @@ export const administrativeTeam = [
     name: "शिव ओली",
     post: "प्रमुख क्याम्पस",
   },
-  {
-    img: language,
-    name: "हरेकृष्ण ग्यावाली",
-    post: "सहायक प्राध्यापक",
-    add: "HOD LANGUAGE",
-  },
-  {
-    img: management,
-    name: "मधु न्यौपाने",
-    post: "सहायक प्राध्यापक",
-    add: "HOD MANAGEMENT",
-  },
-  {
-    img: education,
-    name: "माधव प्रसाद शर्मा",
-    post: "सहायक प्राध्यापक",
-    add: "HOD EDUCATION",
-  },
-  {
-    img: humanities,
-    name: "विशेश्वर पौडेल",
-    post: "सहायक प्राध्यापक",
-    add: "HOD HUMANITIES",
-  },
   
   {
     img: def,
@@ -340,75 +318,105 @@ export const administrativeTeam = [
     name: "जनकीराम चौधरी",
     post: "कार्यालय सहयोगी",
   },
+  {
+    img: def,
+    name: "शोभा राम गिरि",
+    post: "चालक",
+  },
+ 
  
 ];
 
 export const academicTeam = [
+  {
+    img: language,
+    name: "हरेकृष्ण ग्यावाली",
+    post: "HOD OF LANGUAGE",
+    add: "HOD LANGUAGE",
+  },
+  {
+    img: management,
+    name: "मधु न्यौपाने",
+    post: "HOD OF MANAGEMENT",
+    add: "HOD MANAGEMENT",
+  },
+  {
+    img: education,
+    name: "माधव प्रसाद शर्मा",
+    post: "HOD OF EDUCATION",
+    add: "HOD EDUCATION",
+  },
+  {
+    img: humanities,
+    name: "विशेश्वर पौडेल",
+    post: "HOD OF HUMANITIES",
+    add: "HOD HUMANITIES",
+  },
   
   {
     img: def,
     name: "सुधीर कुमार अधिकारी",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
 
   {
     img: def,
     name: "भेष राज पोखरेल",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापकप",
   },
   {
     img: def,
     name: "खोपेन्द्र ग्यावाली",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
     name: "शेषमणि गौतम",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
     name: "शेर बहादुर गिरी",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   
   
   {
     img: def,
     name: "बिनोद भट्टराई",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
     name: "प्रदिप पुलामी",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
     name: "कान्ता प्रसाद चौधरी",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   
   {
     img: def,
     name: "हुर्मत कुमार पोखरेल",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
     name: "तेज बहादुर कुँवर",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   
   {
     img: def,
     name: "नरेश्वर सुबेदी",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
     name: "भेस बहादुर बि.सी.",
-    post: "सहायक प्राध्यापक",
+    post: "उपप्राध्यापक",
   },
   {
     img: def,
@@ -500,14 +508,16 @@ export const aboutItems = [
       "We emphasize personal integrity and responsibility, as these are qualities essential for leadership at all levels of academic involvement. Through our policies, actions and teaching, we promote and emphasize upon uprightness and honesty among our students, faculty and staff.",
   },
   {
-    title: "Excellence",
+    title: "Vision",
     content:
-      "We strive for excellence in everything we do, and thus the high standards we have set for our programmes, students, faculty, staff, and the organisation as a whole.",
+      "To be center of excellence for higher education through research based, inclusive, lifelong learning to prepare competent human resource to national development ",
   },
   {
-    title: "Respect for Individual and Intellectual Differences",
+    title: "Goals and objective",
     content:
-      "We believe in and appreciate the value of diversity of cultures and opinions in society. We are inclusive of and treat diversity as a source of learning. We attempt to create an environment where the values of diversity are understood, nurtured, and celebrated.",
+      "Based on vision and mission of DMC, this institution has the following goals and objectives to establish itself as a center of excellence . Goal One: Institutional capacity development, Goal Two: Academic. Objectives :-Objective 1: To meet the OAA assessment criteria and quality accreditation, Objective 2: To maintain required status of quality assurance , Objective 3: To develop appropriate organisation. "
+
+     
   },
   {
     title: "Diversity and Inclusiveness",

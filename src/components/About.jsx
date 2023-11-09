@@ -85,11 +85,7 @@ const About = () => {
           </p>
 
           <p className="text-[14px] my-3 font-light text-justify">
-            At DMC Campus, our mission is to develop principled and insightful
-            leaders who can transform organizations and the society we live in,
-            through innovative education, research and networking. At DMC, we
-            believe in and share some fundamental values. Guided and inspired by
-            these values, we strive for excellence in everything we do.
+            The mission of DMC is to develop itself as a leading academic institution ensuirng the quality education in various discipline and research activities through dedicated human resource at affordable cost to the marginalized and economically deprived students to improve their quality of life contributing local and national community. 
           </p>
 
           <div className="flex flex-wrap justify-between w-full h-auto">
