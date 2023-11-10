@@ -1,13 +1,13 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-import { aboutBg } from "../../assets";
-import { aboutItems } from "../../constants";
-import Loading from "../Loading";
+import { aboutBg } from "../assets";
+import { aboutItems } from "../constants";
+import Loading from "./Loading";
 
-const Footer = lazy(() => import("../Footer"));
-const HeroHeader = lazy(() => import("../HeroHeader"));
-const Navbar = lazy(() => import("../Navbar"));
-const RegisterSection = lazy(() => import("../RegisterSection"));
-const Specifications = lazy(() => import("../Specifications"));
+const Footer = lazy(() => import("./Footer"));
+const HeroHeader = lazy(() => import("./HeroHeader"));
+const Navbar = lazy(() => import("./Navbar"));
+const RegisterSection = lazy(() => import("./RegisterSection"));
+const Specifications = lazy(() => import("./Specifications"));
 
 const About = () => {
   const [scrolled, setScrolled] = useState(false);
