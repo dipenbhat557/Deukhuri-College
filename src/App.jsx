@@ -5,7 +5,8 @@ import Blog from "./components/Blog";
 import Admission from "./components/Admission";
 import FacultyAcademics from "./components/FacultyAcademics";
 import Contact from "./components/Contact";
-import About from "../about/About";
+import About from "./components/About";
+
 
 function App() {
   return (
