@@ -32,6 +32,7 @@ To get a local copy of this project up and running, follow these steps:
 
 2. Change into the project directory:
    cd Deukhuri-College
+   cd frontend
 
 3. Install the project dependencies:
 
