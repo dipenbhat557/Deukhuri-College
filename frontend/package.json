@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.2",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^10.16.4",
     "maath": "^0.10.4",
