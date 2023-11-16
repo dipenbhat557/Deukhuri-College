@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import useFetch from "./UseFetch";
 // import { faculties } from "../constants";
+import Loading from "./Loading";
 
 const Faculty = ({ fIndex }) => {
   const [facultyIndex, setFacultyIndex] = useState(fIndex);
@@ -125,30 +126,35 @@ const Faculty = ({ fIndex }) => {
             {faculties?.[facultyIndex]?.title}
           </p>
 
-          <div className="w-full h-auto flex flex-wrap items-center justify-between">
-            {faculties?.[facultyIndex]?.content?.map((faculty, index) => {
-              return (
-                <div
-                  key={index}
-                  className="w-[40%] sm:w-[28%] h-auto flex flex-col justify-around m-3 shadow-xl hover:bg-red-900 hover:text-white "
-                >
-                  <img
-                    className="w-full h-[65%] object-contain"
-                    src={faculty?.imageUrl || def}
-                    alt={`faculty-${index}`}
-                  />
-                  <p className="text-[16px] sm:text-[18px] font-semibold h-[18%] p-3">
-                    {faculty?.title?.rendered}
-                  </p>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: faculty?.content?.rendered,
-                    }}
-                    className="text-[14px] sm:text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3"
-                  ></p>
-                </div>
-              );
-            })}
+          <div className="w-full h-auto  flex flex-wrap items-center justify-between">
+            {faculties[facultyIndex]?.content &&
+            faculties[facultyIndex].content?.length > 0 ? (
+              faculties?.[facultyIndex]?.content?.map((faculty, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-[40%] sm:w-[35%] md:[28%] h-auto flex flex-col justify-around m-3 shadow-xl hover:bg-red-900 hover:text-white "
+                  >
+                    <img
+                      className="w-full h-[65%] object-contain"
+                      src={faculty?.imageUrl || def}
+                      alt={`faculty-${index}`}
+                    />
+                    <p className="text-[16px] sm:text-[18px] font-semibold h-[18%] p-3">
+                      {faculty?.title?.rendered}
+                    </p>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: faculty?.content?.rendered,
+                      }}
+                      className="text-[14px] sm:text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3"
+                    ></p>
+                  </div>
+                );
+              })
+            ) : (
+              <Loading />
+            )}
           </div>
         </div>
       </div>

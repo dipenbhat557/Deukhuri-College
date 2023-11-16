@@ -34,9 +34,9 @@ const Navbar = ({ active, scrolled }) => {
         {navLinks.map((link) => (
           <li
             key={link.id}
-            className={`text-slate-100 text-18px font-semibold cursor-pointer ${
+            className={`text-slate-100 text-18px font-semibold sm:cursor-pointer ${
               active === link.title ? "font-extrabold" : ""
-            }  hover:text-slate-300`}
+            }  hover:text-slate-300 `}
             onClick={() => {
               if (link.title === "ACADEMICS") {
                 toggleDropdown1();
@@ -95,7 +95,7 @@ const Navbar = ({ active, scrolled }) => {
       )}
 
       {/* Mobile menu */}
-      <div className="sm:hidden flex items-center w-[90%] mr-3 justify-end ">
+      <div className="sm:hidden cursor-pointer flex items-center w-[90%] mr-3 justify-end ">
         {toggle ? (
           <AiOutlineMenuUnfold
             className="text-2xl text-white"
@@ -117,7 +117,7 @@ const Navbar = ({ active, scrolled }) => {
               key={link.id}
               className={`${
                 active === link.title ? "text-black" : "text-black"
-              } font-poppins text-[17px]   font-medium cursor-pointer hover:bg-[#D9D9D9] `}
+              } font-poppins text-[17px]   font-medium cursor-pointer hover:bg-[#D9D9D9] hover:p-1 hover:text-[15px] hover:rounded-md`}
               onClick={() => {
                 setToggle(!toggle);
               }}

@@ -1,7 +1,7 @@
 import { Tilt } from "react-tilt";
 // import { messageItems } from "../constants";
 import { motion } from "framer-motion";
-import { fadeIn } from "../utils/motion";
+import { fadeIn, slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import useFetch from "./UseFetch";
 import { def } from "../assets";
@@ -17,54 +17,59 @@ const Messages = () => {
         style={{ position: "absolute", zIndex: -1 }}
       ></div>
       <div className=" w-[95%] h-full flex flex-col items-center justify-center mx-8">
-        <div className="w-full h-[50%] mt-5 flex flex-wrap justify-center items-center">
-          <motion.div
-            variants={fadeIn("up", "spring", 0.5, 0.75)}
-            className="h-full w-full sm:w-[35%]"
+        <div className="w-full h-[400px] mt-5 flex justify-center items-center">
+          <Tilt
+            options={{
+              max: 45,
+              scale: 1,
+              speed: 100,
+            }}
+            className="h-auto sm:h-full mt-2 rounded-2xl w-full"
           >
-            <Tilt
-              options={{
-                max: 45,
-                scale: 1,
-                speed: 450,
-              }}
-              className="h-auto sm:h-full mt-2 rounded-2xl w-full"
-            >
-              <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
+            <div className="flex justify-between items-center w-full h-full shadow-2xl rounded-xl">
+              <motion.div
+                variants={slideIn("left", "spring", 0.5, 0.75)}
+                className="h-full w-full "
+              >
                 <img
-                  className="rounded-t-xl w-full h-[50%]"
-                  src={messages?.[0]?.imageUrl || def}
-                  alt={messages?.[0]?.title?.rendered}
+                  className="rounded-t-xl rounded-l-xl h-full w-[80%]"
+                  src={messages?.[2]?.imageUrl || def}
+                  alt={messages?.[2]?.title?.rendered}
                 />
-                <div className="flex flex-col w-full h-[50%]">
+              </motion.div>
+              <motion.div
+                variants={slideIn("right", "spring", 0.5, 0.75)}
+                className="h-full w-full "
+              >
+                <div className="flex flex-col h-full w-[80%]">
                   <div className="flex items-center w-full h-[15%] font-semibold">
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      Message from {messages?.[0]?.title.rendered}
+                      {messages?.[2]?.title.rendered}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[0]?.["_message_name"]}
+                    {messages?.[2]?.["_message_name"]}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: messages?.[0]?.content?.rendered,
+                      __html: messages?.[2]?.content?.rendered,
                     }}
                     className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-6"
                   ></p>
                 </div>
-              </div>
-            </Tilt>
-          </motion.div>
+              </motion.div>
+            </div>
+          </Tilt>
         </div>
 
         <div className="w-full h-auto mt-5 flex flex-wrap justify-between items-center">
           <motion.div
-            variants={fadeIn("left", "spring", 0.5, 0.75)}
+            variants={fadeIn("left", "spring", 1.5, 0.75)}
             className="h-full w-full sm:w-[35%]"
           >
             <Tilt
@@ -86,7 +91,7 @@ const Messages = () => {
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      Message from {messages?.[0]?.title.rendered}
+                      {messages?.[0]?.title.rendered}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
@@ -107,7 +112,7 @@ const Messages = () => {
           </motion.div>
 
           <motion.div
-            variants={fadeIn("right", "spring", 0.5, 0.75)}
+            variants={fadeIn("right", "spring", 1.5, 0.75)}
             className="h-full w-full sm:w-[35%]"
           >
             <Tilt
@@ -121,26 +126,26 @@ const Messages = () => {
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
                   className="rounded-t-xl w-full h-[50%]"
-                  src={messages?.[0]?.imageUrl || def}
-                  alt={messages?.[0]?.title?.rendered}
+                  src={messages?.[1]?.imageUrl || def}
+                  alt={messages?.[1]?.title?.rendered}
                 />
                 <div className="flex flex-col w-full h-[50%]">
                   <div className="flex items-center w-full h-[15%] font-semibold">
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      Message from {messages?.[0]?.title.rendered}
+                      {messages?.[1]?.title.rendered}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[0]?.["_message_name"]}
+                    {messages?.[1]?.["_message_name"]}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: messages?.[0]?.content?.rendered,
+                      __html: messages?.[1]?.content?.rendered,
                     }}
                     className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-6"
                   ></p>
@@ -151,7 +156,7 @@ const Messages = () => {
         </div>
       </div>
       <div
-        className="bg-red-900 w-[80px] h-[14%] hidden sm:flex justify-end -mt-24 right-40 rounded-b-xl"
+        className="bg-red-900 w-[80px] h-[14%] hidden md:flex justify-end -mt-24 right-40 rounded-b-xl"
         style={{ position: "absolute", zIndex: -1 }}
       ></div>
     </div>
