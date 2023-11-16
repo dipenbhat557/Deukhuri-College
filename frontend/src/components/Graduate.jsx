@@ -75,7 +75,7 @@ const Graduate = ({ pIndex }) => {
                 program.title === programs[programIndex].title
                   ? "bg-red-900 text-[#D9D9D9]"
                   : "bg-[#D9D9D9] text-black"
-              } w-full h-[50px] sm:h-[60px] p-3 hover:bg-red-700 flex items-center text-[14px] sm:text-[16px]`}
+              } w-full h-[50px] sm:h-[60px] p-3 hover:text-slate-500 flex items-center text-[14px] sm:text-[16px] cursor-pointer`}
               key={index}
               onClick={() => {
                 setProgramIndex(index);
@@ -114,9 +114,9 @@ const Graduate = ({ pIndex }) => {
                 <img
                   src={`${item.img}`}
                   alt={`Image ${item.index}`}
-                  className="h-[65%] md:h-[70%] w-full object-contain mt-0"
+                  className="h-[65%] md:h-[70%] w-full object-cover mt-0"
                 />
-                <p className="text-[14px] h-[18%] md:h-[22%] md:w-[70%]  md:text-[18px] text-center my-2">
+                <p className="text-[14px] h-[20%] md:h-[22%] md:w-[70%]  md:text-[18px] text-center my-2">
                   {item.title} | {item.fullTitle}
                 </p>
                 <button

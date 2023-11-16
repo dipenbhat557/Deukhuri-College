@@ -1,19 +1,24 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Tilt } from "react-tilt";
-import { blogBg } from "../assets";
-import { messageItems } from "../constants";
+import { blogBg, def } from "../assets";
+// import { messageItems } from "../constants";
 import { styles } from "../styles";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import RegisterSection from "./RegisterSection";
 import Subscription from "./Subscriptions";
+import useFetch from "./UseFetch";
 
 // Lazy-loaded components
 const Loading = lazy(() => import("./Loading"));
 
 const Blog = () => {
   const [scrolled, setScrolled] = useState(false);
+
+  let oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
+
+  const messages = oldMessages?.slice()?.reverse();
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -74,39 +79,46 @@ const Blog = () => {
         ></div>
 
         <div className="w-full h-[80%] flex flex-wrap justify-around items-center mb-16">
-          {messageItems.map((message, index) => (
-            <Tilt
-              key={index}
-              options={{
-                max: 45,
-                scale: 1,
-                speed: 450,
-              }}
-              className=" mt-9 rounded-2xl h-[670px] w-full sm:w-[35%]"
-            >
-              <div className=" flex mt-10 flex-col justify-center items-center w-full h-full shadow-2xl p-4">
-                <img
-                  className="rounded-3xl w-[80%] h-[55%]"
-                  src={message.img}
-                  alt={message.title}
-                />
-                <div className="flex flex-col w-full h-[40%]">
-                  <div className="flex items-center w-full h-[15%] font-semibold">
-                    <p className="text-red-900 text-[12px] md:text-[20px] ml-3 md:ml-9">
-                      {message.title}
+          {messages?.length > 0 ? (
+            messages.map((message, index) => (
+              <Tilt
+                key={index}
+                options={{
+                  max: 45,
+                  scale: 1,
+                  speed: 450,
+                }}
+                className=" mt-9 rounded-2xl h-[670px] w-full sm:w-[35%]"
+              >
+                <div className=" flex mt-10 flex-col justify-center items-center w-full h-full shadow-2xl p-4">
+                  <img
+                    className="rounded-3xl w-[80%] h-[55%]"
+                    src={message.imageUrl || def}
+                    alt={message.title?.rendered}
+                  />
+                  <div className="flex flex-col w-full h-[45%]">
+                    <div className="flex items-center w-full h-[15%] font-semibold">
+                      <p className="text-red-900 text-[12px] md:text-[20px] ml-3 md:ml-9">
+                        {message.title?.rendered}
+                      </p>
+                      <div className="ml-2 w-[8%] h-[2px] border-b-4 border-red-900 rounded-3xl" />
+                    </div>
+                    <p className="text-[14px] md:text-[18px] h-[10%] font-semibold text-2xl ml-3 md:ml-9">
+                      {messages?.["_message_name"]}
                     </p>
-                    <div className="ml-2 w-[8%] h-[2px] border-b-4 border-red-900 rounded-3xl" />
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: message?.content?.rendered,
+                      }}
+                      className="text-[10px] md:text-[16px] h-[85%]  text-2xl mx-8 text-justify line-clamp-6"
+                    ></p>
                   </div>
-                  <p className="text-[14px] md:text-[18px] h-[85%] font-semibold text-2xl ml-3 md:ml-9">
-                    {message.name}
-                  </p>
-                  <p className="text-[12px] md:text-[16px] h-[85%]  text-2xl mx-8 text-justify">
-                    {message.content}
-                  </p>
                 </div>
-              </div>
-            </Tilt>
-          ))}
+              </Tilt>
+            ))
+          ) : (
+            <Loading />
+          )}
         </div>
         <div
           className="hidden sm:flex bg-red-900 w-[80px] h-[90px] justify-end bottom-4 right-28 rounded-b-xl"

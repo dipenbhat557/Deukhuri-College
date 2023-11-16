@@ -1,6 +1,7 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { admissionBg } from "../assets";
 import { programs } from "../constants";
+import Loading from "./Loading";
 
 // Lazy-loaded components
 const Footer = lazy(() => import("./Footer"));
@@ -31,7 +32,7 @@ const Admission = () => {
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         {scrolled && <Navbar active="ADMISSION" scrolled={scrolled} />}
         <HeroHeader />
       </Suspense>
@@ -43,7 +44,7 @@ const Admission = () => {
           className="w-full h-full object-cover -z-10"
         />
 
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <div
             className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
               scrolled ? "justify-end" : "justify-between"
@@ -108,7 +109,7 @@ const Admission = () => {
         );
       })}
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <div className="w-full">
           <Subscription />
           <Footer />

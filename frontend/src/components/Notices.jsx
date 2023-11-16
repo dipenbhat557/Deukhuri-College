@@ -51,7 +51,7 @@ const Notices = () => {
                 <p
                   className={`${
                     index == currentIndex ? "font-semibold" : "font-light"
-                  }text-[10px] sm:text-[14px] ml-1 sm:ml-4 py-1`}
+                  }text-[10px] sm:text-[14px] ml-1 sm:ml-4 py-1 line-clamp-1`}
                 >
                   {notice.title.rendered}
                 </p>
@@ -59,9 +59,7 @@ const Notices = () => {
             );
           })
         ) : (
-          <p className="text-[16px] text-red-700 font-semibold">
-            No notices available
-          </p>
+          <p className="text-[16px] text-red-700 font-semibold">Loading...</p>
         )}
       </motion.div>
 
@@ -70,11 +68,11 @@ const Notices = () => {
         className="flex flex-col w-full sm:w-[60%] h-[400px] items-center justify-around border-x-2 pb-9 border-y-2 border-red-900 rounded-xl p-4"
       >
         <p className="w-[50%] text-[13px] sm:text-[16px] font-semibold h-auto my-4">
-          {notices?.[0]?.title?.rendered}
+          {notices?.[currentIndex]?.title?.rendered}
         </p>
         <div className="w-[80%] h-[95%] relative flex justify-center items-center">
           <img
-            src={notices?.[0]?.imageUrl || def}
+            src={notices?.[currentIndex]?.imageUrl || def}
             alt="Notice Image"
             className="w-[95%] h-[90%] object-contain  -z-1 "
           />

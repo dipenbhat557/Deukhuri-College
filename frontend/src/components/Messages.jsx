@@ -7,8 +7,9 @@ import useFetch from "./UseFetch";
 import { def } from "../assets";
 
 const Messages = () => {
-  const messages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
-  console.log(messages);
+  const oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
+
+  const messages = oldMessages?.slice()?.reverse();
 
   return (
     <div className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%] h-auto`}>
@@ -33,8 +34,8 @@ const Messages = () => {
               >
                 <img
                   className="rounded-t-xl rounded-l-xl h-full w-[80%]"
-                  src={messages?.[2]?.imageUrl || def}
-                  alt={messages?.[2]?.title?.rendered}
+                  src={messages?.[0]?.imageUrl || def}
+                  alt={messages?.[0]?.title?.rendered}
                 />
               </motion.div>
               <motion.div
@@ -46,18 +47,18 @@ const Messages = () => {
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      {messages?.[2]?.title.rendered}
+                      {messages?.[0]?.title.rendered}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[2]?.["_message_name"]}
+                    {messages?.[0]?.["_message_name"]}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: messages?.[2]?.content?.rendered,
+                      __html: messages?.[0]?.content?.rendered,
                     }}
                     className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-6"
                   ></p>
@@ -83,26 +84,26 @@ const Messages = () => {
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
                   className="rounded-t-xl w-full h-[50%]"
-                  src={messages?.[0]?.imageUrl || def}
-                  alt={messages?.[0]?.title?.rendered}
+                  src={messages?.[2]?.imageUrl || def}
+                  alt={messages?.[2]?.title?.rendered}
                 />
                 <div className="flex flex-col w-full h-[50%]">
                   <div className="flex items-center w-full h-[15%] font-semibold">
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      {messages?.[0]?.title.rendered}
+                      {messages?.[2]?.title.rendered}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[0]?.["_message_name"]}
+                    {messages?.[2]?.["_message_name"]}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: messages?.[0]?.content?.rendered,
+                      __html: messages?.[2]?.content?.rendered,
                     }}
                     className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-6"
                   ></p>
