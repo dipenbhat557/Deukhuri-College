@@ -3,7 +3,7 @@ import HomePage from "./HomePage";
 import Graduate from "./Graduate";
 import Blog from "./Blog";
 import Admission from "./Admission";
-import FacultyAcademics from "./FacultyAcademics";
+import Faculty from "./Faculty";
 import Contact from "./Contact";
 import About from "./About";
 
@@ -20,13 +20,10 @@ function Pages() {
         />
         <Route path="/blog" element={<Blog />} />
         <Route path="/admission" element={<Admission />} />
-        <Route
-          path="/faculty/academics"
-          element={<FacultyAcademics fIndex="0" />}
-        />
+        <Route path="/faculty/academics" element={<Faculty fIndex="0" />} />
         <Route
           path="/faculty/administration"
-          element={<FacultyAcademics fIndex="1" />}
+          element={<Faculty fIndex="1" />}
         />
 
         <Route

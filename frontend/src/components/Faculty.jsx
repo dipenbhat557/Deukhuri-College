@@ -1,15 +1,39 @@
 import { useEffect, useState } from "react";
-import { facultyAcademicsBg } from "../assets";
+import { def, facultyAcademicsBg } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
-import { faculties } from "../constants";
+import useFetch from "./UseFetch";
+// import { faculties } from "../constants";
 
-const FacultyAcademics = ({ fIndex }) => {
+const Faculty = ({ fIndex }) => {
   const [facultyIndex, setFacultyIndex] = useState(fIndex);
 
   const [scrolled, setScrolled] = useState(false);
+
+  const academicTeam = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/academics`
+  );
+
+  // console.log("Academic Team : ", academicTeam);
+
+  const administrativeTeam = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/administratives`
+  );
+
+  console.log("Administrative Team : ", administrativeTeam);
+
+  const faculties = [
+    {
+      title: "Meet our Academic Team",
+      content: academicTeam,
+    },
+    {
+      title: "Meet our Administrative Team",
+      content: administrativeTeam,
+    },
+  ];
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -98,11 +122,11 @@ const FacultyAcademics = ({ fIndex }) => {
             and beyond."
           </p>
           <p className="text-[16px] font-semibold my-3">
-            {faculties[facultyIndex].title}
+            {faculties?.[facultyIndex]?.title}
           </p>
 
           <div className="w-full h-auto flex flex-wrap items-center justify-between">
-            {faculties[facultyIndex].content.map((faculty, index) => {
+            {faculties?.[facultyIndex]?.content?.map((faculty, index) => {
               return (
                 <div
                   key={index}
@@ -110,15 +134,18 @@ const FacultyAcademics = ({ fIndex }) => {
                 >
                   <img
                     className="w-full h-[65%] object-contain"
-                    src={faculty.img}
+                    src={faculty?.imageUrl || def}
                     alt={`faculty-${index}`}
                   />
                   <p className="text-[16px] sm:text-[18px] font-semibold h-[18%] p-3">
-                    {faculty.name}
+                    {faculty?.title?.rendered}
                   </p>
-                  <p className="text-[14px] sm:text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3">
-                    {faculty.post}
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: faculty?.content?.rendered,
+                    }}
+                    className="text-[14px] sm:text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3"
+                  ></p>
                 </div>
               );
             })}
@@ -133,4 +160,4 @@ const FacultyAcademics = ({ fIndex }) => {
     </div>
   );
 };
-export default FacultyAcademics;
+export default Faculty;

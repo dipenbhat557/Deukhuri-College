@@ -46,6 +46,7 @@ export const getImageUrl = async (mediaLink) => {
   try {
     const response = await axios.get(mediaLink);
     const imageUrl = await response.data;
+    console.log("Image url : ", imageUrl);
     return imageUrl[0].guid.rendered;
   } catch (error) {
     console.error("Error fetching image details:", error);
