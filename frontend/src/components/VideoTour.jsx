@@ -24,8 +24,8 @@ const VideoTour = () => {
 
     const callback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && videoRef.current) {
-          videoRef.current.play(); // Play the video when it becomes visible
+        if (entry.isIntersecting) {
+          setAutoplay(true);
         }
       });
     };
@@ -62,14 +62,13 @@ const VideoTour = () => {
           variants={fadeIn("right", "spring", 1, 0.75)}
           className="relative h-full w-full sm:w-[48%]"
         >
-          <video
+          {/* <iframe
             ref={videoRef}
-            src={vid1}
+            src="https://www.youtube.com/embed/zQj04ywrimM?autoplay=1&mute=1&loop=1&controls=0"
             title="Video"
-            autoPlay
-            loop
-            muted
-            controls={false}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
             style={{
               position: "absolute",
               top: 0,
@@ -78,6 +77,23 @@ const VideoTour = () => {
               height: "100%",
             }}
             className="rounded-2xl bg-red-900"
+          /> */}
+
+          <iframe
+            ref={videoRef}
+            src="https://www.youtube.com/embed/zQj04ywrimM?autoplay=1&mute=1&loop=1&controls=0"
+            title="Video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+            className="rounded-2xl bg-slate-500"
           />
         </motion.div>
         <motion.div

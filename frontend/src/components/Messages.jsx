@@ -54,7 +54,7 @@ const Messages = () => {
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[0]?.["_message_name"]}
+                    {messages?.[0]?.["_message_name"] || "Loading..."}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
@@ -99,7 +99,7 @@ const Messages = () => {
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[2]?.["_message_name"]}
+                    {messages?.[2]?.["_message_name"] || "Loading..."}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
@@ -142,7 +142,7 @@ const Messages = () => {
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[1]?.["_message_name"]}
+                    {messages?.[1]?.["_message_name"] || "Loading..."}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
