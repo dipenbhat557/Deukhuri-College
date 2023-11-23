@@ -62,23 +62,6 @@ const VideoTour = () => {
           variants={fadeIn("right", "spring", 1, 0.75)}
           className="relative h-full w-full sm:w-[48%]"
         >
-          {/* <iframe
-            ref={videoRef}
-            src="https://www.youtube.com/embed/zQj04ywrimM?autoplay=1&mute=1&loop=1&controls=0"
-            title="Video"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-            }}
-            className="rounded-2xl bg-red-900"
-          /> */}
-
           <iframe
             ref={videoRef}
             src="https://www.youtube.com/embed/zQj04ywrimM?autoplay=1&mute=1&loop=1&controls=0"
@@ -93,7 +76,7 @@ const VideoTour = () => {
               width: "100%",
               height: "100%",
             }}
-            className="rounded-2xl bg-slate-500"
+            className="rounded-2xl bg-red-900"
           />
         </motion.div>
         <motion.div

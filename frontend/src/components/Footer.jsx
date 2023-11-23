@@ -31,7 +31,7 @@ const Footer = () => {
             +977 98765789, 098769 , 098790
           </p>
           <p className="text-[14px] sm:text-[16px] text-slate-500">
-            deukhuricampus@gmail.com
+            deukhuri.campus@gmail.com
           </p>
         </div>
         <div className="h-full w-[30%] sm:w-[20%] flex flex-col items-start justify-around">
