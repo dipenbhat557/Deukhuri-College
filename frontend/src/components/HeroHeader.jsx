@@ -1,4 +1,3 @@
-import { BiPhoneCall } from "react-icons/bi";
 import { ImLocation2 } from "react-icons/im";
 import { logo } from "../assets";
 import { styles } from "../styles";

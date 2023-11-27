@@ -1,7 +1,6 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Tilt } from "react-tilt";
 import { blogBg, def } from "../assets";
-// import { messageItems } from "../constants";
 import { styles } from "../styles";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";

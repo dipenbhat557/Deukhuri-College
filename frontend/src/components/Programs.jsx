@@ -38,11 +38,11 @@ const Programs = () => {
         >
           <div className="w-full sm:w-[60%] h-full flex flex-col justify-around">
             <div className="flex flex-col justify-around w-full mx-4 h-[40%] my-4">
-              <div className="flex flex-col justify-center h-[70%]">
+              <div className="flex w-[90%]  flex-col justify-center h-[70%]">
                 <p className="text-[16px] sm:text-[23px]  ">
                   GRADUATE PROGRAMS
                 </p>
-                <p className="text-[14px] sm:text-[16px] text-slate-600 my-2">
+                <p className="text-[14px] sm:text-[16px] text-slate-600 my-2 text-justify">
                   Our graduate programs transform you into top-flight managers
                   and business leaders.
                 </p>
@@ -66,11 +66,11 @@ const Programs = () => {
               </div>
             </div>
             <hr className="text-slate-500 mx-3" />
-            <div className="w-full h-[60%] flex flex-col items-start justify-center mx-4 my-auto">
+            <div className="w-[90%] sm:w-full h-[60%] flex flex-col items-start justify-center mx-4 my-auto">
               <p className="text-[16px] sm:text-[22px] font-light my-2">
                 {graduateItems[currentGraduateProgramIndex].fullTitle}
               </p>
-              <p className="text-slate-600 text-[14px] sm:text-[16px] my-2">
+              <p className="text-slate-600 text-[14px] sm:text-[16px] my-2 text-justify">
                 {graduateItems[currentGraduateProgramIndex].content}
               </p>
             </div>
@@ -97,18 +97,18 @@ const Programs = () => {
           </div>
           <div className="w-full sm:w-[60%] h-full flex flex-col justify-center">
             <div className="flex flex-col justify-around w-full mx-2 h-[70%]">
-              <div className="flex flex-col justify-center">
+              <div className="flex flex-col justify-center w-[90%]">
                 <p className="text-[16px] sm:text-[20px] my-2">
                   UNDER-GRADUATE PROGRAMS
                 </p>
-                <p className="text-[14px] sm:text-[16px] text-slate-600 my-2">
+                <p className="text-[14px] sm:text-[16px] text-slate-600 my-2 text-justify">
                   Our programs–featuring the perfect blend of theory-,
                   experience-, and observation- based learning–are taught in
                   participative environments that extend beyond the classroom
                   walls.
                 </p>
               </div>
-              <div className="flex items-center gap-4 w-full my-2">
+              <div className="flex items-center  gap-4 w-full my-2">
                 {underGraduateItems.map((item, index) => {
                   return (
                     <button
@@ -127,11 +127,11 @@ const Programs = () => {
               </div>
             </div>
             <hr className="text-slate-500 mx-3" />
-            <div className="w-full h-[65%] flex flex-col items-start mx-2 justify-center">
+            <div className="sm:w-full h-[65%] flex flex-col items-start mx-2 w-[90%] justify-center">
               <p className="text-[16px] sm:text-[22px] font-light my-2">
                 {underGraduateItems[currentUnderGraduateProgramIndex].fullTitle}
               </p>
-              <p className="text-slate-600 my-2 text-[14px] sm:text-[16px]">
+              <p className="text-slate-600 my-2 text-[14px] sm:text-[16px] text-justify">
                 {underGraduateItems[currentUnderGraduateProgramIndex].content}
               </p>
             </div>

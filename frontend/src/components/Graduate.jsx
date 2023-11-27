@@ -139,7 +139,9 @@ const Graduate = ({ pIndex }) => {
             <ol className="w-full h-auto ml-9 sm:ml-0 my-3 list-disc">
               {course.features.map((feature, index) => {
                 return (
-                  <li className="font-light text-[14px] my-2">{feature}</li>
+                  <li key={index} className="font-light text-[14px] my-2">
+                    {feature}
+                  </li>
                 );
               })}
             </ol>
@@ -150,7 +152,9 @@ const Graduate = ({ pIndex }) => {
             <ol className="w-full ml-9 sm:ml-0 h-auto my-3 list-disc">
               {course.requirements.map((requirement, index) => {
                 return (
-                  <li className="font-light text-[14px] my-2">{requirement}</li>
+                  <li key={index} className="font-light text-[14px] my-2">
+                    {requirement}
+                  </li>
                 );
               })}
             </ol>

@@ -112,7 +112,7 @@ const Contact = () => {
         </Suspense>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-between items-start w-full h-auto sm:mx-8 pl-24">
+      <div className="flex flex-col sm:flex-row justify-between items-start w-[80%] h-auto sm:mx-8 mx-auto">
         <div className=" flex w-full sm:w-[50%] h-auto ml-0  sm:ml-10">
           {/* Contact form section */}
           <Suspense fallback={<Loading />}>
@@ -134,7 +134,7 @@ const Contact = () => {
                     value={form.name}
                     onChange={handleChange}
                     placeholder="What's your good name?"
-                    className=" py-4 px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
+                    className=" py-4 px-3 sm:px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
                   />
                 </label>
                 <label className="flex flex-col">
@@ -145,7 +145,7 @@ const Contact = () => {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="What's your web address?"
-                    className=" py-4 px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
+                    className=" py-4 px-3 sm:px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
                   />
                 </label>
                 <label className="flex flex-col">
@@ -156,14 +156,14 @@ const Contact = () => {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="What you want to say?"
-                    className=" py-4 px-6 placeholder:text-slate-400 rounded-lg bg-slate-100 font-medium"
+                    className=" py-4 px-3 sm:px-6 placeholder:text-slate-400 rounded-lg bg-slate-100 font-medium"
                   />
                 </label>
 
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="py-3 px-8 rounded-xl w-full text-white font-bold shadow-lg bg-red-900 shadow-black"
+                  className="py-3 px-4 sm:px-8 rounded-xl w-full text-white font-bold shadow-lg bg-red-900 shadow-black"
                 >
                   {loading ? "Sending..." : "Send"}
                 </button>

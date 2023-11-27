@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { notices } from "../constants";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { def, noticeBg } from "../assets";
@@ -8,8 +7,6 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import useFetch from "./UseFetch";
-import Loading from "./Loading";
-
 const Notices = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 

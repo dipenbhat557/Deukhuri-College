@@ -104,7 +104,10 @@ const About = () => {
           <div className="flex flex-wrap justify-between w-full h-auto">
             {aboutItems.map((item, index) => {
               return (
-                <div className="flex flex-col justify-around m-3 w-full sm:w-[40%] h-auto sm:h-[150px] text-justify">
+                <div
+                  key={index}
+                  className="flex flex-col justify-around m-3 w-full sm:w-[40%] h-auto sm:h-[150px] text-justify"
+                >
                   <p className="text-[16px] font-semibold">{item.title}</p>
                   <p className="text-[14px] font-light text-slate-600">
                     {item.content}

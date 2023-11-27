@@ -5,7 +5,6 @@ import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import useFetch from "./UseFetch";
-// import { faculties } from "../constants";
 import Loading from "./Loading";
 
 const Faculty = ({ fIndex }) => {

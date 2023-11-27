@@ -4,8 +4,6 @@ import Navbar from "./Navbar";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import "../index.css";
-import { motion } from "framer-motion";
-import { fadeIn, slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 
 const Hero = () => {

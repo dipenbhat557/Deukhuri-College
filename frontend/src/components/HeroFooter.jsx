@@ -1,7 +1,6 @@
 import { footerConstants } from "../constants";
 
 const HeroFooter = () => {
-  const handleExplore = () => {};
   return (
     <div className="flex relative flex-row items-center justify-around bg-red-900 w-full md:h-[130px] h-[115px] text-white">
       {footerConstants.map((item, index) => {

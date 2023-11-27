@@ -1,15 +1,17 @@
 import { Tilt } from "react-tilt";
-// import { messageItems } from "../constants";
 import { motion } from "framer-motion";
 import { fadeIn, slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import useFetch from "./UseFetch";
 import { def } from "../assets";
+import { messageItems } from "../constants";
 
 const Messages = () => {
-  const oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
+  // const oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
 
-  const messages = oldMessages?.slice()?.reverse();
+  // const messages = oldMessages?.slice()?.reverse();
+  const messages = messageItems;
+  console.log("Message items is : ", messages);
 
   return (
     <div className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%] h-auto`}>
@@ -18,31 +20,31 @@ const Messages = () => {
         style={{ position: "absolute", zIndex: -1 }}
       ></div>
       <div className=" w-[95%] h-full flex flex-col items-center justify-center mx-8">
-        <div className="w-full h-[400px] mt-5 flex justify-center items-center">
+        <div className="w-full h-auto sm:h-[400px] mt-5 flex justify-center items-center">
           <Tilt
             options={{
               max: 45,
               scale: 1,
               speed: 100,
             }}
-            className="h-auto sm:h-full mt-2 rounded-2xl w-full"
+            className="h-full mt-2 rounded-2xl w-full"
           >
-            <div className="flex justify-between items-center w-full h-full shadow-2xl rounded-xl">
+            <div className="flex flex-col sm:flex-row justify-between items-center w-full h-[500px] sm:h-full shadow-xl rounded-xl">
               <motion.div
                 variants={slideIn("left", "spring", 0.5, 0.75)}
-                className="h-full w-full "
+                className="h-[50%] sm:h-full w-full "
               >
                 <img
-                  className="rounded-t-xl rounded-l-xl h-full w-[80%]"
+                  className="rounded-t-xl object-contain w-full h-full rounded-l-xl "
                   src={messages?.[0]?.imageUrl || def}
                   alt={messages?.[0]?.title?.rendered}
                 />
               </motion.div>
               <motion.div
                 variants={slideIn("right", "spring", 0.5, 0.75)}
-                className="h-full w-full "
+                className="h-[50%] sm:h-full w-full "
               >
-                <div className="flex flex-col h-full w-[80%]">
+                <div className="flex flex-col h-full w-full">
                   <div className="flex items-center w-full h-[15%] font-semibold">
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
@@ -79,11 +81,11 @@ const Messages = () => {
                 scale: 1,
                 speed: 450,
               }}
-              className="h-auto sm:h-full mt-2 rounded-2xl w-full"
+              className="h-[500px] sm:h-full mt-2 rounded-2xl w-full"
             >
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
-                  className="rounded-t-xl w-full h-[50%]"
+                  className="rounded-t-xl w-full object-contain h-[50%]"
                   src={messages?.[2]?.imageUrl || def}
                   alt={messages?.[2]?.title?.rendered}
                 />
@@ -122,11 +124,11 @@ const Messages = () => {
                 scale: 1,
                 speed: 450,
               }}
-              className="h-auto sm:h-full mt-2 rounded-2xl w-full"
+              className="h-[500px] sm:h-full mt-2 rounded-2xl w-full"
             >
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
-                  className="rounded-t-xl w-full h-[50%]"
+                  className="rounded-t-xl object-contain w-full h-[50%]"
                   src={messages?.[1]?.imageUrl || def}
                   alt={messages?.[1]?.title?.rendered}
                 />

@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { navLinks } from "../constants";
-import {
-  AiOutlineMenuUnfold,
-  AiOutlineMenuFold,
-  AiOutlineSearch,
-} from "react-icons/ai";
+import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
 import { BiSolidDownArrow } from "react-icons/bi";
 
 const Navbar = ({ active, scrolled }) => {

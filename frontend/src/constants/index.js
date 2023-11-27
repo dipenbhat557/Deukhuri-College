@@ -2,7 +2,6 @@ import {
   f1,
   f2,
   f3,
-  n1,
   vid1,
   vid2,
   vid3,
@@ -14,49 +13,9 @@ import {
   BEd,
   BA,
   BBS,
-  n2,
-  n3,
-  n4,
   MBS,
   MEd,
   def,
-  principal,
-  DIWAKARPOKHREL,
-  GOMAKANWAR,
-  JAIPRAKASHPOUDEL,
-  JANAKIRAMCHAUDHARY,
-  KRISHNABAHADURCHHETRI,
-  SHOVARAMGIRI,
-  basantNeupane,
-  basantRaj,
-  BISHESWORPOUDEL,
-  ChiranjiviRegmi,
-  DIPENDRAKHADKA,
-  GOVINDOLI,
-  HAREKRISHNAGYAWALI,
-  HurmatPokhrel,
-  KANTAPRASADCHAUDHARY,
-  KHOPENDRAGYAWALI,
-  KeshavRamYadav,
-  LOKRAJNEUPANE,
-  MADHAVPRASADSHARMA,
-  MADHUNEUPANE,
-  NARAYANPRASADBHUSAL,
-  NARESHWORSUBEDI,
-  PRADIPPULAMI,
-  RAMBAHADURKC,
-  RISHIRAMKC,
-  SAMJHANASHARMA,
-  SHESHMANIGAUTAM,
-  SherBahadurGiri,
-  SherBdrDangi,
-  TEJPRASADKHANAL,
-  TejBahadurKunwar,
-  ThaneshworPoudel,
-  VESHRAJPOKHREL,
-  bheshBahadur,
-  binodBhattarai,
-  SUDHIRKUMARADHIKARI,
 } from "../assets";
 
 export const navLinks = [
@@ -97,6 +56,30 @@ export const navLinks = [
   },
 ];
 
+export const messageItems = [
+  {
+    img: def,
+    title: "Message from Campus Chief",
+    name: "शिव ओली",
+    content:
+      "प्रिय छात्र-छात्रा हरु, कलेज एक विद्यापीठ हो, जसमा ज्ञानको मार्गमा हाम्रो संगठन रहेको छ। यहाँ, हाम्रो प्राध्यापकहरू, शिक्षकहरू, र संघकका सभै सदस्यहरू तपाइँको शिक्षा र पेशामा उनको सहयोग गर्नका लागि यस कलेजमा उपस्थित छन्। हाम्रो उद्देश्य छ र थाहा छ आफ्नो शिक्षामा सफल हुनका लागि अपार प्राशासनिक र सांस्कृतिक संरचना प्रदान गर्दैछ।",
+  },
+  {
+    img: def,
+    title: "Message from Asst. Campus Chief",
+    name: "",
+    content:
+      "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
+  },
+  {
+    img: def,
+    title: "Message from Asst. Campus Chief",
+    name: "",
+    content:
+      "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
+  },
+];
+
 export const heroElements = [
   {
     video: vid1,
@@ -134,25 +117,6 @@ export const footerConstants = [
   },
 ];
 
-export const notices = [
-  {
-    img: n1,
-    title: "अतिथि उपबोधन: गर्नका लागि आईटीमा पेशामा संवाद",
-  },
-  {
-    img: n2,
-    title: "नोटिस: कलेज बन्द",
-  },
-  {
-    img: n3,
-    title: "महत्त्वपूर्ण सूचना: शुल्क सबमिशन मिति",
-  },
-  {
-    img: n4,
-    title: "सेमेस्टर परिक्षा तालिका",
-  },
-];
-
 export const specConst = [
   {
     img: s1,
@@ -169,37 +133,6 @@ export const specConst = [
   {
     img: s4,
     content: "99% pass",
-  },
-];
-
-export const messageItems = [
-  {
-    img: principal,
-    title: "Message from Campus Chief",
-    name: "शिव ओली",
-    content:
-      "प्रिय छात्र-छात्रा हरु, कलेज एक विद्यापीठ हो, जसमा ज्ञानको मार्गमा हाम्रो संगठन रहेको छ। यहाँ, हाम्रो प्राध्यापकहरू, शिक्षकहरू, र संघकका सभै सदस्यहरू तपाइँको शिक्षा र पेशामा उनको सहयोग गर्नका लागि यस कलेजमा उपस्थित छन्। हाम्रो उद्देश्य छ र थाहा छ आफ्नो शिक्षामा सफल हुनका लागि अपार प्राशासनिक र सांस्कृतिक संरचना प्रदान गर्दैछ।",
-  },
-  {
-    img: def,
-    title: "Message from Asst. Campus Chief",
-    name: "",
-    content:
-      "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
-  },
-  {
-    img: def,
-    title: "Message from Asst. Campus Chief",
-    name: "",
-    content:
-      "हाम्रो कलेजको संस्थापकहरू सपना देख्नका लागि आफ्नो समुदायका लागि आकाशमा रुप लिएका थिए। उनीहरूको पूर्वाग्रह र अपाङ्गत प्रयासले कलेजलाई तपाईं अब हो, ज्ञान र नवाचारको केन्द्रमा बदलेको छ। हाम्रो संस्थानलाई बनाउनका लागि उनीहरूको दृष्टिमा र कडा परिश्रममा हाम्रो कृतज्ञ छौं, र हाम्रो नैतिकतालाई बढिइने र आउदा कुरा गर्दैछौं।",
-  },
-  {
-    img: def,
-    title: "Message from Asst. Campus Chief",
-    name: "",
-    content:
-      "हाम्रो कलेज शिक्षाको परिवर्तक शक्तिमा विश्वास गर्ने हाम्रो मान्य संस्थापकहरूको दृष्टिमा आएको थियो। उनीहरूको गुणस्तर शिक्षामा अविरल समर्पण र युवा मनसको पालना गर्ने उनीहरूको दृढ समर्पणले हाम्रो संस्थानको सफलताको आधार राखेको छ। हामी उनीहरूको लागि प्रतिष्ठा प्रदान गर्दैछौं, उनीहरूले हाम्रो मा जुडाएको मूल्यहरू बनाइसकेका छन्। ",
   },
 ];
 
@@ -312,214 +245,6 @@ export const programs = [
     title: "Undergraduate Programs",
     desc: "Unlock your potential with our undergraduate courses, designed to provide a strong foundation in management and equip you with the skills to thrive in the competitive world of business.",
     items: underGraduateItems,
-  },
-];
-
-export const administrativeTeam = [
-  {
-    img: principal,
-    name: "शिव ओली",
-    post: "प्रमुख क्याम्पस",
-  },
-
-  {
-    img: DIWAKARPOKHREL,
-    name: "दिवाकर पोखरेल",
-    post: "लेखापाल",
-  },
-  {
-    img: KRISHNABAHADURCHHETRI,
-    name: "कृष्ण बहादुर छेत्री",
-    post: "पुस्तकालय सहायक",
-  },
-  {
-    img: GOMAKANWAR,
-    name: "गोमा कुँवर",
-    post: "कम्प्युटर सहायक",
-  },
-  {
-    img: JAIPRAKASHPOUDEL,
-    name: "जय प्रकाश पौडेल",
-    post: "कार्यालय सहायक",
-  },
-  {
-    img: JANAKIRAMCHAUDHARY,
-    name: "जनकीराम चौधरी",
-    post: "कार्यालय सहयोगी",
-  },
-  {
-    img: SHOVARAMGIRI,
-    name: "शोभा राम गिरि",
-    post: "चालक",
-  },
-];
-
-export const academicTeam = [
-  {
-    img: VESHRAJPOKHREL,
-    name: "भेष राज पोखरेल",
-    post: "उपप्राध्यापकप",
-  },
-  {
-    img: KHOPENDRAGYAWALI,
-    name: "खोपेन्द्र ग्यावाली",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: SUDHIRKUMARADHIKARI,
-    name: "सुधीर कुमार अधिकारी",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: SHESHMANIGAUTAM,
-    name: "शेषमणि गौतम",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: SherBahadurGiri,
-    name: "शेर बहादुर गिरी",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: MADHAVPRASADSHARMA,
-    name: "माधव प्रसाद शर्मा",
-    post: "HOD OF EDUCATION",
-    add: "HOD EDUCATION",
-  },
-  {
-    img: BISHESWORPOUDEL,
-    name: "विशेश्वर पौडेल",
-    post: "HOD OF HUMANITIES",
-    add: "HOD HUMANITIES",
-  },
-
-  {
-    img: binodBhattarai,
-    name: "बिनोद भट्टराई",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: PRADIPPULAMI,
-    name: "प्रदिप पुलामी",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: KANTAPRASADCHAUDHARY,
-    name: "कान्ता प्रसाद चौधरी",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: HAREKRISHNAGYAWALI,
-    name: "हरेकृष्ण ग्यावाली",
-    post: "HOD OF LANGUAGE",
-    add: "HOD LANGUAGE",
-  },
-  {
-    img: HurmatPokhrel,
-    name: "हुर्मत कुमार पोखरेल",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: TejBahadurKunwar,
-    name: "तेज बहादुर कुँवर",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: MADHUNEUPANE,
-    name: "मधु न्यौपाने",
-    post: "HOD OF MANAGEMENT",
-    add: "HOD MANAGEMENT",
-  },
-  {
-    img: NARESHWORSUBEDI,
-    name: "नरेश्वर सुबेदी",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: bheshBahadur,
-    name: "भेस बहादुर बि.सी.",
-    post: "उपप्राध्यापक",
-  },
-  {
-    img: NARAYANPRASADBHUSAL,
-    name: "नारायण प्रसाद भुसाल",
-    post: "शिक्षा सहायक",
-  },
-  {
-    img: basantRaj,
-    name: "बसन्त राज अधिकारी",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: RAMBAHADURKC,
-    name: "राम बहादुर के.सी.",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: DIPENDRAKHADKA,
-    name: "दिपेन्द्र खड्का",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: SherBdrDangi,
-    name: "शेर बहादुर डाङ्गी",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: TEJPRASADKHANAL,
-    name: "तेज प्रसाद खनाल",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: KeshavRamYadav,
-    name: "केशव राम यादव",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: SAMJHANASHARMA,
-    name: "सम्झना शर्मा",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: ChiranjiviRegmi,
-    name: "चिरञ्जीबी रेग्मी",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: RISHIRAMKC,
-    name: "रिशि राम के.सी.",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: GOVINDOLI,
-    name: "गोविन्द कुमार वाली",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: basantNeupane,
-    name: "बसन्त न्यौपाने",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: ThaneshworPoudel,
-    name: "थानेश्वर पौडेल",
-    post: "आंशिक शिक्षक",
-  },
-  {
-    img: LOKRAJNEUPANE,
-    name: "लोक राज न्यौपाने",
-    post: "आंशिक शिक्षक",
-  },
-];
-
-export const faculties = [
-  {
-    title: "Meet our Academic Team",
-    content: academicTeam,
-  },
-  {
-    title: "Meet our Administrative Team",
-    content: administrativeTeam,
   },
 ];
 
