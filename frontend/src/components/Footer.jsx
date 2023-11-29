@@ -2,7 +2,6 @@ import { facebook, instagram, logo, twitter } from "../assets";
 import { styles } from "../styles";
 
 const Footer = () => {
-  const handleReadMore = () => {};
   return (
     <div
       className={`${styles.paddingX} w-full h-[420px] flex flex-col sm:h-[400px] bg-[#212529] pt-2`}
@@ -11,7 +10,7 @@ const Footer = () => {
         <img
           src={logo}
           alt="Deukhuri logo"
-          className="w-[30%] h-full object-contain"
+          className="w-[30%] rounded-3xl  bg-white h-full object-contain"
         />
         <p
           className={`md:text-[35px] sm:text-[30px]  xs:text-[25px] text-[20px] text-center w-[70%] tracking-widest text-white `}
@@ -25,10 +24,10 @@ const Footer = () => {
             Deukhuri Multiple Campus
           </p>
           <p className="text-[14px] sm:text-[16px] text-slate-500">
-            Lamahi-6, Dang, Nepal
+            Lamahi-5, Dang, Nepal
           </p>
           <p className="text-[14px] sm:text-[16px] text-slate-500">
-            +977 98765789, 098769 , 098790
+            082417016, 9857847016, 9857847017, 9857847018
           </p>
           <p className="text-[14px] sm:text-[16px] text-slate-500">
             deukhuri.campus@gmail.com
@@ -57,33 +56,47 @@ const Footer = () => {
             Location
           </a>
           <a
-            href="/about"
+            href="https://tuexam.edu.np/"
+            target="_blank"
             className="text-[14px] sm:text-[16px] text-slate-500 cursor-pointer"
           >
-            Life At DMC
+            TU Updates
           </a>
         </div>
         <div className="h-full w-[35%] hidden sm:flex flex-col items-center justify-around">
           <p className="text-[18px] font-semibold tracking-wider">
-            {" "}
             Social Links
           </p>
-          <div className="flex items-start gap-5 justify-start">
-            <img
-              src={instagram}
-              alt="instagram"
-              className="rounded-2xl cursor-pointer"
-            />
-            <img
-              src={twitter}
-              alt="twitter"
-              className="rounded-2xl cursor-pointer"
-            />
-            <img
-              src={facebook}
-              alt="facebook"
-              className="rounded-2xl cursor-pointer"
-            />
+          <div className="flex w-full h-full items-center gap-5 justify-start">
+            <a
+              href="https://youtu.be/zQj04ywrimM?si=ZR1GykMCqd1t-Tmo"
+              target="_blank"
+              className="w-[35%] h-[20%]"
+            >
+              <img
+                src="youtube.jpg"
+                alt="instagram"
+                className="rounded-2xl cursor-pointer object-cover"
+              />
+            </a>
+            <a href="" className="w-[30%] h-[30%]">
+              <img
+                src={twitter}
+                alt="twitter"
+                className="rounded-2xl cursor-pointer"
+              />
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=100090870722079&mibextid=ZbWKwL"
+              target="_blank"
+              className="w-[30%] h-[30%]"
+            >
+              <img
+                src={facebook}
+                alt="facebook"
+                className="rounded-2xl  cursor-pointer "
+              />
+            </a>
           </div>
         </div>
       </div>

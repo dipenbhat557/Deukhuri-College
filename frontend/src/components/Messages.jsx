@@ -4,14 +4,15 @@ import { fadeIn, slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import useFetch from "./UseFetch";
 import { def } from "../assets";
-import { messageItems } from "../constants";
+// import { messageItems } from "../constants";
 
 const Messages = () => {
-  // const oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
+  const oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
 
-  // const messages = oldMessages?.slice()?.reverse();
-  const messages = messageItems;
-  console.log("Message items is : ", messages);
+  const messages = oldMessages?.slice()?.reverse();
+  console.log("Messages : ", messages);
+  // const messages = messageItems;
+  // console.log("Message items is : ", messages);
 
   return (
     <div className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%] h-auto`}>
@@ -44,12 +45,12 @@ const Messages = () => {
                 variants={slideIn("right", "spring", 0.5, 0.75)}
                 className="h-[50%] sm:h-full w-full "
               >
-                <div className="flex flex-col h-full w-full">
+                <div className="flex flex-col h-[98%] w-full pb-2">
                   <div className="flex items-center w-full h-[15%] font-semibold">
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      {messages?.[0]?.title.rendered}
+                      {messages?.[0]?.title?.rendered}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
@@ -62,7 +63,7 @@ const Messages = () => {
                     dangerouslySetInnerHTML={{
                       __html: messages?.[0]?.content?.rendered,
                     }}
-                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-6"
+                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-6"
                   ></p>
                 </div>
               </motion.div>
@@ -94,7 +95,7 @@ const Messages = () => {
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      {messages?.[2]?.title.rendered}
+                      {messages?.[2]?.title?.rendered}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
@@ -107,7 +108,7 @@ const Messages = () => {
                     dangerouslySetInnerHTML={{
                       __html: messages?.[2]?.content?.rendered,
                     }}
-                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-6"
+                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-6"
                   ></p>
                 </div>
               </div>
@@ -150,7 +151,7 @@ const Messages = () => {
                     dangerouslySetInnerHTML={{
                       __html: messages?.[1]?.content?.rendered,
                     }}
-                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-6"
+                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-6"
                   ></p>
                 </div>
               </div>

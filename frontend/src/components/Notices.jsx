@@ -7,10 +7,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import useFetch from "./UseFetch";
+import { useNavigate } from "react-router-dom";
+
 const Notices = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   let notices = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/notices`);
+
+  useEffect(() => {
+    console.log("Notices : ", notices?.[currentIndex]?.imageUrl);
+  }, [notices]);
+
   return (
     <div
       className={`${styles.padding} flex flex-col sm:flex-row justify-between items-center w-full h-auto sm:h-[400px]  mt-4`}
@@ -75,7 +83,9 @@ const Notices = () => {
           />
           <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
           <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
-            <AiOutlineSearch />
+            <a href={notices?.[currentIndex]?.imageUrl} target="_blank">
+              <AiOutlineSearch />
+            </a>
           </div>
         </div>
       </motion.div>

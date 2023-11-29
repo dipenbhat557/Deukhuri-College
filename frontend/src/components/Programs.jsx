@@ -131,7 +131,7 @@ const Programs = () => {
               <p className="text-[16px] sm:text-[22px] font-light my-2">
                 {underGraduateItems[currentUnderGraduateProgramIndex].fullTitle}
               </p>
-              <p className="text-slate-600 my-2 text-[14px] sm:text-[16px] text-justify">
+              <p className="text-slate-600 my-2 w-[90%] text-[14px] sm:text-[16px] text-justify">
                 {underGraduateItems[currentUnderGraduateProgramIndex].content}
               </p>
             </div>

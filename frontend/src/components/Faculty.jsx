@@ -13,13 +13,13 @@ const Faculty = ({ fIndex }) => {
   const [scrolled, setScrolled] = useState(false);
 
   const oldAcademicTeam = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/academics`
+    `${import.meta.env.VITE_APP_API_ROOT}/academics?per_page=100`
   );
 
   const academicTeam = oldAcademicTeam?.slice()?.reverse();
 
   const oldAdministrativeTeam = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/administratives`
+    `${import.meta.env.VITE_APP_API_ROOT}/administratives?per_page=100`
   );
 
   const administrativeTeam = oldAdministrativeTeam?.slice()?.reverse();

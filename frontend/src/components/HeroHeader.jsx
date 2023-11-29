@@ -8,16 +8,16 @@ const HeroHeader = () => {
   return (
     <>
       <div
-        className={`${styles.padding} max-w-7xl relative z-0 min-w-full h-[80px] my-1 mx-auto flex items-center justify-between`}
+        className={`${styles.padding} max-w-7xl relative z-0 min-w-full h-[80px]  my-1 mx-auto flex items-center justify-between`}
       >
         <img
           src={logo}
           alt="logo"
-          className="object-contain w-20 h-20 cursor-pointer"
+          className="object-contain w-20  h-20 cursor-pointer"
           onClick={() => navigate("/")}
         />
 
-        <div className="flex items-center gap-2 sm:gap-6">
+        <div className="flex ml-2 sm:ml-0 items-center gap-2 sm:gap-6">
           <a
             href="/admission"
             className="bg-red-900 text-[10px] sm:text-[13px] md:text-18px p-1 sm:p-3 rounded-md sm:rounded-xl text-white mr-4 hover:bg-red-950"
