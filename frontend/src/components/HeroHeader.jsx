@@ -1,5 +1,5 @@
 import { ImLocation2 } from "react-icons/im";
-import { logo } from "../assets";
+import { form, logo } from "../assets";
 import { styles } from "../styles";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,8 @@ const HeroHeader = () => {
 
         <div className="flex ml-2 sm:ml-0 items-center gap-2 sm:gap-6">
           <a
-            href="/admission"
+            href={form}
+            target="_blank"
             className="bg-red-900 text-[10px] sm:text-[13px] md:text-18px p-1 sm:p-3 rounded-md sm:rounded-xl text-white mr-4 hover:bg-red-950"
           >
             ADMISSION FORM

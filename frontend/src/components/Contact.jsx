@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import emailjs from "emailjs-com";
-import { contactBg, facebook, instagram, twitter } from "../assets";
+import { contactBg, facebook, youtube, twitter } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
@@ -184,22 +184,37 @@ const Contact = () => {
             <p className="text-[16px] text-slate-600 p-2">
               deukhuricampus@gmail.com
             </p>
+
             <div className="flex items-start gap-5 justify-start m-4">
-              <img
-                src={instagram}
-                alt="instagram"
-                className="rounded-2xl cursor-pointer h-[50px]"
-              />
-              <img
-                src={twitter}
-                alt="twitter"
-                className="rounded-2xl cursor-pointer h-[50px]"
-              />
-              <img
-                src={facebook}
-                alt="facebook"
-                className="rounded-2xl cursor-pointer h-[50px]"
-              />
+              <a
+                href="https://youtu.be/zQj04ywrimM?si=ZR1GykMCqd1t-Tmo"
+                target="_blank"
+              >
+                <img
+                  src={youtube}
+                  alt="youtube"
+                  className="rounded-2xl cursor-pointer h-[50px]"
+                />
+              </a>
+
+              <a href="#">
+                <img
+                  src={twitter}
+                  alt="twitter"
+                  className="rounded-2xl cursor-pointer h-[50px]"
+                />
+              </a>
+
+              <a
+                href="https://www.facebook.com/profile.php?id=100090870722079&mibextid=ZbWKwL"
+                target="_blank"
+              >
+                <img
+                  src={facebook}
+                  alt="facebook"
+                  className="rounded-2xl cursor-pointer h-[50px]"
+                />
+              </a>
             </div>
           </div>
         </Suspense>

@@ -24,9 +24,9 @@ import BEd from "./programImages/BEd.png";
 import MBS from "./programImages/MBS.png";
 import MEd from "./programImages/MEd.png";
 
-import instagram from "./socialMedias/insta.png";
 import facebook from "./socialMedias/facebook.png";
 import twitter from "./socialMedias/twitter.png";
+import youtube from "./socialMedias/youtube.jpg";
 
 import program from "./backgrounds/programBg.png";
 
@@ -41,6 +41,8 @@ import facultyAdministrationBg from "./backgrounds/facultyAdministrationBg.png";
 import noticeBg from "./backgrounds/noticeBg.png";
 
 import def from "./default.png";
+
+import form from "./admissionForm.jpg";
 
 export {
   logo,
@@ -58,7 +60,7 @@ export {
   register,
   graduate,
   undergraduate,
-  instagram,
+  youtube,
   facebook,
   twitter,
   program,
@@ -76,4 +78,5 @@ export {
   noticeBg,
   facultyAdminBg,
   def,
+  form,
 };

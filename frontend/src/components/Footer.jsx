@@ -1,4 +1,4 @@
-import { facebook, instagram, logo, twitter } from "../assets";
+import { facebook, youtube, logo, twitter } from "../assets";
 import { styles } from "../styles";
 
 const Footer = () => {
@@ -67,16 +67,16 @@ const Footer = () => {
           <p className="text-[18px] font-semibold tracking-wider">
             Social Links
           </p>
-          <div className="flex w-full h-full items-center gap-5 justify-start">
+          <div className="flex w-full h-full items-center gap-5 justify-center">
             <a
               href="https://youtu.be/zQj04ywrimM?si=ZR1GykMCqd1t-Tmo"
               target="_blank"
-              className="w-[35%] h-[20%]"
+              className="w-[38%]  h-[41%] mt-5 items-center flex "
             >
               <img
-                src="youtube.jpg"
-                alt="instagram"
-                className="rounded-2xl cursor-pointer object-cover"
+                src={youtube}
+                alt="youtube"
+                className="rounded-2xl cursor-pointer object-contain w-full h-full"
               />
             </a>
             <a href="" className="w-[30%] h-[30%]">
