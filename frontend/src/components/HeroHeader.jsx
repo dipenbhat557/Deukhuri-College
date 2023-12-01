@@ -17,6 +17,10 @@ const HeroHeader = () => {
           onClick={() => navigate("/")}
         />
 
+        <p className="text-[10px] ml-3 font-semibold text-justify sm:text-[36px] tracking-wider  text-red-900">
+          Deukhuri Multiple Campus
+        </p>
+
         <div className="flex ml-2 sm:ml-0 items-center gap-2 sm:gap-6">
           <a
             href={form}

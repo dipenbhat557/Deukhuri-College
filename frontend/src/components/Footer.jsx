@@ -103,7 +103,7 @@ const Footer = () => {
       <div className="w-full border-b-2 border-slate-600 border-opacity-50" />{" "}
       <div className=" w-full  flex items-center justify-center text-center">
         <p className=" text-[12px] sm:text-[17px] text-white leading-loose p-2 rounded-t-md ">
-          Copyright &copy;2023-24 Gorkha Secondary School
+          Copyright &copy;2023-24 Deukhuri Multiple Campus
         </p>
       </div>
     </div>
