@@ -176,13 +176,13 @@ const Contact = () => {
           <div className="h-auto w-[80% ] sm:w-[35%] flex flex-col my-4 ">
             <p className="text-[18px] p-3">Deukhuri Multiple Campus</p>
             <p className="text-[16px] text-slate-600 p-2">
-              Lamahi-6, Dang, Nepal
+              Lamahi-5, Dang, Nepal
             </p>
             <p className="text-[16px] text-slate-600 p-2">
-              +977 98765789, 098769 , 098790
+              082417016, 9857847016, 9857847017, 9857847018
             </p>
             <p className="text-[16px] text-slate-600 p-2">
-              deukhuricampus@gmail.com
+              deukhuri.campus@gmail.com
             </p>
 
             <div className="flex items-start gap-5 justify-start m-4">

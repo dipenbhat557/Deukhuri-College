@@ -10,17 +10,21 @@ const HeroHeader = () => {
       <div
         className={`${styles.padding} max-w-7xl relative z-0 min-w-full h-[80px]  my-1 mx-auto flex items-center justify-between`}
       >
-        <img
-          src={logo}
-          alt="logo"
-          className="object-contain w-20  h-20 cursor-pointer"
-          onClick={() => navigate("/")}
-        />
+        <div className="flex ">
+          <img
+            src={logo}
+            alt="logo"
+            className="object-contain w-20  h-20 cursor-pointer"
+            onClick={() => navigate("/")}
+          />
+          <div className="flex flex-col items-start justify-center ml-5 mr-3">
+            <p className="text-[10px] ml-0 font-semibold sm:font-medium text-justify sm:text-[30px]   text-red-900">
+              देउखुरी बहुमुखी क्याम्पस
+            </p>
 
-        <p className="text-[10px] ml-3 font-semibold text-justify sm:text-[36px] tracking-wider  text-red-900">
-          Deukhuri Multiple Campus
-        </p>
-
+            <p className="text-[8px] sm:text-[18px]">लमही, दाङ</p>
+          </div>
+        </div>
         <div className="flex ml-2 sm:ml-0 items-center gap-2 sm:gap-6">
           <a
             href={form}
@@ -37,7 +41,7 @@ const HeroHeader = () => {
           </a>
 
           <ImLocation2
-            className="text-red-900 mx-3 text-2xl hover:bg-red-950  hover:text-4xl hover:rounded-xl hover:text-white hover:p-2"
+            className="hidden sm:flex text-red-900 mx-3 text-2xl hover:bg-red-950  hover:text-4xl hover:rounded-xl hover:text-white hover:p-2"
             onClick={() => navigate("/contact#location")}
           />
         </div>

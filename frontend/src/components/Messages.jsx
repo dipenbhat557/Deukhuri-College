@@ -63,7 +63,7 @@ const Messages = () => {
                     dangerouslySetInnerHTML={{
                       __html: messages?.[0]?.content?.rendered,
                     }}
-                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-6"
+                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-10"
                   ></p>
                 </div>
               </motion.div>
