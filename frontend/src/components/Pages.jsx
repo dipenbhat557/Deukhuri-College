@@ -26,6 +26,8 @@ function Pages() {
           element={<Faculty fIndex="1" />}
         />
 
+        <Route path="/faculty/management" element={<Faculty fIndex="2" />} />
+
         <Route
           path="/FACULTY"
           element={<Navigate to="/faculty/academics" replace />}

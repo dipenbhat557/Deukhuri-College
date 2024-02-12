@@ -24,6 +24,12 @@ const Faculty = ({ fIndex }) => {
 
   const administrativeTeam = oldAdministrativeTeam?.slice()?.reverse();
 
+  const oldManagementTeam = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/managements?per_page=100`
+  );
+
+  const managementTeam = oldManagementTeam?.slice()?.reverse();
+
   const faculties = [
     {
       title: "Meet our Academic Team",
@@ -32,6 +38,10 @@ const Faculty = ({ fIndex }) => {
     {
       title: "Meet our Administrative Team",
       content: administrativeTeam,
+    },
+    {
+      title: "Meet our Management Team",
+      content: managementTeam,
     },
   ];
 
@@ -102,6 +112,16 @@ const Faculty = ({ fIndex }) => {
             onClick={() => setFacultyIndex(1)}
           >
             Administrative Team
+          </div>
+          <div
+            className={` ${
+              facultyIndex == 2
+                ? "bg-red-900 text-white"
+                : "bg-[#D9D9D9] text-black"
+            } text-[16px] p-3 cursor-pointer`}
+            onClick={() => setFacultyIndex(2)}
+          >
+            Management Team
           </div>
         </div>
 

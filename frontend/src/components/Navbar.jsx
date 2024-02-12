@@ -86,6 +86,11 @@ const Navbar = ({ active, scrolled }) => {
                 Administrative Team
               </a>
             </li>
+            <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
+              <a href="/faculty/management" onClick={toggleDropdown2}>
+                Management Team
+              </a>
+            </li>
           </ul>
         </div>
       )}

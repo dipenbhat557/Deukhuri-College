@@ -1,10 +1,23 @@
+// HeroHeader.jsx
+
 import { ImLocation2 } from "react-icons/im";
 import { form, logo } from "../assets";
 import { styles } from "../styles";
 import { useNavigate } from "react-router-dom";
+import useFetch from "./UseFetch";
+
+const stripHtmlTags = (html) => {
+  // Use a regex to remove HTML tags
+  return html.replace(/<[^>]*>?/gm, "");
+};
 
 const HeroHeader = () => {
   const navigate = useNavigate();
+
+  const headerNotices = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/notice-headers`
+  );
+
   return (
     <>
       <div
@@ -14,7 +27,7 @@ const HeroHeader = () => {
           <img
             src={logo}
             alt="logo"
-            className="object-contain w-20  h-20 cursor-pointer"
+            className="object-contain w-20 h-20 cursor-pointer"
             onClick={() => navigate("/")}
           />
           <div className="flex flex-col items-start justify-center ml-5 mr-3">
@@ -41,12 +54,27 @@ const HeroHeader = () => {
           </a>
 
           <ImLocation2
-            className="hidden sm:flex text-red-900 mx-3 text-2xl hover:bg-red-950  hover:text-4xl hover:rounded-xl hover:text-white hover:p-2"
+            className="hidden sm:flex text-red-900 mx-3 cursor-pointer text-2xl hover:bg-red-950  hover:text-4xl hover:rounded-xl hover:text-white hover:p-2"
             onClick={() => navigate("/contact#location")}
           />
         </div>
       </div>
-      <div className=" w-[90%] border-dashed border-b-4 rounded-xl mx-auto border-red-950 mb-2" />
+      <marquee className="w-[90%] h-[40px] p-2 my-2 bg-red-900 mx-[5%]">
+        {headerNotices?.map((notice, index) => (
+          <div
+            key={index}
+            dangerouslySetInnerHTML={{
+              __html: stripHtmlTags(
+                index !== headerNotices.length - 1
+                  ? ` ${notice?.content?.rendered || "Loading..."} || &nbsp  `
+                  : ` ${notice?.content?.rendered || "Loading..."} `
+              ),
+            }}
+            style={{ display: "inline-block" }}
+            className="text-white font-semibold"
+          />
+        ))}
+      </marquee>
     </>
   );
 };

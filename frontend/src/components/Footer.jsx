@@ -6,7 +6,7 @@ const Footer = () => {
     <div
       className={`${styles.paddingX} w-full h-[420px] flex flex-col sm:h-[400px] bg-[#212529] pt-2`}
     >
-      <div className="flex w-full h-[40%] items-center justify-between">
+      <div className="flex w-full h-[37%] items-center justify-between">
         <img
           src={logo}
           alt="Deukhuri logo"
@@ -18,7 +18,7 @@ const Footer = () => {
           "Home of Students"
         </p>
       </div>
-      <div className="w-full h-[45%] text-white flex justify-between items-center mb-8">
+      <div className="w-full h-[42%] text-white flex justify-between items-center mb-8">
         <div className="h-full w-[50%] sm:w-[35%] flex flex-col items-start justify-around">
           <p className="text-[16px] sm:text-[18px] font-semibold tracking-wider">
             Deukhuri Multiple Campus
@@ -101,7 +101,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="w-full border-b-2 border-slate-600 border-opacity-50" />{" "}
-      <div className=" w-full  flex items-center justify-center text-center">
+      <div className=" w-full  flex items-center justify-center text-center h-auto">
         <p className=" text-[12px] sm:text-[17px] text-white leading-loose p-2 rounded-t-md ">
           Copyright &copy;2023-24 Deukhuri Multiple Campus
         </p>
