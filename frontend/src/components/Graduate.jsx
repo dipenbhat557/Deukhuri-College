@@ -2,9 +2,10 @@ import { lazy, useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import RegisterSection from "./RegisterSection";
-import { program } from "../assets";
+import { pdf, program } from "../assets";
 import { programs } from "../constants";
 import { useNavigate } from "react-router-dom";
+import useFetch from "./UseFetch";
 
 const HeroHeader = lazy(() => import("./HeroHeader"));
 
@@ -13,6 +14,22 @@ const Graduate = ({ pIndex }) => {
   const [course, setCourse] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+
+  const graduate_results = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/pg_results`
+  );
+
+  const undergraduate_results = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/ug_results`
+  );
+
+  const undergraduate_syllabus = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/ug_syllabus`
+  );
+
+  const graduate_syllabus = useFetch(
+    `${import.meta.env.VITE_APP_API_ROOT}/pg_syllabus`
+  );
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -144,6 +161,144 @@ const Graduate = ({ pIndex }) => {
                   </li>
                 );
               })}
+            </ol>
+
+            <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
+              Results
+            </p>
+            <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
+              {programIndex == 0
+                ? graduate_results?.map((result, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex w-full h-[60px] items-center justify-between p-3"
+                      >
+                        <p className="flex gap-3">
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: result?.content?.rendered,
+                            }}
+                            className="text-[14px] sm:text-[16px] font-medium"
+                          ></p>
+                          <p className="text-[14px] sm:text-[16px] font-medium ">
+                            {result?.title?.rendered}
+                          </p>
+                        </p>
+                        <a
+                          className="w-[15%] h-full flex items-center"
+                          href={result?.imageUrl}
+                          target="_blank"
+                        >
+                          <img
+                            src={pdf}
+                            alt="pdf"
+                            className="w-full h-[95%] object-contain"
+                          />
+                        </a>
+                      </div>
+                    );
+                  })
+                : undergraduate_results?.map((result, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex w-full h-[60px] items-center justify-between p-3"
+                      >
+                        <p className="flex gap-3">
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: result?.content?.rendered,
+                            }}
+                            className="text-[14px] sm:text-[16px] font-medium"
+                          ></p>
+                          <p className="text-[14px] sm:text-[16px] font-medium ">
+                            {result?.title?.rendered}
+                          </p>
+                        </p>
+                        <a
+                          className="w-[15%] h-full flex items-center"
+                          href={result?.imageUrl}
+                          target="_blank"
+                        >
+                          <img
+                            src={pdf}
+                            alt="pdf"
+                            className="w-full h-[95%] object-contain"
+                          />
+                        </a>
+                      </div>
+                    );
+                  })}
+            </ol>
+
+            <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
+              Syllabus
+            </p>
+            <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
+              {programIndex == 0
+                ? graduate_syllabus?.map((syllabus, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex w-full h-[60px] items-center justify-between p-3"
+                      >
+                        <p className="flex gap-3">
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: syllabus?.content?.rendered,
+                            }}
+                            className="text-[14px] sm:text-[16px] font-medium"
+                          ></p>
+                          <p className="text-[14px] sm:text-[16px] font-medium ">
+                            {syllabus?.title?.rendered}
+                          </p>
+                        </p>
+                        <a
+                          className="w-[15%] h-full flex items-center"
+                          href={syllabus?.imageUrl}
+                          target="_blank"
+                        >
+                          <img
+                            src={pdf}
+                            alt="pdf"
+                            className="w-full h-[95%] object-contain"
+                          />
+                        </a>
+                      </div>
+                    );
+                  })
+                : undergraduate_syllabus?.map((syllabus, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="flex w-full h-[60px] items-center justify-between p-3"
+                      >
+                        <p className="flex gap-3">
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: syllabus?.content?.rendered,
+                            }}
+                            className="text-[14px] sm:text-[16px] font-medium"
+                          ></p>
+                          <p className="text-[14px] sm:text-[16px] font-medium ">
+                            {syllabus?.title?.rendered}
+                          </p>
+                        </p>
+                        <a
+                          className="w-[15%] h-full flex items-center"
+                          href={syllabus?.imageUrl}
+                          target="_blank"
+                        >
+                          <img
+                            src={pdf}
+                            alt="pdf"
+                            className="w-full h-[95%] object-contain"
+                          />
+                        </a>
+                      </div>
+                    );
+                  })}
             </ol>
 
             <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">

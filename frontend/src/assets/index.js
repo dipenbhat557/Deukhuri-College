@@ -44,6 +44,8 @@ import def from "./default.png";
 
 import form from "./admissionForm.jpg";
 
+import pdf from "./pdf.png";
+
 export {
   logo,
   vid1,
@@ -79,4 +81,5 @@ export {
   facultyAdminBg,
   def,
   form,
+  pdf,
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-import { aboutBg } from "../assets";
+import { aboutBg, pdf } from "../assets";
 import { aboutItems } from "../constants";
 import Loading from "./Loading";
+import useFetch from "./UseFetch";
 
 const Footer = lazy(() => import("./Footer"));
 const HeroHeader = lazy(() => import("./HeroHeader"));
@@ -11,6 +12,10 @@ const Specifications = lazy(() => import("./Specifications"));
 
 const About = () => {
   const [scrolled, setScrolled] = useState(false);
+
+  const rules = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/rules`);
+
+  const statutes = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/statutes`);
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -87,6 +92,50 @@ const About = () => {
           <Suspense fallback={<Loading />}>
             <Specifications />
           </Suspense>
+
+          <p className="text-[16px] font-semibold my-3 ">
+            Rules and Regulations
+          </p>
+          <p
+            dangerouslySetInnerHTML={{ __html: rules?.[0]?.content?.rendered }}
+            className="text-[14px] my-3 font-light text-justify"
+          ></p>
+
+          <p className="text-[16px] font-semibold my-3">Statute of campus</p>
+
+          <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
+            {statutes?.map((statute, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex w-full h-[60px] items-center justify-between p-3"
+                >
+                  <p className="flex gap-3">
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: statute?.content?.rendered,
+                      }}
+                      className="text-[14px] sm:text-[16px] font-medium"
+                    ></p>
+                    <p className="text-[14px] sm:text-[16px] font-medium ">
+                      {statute?.title?.rendered}
+                    </p>
+                  </p>
+                  <a
+                    className="w-[15%] h-full flex items-center"
+                    href={statute?.imageUrl}
+                    target="_blank"
+                  >
+                    <img
+                      src={pdf}
+                      alt="pdf"
+                      className="w-full h-[95%] object-contain"
+                    />
+                  </a>
+                </div>
+              );
+            })}
+          </ol>
 
           <p className="text-[16px] font-semibold my-3">
             Our Missions and Values
