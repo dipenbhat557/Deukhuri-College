@@ -10,9 +10,7 @@ const Messages = () => {
   const oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
 
   const messages = oldMessages?.slice()?.reverse();
-  console.log("Messages : ", messages);
-  // const messages = messageItems;
-  // console.log("Message items is : ", messages);
+  // console.log("Messages : ", messages);
 
   return (
     <div className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%] h-auto`}>
@@ -21,7 +19,7 @@ const Messages = () => {
         style={{ position: "absolute", zIndex: -1 }}
       ></div>
       <div className=" w-[95%] h-full flex flex-col items-center justify-center mx-8">
-        <div className="w-full h-auto sm:h-[400px] mt-5 flex justify-center items-center">
+        <div className="w-full mt-5 flex justify-center items-center">
           <Tilt
             options={{
               max: 45,
@@ -30,10 +28,10 @@ const Messages = () => {
             }}
             className="h-full mt-2 rounded-2xl w-full"
           >
-            <div className="flex flex-col sm:flex-row justify-between items-center w-full h-[500px] sm:h-full shadow-xl rounded-xl">
+            <div className="flex flex-col sm:flex-row justify-between items-center w-full h-auto sm:h-full shadow-xl rounded-xl">
               <motion.div
                 variants={slideIn("left", "spring", 0.5, 0.75)}
-                className="h-[50%] sm:h-full w-full "
+                className="h-[50%] sm:h-[400px] w-full "
               >
                 <img
                   className="rounded-t-xl object-contain w-full h-full rounded-l-xl "
@@ -43,7 +41,7 @@ const Messages = () => {
               </motion.div>
               <motion.div
                 variants={slideIn("right", "spring", 0.5, 0.75)}
-                className="h-[50%] sm:h-full w-full "
+                className="h-auto w-full "
               >
                 <div className="flex flex-col h-[98%] w-full pb-2">
                   <div className="flex items-center w-full h-[15%] font-semibold">
@@ -63,7 +61,7 @@ const Messages = () => {
                     dangerouslySetInnerHTML={{
                       __html: messages?.[0]?.content?.rendered,
                     }}
-                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-10"
+                    className="text-[10px] md:text-[14px] h-auto text-justify text-2xl mx-8 "
                   ></p>
                 </div>
               </motion.div>
@@ -82,7 +80,7 @@ const Messages = () => {
                 scale: 1,
                 speed: 450,
               }}
-              className="h-[500px] sm:h-full mt-2 rounded-2xl w-full"
+              className="h-full mt-2 rounded-2xl w-full"
             >
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
@@ -108,7 +106,7 @@ const Messages = () => {
                     dangerouslySetInnerHTML={{
                       __html: messages?.[2]?.content?.rendered,
                     }}
-                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-6"
+                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 "
                   ></p>
                 </div>
               </div>
@@ -125,7 +123,7 @@ const Messages = () => {
                 scale: 1,
                 speed: 450,
               }}
-              className="h-[500px] sm:h-full mt-2 rounded-2xl w-full"
+              className="h-full mt-2 rounded-2xl w-full"
             >
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
@@ -151,7 +149,7 @@ const Messages = () => {
                     dangerouslySetInnerHTML={{
                       __html: messages?.[1]?.content?.rendered,
                     }}
-                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 line-clamp-5 sm:line-clamp-6"
+                    className="text-[10px] md:text-[14px] text-justify text-2xl mx-8"
                   ></p>
                 </div>
               </div>

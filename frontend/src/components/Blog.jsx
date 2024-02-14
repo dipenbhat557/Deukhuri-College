@@ -87,7 +87,7 @@ const Blog = () => {
                   scale: 1,
                   speed: 450,
                 }}
-                className=" mt-9 rounded-2xl h-[670px] w-full sm:w-[35%]"
+                className=" mt-9 rounded-2xl h-auto w-full sm:w-[35%]"
               >
                 <div className=" flex mt-10 flex-col justify-center items-center w-full h-full shadow-2xl p-4">
                   <img
@@ -109,7 +109,7 @@ const Blog = () => {
                       dangerouslySetInnerHTML={{
                         __html: message?.content?.rendered,
                       }}
-                      className="text-[10px] md:text-[16px] h-[85%]  text-2xl mx-8 text-justify line-clamp-6"
+                      className="text-[10px] md:text-[16px] h-[85%]  text-2xl mx-8 text-justify"
                     ></p>
                   </div>
                 </div>
