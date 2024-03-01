@@ -4,7 +4,7 @@ import { styles } from "../styles";
 const Footer = () => {
   return (
     <div
-      className={`${styles.paddingX} w-full h-[420px] flex flex-col sm:h-[400px] bg-[#212529] pt-2`}
+      className={`${styles.paddingX} w-full h-[420px] flex flex-col bg-[#212529] pt-2`}
     >
       <div className="flex w-full h-[37%] items-center justify-between">
         <img
