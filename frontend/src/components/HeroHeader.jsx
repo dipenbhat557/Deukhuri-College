@@ -8,6 +8,7 @@ import useFetch from "./UseFetch";
 
 const stripHtmlTags = (html) => {
   // Use a regex to remove HTML tags
+  const navigate =useNavigate()
   return html.replace(/<[^>]*>?/gm, "");
 };
 
@@ -40,7 +41,7 @@ const HeroHeader = () => {
         </div>
         <div className="flex ml-2 sm:ml-0 items-center gap-2 sm:gap-6">
           <a
-            href={form}
+           onClick={()=>navigate("/publications")}
             target="_blank"
             className="bg-red-900 text-[12px] sm:text-[15px] md:text-20px p-1 sm:p-3 rounded-md sm:rounded-xl text-white mr-4 hover:bg-red-950"
           >

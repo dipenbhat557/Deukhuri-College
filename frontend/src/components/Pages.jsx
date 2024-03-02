@@ -6,6 +6,7 @@ import Admission from "./Admission";
 import Faculty from "./Faculty";
 import Contact from "./Contact";
 import About from "./About";
+import Publication from "./Publications";
 
 function Pages() {
   return (
@@ -34,6 +35,7 @@ function Pages() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/publications" element={<Publication/>}/>
       </Routes>
     </BrowserRouter>
   );
