@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @package Advertisement Plugin

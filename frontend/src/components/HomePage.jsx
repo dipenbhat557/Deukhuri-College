@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import Loading from "./Loading";
+import Advertisement from "./Advertisement";
 // import HeaderNotice from "./HeaderNotice";
 
 const Navbar = lazy(() => import("./Navbar"));
@@ -40,6 +41,7 @@ const HomePage = () => {
         {scrolled && <Navbar active="HOME" scrolled={scrolled} />}
         <HeroHeader />
         {/* <HeaderNotice /> */}
+        <Advertisement />
         <Hero />
         <HeroFooter />
         <Notices />
