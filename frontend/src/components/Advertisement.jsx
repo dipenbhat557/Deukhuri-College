@@ -3,15 +3,16 @@ import "./Notice.css";
 
 import { FaTimes } from "react-icons/fa";
 import useFetch from "./UseFetch";
+import { def } from "../assets";
 function Notice({ setShowNotice }) {
   const advertisements = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/advertisements`
+    `${import.meta.env.VITE_APP_API_ROOT}/advertisements`,
   );
   return (
     <div className="notice-container">
       <div className="notice-content">
         <img
-          src={advertisements?.[0]?.imageUrl}
+          src={advertisements?.[0]?.imageUrl || def}
           alt="Notice"
           className="notice-image"
         />

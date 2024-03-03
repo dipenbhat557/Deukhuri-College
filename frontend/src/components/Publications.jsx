@@ -15,7 +15,7 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
   let publications = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/publications`
+    `${import.meta.env.VITE_APP_API_ROOT}/publications`,
   );
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -66,42 +66,44 @@ const Contact = () => {
         </Suspense>
       </div>
 
-      <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
-        Publications
-      </p>
-      <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
-        {publications?.map((publication, index) => {
-          return (
-            <div
-              key={index}
-              className="flex w-full h-[60px] items-center justify-between p-3"
-            >
-              <p className="flex gap-3">
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: publication?.content?.rendered,
-                  }}
-                  className="text-[14px] sm:text-[16px] font-medium"
-                ></p>
-                <p className="text-[14px] sm:text-[16px] font-medium ">
-                  {publication?.title?.rendered}
-                </p>
-              </p>
-              <a
-                className="w-[15%] h-full flex items-center"
-                href={publication?.imageUrl}
-                target="_blank"
+      <div className="flex flex-col w-full mx-auto mt-5 sm:w-[80%]">
+        <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
+          Publications
+        </p>
+        <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
+          {publications?.map((publication, index) => {
+            return (
+              <div
+                key={index}
+                className="flex w-full h-[80px] items-center justify-between p-3"
               >
-                <img
-                  src={pdf}
-                  alt="pdf"
-                  className="w-full h-[95%] object-contain"
-                />
-              </a>
-            </div>
-          );
-        })}
-      </ol>
+                <p className="flex gap-3">
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: publication?.content?.rendered,
+                    }}
+                    className="text-[14px] sm:text-[16px] font-medium"
+                  ></p>
+                  <p className="text-[14px] sm:text-[16px] font-medium ">
+                    {publication?.title?.rendered}
+                  </p>
+                </p>
+                <a
+                  className="w-[15%] h-full flex items-center"
+                  href={publication?.imageUrl}
+                  target="_blank"
+                >
+                  <img
+                    src={pdf}
+                    alt="pdf"
+                    className="w-full h-[95%] object-contain"
+                  />
+                </a>
+              </div>
+            );
+          })}
+        </ol>
+      </div>
 
       <Suspense fallback={<Loading />}>
         <div className="w-full">

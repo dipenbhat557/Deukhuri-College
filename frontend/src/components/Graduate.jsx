@@ -16,19 +16,19 @@ const Graduate = ({ pIndex }) => {
   const navigate = useNavigate();
 
   const graduate_results = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/pg_results`
+    `${import.meta.env.VITE_APP_API_ROOT}/pg_results`,
   );
 
   const undergraduate_results = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/ug_results`
+    `${import.meta.env.VITE_APP_API_ROOT}/ug_results`,
   );
 
   const undergraduate_syllabus = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/ug_syllabus`
+    `${import.meta.env.VITE_APP_API_ROOT}/ug_syllabus`,
   );
 
   const graduate_syllabus = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/pg_syllabus`
+    `${import.meta.env.VITE_APP_API_ROOT}/pg_syllabus`,
   );
 
   const handleScroll = () => {
@@ -172,7 +172,7 @@ const Graduate = ({ pIndex }) => {
                     return (
                       <div
                         key={index}
-                        className="flex w-full h-[60px] items-center justify-between p-3"
+                        className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
                           <p
@@ -203,7 +203,7 @@ const Graduate = ({ pIndex }) => {
                     return (
                       <div
                         key={index}
-                        className="flex w-full h-[60px] items-center justify-between p-3"
+                        className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
                           <p
@@ -241,7 +241,7 @@ const Graduate = ({ pIndex }) => {
                     return (
                       <div
                         key={index}
-                        className="flex w-full h-[60px] items-center justify-between p-3"
+                        className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
                           <p
@@ -272,7 +272,7 @@ const Graduate = ({ pIndex }) => {
                     return (
                       <div
                         key={index}
-                        className="flex w-full h-[60px] items-center justify-between p-3"
+                        className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
                           <p

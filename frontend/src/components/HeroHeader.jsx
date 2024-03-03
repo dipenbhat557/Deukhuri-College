@@ -8,7 +8,7 @@ import useFetch from "./UseFetch";
 
 const stripHtmlTags = (html) => {
   // Use a regex to remove HTML tags
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   return html.replace(/<[^>]*>?/gm, "");
 };
 
@@ -24,7 +24,7 @@ const HeroHeader = () => {
       <div
         className={`${styles.padding} mx-auto max-w-6xl relative z-0 min-w-[95%] h-[80px]  my-1 flex items-center justify-between`}
       >
-        <div className="flex w-[40%] h-full justify-between items-center">
+        <div className="flex w-[40%] h-full justify-start gap-6 items-center">
           <img
             src={logo}
             alt="logo"
@@ -41,9 +41,9 @@ const HeroHeader = () => {
         </div>
         <div className="flex ml-2 sm:ml-0 items-center gap-2 sm:gap-6">
           <a
-           onClick={()=>navigate("/publications")}
+            onClick={() => navigate("/publications")}
             target="_blank"
-            className="bg-red-900 text-[12px] sm:text-[15px] md:text-20px p-1 sm:p-3 rounded-md sm:rounded-xl text-white mr-4 hover:bg-red-950"
+            className="bg-red-900 text-[12px] sm:text-[15px] md:text-20px p-1 sm:p-3 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
           >
             PUBLICATIONS
           </a>
