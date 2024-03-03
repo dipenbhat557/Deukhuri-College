@@ -41,7 +41,7 @@ const HomePage = () => {
         {scrolled && <Navbar active="HOME" scrolled={scrolled} />}
         <HeroHeader />
         {/* <HeaderNotice /> */}
-        <Advertisement />
+        {/* <Advertisement /> */}
         <Hero />
         <HeroFooter />
         <Notices />
