@@ -70,7 +70,7 @@ const Contact = () => {
         <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
           Publications
         </p>
-        <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
+        <ol className="w-[80%] sm:w-full h-auto ml-9  my-3 bg-[#D9D9D969]">
           {publications?.map((publication, index) => {
             return (
               <div

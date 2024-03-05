@@ -65,7 +65,7 @@ const Navbar = ({ active, scrolled }) => {
               </a>
             </li>
             <li className="hover:bg-[#D9D9D9]  click:bg-red-900 p-2 rounded-sm">
-              <a href="/undergraduate" onClick={toggleDropdown2}>
+              <a href="/undergraduate" onClick={toggleDropdown1}>
                 Undergraduate Programs
               </a>
             </li>

@@ -24,19 +24,21 @@ const HeroHeader = () => {
       <div
         className={`${styles.padding}  relative z-0 min-w-[95%] h-[80px]  my-1 overflow-x-hidden flex items-center justify-between`}
       >
-        <div className="flex w-[30%] items-start gap-5">
+        <div className="flex w-[40%] sm:w-[50%] items-start gap-5">
           <img
             src={logo}
             alt="logo"
             className="object-contain w-20 h-20 cursor-pointer"
             onClick={() => navigate("/")}
           />
-          <div className="flex flex-col items-start justify-center left-2 mr-3 text-[#4092DD]">
-            <p className="text-[10px] w-[60px] sm:w-auto ml-0 mt-2 font-semibold sm:font-medium text-justify sm:text-[30px]">
+          <div className="flex flex-col w-[65%] items-start justify-center left-2 mr-3 text-[#4092DD]">
+            <p className="text-[10px] w-full ml-0 text-center mt-2 font-semibold sm:font-medium sm:text-[30px]">
               देउखुरी बहुमुखी क्याम्पस
             </p>
 
-            <p className="text-[8px] sm:text-[18px]">लमही, दाङ</p>
+            <p className="text-[8px] w-full sm:text-center sm:text-[18px]">
+              लमही, दाङ
+            </p>
           </div>
         </div>
         <div className="flex sm:ml-0 items-center gap-2 sm:gap-6">
