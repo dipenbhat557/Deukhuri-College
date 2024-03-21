@@ -6,16 +6,28 @@ import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import useFetch from "./UseFetch";
 
+// TODO: Fix this in future
+const HARDCODED_PASSWORD = "DMC62";
+
 // Lazy-loaded components
 const Loading = lazy(() => import("./Loading"));
 
 const Contact = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [passwordCorrect, setPasswordCorrect] = useState(false);
+  const [password, setPassword] = useState("");
+  const [showError, setShowError] = useState(false);
 
-  const [loading, setLoading] = useState(false);
+  const handlePasswordSubmit = () => {
+    // TODO: Use server
+    setPasswordCorrect(password === HARDCODED_PASSWORD);
+    if (password !== HARDCODED_PASSWORD) {
+      setShowError(true);
+    }
+  };
 
   let publications = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/publications`,
+    `${import.meta.env.VITE_APP_API_ROOT}/publications`
   );
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -31,6 +43,59 @@ const Contact = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  if (!passwordCorrect) {
+    return (
+      <div className={`${scrolled ? "flex flex-col" : ""}`}>
+        <Suspense fallback={<Loading />}>
+          {scrolled && <Navbar active="" scrolled={scrolled} />}
+          <HeroHeader />
+        </Suspense>
+
+        <form
+          className="flex flex-col items-center lg:p-36 py-36 border border-red-950 lg:m-36"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <h2 className="text-xl text-center font-bold">
+            Inorder to access the page
+          </h2>
+          <h3 className="text-center">Please Enter The Password</h3>
+          <div className="flex gap-1 w-96 justify-center items-center flex-col">
+            <label htmlFor="password">Password: </label>
+            <input
+              onChange={(e) => {
+                setPassword(e.currentTarget.value);
+              }}
+              value={password}
+              id="password"
+              type="password"
+              className="h-full w-full border"
+            />
+            <button
+              onClick={handlePasswordSubmit}
+              className="p-2 bg-red-900 text-[10px] sm:text-[15px] md:text-20px sm:p-111 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
+            >
+              Submit
+            </button>
+            <div
+              className="text-red-500 font-bold"
+              style={{
+                opacity: showError ? 100 : 0,
+              }}
+            >
+              Error, Wrong Password
+            </div>
+          </div>
+        </form>
+
+        <Suspense fallback={<Loading />}>
+          <div className="w-full">
+            <Footer />
+          </div>
+        </Suspense>
+      </div>
+    );
+  }
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
