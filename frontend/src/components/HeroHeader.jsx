@@ -16,7 +16,7 @@ const HeroHeader = () => {
   const navigate = useNavigate();
 
   const headerNotices = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/notice-headers`,
+    `${import.meta.env.VITE_APP_API_ROOT}/notice-headers`
   );
 
   return (
@@ -47,7 +47,7 @@ const HeroHeader = () => {
             target="_blank"
             className="bg-red-900 text-[10px] sm:text-[15px] md:text-20px p-1 sm:p-3 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
           >
-            PUBLICATIONS
+            QAA/PUBLICATIONS
           </a>
           <a
             href="/contact"
@@ -70,7 +70,7 @@ const HeroHeader = () => {
               __html: stripHtmlTags(
                 index !== headerNotices.length - 1
                   ? ` ${notice?.content?.rendered || "Loading..."} || &nbsp  `
-                  : ` ${notice?.content?.rendered || "Loading..."} `,
+                  : ` ${notice?.content?.rendered || "Loading..."} `
               ),
             }}
             style={{ display: "inline-block" }}
