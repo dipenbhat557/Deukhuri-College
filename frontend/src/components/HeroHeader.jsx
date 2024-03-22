@@ -8,7 +8,6 @@ import useFetch from "./UseFetch";
 
 const stripHtmlTags = (html) => {
   // Use a regex to remove HTML tags
-  const navigate = useNavigate();
   return html.replace(/<[^>]*>?/gm, "");
 };
 

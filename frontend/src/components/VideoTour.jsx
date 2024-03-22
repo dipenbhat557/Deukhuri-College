@@ -9,6 +9,7 @@ import { SectionWrapper } from "../hoc";
 const VideoTour = () => {
   const videoRef = useRef(null);
   const navigate = useNavigate();
+  const [autoplay, setAutoplay] = useState(true);
 
   const handleReadmore = () => {
     navigate("/about");
