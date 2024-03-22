@@ -27,7 +27,7 @@ const Contact = () => {
   };
 
   let publications = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/publications`
+    `${import.meta.env.VITE_APP_API_ROOT}/publications?per_page=100`
   );
   const handleScroll = () => {
     if (window.scrollY >= 105) {

@@ -68,8 +68,8 @@ const HeroHeader = () => {
             dangerouslySetInnerHTML={{
               __html: stripHtmlTags(
                 index !== headerNotices.length - 1
-                  ? ` ${notice?.content?.rendered || "Loading..."} || &nbsp  `
-                  : ` ${notice?.content?.rendered || "Loading..."} `
+                  ? ` ${notice?.title?.rendered || "Loading..."} || &nbsp  `
+                  : ` ${notice?.title?.rendered || "Loading..."} `
               ),
             }}
             style={{ display: "inline-block" }}
