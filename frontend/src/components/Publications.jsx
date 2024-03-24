@@ -1,10 +1,11 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import { contactBg, pdf } from "../assets";
+import { contactBg, pdf, writingNote } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import useFetch from "./UseFetch";
+import Model from "./Model";
 
 // TODO: Fix this in future
 const HARDCODED_PASSWORD = "DMC62";
@@ -12,11 +13,12 @@ const HARDCODED_PASSWORD = "DMC62";
 // Lazy-loaded components
 const Loading = lazy(() => import("./Loading"));
 
-const Contact = () => {
+const Publications = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [passwordCorrect, setPasswordCorrect] = useState(false);
+  const [passwordCorrect, setPasswordCorrect] = useState(true);
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
+  const [openModel, setOpenModel] = useState(true);
 
   const handlePasswordSubmit = () => {
     // TODO: Use server
@@ -98,7 +100,7 @@ const Contact = () => {
   }
 
   return (
-    <div className={`${scrolled ? "flex flex-col" : ""}`}>
+    <div className={`${scrolled ? "flex flex-col relative" : ""}`}>
       <Suspense fallback={<Loading />}>
         {scrolled && <Navbar active="" scrolled={scrolled} />}
         <HeroHeader />
@@ -131,43 +133,85 @@ const Contact = () => {
         </Suspense>
       </div>
 
-      <div className="flex flex-col w-full mx-auto mt-5 sm:w-[80%]">
-        <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
-          Publications
-        </p>
-        <ol className="w-[80%] sm:w-full h-auto ml-9  my-3 bg-[#D9D9D969]">
-          {publications?.map((publication, index) => {
-            return (
-              <div
-                key={index}
-                className="flex w-full h-[80px] items-center justify-between p-3"
-              >
-                <p className="flex gap-3">
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: publication?.content?.rendered,
-                    }}
-                    className="text-[14px] sm:text-[16px] font-medium"
-                  ></p>
-                  <p className="text-[14px] sm:text-[16px] font-medium ">
-                    {publication?.title?.rendered}
-                  </p>
-                </p>
-                <a
-                  className="w-[15%] h-full flex items-center"
-                  href={publication?.imageUrl}
-                  target="_blank"
-                >
-                  <img
-                    src={pdf}
-                    alt="pdf"
-                    className="w-full h-[95%] object-contain"
-                  />
-                </a>
-              </div>
-            );
-          })}
-        </ol>
+      <div className="w-full relative flex items-center justify-center">
+        {openModel && (
+          <div className="w-[80%] h-[60%] absolute  m-auto">
+            <Model setOpenModel={setOpenModel} />
+          </div>
+        )}
+        <div
+          className={`"flex flex-col w-full  mx-auto mt-5 sm:w-[80%]" ${
+            openModel ? "-z-10" : ""
+          }`}
+        >
+          <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
+            Publications
+          </p>
+          <ol className="w-[80%] sm:w-full h-auto ml-9  my-3 bg-[#D9D9D969]">
+            {publications?.map((publication, index) => {
+              if (publication?.title?.rendered !== "RESPONSE REPORT") {
+                return (
+                  <div
+                    key={index}
+                    className="flex w-full h-[80px] items-center justify-between p-3"
+                  >
+                    <p className="flex gap-3">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: publication?.content?.rendered,
+                        }}
+                        className="text-[14px] sm:text-[16px] font-medium"
+                      ></p>
+                      <p className="text-[14px] sm:text-[16px] font-medium ">
+                        {publication?.title?.rendered}
+                      </p>
+                    </p>
+                    <a
+                      className="w-[15%] h-full flex items-center"
+                      href={publication?.imageUrl}
+                      target="_blank"
+                    >
+                      <img
+                        src={pdf}
+                        alt="pdf"
+                        className="w-full h-[95%] object-contain"
+                      />
+                    </a>
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    key={index}
+                    className="flex w-full h-[80px] items-center justify-between p-3"
+                  >
+                    <p className="flex gap-3">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: publication?.content?.rendered,
+                        }}
+                        className="text-[14px] sm:text-[16px] font-medium"
+                      ></p>
+                      <p className="text-[14px] sm:text-[16px] font-medium ">
+                        {publication?.title?.rendered}
+                      </p>
+                    </p>
+                    <div
+                      className="w-[15%] h-full flex items-center cursor-pointer rounded-[50%]"
+                      onClick={() => setOpenModel(true)}
+                    >
+                      <img
+                        src={writingNote}
+                        alt="writingNote"
+                        className="w-full h-[95%] object-contain "
+                      />
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </ol>
+        </div>
       </div>
 
       <Suspense fallback={<Loading />}>
@@ -179,4 +223,4 @@ const Contact = () => {
     </div>
   );
 };
-export default Contact;
+export default Publications;

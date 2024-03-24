@@ -46,6 +46,8 @@ import form from "./admissionForm.jpg";
 
 import pdf from "./pdf.png";
 
+import writingNote from "./writingNote.png";
+
 export {
   logo,
   vid1,
@@ -82,4 +84,5 @@ export {
   def,
   form,
   pdf,
+  writingNote,
 };

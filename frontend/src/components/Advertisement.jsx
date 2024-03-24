@@ -5,7 +5,7 @@ import { def } from "../assets";
 
 function Notice({ setShowNotice }) {
   const advertisements = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/advertisements`,
+    `${import.meta.env.VITE_APP_API_ROOT}/advertisements`
   );
 
   return (
@@ -22,12 +22,7 @@ function Notice({ setShowNotice }) {
         <img
           src={advertisements?.[0]?.imageUrl || def}
           alt="Notice"
-          style={{
-            maxWidth: "100%",
-            maxHeight: "90vh", // Adjust the height as needed
-            width: "auto",
-            height: "auto",
-          }}
+          className="h-[70%] object-cover w-auto sm:w-[630px] md:w-[765px] lg:w-[1020px]"
         />
       </div>
     </>
