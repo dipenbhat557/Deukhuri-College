@@ -44,13 +44,13 @@ const HeroHeader = () => {
           <a
             onClick={() => navigate("/publications")}
             target="_blank"
-            className="bg-red-900 text-[10px] sm:text-[15px] md:text-20px p-1 sm:p-3 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
+            className="bg-red-900 w-[80px] sm:w-auto text-[10px] sm:text-[15px] md:text-20px p-1 sm:p-3 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
           >
-            QAA/PUBLICATIONS
+            QAA/ PUBLICATIONS
           </a>
           <a
             href="/contact"
-            className="text-[10px] sm:text-[15px] md:text-20px text-white p-1 sm:p-3 rounded-md sm:rounded-xl bg-red-900 hover:bg-red-950"
+            className="text-[10px] sm:text-[15px] w-[80px] sm:w-auto md:text-20px text-white p-1 sm:p-3 rounded-md sm:rounded-xl bg-red-900 hover:bg-red-950"
           >
             CONNECT WITH US
           </a>
@@ -73,7 +73,7 @@ const HeroHeader = () => {
               ),
             }}
             style={{ display: "inline-block" }}
-            className="text-white font-semibold"
+            className="text-white font-semibold overflow-x-hidden"
           />
         ))}
       </marquee>

@@ -208,7 +208,7 @@ add_action( 'init', 'twentytwentyfour_pattern_categories' );
 
 // Add custom REST API endpoint for creating posts
 function create_post_endpoint_init() {
-    register_rest_route( 'custom/v1', '/create-post', array(
+    register_rest_route( 'custom/v1', '/comment', array(
         'methods' => 'POST',
         'callback' => 'create_post_callback',
         'permission_callback' => '__return_true', // Allow unauthenticated users

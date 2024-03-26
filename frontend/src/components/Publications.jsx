@@ -15,10 +15,10 @@ const Loading = lazy(() => import("./Loading"));
 
 const Publications = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [passwordCorrect, setPasswordCorrect] = useState(true);
+  const [passwordCorrect, setPasswordCorrect] = useState(false);
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
-  const [openModel, setOpenModel] = useState(true);
+  const [openModel, setOpenModel] = useState(false);
 
   const handlePasswordSubmit = () => {
     // TODO: Use server
@@ -141,7 +141,7 @@ const Publications = () => {
         )}
         <div
           className={`"flex flex-col w-full  mx-auto mt-5 sm:w-[80%]" ${
-            openModel ? "-z-10" : ""
+            openModel ? "-z-10 opacity-80 bg-slate-300" : ""
           }`}
         >
           <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
