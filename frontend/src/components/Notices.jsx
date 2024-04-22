@@ -13,7 +13,7 @@ const Notices = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
-  let notices = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/notices`);
+  let notices = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/notices?per_page=100`);
 
   useEffect(() => {
     console.log("Notices : ", notices?.[currentIndex]?.imageUrl);
