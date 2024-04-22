@@ -40,7 +40,7 @@ const HomePage = () => {
       <div className={`${scrolled ? "flex flex-col" : ""} relative`}>
         {scrolled && <Navbar active="HOME" scrolled={scrolled} />}
 
-        {/* <Advertisement /> */}
+        <Advertisement />
         <HeroHeader />
         {/* <HeaderNotice /> */}
 

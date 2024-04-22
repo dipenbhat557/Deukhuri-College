@@ -1,45 +1,38 @@
-import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import useFetch from "./UseFetch";
-import { def } from "../assets";
+import { FaTimes } from "react-icons/fa";
 
-function Notice({ setShowNotice }) {
-  const advertisements = useFetch(
+const Advertisement = () => {
+  const [present, setPresent] = useState(true);
+  return <>{present && <Notice setPresent={setPresent} />}</>;
+};
+export default Advertisement;
+
+const Notice = ({ setPresent }) => {
+  const advertisement = useFetch(
     `${import.meta.env.VITE_APP_API_ROOT}/advertisements`
   );
 
+  useEffect(() => {
+    console.log(advertisement);
+  }, [advertisement]);
+
   return (
-    <>
-      <div className="fixed flex flex-col items-center justify-center top-0 left-0 w-full h-full z-50">
-        <div className="p-2 rounded-lg absolute right-5 top-5 bg-slate-900 bg-opacity-10">
-          <button
-            onClick={() => setShowNotice(false)}
-            className="text-red-500 text-3xl h-14 w-14 cursor-pointer"
-          >
-            <FaTimes />
-          </button>
-        </div>
-        <img
-          src={advertisements?.[0]?.imageUrl || def}
-          alt="Notice"
-          className="h-[70%] object-cover w-auto sm:w-[630px] md:w-[765px] lg:w-[1020px]"
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-[43vh] sm:w-[85vh] md:w-[90vh] lg:w-[90%] h-full top-16 left-4 right-4 md:left-14 md:right-10 fixed z-50 bg-slate-900 opacity-25" />
+      <div className="w-[40vh] sm:w-[75vh] md:w-[80vh] lg:w-[80%]   top-28 left-8 right-4 md:left-24 md:right-10 fixed z-50 h-[800px] sm:h-[600px] flex flex-col ">
+        <FaTimes
+          className="text-4xl cursor-pointer text-red-900 text-right"
+          onClick={() => setPresent(false)}
         />
+        <div className="h-[500px] w-auto ">
+          <img
+            src={advertisement?.[0]?.imageUrl}
+            alt="advertisement"
+            className="w-full h-full object-contain"
+          />
+        </div>
       </div>
-    </>
-  );
-}
-
-function Advertisement() {
-  const [showNotice, setShowNotice] = useState(true);
-
-  return (
-    <div className="relative">
-      {showNotice && (
-        <div className="fixed inset-0 bg-black opacity-50 backdrop-blur-2xl"></div>
-      )}
-      {showNotice && <Notice setShowNotice={setShowNotice} />}
     </div>
   );
-}
-
-export default Advertisement;
+};
