@@ -37,11 +37,13 @@ const HomePage = () => {
   }, []);
   return (
     <Suspense fallback={<Loading />}>
-      <div className={`${scrolled ? "flex flex-col" : ""}`}>
+      <div className={`${scrolled ? "flex flex-col" : ""} relative`}>
         {scrolled && <Navbar active="HOME" scrolled={scrolled} />}
+
+        <Advertisement />
         <HeroHeader />
         {/* <HeaderNotice /> */}
-        {/* <Advertisement /> */}
+
         <Hero />
         <HeroFooter />
         <Notices />

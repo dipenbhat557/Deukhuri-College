@@ -15,9 +15,9 @@ const Notices = () => {
 
   let notices = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/notices?per_page=100`);
 
-  useEffect(() => {
-    console.log("Notices : ", notices?.[currentIndex]?.imageUrl);
-  }, [notices]);
+  // useEffect(() => {
+  //   console.log("Notices : ", notices?.[currentIndex]?.imageUrl);
+  // }, [notices]);
 
   return (
     <div

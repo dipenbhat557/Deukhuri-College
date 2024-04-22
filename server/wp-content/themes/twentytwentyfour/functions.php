@@ -204,3 +204,34 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+
+// Add custom REST API endpoint for creating posts
+function create_post_endpoint_init() {
+    register_rest_route( 'custom/v1', '/comment', array(
+        'methods' => 'POST',
+        'callback' => 'create_post_callback',
+        'permission_callback' => '__return_true', // Allow unauthenticated users
+    ));
+}
+add_action( 'rest_api_init', 'create_post_endpoint_init' );
+
+// Callback function for creating a post
+function create_post_callback( $data ) {
+    $post_data = array(
+        'post_title' => $data['title'],
+        'post_content' => $data['content'],
+        'post_status' => 'publish',
+    );
+
+    $post_id = wp_insert_post( $post_data );
+
+    if ( is_wp_error( $post_id ) ) {
+        return new WP_Error( 'failed_to_create_post', 'Failed to create post', array( 'status' => 500 ) );
+    }
+
+    return array(
+        'success' => true,
+        'post_id' => $post_id,
+    );
+}
