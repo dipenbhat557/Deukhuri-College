@@ -18,6 +18,8 @@ const HeroHeader = () => {
     `${import.meta.env.VITE_APP_API_ROOT}/notice-headers`
   );
 
+  // console.log("header notices are ",headerNotices)
+
   return (
     <>
       <div

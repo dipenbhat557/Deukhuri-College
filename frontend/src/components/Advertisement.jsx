@@ -10,14 +10,15 @@ const Advertisement = () => {
 export default Advertisement;
 
 const Notice = ({ setPresent }) => {
-  const advertisement = useFetch(
+  const [advertisement, setAdvertisement] = useState([]);
+  const newAdvertisement = useFetch(
     `${import.meta.env.VITE_APP_API_ROOT}/advertisements`
   );
-  console.log(advertisement);
+  // console.log(advertisement);
 
   useEffect(() => {
-    console.log(advertisement);
-  }, [advertisement]);
+    setAdvertisement(newAdvertisement);
+  }, [newAdvertisement]);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -30,8 +31,8 @@ const Notice = ({ setPresent }) => {
         <div className="h-[500px] w-auto ">
           <img
             src={advertisement?.[0]?.imageUrl || def}
-            alt="advertisement"
-            className="w-full h-full object-contain"
+            alt="No notices for now"
+            className="w-full h-full object-contain "
           />
         </div>
       </div>

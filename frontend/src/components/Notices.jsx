@@ -13,7 +13,12 @@ const Notices = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
-  let notices = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/notices?per_page=100`);
+  const url =
+    window?.innerWidth < 650
+      ? `${import.meta.env.VITE_APP_API_ROOT}/notices`
+      : `${import.meta.env.VITE_APP_API_ROOT}/notices?per_page=100`;
+
+  let notices = useFetch(url);
 
   // useEffect(() => {
   //   console.log("Notices : ", notices?.[currentIndex]?.imageUrl);
@@ -21,7 +26,7 @@ const Notices = () => {
 
   return (
     <div
-      className={`${styles.padding} flex flex-col overflow-y-hidden sm:flex-row justify-between items-center w-full h-auto sm:h-[400px]  mt-4`}
+      className={`${styles.padding} flex flex-col sm:flex-row justify-between items-center w-full h-auto sm:h-[400px]  mt-4`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
