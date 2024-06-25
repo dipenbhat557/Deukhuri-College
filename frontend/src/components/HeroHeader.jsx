@@ -21,7 +21,7 @@ const HeroHeader = () => {
   return (
     <>
       <div
-        className={`${styles.padding}  relative z-0 min-w-[95%] h-[80px]  my-1 overflow-x-hidden flex items-center justify-between`}
+        className={`${styles.padding} overflow-y-hidden  relative z-0 min-w-[95%] h-[80px]  my-1 overflow-x-hidden flex items-center justify-between`}
       >
         <div className="flex w-[40%] sm:w-[50%] items-start gap-5">
           <img

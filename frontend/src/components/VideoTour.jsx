@@ -44,11 +44,11 @@ const VideoTour = () => {
 
   return (
     <div
-      className={`${styles.padding} w-[98%] h-[700px] flex flex-col  sm:h-[510px] mt-4 mb-0 mx-auto bg-white`}
+      className={`${styles.padding} min-w-screen max-w-screen-sm h-auto flex flex-col sm:h-auto mt-4 mb-0 mx-auto bg-white`}
     >
       <motion.div variants={textVariant()} className="h-[10%] w-full">
-        <div className="flex items-center h-[15%]  font-semibold">
-          <p className=" text-[10px] text-red-900 md:text-[15px]">
+        <div className="flex items-center h-[15%] font-semibold">
+          <p className="text-[10px] text-red-900 md:text-[15px]">
             A SHORT VIDEO TOUR
           </p>
         </div>
@@ -57,10 +57,10 @@ const VideoTour = () => {
           <br /> Deukhuri Multiple Campus
         </p>
       </motion.div>
-      <div className="h-[30%] sm:h-[85%] w-full flex flex-wrap items-center justify-between mt-8">
+      <div className="h-auto sm:h-auto w-full flex flex-wrap items-center justify-between mt-8">
         <motion.div
           variants={fadeIn("right", "spring", 1, 0.75)}
-          className="relative h-full w-full sm:w-[48%]"
+          className="relative h-[200px] w-full sm:h-[300px] sm:w-[48%]"
         >
           <iframe
             ref={videoRef}
@@ -80,7 +80,7 @@ const VideoTour = () => {
           />
         </motion.div>
         <motion.div
-          className="h-[350px] sm:h-full w-full sm:w-[40%] mt-4 sm:mt-0 flex items-center justify-center flex-col bg-gradient-to-b from-red-900 to-red-50 mb-4 p-auto rounded-2xl"
+          className="h-auto sm:h-auto w-full sm:w-[48%] mt-4 sm:mt-0 flex items-center justify-center flex-col bg-gradient-to-b from-red-900 to-red-50 mb-4 p-auto rounded-2xl"
           variants={fadeIn("left", "spring", 1, 0.75)}
         >
           <Tilt
@@ -89,7 +89,7 @@ const VideoTour = () => {
               scale: 1,
               speed: 450,
             }}
-            className=" p-5 flex flex-col items-center justify-center rounded-2xl h-full w-full"
+            className="p-5 flex flex-col items-center justify-center rounded-2xl h-full w-full"
           >
             <p className="text-[20px] font-semibold mb-2 text-center">
               Introduction

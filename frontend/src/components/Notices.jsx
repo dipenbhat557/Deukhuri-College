@@ -21,7 +21,7 @@ const Notices = () => {
 
   return (
     <div
-      className={`${styles.padding} flex flex-col sm:flex-row justify-between items-center w-full h-auto sm:h-[400px]  mt-4`}
+      className={`${styles.padding} flex flex-col overflow-y-hidden sm:flex-row justify-between items-center w-full h-auto sm:h-[400px]  mt-4`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}

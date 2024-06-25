@@ -15,7 +15,7 @@ const Messages = () => {
   return (
     <div className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%] h-auto`}>
       <div
-        className="bg-[#212529] w-[80px] h-[14%] flex justify-start mt-0.5  rounded-t-xl"
+        className="bg-[#212529] w-[80px] h-[100px] flex justify-start mt-0.5  rounded-t-xl"
         style={{ position: "absolute", zIndex: -1 }}
       ></div>
       <div className=" w-[95%] h-full flex flex-col items-center justify-center mx-8">

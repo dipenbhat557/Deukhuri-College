@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useFetch from "./UseFetch";
 import { FaTimes } from "react-icons/fa";
+import { def } from "../assets";
 
 const Advertisement = () => {
   const [present, setPresent] = useState(true);
@@ -12,6 +13,7 @@ const Notice = ({ setPresent }) => {
   const advertisement = useFetch(
     `${import.meta.env.VITE_APP_API_ROOT}/advertisements`
   );
+  console.log(advertisement);
 
   useEffect(() => {
     console.log(advertisement);
@@ -27,7 +29,7 @@ const Notice = ({ setPresent }) => {
         />
         <div className="h-[500px] w-auto ">
           <img
-            src={advertisement?.[0]?.imageUrl}
+            src={advertisement?.[0]?.imageUrl || def}
             alt="advertisement"
             className="w-full h-full object-contain"
           />
