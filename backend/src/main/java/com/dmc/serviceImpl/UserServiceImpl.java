@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.User;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService{
     private UserRepo userRepo;
 
     @Override
-    public User create(UserRequest userRequest) {
+    public User create(UserRequest userRequest, MultipartFile file) {
 
         User user = new User();
 
@@ -27,8 +28,8 @@ public class UserServiceImpl implements UserService{
         user.setPassword(userRequest.getPassword());
         user.setName(userRequest.getName());
         try {
-            if(userRequest.getFile() != null){
-                user.setImg(userRequest.getFile().getBytes());
+            if(file != null){
+                user.setImg(file.getBytes());
             }
         } catch (IOException ex) {
             System.out.println("Could not save image");
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updateUser(int userId, UserRequest userRequest) {
+    public User updateUser(int userId, UserRequest userRequest,MultipartFile file) {
         
         User user = this.getById(userId);
 
@@ -62,8 +63,8 @@ public class UserServiceImpl implements UserService{
         user.setPassword(userRequest.getPassword());
         
         try {
-            if(userRequest.getFile() != null){
-                user.setImg(userRequest.getFile().getBytes());
+            if(file != null){
+                user.setImg(file.getBytes());
             }
         } catch (IOException ex) {
             System.out.println("Could not save image");

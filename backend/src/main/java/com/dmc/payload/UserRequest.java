@@ -1,7 +1,5 @@
 package com.dmc.payload;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +14,4 @@ public class UserRequest{
 
     private String name;
 
-    private MultipartFile file;
 }

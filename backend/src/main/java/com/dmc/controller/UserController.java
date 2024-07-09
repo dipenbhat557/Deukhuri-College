@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.model.User;
 import com.dmc.payload.UserRequest;
@@ -25,11 +25,6 @@ public class UserController{
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public ResponseEntity<User> create(@RequestBody UserRequest req){
-        return new ResponseEntity<>(this.userService.create(req),HttpStatus.CREATED);
-    }
-
     @GetMapping
     public ResponseEntity<List<User>> getAll(){
         return new ResponseEntity<>(this.userService.getAll(),HttpStatus.OK);
@@ -41,8 +36,8 @@ public class UserController{
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable int userId,@RequestBody UserRequest req){
-        return new ResponseEntity<>(this.userService.updateUser(userId, req),HttpStatus.OK);
+    public ResponseEntity<User> updateUser(@PathVariable int userId,@RequestPart("user") UserRequest req,@RequestPart("file") MultipartFile file){
+        return new ResponseEntity<>(this.userService.updateUser(userId, req,file),HttpStatus.OK);
     }
 
     @DeleteMapping("/{userId}")
