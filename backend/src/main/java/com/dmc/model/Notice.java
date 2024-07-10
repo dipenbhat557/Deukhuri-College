@@ -21,7 +21,7 @@ public class Notice{
 
     private String title;
 
-    private boolean isHeader;
+    private boolean header;
 
     @Lob
     private byte[] img;

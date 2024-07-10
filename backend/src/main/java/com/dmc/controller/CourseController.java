@@ -33,15 +33,14 @@ public class CourseController{
     @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Course> create(@RequestParam("course") String courseJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
-        CourseRequest req = null;
 
         try {
-                req = objectMapper.readValue(courseJson, CourseRequest.class);
+            CourseRequest req = objectMapper.readValue(courseJson, CourseRequest.class);
+            return new ResponseEntity<>(this.courseService.create(req, file),HttpStatus.CREATED);
         } catch (JsonProcessingException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(this.courseService.create(req, file),HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -57,15 +56,14 @@ public class CourseController{
     @PutMapping(value = "/{courseId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Course> updateCourse(@PathVariable int courseId, @RequestParam("course") String courseJson, @RequestParam("file") MultipartFile file){
         ObjectMapper objectMapper = new ObjectMapper();
-        CourseRequest req = null;
 
         try {
-            req = objectMapper.readValue(courseJson, CourseRequest.class);
+            CourseRequest req = objectMapper.readValue(courseJson, CourseRequest.class);
+            return new ResponseEntity<>(this.courseService.updateById(courseId, req, file),HttpStatus.OK);
         } catch (JsonProcessingException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(this.courseService.updateById(courseId, req, file),HttpStatus.OK);
     }
 
     @DeleteMapping("/{courseId}")

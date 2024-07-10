@@ -32,16 +32,15 @@ public class BlogController{
     @PostMapping(value="/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Blog> create(@RequestParam("blog") String blogJson, @RequestParam("file") MultipartFile file){
         ObjectMapper objectMapper = new ObjectMapper();
-        BlogRequest req = null;
 
         try {
-            req = objectMapper.readValue(blogJson, BlogRequest.class);
+            BlogRequest req = objectMapper.readValue(blogJson, BlogRequest.class);
+            return new ResponseEntity<>(this.blogService.create(req, file),HttpStatus.CREATED);
         } catch (JsonProcessingException e) {
 
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(this.blogService.create(req, file),HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -57,15 +56,14 @@ public class BlogController{
     @PutMapping(value="/{blogId}",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Blog> updateBlog(@PathVariable int blogId, @RequestParam("blog") String blogJson, @RequestParam("file") MultipartFile file){
         ObjectMapper objectMapper = new ObjectMapper();
-        BlogRequest req = null;
 
         try {
-            req = objectMapper.readValue(blogJson, BlogRequest.class);
+            BlogRequest req = objectMapper.readValue(blogJson, BlogRequest.class);
+            return new ResponseEntity<>(this.blogService.updateBlog(blogId, req, file),HttpStatus.OK);
         } catch (JsonProcessingException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-        return new ResponseEntity<>(this.blogService.updateBlog(blogId, req, file),HttpStatus.OK);
+        
     }
 
     @DeleteMapping("/{blogId}")

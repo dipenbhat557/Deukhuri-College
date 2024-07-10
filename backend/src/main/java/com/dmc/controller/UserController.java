@@ -41,15 +41,13 @@ public class UserController{
     @PutMapping(value="/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<User> updateUser(@PathVariable int userId,@RequestParam("user") String userJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
-        UserRequest req = null;
 
          try {
-            req = objectMapper.readValue(userJson, UserRequest.class);
+            UserRequest req = objectMapper.readValue(userJson, UserRequest.class);
+            return new ResponseEntity<>(this.userService.updateUser(userId, req,file),HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        
-        return new ResponseEntity<>(this.userService.updateUser(userId, req,file),HttpStatus.OK);
     }
 
     @DeleteMapping("/{userId}")
