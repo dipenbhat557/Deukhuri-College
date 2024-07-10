@@ -1,11 +1,13 @@
 package com.dmc.serviceImpl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.Faculty;
 import com.dmc.payload.FacultyRequest;
 import com.dmc.repo.FacultyRepo;
@@ -19,26 +21,53 @@ public class FacultyServiceImpl implements FacultyService{
 
     @Override
     public Faculty create(FacultyRequest req, MultipartFile file) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Faculty faculty = new Faculty();
+
+        faculty.setName(req.getName());
+        faculty.setDesignation(req.getDesignation());
+        faculty.setCategory(req.getCategory());
+
+        try {
+            if(file != null){
+                faculty.setImg(file.getBytes());
+            }
+        } catch (IOException ex) {
+            System.out.println("Could not save image");
+        }
+
+        return this.facultyRepo.save(faculty);
     }
 
     @Override
     public List<Faculty> getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.facultyRepo.findAll();
     }
 
     @Override
     public Faculty getById(int facultyId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.facultyRepo.findById(facultyId).orElseThrow(()->new ResourceNotFoundException("Faculty not found"));
     }
 
     @Override
     public Faculty updateById(int facultyId, FacultyRequest req, MultipartFile file) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Faculty faculty = getById(facultyId);
+        faculty.setName(req.getName());
+        faculty.setDesignation(req.getDesignation());
+        faculty.setCategory(req.getCategory());
+
+        try {
+            if(file != null){
+                faculty.setImg(file.getBytes());
+            }
+        } catch (IOException ex) {
+            System.out.println("Could not save image");
+        }
+
+        return this.facultyRepo.save(faculty);
     }
 
     @Override
     public void deleteById(int facultyId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.facultyRepo.delete(getById(facultyId));
     }
 }

@@ -1,11 +1,13 @@
 package com.dmc.serviceImpl;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.Notice;
 import com.dmc.payload.NoticeRequest;
 import com.dmc.repo.NoticeRepo;
@@ -19,26 +21,50 @@ public class NoticeServiceImpl implements NoticeService{
 
     @Override
     public Notice create(NoticeRequest req, MultipartFile file) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Notice notice = new Notice();
+
+        notice.setTitle(req.getTitle());
+        notice.setHeader(req.isHeader());
+
+        try {
+            if(file != null){
+                notice.setImg(file.getBytes());
+            }
+        } catch (IOException ex) {
+            System.out.println("Could not save image");
+        }
+        return this.noticeRepo.save(notice);
     }
 
     @Override
     public List<Notice> getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.noticeRepo.findAll();
     }
 
     @Override
-    public Notice getById(int courseId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Notice getById(int noticeId) {
+        return this.noticeRepo.findById(noticeId).orElseThrow(()-> new ResourceNotFoundException("Notice not found"));
     }
 
     @Override
-    public Notice updateById(int courseId, NoticeRequest req, MultipartFile file) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Notice updateById(int noticeId, NoticeRequest req, MultipartFile file) {
+        Notice notice =  this.getById(noticeId);
+
+        notice.setTitle(req.getTitle());
+        notice.setHeader(req.isHeader());
+
+        try {
+            if(file != null){
+                notice.setImg(file.getBytes());
+            }
+        } catch (IOException ex) {
+            System.out.println("Could not save image");
+        }
+        return this.noticeRepo.save(notice);
     }
 
     @Override
-    public void deleteById(int courseId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void deleteById(int noticeId) {
+        this.noticeRepo.delete(getById(noticeId));    
     }
 }

@@ -12,9 +12,9 @@ public interface NoticeService{
 
     public List<Notice> getAll();
 
-    public Notice getById(int courseId);
+    public Notice getById(int noticeId);
 
-    public Notice updateById(int courseId, NoticeRequest req, MultipartFile file);
+    public Notice updateById(int noticeId, NoticeRequest req, MultipartFile file);
 
-    public void deleteById(int courseId);
+    public void deleteById(int noticeId);
 }
