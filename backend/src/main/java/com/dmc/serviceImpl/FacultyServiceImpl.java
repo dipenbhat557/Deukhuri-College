@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.Faculty;
+import com.dmc.model.FacultyCategory;
 import com.dmc.payload.FacultyRequest;
 import com.dmc.repo.FacultyRepo;
 import com.dmc.service.FacultyService;
@@ -69,5 +70,10 @@ public class FacultyServiceImpl implements FacultyService{
     @Override
     public void deleteById(int facultyId) {
         this.facultyRepo.delete(getById(facultyId));
+    }
+
+    @Override
+    public List<Faculty> getByCategory(FacultyCategory category) {
+        return this.facultyRepo.findByCategory(category);
     }
 }

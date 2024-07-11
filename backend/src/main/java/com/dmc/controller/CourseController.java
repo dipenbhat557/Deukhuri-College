@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.model.Course;
+import com.dmc.model.Program;
 import com.dmc.payload.CourseRequest;
 import com.dmc.service.CourseService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -70,5 +71,10 @@ public class CourseController{
     public ResponseEntity<String> deleteById(@PathVariable int courseId){
         this.courseService.deleteById(courseId);
         return new ResponseEntity<>("Course deleted successfully",HttpStatus.OK);
+    }
+
+    @GetMapping("/program")
+    public ResponseEntity<List<Course>> getByProgram(@RequestParam("program") Program program){
+        return new ResponseEntity<>(this.courseService.getByProgram(program),HttpStatus.OK);
     }
 }

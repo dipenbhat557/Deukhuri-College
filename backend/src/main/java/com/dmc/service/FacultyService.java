@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.model.Faculty;
+import com.dmc.model.FacultyCategory;
 import com.dmc.payload.FacultyRequest;
 
 public interface FacultyService{
@@ -18,4 +19,6 @@ public interface FacultyService{
     public Faculty updateById(int facultyId, FacultyRequest req, MultipartFile file);
 
     public void deleteById(int facultyId);
+    
+    public List<Faculty> getByCategory(FacultyCategory category);
 }

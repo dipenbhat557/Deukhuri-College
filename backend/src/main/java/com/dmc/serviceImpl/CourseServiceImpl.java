@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.Course;
+import com.dmc.model.Program;
 import com.dmc.payload.CourseRequest;
 import com.dmc.repo.CourseRepo;
 import com.dmc.service.CourseService;
@@ -71,5 +72,10 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public void deleteById(int courseId) {
         this.courseRepo.delete(getById(courseId));
+    }
+
+    @Override
+    public List<Course> getByProgram(Program program) {
+        return this.courseRepo.findByProgram(program);
     }
 }

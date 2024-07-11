@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.model.Faculty;
+import com.dmc.model.FacultyCategory;
 import com.dmc.payload.FacultyRequest;
 import com.dmc.service.FacultyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -69,5 +70,10 @@ public class FacultyController{
     public ResponseEntity<String> deleteById(@PathVariable int facultyId){
         this.facultyService.deleteById(facultyId);
         return new ResponseEntity<>("Faculty deleted successfully",HttpStatus.OK);
+    }
+
+    @GetMapping("/category")
+    public ResponseEntity<List<Faculty>> getByCategory(@RequestParam("category") FacultyCategory category){
+        return new ResponseEntity<>(this.facultyService.getByCategory(category),HttpStatus.OK);
     }
 }
