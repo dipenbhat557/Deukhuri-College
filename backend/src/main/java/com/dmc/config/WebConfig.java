@@ -1,18 +1,33 @@
 package com.dmc.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig {
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:5173","https://deukhurimultiplecampus.edu.np","https://api.deukhurimultiplecampus.edu.np") 
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+     @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowCredentials(true);
+        configuration.addAllowedOrigin("http://localhost:5173");
+        configuration.addAllowedHeader("Authorization");
+        configuration.addAllowedHeader("Content-Type");
+        configuration.addAllowedHeader("Accept");
+        configuration.addAllowedMethod("POST");
+        configuration.addAllowedMethod("GET");
+        configuration.addAllowedMethod("DELETE");
+        configuration.addAllowedMethod("PUT");
+        configuration.addAllowedMethod("OPTIONS");
+        configuration.setMaxAge(3600L);
+
+        source.registerCorsConfiguration("/**", configuration);
+
+        return new CorsFilter(source);
     }
 }
