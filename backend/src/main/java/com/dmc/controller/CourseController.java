@@ -31,7 +31,7 @@ public class CourseController{
     @Autowired
     private CourseService courseService;
 
-    @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Course> create(@RequestParam("course") String courseJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 

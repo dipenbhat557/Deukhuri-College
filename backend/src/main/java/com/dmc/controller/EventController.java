@@ -29,7 +29,7 @@ public class EventController{
     @Autowired
     private EventService eventService;
 
-   @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+   @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Event> create(@RequestParam("event") String eventJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 

@@ -26,7 +26,6 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    // private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     @PostMapping("/signin")
     public ResponseEntity<User> login(@RequestBody AuthRequest req) {

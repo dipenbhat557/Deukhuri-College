@@ -29,7 +29,7 @@ public class SyllabusController{
     @Autowired
     private SyllabusService syllabusService;
 
-    @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Syllabus> create(@RequestParam("syllabus") String syllabusJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 

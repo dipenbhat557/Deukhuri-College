@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dmc.model.Subscribed;
+import com.dmc.payload.SubscribedRequest;
 import com.dmc.service.SubscribedService;
 
 @RestController
@@ -24,10 +25,10 @@ public class SubscribedController{
     @Autowired
     private SubscribedService subscribedService;
 
-    @PostMapping(value = "/")
-    public ResponseEntity<Subscribed> create(@RequestBody String subscribed ){
+    @PostMapping
+    public ResponseEntity<Subscribed> create(@RequestBody SubscribedRequest req ){
        
-        return new ResponseEntity<>(this.subscribedService.create(subscribed),HttpStatus.CREATED);
+        return new ResponseEntity<>(this.subscribedService.create(req.getEmail()),HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -41,9 +42,9 @@ public class SubscribedController{
     }
 
     @PutMapping(value = "/{subscribedId}")
-    public ResponseEntity<Subscribed> updateSubscribed(@PathVariable int subscribedId, @RequestBody String subscribed ){
+    public ResponseEntity<Subscribed> updateSubscribed(@PathVariable int subscribedId, @RequestBody SubscribedRequest req ){
        
-        return new ResponseEntity<>(this.subscribedService.updateById(subscribedId, subscribed),HttpStatus.CREATED);
+        return new ResponseEntity<>(this.subscribedService.updateById(subscribedId, req.getEmail()),HttpStatus.CREATED);
 
     }
 

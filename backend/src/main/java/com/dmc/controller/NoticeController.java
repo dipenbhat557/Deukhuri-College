@@ -29,7 +29,7 @@ public class NoticeController{
     @Autowired
     private NoticeService noticeService;
 
-    @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Notice> create(@RequestParam("notice") String noticeJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 

@@ -16,7 +16,6 @@ public class WebConfig {
 
         configuration.setAllowCredentials(true);
         configuration.addAllowedOrigin("http://localhost:5173");
-        configuration.addAllowedHeader("Authorization");
         configuration.addAllowedHeader("Content-Type");
         configuration.addAllowedHeader("Accept");
         configuration.addAllowedMethod("POST");

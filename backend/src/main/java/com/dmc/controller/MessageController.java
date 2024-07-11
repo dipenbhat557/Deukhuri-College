@@ -29,7 +29,7 @@ public class MessageController{
     @Autowired
     private MessageService messageService;
 
-    @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Message> create(@RequestParam("message") String messageJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 

@@ -29,7 +29,7 @@ public class BlogController{
     @Autowired
     private BlogService blogService;
 
-    @PostMapping(value="/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value="",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Blog> create(@RequestParam("blog") String blogJson, @RequestParam("file") MultipartFile file){
         ObjectMapper objectMapper = new ObjectMapper();
 

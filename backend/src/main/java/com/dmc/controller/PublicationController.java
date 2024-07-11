@@ -29,7 +29,7 @@ public class PublicationController{
     @Autowired
     private PublicationService publicationService;
 
-    @PostMapping(value="/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value="",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Publication> create(@RequestParam("publication") String publicationJson, @RequestParam("file") MultipartFile file){
         ObjectMapper objectMapper = new ObjectMapper();
 

@@ -1,5 +1,6 @@
 package com.dmc.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +11,36 @@ import com.dmc.model.Rule;
 import com.dmc.repo.RuleRepo;
 import com.dmc.service.RuleService;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class RuleServiceImpl implements RuleService{
 
     @Autowired
     private RuleRepo ruleRepo;
 
     @Override
-    public Rule create(List<String> req) {
-        Rule rule = new Rule();
-
-        rule.setRules(req);
-
-        return this.ruleRepo.save(rule);
+@Transactional
+public Rule create(List<String> req) {
+    // Log the contents of req
+    System.out.println("Received rules: " + req);
+    if (req == null || req.isEmpty()) {
+        throw new IllegalArgumentException("The rules list cannot be null or empty");
     }
+
+    Rule rule = new Rule();
+
+    
+
+    // Convert req to a new ArrayList
+    List<String> rulesList = new ArrayList<>(req);
+
+    rule.setRules(rulesList);
+
+    return this.ruleRepo.save(rule);
+}
+
 
     @Override
     public List<Rule> getAll() {

@@ -30,7 +30,7 @@ public class FacultyController{
     @Autowired
     private FacultyService facultyService;
 
-     @PostMapping(value = "/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Faculty> create(@RequestParam("faculty") String facultyJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 

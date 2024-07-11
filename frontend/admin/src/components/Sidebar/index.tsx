@@ -91,7 +91,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+      <div className="flex items-center justify-between gap-2 px-6 py-2 lg:py-6.5">
         <NavLink to="/" className="flex items-center justify-center ">
           <img src={logo} className="object-contain h-[10%] w-[40%]" alt="Logo" />
         </NavLink>
