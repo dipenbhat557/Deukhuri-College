@@ -7,7 +7,7 @@ import PageTitle from "./components/PageTitle";
 import Hero from "./pages/Dashboard/Hero";
 
 import FaqForm from "./pages/Form/FaqForm";
-import OurInfo from "./components/Tables/OurInfo";
+import Rules from "./components/Tables/Rules";
 import CoustomerReview from "./components/Tables/CustomerReview";
 import Message from "./components/Tables/Message";
 import Faq from "./components/Tables/Faq";
@@ -96,11 +96,11 @@ function App() {
           }
         />
         <Route
-          path="/our-info"
+          path="/rules"
           element={
             <>
-              <PageTitle title="Our Info" />
-              <OurInfo />
+              <PageTitle title="Rules" />
+              <Rules />
             </>
           }
         />

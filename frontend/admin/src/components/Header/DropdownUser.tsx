@@ -24,7 +24,7 @@ const DropdownUser = () => {
         <span className="h-12 w-12 rounded-full">
           <img
             src={`data:image/jpeg;base64,${currentUser?.pimg}` || def}
-            className="rounded-full"
+            className="rounded-full h-[100%] w-[100%]"
             alt="User"
           />
         </span>

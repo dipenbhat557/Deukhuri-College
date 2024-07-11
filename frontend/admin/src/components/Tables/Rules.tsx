@@ -5,7 +5,7 @@ import axios from "axios";
 import DefaultLayout from "../../layout/DefaultLayout"; // Ensure this path is correct
 import Breadcrumb from "../Breadcrumbs/Breadcrumb"; // Ensure this path is correct
 
-const OurInfo = () => {
+const Rules = () => {
   const [editable, setEditable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [rules, setRules] = useState<string[]>([]);
@@ -114,4 +114,4 @@ const OurInfo = () => {
   );
 };
 
-export default OurInfo;
+export default Rules;

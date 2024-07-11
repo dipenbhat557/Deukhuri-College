@@ -17,14 +17,10 @@ import { useRecoilValue } from "recoil";
 import { currUser } from "../../pages/store";
 
 interface BlogData {
+  id: number;
   title: string;
-  role: string;
-  blogTitle: string;
-  content: string;
-  author: string;
-  date: string;
+  description: string;
   img: string;
-  id: string;
 }
 
 const Blog = () => {
@@ -79,14 +75,7 @@ const Blog = () => {
       setDataDeleted(false);
     }, 3000);
 
-    const historyRef = collection(db, "history");
-    await addDoc(historyRef, {
-      title: "Blog deleted",
-      role: currentUser?.role,
-      date: serverTimestamp(),
-      item: "Blog",
-      user: currentUser?.name,
-    });
+
   };
 
   return (

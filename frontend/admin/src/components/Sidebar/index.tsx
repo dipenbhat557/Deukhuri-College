@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import { useRecoilState } from "recoil";
 import { currUser } from "../../pages/store";
-import { MdInfo, MdReviews, MdSpaceDashboard, MdTour } from "react-icons/md";
+import {  MdReviews, MdSpaceDashboard, MdTour } from "react-icons/md";
 import { AiFillMessage } from "react-icons/ai";
 import {
   FaBlog,
@@ -12,6 +12,8 @@ import {
   FaQuora,
   FaSignOutAlt,
 } from "react-icons/fa";
+
+import {FcRules} from "react-icons/fc"
 import { RiGalleryFill, RiTeamFill } from "react-icons/ri";
 import { PiLinkSimple } from "react-icons/pi";
 import { logo } from "../../assets";
@@ -155,14 +157,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Business Section --> */}
               <li>
                 <NavLink
-                  to="/our-info"
+                  to="/rules"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("Our Info") &&
+                    pathname.includes("Rules") &&
                     "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  <MdInfo className="text-2xl" />
-                  Our Info
+                  <FcRules className="text-2xl" />
+                  Rules
                 </NavLink>
               </li>
               {/* <!-- Menu Item Business Section --> */}

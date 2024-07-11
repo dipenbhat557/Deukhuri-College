@@ -1,5 +1,5 @@
 {
-  "name": "geoland-tours-and-travels",
+  "name": "deukhuri-multiple-campus",
   "private": true,
   "version": "1.3.0",
   "type": "module",
@@ -11,7 +11,7 @@
   "author": {
     "name": "Dipendra Bhatta",
     "email": "dipenbhat557@gmail.com",
-    "url": "https://geolandtravels.com"
+    "url": "https://deukhurimultiplecampus.edu.np"
   },
   "dependencies": {
     "apexcharts": "^3.41.0",
