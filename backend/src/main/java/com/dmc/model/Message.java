@@ -28,5 +28,6 @@ public class Message{
     private String message;
 
     @Lob
+    @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] img;
 }

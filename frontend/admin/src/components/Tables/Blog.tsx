@@ -2,19 +2,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import DefaultLayout from "../../layout/DefaultLayout";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
 import { useEffect, useState } from "react";
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  serverTimestamp,
-} from "firebase/firestore";
-import { db } from "../../firebaseConfig";
 import { MdDelete } from "react-icons/md";
-import { useRecoilValue } from "recoil";
-import { currUser } from "../../pages/store";
+import axios from "axios";
 
 interface BlogData {
   id: number;
@@ -27,54 +16,27 @@ const Blog = () => {
   const [blogs, setBlogs] = useState<BlogData[]>([]);
   const navigate = useNavigate();
   const [dataDeleted, setDataDeleted] = useState(false);
-  const currentUser = useRecoilValue(currUser);
 
   useEffect(() => {
-    const gotBlogs: BlogData[] = [];
     const fetchDocuments = async () => {
-      const querySnapshot = await getDocs(collection(db, "blogs"));
-
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const date = data.date;
-        let dateObject = "";
-
-        if (date instanceof Timestamp) {
-          dateObject = date.toDate().toString().slice(0, 21);
-          console.log("Date:", dateObject);
-        } else {
-          console.error("Invalid or missing date field:", date);
-        }
-
-        const b: BlogData = {
-          title: doc?.data()?.title,
-          date: dateObject,
-          img: doc?.data()?.img,
-          id: doc?.id,
-          role: doc?.data()?.role,
-          blogTitle: doc?.data()?.blogTitle,
-          content: doc?.data()?.content,
-          author: doc?.data()?.author,
-        };
-        gotBlogs.push(b);
-      });
-      setBlogs(gotBlogs);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/blog`);
+      const recievedData = response?.data;
+      setBlogs(recievedData);
     };
 
     fetchDocuments();
   }, []);
 
-  const handleClick = async (id: string) => {
-    const blogRef = doc(db, "blogs", id);
-
-    await deleteDoc(blogRef);
+  const handleDelete = async (id: number) => {
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/rule/${id}`)
     console.log("Deleted successfully");
-    setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.id !== id));
+    
+    setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog?.id !== id));
     setDataDeleted(true);
+
     setTimeout(() => {
       setDataDeleted(false);
     }, 3000);
-
 
   };
 
@@ -101,9 +63,6 @@ const Blog = () => {
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                   Title
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Date & Time
-                </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update
                 </th>
@@ -122,9 +81,6 @@ const Blog = () => {
                     </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <p className="text-black dark:text-white">{blog?.date}</p>
-                  </td>
-                  <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
                       onClick={() =>
                         navigate("/forms/blog-form", {
@@ -140,7 +96,7 @@ const Blog = () => {
                     <div className="flex justify-center items-center space-x-3.5">
                       <MdDelete
                         className="text-2xl text-red-400 cursor-pointer"
-                        onClick={() => handleClick(blog?.id)}
+                        onClick={() => handleDelete(blog?.id)}
                       />
                     </div>
                   </td>

@@ -1,5 +1,6 @@
 package com.dmc.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Faculty{
     private String designation;
 
     @Lob
+    @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] img;
 
     private FacultyCategory category;

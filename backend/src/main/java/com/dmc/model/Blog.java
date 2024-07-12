@@ -26,5 +26,6 @@ public class Blog{
     private String description;
 
     @Lob
+    @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] img;
 }

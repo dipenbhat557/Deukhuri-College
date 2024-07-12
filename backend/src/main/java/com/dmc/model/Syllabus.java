@@ -1,5 +1,6 @@
 package com.dmc.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,5 +25,6 @@ public class Syllabus{
     private Program program;
 
     @Lob
+    @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] img;
 }

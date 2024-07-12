@@ -26,6 +26,7 @@ public class Course{
     private String description;
 
     @Lob
+    @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] image;
 
     private Program program;
