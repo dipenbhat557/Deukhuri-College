@@ -1,54 +1,37 @@
-import React, { useEffect, useState } from "react";
+import  {  useState } from "react";
 import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLayout";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { base64ToFile } from "../store";
 
-const BlogForm = () => {
+const SubscribedForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const blog = location?.state?.blog;
+  const subscribed = location?.state?.subscribed;
   const [formData, setFormData] = useState({
-    id: blog?.id || 0,
-    title: blog?.title || "",
-    description: blog?.description || "",
+    id: subscribed?.id || 0,
+    email: subscribed?.email || ""
   });
 
-  const [img, setImg] = useState<File | null>(null);
   const [dataSaved, setDataSaved] = useState(false);
-
-
-useEffect(() => {
-  if (blog?.img) {
-    const fileName = "example.jpg";
-    const mimeType = "image/jpeg"; 
-
-    const file = base64ToFile(blog?.img, fileName, mimeType);
-
-    setImg(file);
-  }
-}, [blog]); // Ensure useEffect runs whenever blog changes
 
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("blog", JSON.stringify({title:formData?.title,description:formData?.description}));
-    if (img) {
-      formDataToSend.append("file", img);
-    }
+    formDataToSend.append("subscribed", JSON.stringify({email:formData?.email}));
+
 
     console.log(formDataToSend)
 
     try {
-      if (blog?.id) {
-        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/blog/${blog.id}`, formDataToSend, {
+      if (subscribed?.id) {
+        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/subscribed/${subscribed?.id}`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
       } else {
-        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/blog`, formDataToSend, {
+        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/subscribed`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -56,13 +39,11 @@ useEffect(() => {
       }
       setFormData({
         id: 0,
-        title: "",
-        description: "",
+        email:""
       });
-      setImg(null);
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      navigate("/blogs");
+      navigate("/subscribed");
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -70,22 +51,13 @@ useEffect(() => {
     window.scrollTo(0, 0);
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    console.log("selectef file is ",file)
-    if (file) {
-      setImg(file);
-    }
-  };
-
-
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Blogs" />
+      <Breadcrumb pageName="Subscribed Emails" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/blogs">Go to Blogs</NavLink>
+          <NavLink to="/subscribed">Go to Subscribed Emails</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -101,50 +73,23 @@ useEffect(() => {
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">Title</label>
+                <label className="mb-3 block text-black dark:text-white">Email</label>
                 <input
-                  value={formData.title}
-                  name="title"
+                  value={formData.email}
+                  name="email"
                   onChange={(e) =>
                     setFormData((prevState) => ({
                       ...prevState,
-                      title: e.target.value,
+                      email: e.target.value,
                     }))
                   }
                   type="text"
-                  placeholder="Title Input"
+                  placeholder="Email"
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
-              <div>
-                <label className="mb-3 block text-black dark:text-white">Description</label>
-                <textarea
-                  value={formData.description}
-                  name="description"
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      description: e.target.value,
-                    }))
-                  }
-                  rows={10}
-                  placeholder="Description"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                />
-              </div>
-              <div>
-                <label className="mb-3 block text-black dark:text-white">Attach Image</label>
-                 {img && (
-                    <div className="mt-2">
-                      <img src={URL.createObjectURL(img)} alt="Selected Image" className="max-w-full h-auto" />
-                    </div>
-                  )}
-                <input
-                  onChange={handleFileChange}
-                  type="file"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white"
-                />
-              </div>
+         
+       
             </div>
           </div>
         </div>
@@ -167,4 +112,4 @@ useEffect(() => {
   );
 };
 
-export default BlogForm;
+export default SubscribedForm;

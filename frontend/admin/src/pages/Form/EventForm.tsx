@@ -5,14 +5,14 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base64ToFile } from "../store";
 
-const BlogForm = () => {
+const EventForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const blog = location?.state?.blog;
+  const event = location?.state?.event;
   const [formData, setFormData] = useState({
-    id: blog?.id || 0,
-    title: blog?.title || "",
-    description: blog?.description || "",
+    id: event?.id || 0,
+    title: event?.title || "",
+    description: event?.description || ""
   });
 
   const [img, setImg] = useState<File | null>(null);
@@ -20,20 +20,20 @@ const BlogForm = () => {
 
 
 useEffect(() => {
-  if (blog?.img) {
+  if (event?.img) {
     const fileName = "example.jpg";
     const mimeType = "image/jpeg"; 
 
-    const file = base64ToFile(blog?.img, fileName, mimeType);
+    const file = base64ToFile(event?.img, fileName, mimeType);
 
     setImg(file);
   }
-}, [blog]); // Ensure useEffect runs whenever blog changes
+}, [event]); // Ensure useEffect runs whenever event changes
 
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("blog", JSON.stringify({title:formData?.title,description:formData?.description}));
+    formDataToSend.append("event", JSON.stringify({title:formData?.title,description:formData?.description}));
     if (img) {
       formDataToSend.append("file", img);
     }
@@ -41,14 +41,14 @@ useEffect(() => {
     console.log(formDataToSend)
 
     try {
-      if (blog?.id) {
-        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/blog/${blog.id}`, formDataToSend, {
+      if (event?.id) {
+        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/event/${event?.id}`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
       } else {
-        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/blog`, formDataToSend, {
+        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/event`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -57,12 +57,12 @@ useEffect(() => {
       setFormData({
         id: 0,
         title: "",
-        description: "",
+        description: ""
       });
       setImg(null);
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      navigate("/blogs");
+      navigate("/events");
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -82,10 +82,10 @@ useEffect(() => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Blogs" />
+      <Breadcrumb pageName="Events" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/blogs">Go to Blogs</NavLink>
+          <NavLink to="/events">Go to Events</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -132,6 +132,7 @@ useEffect(() => {
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
+              
               <div>
                 <label className="mb-3 block text-black dark:text-white">Attach Image</label>
                  {img && (
@@ -167,4 +168,4 @@ useEffect(() => {
   );
 };
 
-export default BlogForm;
+export default EventForm;

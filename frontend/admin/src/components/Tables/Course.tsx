@@ -5,35 +5,35 @@ import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
 
-interface MessageData {
+interface CourseData {
   id: number;
-  name: string;
-  designation: string;
-  message:string;
-  img: string;
+  title: string;
+  description: string;
+  image: string;
+  program:string;
 }
 
-const Message = () => {
-  const [messages, setMessages] = useState<MessageData[]>([]);
+const Course = () => {
+  const [courses, setCourses] = useState<CourseData[]>([]);
   const navigate = useNavigate();
   const [dataDeleted, setDataDeleted] = useState(false);
 
   useEffect(() => {
     
     const fetchDocuments = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/message`);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/course`);
       const recievedData = response?.data;
-      setMessages(recievedData);
+      setCourses(recievedData);
     };
 
     fetchDocuments();
   }, []);
 
   const handleDelete = async (id: number) => {
-    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/message/${id}`)
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/course/${id}`)
     console.log("Deleted successfully");
     
-    setMessages((prevMessages) => prevMessages.filter((message) => message?.id !== id));
+    setCourses((prevCourses) => prevCourses.filter((course) => course?.id !== id));
     setDataDeleted(true);
 
     setTimeout(() => {
@@ -44,11 +44,11 @@ const Message = () => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Messages" />
+      <Breadcrumb pageName="Courses" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">
-          <NavLink to="/forms/message-form"> Add New Message</NavLink>
+          <NavLink to="/forms/course-form"> Add New Course</NavLink>
         </button>
       </div>
 
@@ -66,7 +66,7 @@ const Message = () => {
                   Id
                 </th>
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Name
+                  Title
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update
@@ -78,23 +78,23 @@ const Message = () => {
             </thead>
 
             <tbody>
-              {messages?.map((message, key) => (
+              {courses?.map((course, key) => (
                 <tr key={key}>
-                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {message?.id}
+                      {course?.id}
                     </h5>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {message?.name}
+                      {course?.title}
                     </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
                       onClick={() =>
-                        navigate("/forms/message-form", {
-                          state: { message: message },
+                        navigate("/forms/course-form", {
+                          state: { course: course },
                         })
                       }
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
@@ -106,7 +106,7 @@ const Message = () => {
                     <div className="flex justify-center items-center space-x-3.5">
                       <MdDelete
                         className="text-2xl text-red-400 cursor-pointer"
-                        onClick={() => handleDelete(message?.id)}
+                        onClick={() => handleDelete(course?.id)}
                       />
                     </div>
                   </td>
@@ -120,4 +120,4 @@ const Message = () => {
   );
 };
 
-export default Message;
+export default Course;

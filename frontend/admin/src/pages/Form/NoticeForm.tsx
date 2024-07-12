@@ -5,14 +5,14 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base64ToFile } from "../store";
 
-const BlogForm = () => {
+const NoticeForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const blog = location?.state?.blog;
+  const notice = location?.state?.notice;
   const [formData, setFormData] = useState({
-    id: blog?.id || 0,
-    title: blog?.title || "",
-    description: blog?.description || "",
+    id: notice?.id || 0,
+    title: notice?.title || "",
+    header: notice?.header || false
   });
 
   const [img, setImg] = useState<File | null>(null);
@@ -20,20 +20,20 @@ const BlogForm = () => {
 
 
 useEffect(() => {
-  if (blog?.img) {
+  if (notice?.img) {
     const fileName = "example.jpg";
     const mimeType = "image/jpeg"; 
 
-    const file = base64ToFile(blog?.img, fileName, mimeType);
+    const file = base64ToFile(notice?.img, fileName, mimeType);
 
     setImg(file);
   }
-}, [blog]); // Ensure useEffect runs whenever blog changes
+}, [notice]); // Ensure useEffect runs whenever notice changes
 
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("blog", JSON.stringify({title:formData?.title,description:formData?.description}));
+    formDataToSend.append("notice", JSON.stringify({title:formData?.title,header:formData?.header}));
     if (img) {
       formDataToSend.append("file", img);
     }
@@ -41,14 +41,14 @@ useEffect(() => {
     console.log(formDataToSend)
 
     try {
-      if (blog?.id) {
-        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/blog/${blog.id}`, formDataToSend, {
+      if (notice?.id) {
+        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/notice/${notice?.id}`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
       } else {
-        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/blog`, formDataToSend, {
+        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/notice`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -57,12 +57,12 @@ useEffect(() => {
       setFormData({
         id: 0,
         title: "",
-        description: "",
+        header: false,
       });
       setImg(null);
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      navigate("/blogs");
+      navigate("/notices");
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -78,14 +78,12 @@ useEffect(() => {
     }
   };
 
-
-
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Blogs" />
+      <Breadcrumb pageName="Faculties" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/blogs">Go to Blogs</NavLink>
+          <NavLink to="/faculties">Go to Faculties</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -101,14 +99,14 @@ useEffect(() => {
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">Title</label>
+                <label className="mb-3 block text-black dark:text-white">Name</label>
                 <input
                   value={formData.title}
-                  name="title"
+                  name="name"
                   onChange={(e) =>
                     setFormData((prevState) => ({
                       ...prevState,
-                      title: e.target.value,
+                      name: e.target.value,
                     }))
                   }
                   type="text"
@@ -117,21 +115,45 @@ useEffect(() => {
                 />
               </div>
               <div>
-                <label className="mb-3 block text-black dark:text-white">Description</label>
-                <textarea
-                  value={formData.description}
-                  name="description"
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      description: e.target.value,
-                    }))
-                  }
-                  rows={10}
-                  placeholder="Description"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                />
-              </div>
+                
+                <label className="mb-3 block text-black dark:text-white">Is Header Notice?</label>
+                <div className="flex gap-4">
+                    <label className="flex items-center">
+                    <input
+                        type="radio"
+                        name="header"
+                        value="true"
+                        checked={formData.header === true}
+                        onChange={() =>
+                        setFormData((prevState) => ({
+                            ...prevState,
+                            header: true,
+                        }))
+                        }
+                        className="form-radio"
+                    />
+                    <span className="ml-2 text-black dark:text-white">True</span>
+                    </label>
+                    <label className="flex items-center">
+                    <input
+                        type="radio"
+                        name="header"
+                        value="false"
+                        checked={formData.header === false}
+                        onChange={() =>
+                        setFormData((prevState) => ({
+                            ...prevState,
+                            header: false,
+                        }))
+                        }
+                        className="form-radio"
+                    />
+                    <span className="ml-2 text-black dark:text-white">False</span>
+                    </label>
+                </div>
+                </div>
+
+              
               <div>
                 <label className="mb-3 block text-black dark:text-white">Attach Image</label>
                  {img && (
@@ -167,4 +189,4 @@ useEffect(() => {
   );
 };
 
-export default BlogForm;
+export default NoticeForm;

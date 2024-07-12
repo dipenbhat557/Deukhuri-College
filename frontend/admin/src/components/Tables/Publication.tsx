@@ -2,98 +2,53 @@ import { NavLink, useNavigate } from "react-router-dom";
 import DefaultLayout from "../../layout/DefaultLayout";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { currUser } from "../../pages/store";
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  serverTimestamp,
-} from "firebase/firestore";
-import { db } from "../../firebaseConfig";
 import { MdDelete } from "react-icons/md";
+import axios from "axios";
 
-interface TeamData {
+interface PublicationData {
+  id: number;
   title: string;
-  name: string;
-  designation: string;
-  date: string;
-  img: string;
-  id: string;
-  category: string;
+  hidden: boolean;
+  program:string;
+  file: string;
 }
 
-const Team = () => {
-  const [teams, setTeams] = useState<TeamData[]>([]);
+const Publication = () => {
+  const [publications, setPublications] = useState<PublicationData[]>([]);
   const navigate = useNavigate();
   const [dataDeleted, setDataDeleted] = useState(false);
-  const currentUser = useRecoilValue(currUser);
 
   useEffect(() => {
-    const gotTeams: TeamData[] = [];
+    
     const fetchDocuments = async () => {
-      const querySnapshot = await getDocs(collection(db, "team"));
-
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const date = data.date;
-        let dateObject = "";
-
-        if (date instanceof Timestamp) {
-          dateObject = date.toDate().toString().slice(0, 21);
-          console.log("Date:", dateObject);
-        } else {
-          console.error("Invalid or missing date field:", date);
-        }
-
-        const t: TeamData = {
-          title: doc?.data()?.title,
-          date: dateObject,
-          img: doc?.data()?.img,
-          id: doc?.id,
-          designation: doc?.data()?.designation,
-          category: doc?.data()?.category,
-          name: doc?.data()?.name,
-        };
-        gotTeams.push(t);
-      });
-      setTeams(gotTeams);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/publication`);
+      const recievedData = response?.data;
+      setPublications(recievedData);
     };
 
     fetchDocuments();
   }, []);
 
-  const handleClick = async (id: string) => {
-    const reviewRef = doc(db, "team", id);
-
-    await deleteDoc(reviewRef);
+  const handleDelete = async (id: number) => {
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/publication/${id}`)
     console.log("Deleted successfully");
-    setTeams((prevTeams) => prevTeams.filter((team) => team.id !== id));
+    
+    setPublications((prevPublications) => prevPublications.filter((publication) => publication?.id !== id));
     setDataDeleted(true);
+
     setTimeout(() => {
       setDataDeleted(false);
     }, 3000);
 
-    const historyRef = collection(db, "history");
-    await addDoc(historyRef, {
-      title: "Team Member deleted",
-      role: currentUser?.role,
-      date: serverTimestamp(),
-      item: "Team",
-      user: currentUser?.name,
-    });
   };
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Our Team" />
+      <Breadcrumb pageName="Publications" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">
-          <NavLink to="/forms/team-form"> Add New Member</NavLink>
+          <NavLink to="/forms/publication-form"> Add New Publication</NavLink>
         </button>
       </div>
 
@@ -108,35 +63,38 @@ const Team = () => {
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Title
+                  Id
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Date & Time
+                <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                  Name
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update
                 </th>
-                <th className="py-4 px-4 font-medium text-black dark:text-white">
+                <th className="py-4 px-4 font-medium text-center text-black dark:text-white">
                   Delete
                 </th>
               </tr>
             </thead>
+
             <tbody>
-              {teams?.map((team: TeamData, key: number) => (
+              {publications?.map((publication, key) => (
                 <tr key={key}>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {team?.title}
+                      {publication?.id}
                     </h5>
                   </td>
-                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <p className="text-black dark:text-white">{team?.date}</p>
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {publication?.title}
+                    </h5>
                   </td>
-                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
                       onClick={() =>
-                        navigate("/forms/team-form", {
-                          state: { team: team },
+                        navigate("/forms/publication-form", {
+                          state: { publication: publication },
                         })
                       }
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
@@ -148,7 +106,7 @@ const Team = () => {
                     <div className="flex justify-center items-center space-x-3.5">
                       <MdDelete
                         className="text-2xl text-red-400 cursor-pointer"
-                        onClick={() => handleClick(team?.id)}
+                        onClick={() => handleDelete(publication?.id)}
                       />
                     </div>
                   </td>
@@ -162,4 +120,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default Publication;

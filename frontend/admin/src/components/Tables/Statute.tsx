@@ -5,35 +5,34 @@ import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
 
-interface MessageData {
+interface StatuteData {
   id: number;
-  name: string;
-  designation: string;
-  message:string;
+  title: string;
+  program:string;
   img: string;
 }
 
-const Message = () => {
-  const [messages, setMessages] = useState<MessageData[]>([]);
+const Statute = () => {
+  const [statutes, setStatutes] = useState<StatuteData[]>([]);
   const navigate = useNavigate();
   const [dataDeleted, setDataDeleted] = useState(false);
 
   useEffect(() => {
     
     const fetchDocuments = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/message`);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/statute`);
       const recievedData = response?.data;
-      setMessages(recievedData);
+      setStatutes(recievedData);
     };
 
     fetchDocuments();
   }, []);
 
   const handleDelete = async (id: number) => {
-    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/message/${id}`)
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/statute/${id}`)
     console.log("Deleted successfully");
     
-    setMessages((prevMessages) => prevMessages.filter((message) => message?.id !== id));
+    setStatutes((prevStatutes) => prevStatutes.filter((statute) => statute?.id !== id));
     setDataDeleted(true);
 
     setTimeout(() => {
@@ -44,11 +43,11 @@ const Message = () => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Messages" />
+      <Breadcrumb pageName="Statutes" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">
-          <NavLink to="/forms/message-form"> Add New Message</NavLink>
+          <NavLink to="/forms/statute-form"> Add New Statute</NavLink>
         </button>
       </div>
 
@@ -78,23 +77,23 @@ const Message = () => {
             </thead>
 
             <tbody>
-              {messages?.map((message, key) => (
+              {statutes?.map((statute, key) => (
                 <tr key={key}>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {message?.id}
+                      {statute?.id}
                     </h5>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {message?.name}
+                      {statute?.title}
                     </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
                       onClick={() =>
-                        navigate("/forms/message-form", {
-                          state: { message: message },
+                        navigate("/forms/statute-form", {
+                          state: { statute: statute },
                         })
                       }
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
@@ -106,7 +105,7 @@ const Message = () => {
                     <div className="flex justify-center items-center space-x-3.5">
                       <MdDelete
                         className="text-2xl text-red-400 cursor-pointer"
-                        onClick={() => handleDelete(message?.id)}
+                        onClick={() => handleDelete(statute?.id)}
                       />
                     </div>
                   </td>
@@ -120,4 +119,4 @@ const Message = () => {
   );
 };
 
-export default Message;
+export default Statute;

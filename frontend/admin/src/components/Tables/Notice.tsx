@@ -2,93 +2,52 @@ import { NavLink, useNavigate } from "react-router-dom";
 import DefaultLayout from "../../layout/DefaultLayout";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
 import { useEffect, useState } from "react";
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  serverTimestamp,
-} from "firebase/firestore";
-import { db } from "../../firebaseConfig";
 import { MdDelete } from "react-icons/md";
-import { useRecoilValue } from "recoil";
-import { currUser } from "../../pages/store";
+import axios from "axios";
 
-interface FaqData {
+interface NoticeData {
+  id: number;
   title: string;
-  date: string;
-  query: string;
-  answer: string;
-  id: string;
+  header:boolean;
+  img: string;
 }
 
-const Faq = () => {
-  const [faqs, setFaqs] = useState<FaqData[]>([]);
+const Notice = () => {
+  const [notices, setNotices] = useState<NoticeData[]>([]);
   const navigate = useNavigate();
   const [dataDeleted, setDataDeleted] = useState(false);
-  const currentUser = useRecoilValue(currUser);
 
   useEffect(() => {
-    const gotFaqs: FaqData[] = [];
+    
     const fetchDocuments = async () => {
-      const querySnapshot = await getDocs(collection(db, "faqs"));
-
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const date = data.date;
-        let dateObject = "";
-
-        if (date instanceof Timestamp) {
-          dateObject = date.toDate().toString().slice(0, 21);
-          console.log("Date:", dateObject);
-        } else {
-          console.error("Invalid or missing date field:", date);
-        }
-
-        const f: FaqData = {
-          title: doc?.data()?.title,
-          date: dateObject,
-          query: doc?.data()?.query,
-          answer: doc?.data()?.answer,
-          id: doc?.id,
-        };
-        gotFaqs.push(f);
-      });
-      setFaqs(gotFaqs);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/notice`);
+      const recievedData = response?.data;
+      setNotices(recievedData);
     };
 
     fetchDocuments();
   }, []);
 
-  const handleClick = async (id: string) => {
-    const faqRef = doc(db, "faqs", id);
-
-    await deleteDoc(faqRef);
+  const handleDelete = async (id: number) => {
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/notice/${id}`)
     console.log("Deleted successfully");
-    setFaqs((prevFaqs) => prevFaqs.filter((faq) => faq.id !== id));
+    
+    setNotices((prevNotices) => prevNotices.filter((notice) => notice?.id !== id));
     setDataDeleted(true);
+
     setTimeout(() => {
       setDataDeleted(false);
     }, 3000);
-    const historyRef = collection(db, "history");
-    await addDoc(historyRef, {
-      title: "Faq deleted",
-      role: currentUser?.role,
-      date: serverTimestamp(),
-      item: "FAQ",
-      user: currentUser?.name,
-    });
+
   };
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="FAQ" />
+      <Breadcrumb pageName="Notices" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">
-          <NavLink to="/forms/faq-form"> Add New FAQ</NavLink>
+          <NavLink to="/forms/notice-form"> Add New Notice</NavLink>
         </button>
       </div>
 
@@ -103,10 +62,10 @@ const Faq = () => {
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Title
+                  Id
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Date & Time
+                <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                  Name
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update
@@ -116,21 +75,26 @@ const Faq = () => {
                 </th>
               </tr>
             </thead>
+
             <tbody>
-              {faqs.map((faq, key) => (
+              {notices?.map((notice, key) => (
                 <tr key={key}>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {faq?.title}
+                      {notice?.id}
                     </h5>
                   </td>
-                  <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <p className="text-black dark:text-white">{faq?.date}</p>
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {notice?.name}
+                    </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
                       onClick={() =>
-                        navigate("/forms/faq-form", { state: { faq: faq } })
+                        navigate("/forms/notice-form", {
+                          state: { notice: notice },
+                        })
                       }
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                     >
@@ -141,7 +105,7 @@ const Faq = () => {
                     <div className="flex justify-center items-center space-x-3.5">
                       <MdDelete
                         className="text-2xl text-red-400 cursor-pointer"
-                        onClick={() => handleClick(faq?.id)}
+                        onClick={() => handleDelete(notice?.id)}
                       />
                     </div>
                   </td>
@@ -155,4 +119,4 @@ const Faq = () => {
   );
 };
 
-export default Faq;
+export default Notice;

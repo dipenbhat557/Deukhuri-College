@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
-import { currUser } from "../../pages/store";
 import axios from "axios";
 import DefaultLayout from "../../layout/DefaultLayout"; // Ensure this path is correct
 import Breadcrumb from "../Breadcrumbs/Breadcrumb"; // Ensure this path is correct
@@ -10,7 +8,6 @@ const Rules = () => {
   const [loading, setLoading] = useState(false);
   const [rules, setRules] = useState<string[]>([]);
   const [dataSubmitted, setDataSubmitted] = useState(false);
-  const currentUser = useRecoilValue(currUser);
 
   useEffect(() => {
     const fetchRules = async () => {

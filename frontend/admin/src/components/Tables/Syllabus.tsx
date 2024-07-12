@@ -2,91 +2,52 @@ import { NavLink, useNavigate } from "react-router-dom";
 import DefaultLayout from "../../layout/DefaultLayout";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
 import { useEffect, useState } from "react";
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  serverTimestamp,
-} from "firebase/firestore";
-import { db } from "../../firebaseConfig";
 import { MdDelete } from "react-icons/md";
-import { useRecoilValue } from "recoil";
-import { currUser } from "../../pages/store";
+import axios from "axios";
 
-interface ImageData {
+interface SyllabusData {
+  id: number;
   title: string;
-  date: string;
+  program:string;
   img: string;
-  id: string;
 }
 
-const Glimpses = () => {
-  const [images, setImages] = useState<ImageData[]>([]);
+const Syllabus = () => {
+  const [syllabuss, setSyllabuss] = useState<SyllabusData[]>([]);
   const navigate = useNavigate();
   const [dataDeleted, setDataDeleted] = useState(false);
-  const currentUser = useRecoilValue(currUser);
 
   useEffect(() => {
-    const gotImages: ImageData[] = [];
+    
     const fetchDocuments = async () => {
-      const querySnapshot = await getDocs(collection(db, "glimpses"));
-
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const date = data.date;
-        let dateObject = "";
-
-        if (date instanceof Timestamp) {
-          dateObject = date.toDate().toString().slice(0, 21);
-          console.log("Date:", dateObject);
-        } else {
-          console.error("Invalid or missing date field:", date);
-        }
-
-        const f: ImageData = {
-          title: doc?.data()?.title,
-          date: dateObject,
-          img: doc?.data()?.img,
-          id: doc?.id,
-        };
-        gotImages.push(f);
-      });
-      setImages(gotImages);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/syllabus`);
+      const recievedData = response?.data;
+      setSyllabuss(recievedData);
     };
 
     fetchDocuments();
   }, []);
 
-  const handleClick = async (id: string) => {
-    const glimpsesRef = doc(db, "glimpses", id);
-
-    await deleteDoc(glimpsesRef);
+  const handleDelete = async (id: number) => {
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/syllabus/${id}`)
     console.log("Deleted successfully");
-    setImages((prevImages) => prevImages.filter((img) => img.id !== id));
+    
+    setSyllabuss((prevSyllabuss) => prevSyllabuss.filter((syllabus) => syllabus?.id !== id));
     setDataDeleted(true);
+
     setTimeout(() => {
       setDataDeleted(false);
     }, 3000);
-    const historyRef = collection(db, "history");
-    await addDoc(historyRef, {
-      title: "Glimpse image deleted",
-      role: currentUser?.role,
-      date: serverTimestamp(),
-      item: "Glimpse",
-      user: currentUser?.name,
-    });
+
   };
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Glimpses" />
+      <Breadcrumb pageName="Syllabuss" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">
-          <NavLink to="/forms/gallery-form"> Add New Image</NavLink>
+          <NavLink to="/forms/syllabus-form"> Add New Syllabus</NavLink>
         </button>
       </div>
 
@@ -101,10 +62,10 @@ const Glimpses = () => {
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Title
+                  Id
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Date & Time
+                <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                  Name
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update
@@ -114,22 +75,25 @@ const Glimpses = () => {
                 </th>
               </tr>
             </thead>
+
             <tbody>
-              {images.map((image, key) => (
+              {syllabuss?.map((syllabus, key) => (
                 <tr key={key}>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {image?.title}
+                      {syllabus?.id}
                     </h5>
                   </td>
-                  <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <p className="text-black dark:text-white">{image?.date}</p>
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {syllabus?.title}
+                    </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
                       onClick={() =>
-                        navigate("/forms/gallery-form", {
-                          state: { image: image },
+                        navigate("/forms/syllabus-form", {
+                          state: { syllabus: syllabus },
                         })
                       }
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
@@ -141,7 +105,7 @@ const Glimpses = () => {
                     <div className="flex justify-center items-center space-x-3.5">
                       <MdDelete
                         className="text-2xl text-red-400 cursor-pointer"
-                        onClick={() => handleClick(image?.id)}
+                        onClick={() => handleDelete(syllabus?.id)}
                       />
                     </div>
                   </td>
@@ -155,4 +119,4 @@ const Glimpses = () => {
   );
 };
 
-export default Glimpses;
+export default Syllabus;

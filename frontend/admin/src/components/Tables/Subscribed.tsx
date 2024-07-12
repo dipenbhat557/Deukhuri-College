@@ -2,93 +2,50 @@ import { NavLink, useNavigate } from "react-router-dom";
 import DefaultLayout from "../../layout/DefaultLayout";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
 import { useEffect, useState } from "react";
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  serverTimestamp,
-} from "firebase/firestore";
-import { db } from "../../firebaseConfig";
 import { MdDelete } from "react-icons/md";
-import { useRecoilValue } from "recoil";
-import { currUser } from "../../pages/store";
+import axios from "axios";
 
-interface FolderData {
-  title: string;
-  category: string;
-  date: string;
-  id: string;
+interface SubscribedData {
+  id: number;
+  email:string;
 }
 
-const Gallery = () => {
+const Subscribed = () => {
+  const [subscribeds, setSubscribeds] = useState<SubscribedData[]>([]);
   const navigate = useNavigate();
   const [dataDeleted, setDataDeleted] = useState(false);
-  const currentUser = useRecoilValue(currUser);
-  const [folders, setFolders] = useState<FolderData[]>([]);
 
   useEffect(() => {
-    const gotFolders: FolderData[] = [];
+    
     const fetchDocuments = async () => {
-      const querySnapshot = await getDocs(collection(db, "imageFolders"));
-
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const date = data.date;
-        let dateObject = "";
-
-        if (date instanceof Timestamp) {
-          dateObject = date.toDate().toString().slice(0, 21);
-          console.log("Date:", dateObject);
-        } else {
-          console.error("Invalid or missing date field:", date);
-        }
-
-        const f: FolderData = {
-          title: doc?.data()?.title,
-          category: doc?.data()?.category,
-          date: dateObject,
-          id: doc?.id,
-        };
-        gotFolders.push(f);
-      });
-      setFolders(gotFolders);
+      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/subscribed`);
+      const recievedData = response?.data;
+      setSubscribeds(recievedData);
     };
 
     fetchDocuments();
   }, []);
 
-  const handleClick = async (id: string) => {
-    const foldersRef = doc(db, "imageFolders", id);
-
-    await deleteDoc(foldersRef);
+  const handleDelete = async (id: number) => {
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/subscribed/${id}`)
     console.log("Deleted successfully");
-    setFolders((prevFolders) =>
-      prevFolders.filter((folder) => folder.id !== id)
-    );
+    
+    setSubscribeds((prevSubscribeds) => prevSubscribeds.filter((subscribed) => subscribed?.id !== id));
     setDataDeleted(true);
+
     setTimeout(() => {
       setDataDeleted(false);
     }, 3000);
-    const historyRef = collection(db, "history");
-    await addDoc(historyRef, {
-      title: "Image folder deleted",
-      role: currentUser?.role,
-      date: serverTimestamp(),
-      item: "Image Folder",
-      user: currentUser?.name,
-    });
+
   };
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Gallery" />
+      <Breadcrumb pageName="Subscribeds" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">
-          <NavLink to="/forms/gallery-form"> Add New Folder</NavLink>
+          <NavLink to="/forms/subscribed-form"> Add New Subscribed</NavLink>
         </button>
       </div>
 
@@ -103,10 +60,10 @@ const Gallery = () => {
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Title
+                  Id
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Date & Time
+                <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                  Email
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update
@@ -116,34 +73,37 @@ const Gallery = () => {
                 </th>
               </tr>
             </thead>
+
             <tbody>
-              {folders?.map((folder, key) => (
+              {subscribeds?.map((subscribed, key) => (
                 <tr key={key}>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {folder?.title}
+                      {subscribed?.id}
                     </h5>
                   </td>
-                  <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <p className="text-black dark:text-white">{folder?.date}</p>
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {subscribed?.email}
+                    </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
                       onClick={() =>
-                        navigate("/images", {
-                          state: { category: folder?.category },
+                        navigate("/forms/subscribed-form", {
+                          state: { subscribed: subscribed },
                         })
                       }
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                     >
-                      Add images
+                      Edit
                     </button>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <div className="flex justify-center items-center space-x-3.5">
                       <MdDelete
                         className="text-2xl text-red-400 cursor-pointer"
-                        onClick={() => handleClick(folder?.id)}
+                        onClick={() => handleDelete(subscribed?.id)}
                       />
                     </div>
                   </td>
@@ -156,4 +116,5 @@ const Gallery = () => {
     </DefaultLayout>
   );
 };
-export default Gallery;
+
+export default Subscribed;

@@ -5,14 +5,14 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base64ToFile } from "../store";
 
-const BlogForm = () => {
+const SyllabusForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const blog = location?.state?.blog;
+  const syllabus = location?.state?.syllabus;
   const [formData, setFormData] = useState({
-    id: blog?.id || 0,
-    title: blog?.title || "",
-    description: blog?.description || "",
+    id: syllabus?.id || 0,
+    title: syllabus?.title || "",
+    program: syllabus?.program || ""
   });
 
   const [img, setImg] = useState<File | null>(null);
@@ -20,20 +20,20 @@ const BlogForm = () => {
 
 
 useEffect(() => {
-  if (blog?.img) {
+  if (syllabus?.img) {
     const fileName = "example.jpg";
     const mimeType = "image/jpeg"; 
 
-    const file = base64ToFile(blog?.img, fileName, mimeType);
+    const file = base64ToFile(syllabus?.img, fileName, mimeType);
 
     setImg(file);
   }
-}, [blog]); // Ensure useEffect runs whenever blog changes
+}, [syllabus]); // Ensure useEffect runs whenever syllabus changes
 
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("blog", JSON.stringify({title:formData?.title,description:formData?.description}));
+    formDataToSend.append("syllabus", JSON.stringify({title:formData?.title,program:formData?.program}));
     if (img) {
       formDataToSend.append("file", img);
     }
@@ -41,14 +41,14 @@ useEffect(() => {
     console.log(formDataToSend)
 
     try {
-      if (blog?.id) {
-        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/blog/${blog.id}`, formDataToSend, {
+      if (syllabus?.id) {
+        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/syllabus/${syllabus?.id}`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
       } else {
-        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/blog`, formDataToSend, {
+        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/syllabus`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -57,12 +57,12 @@ useEffect(() => {
       setFormData({
         id: 0,
         title: "",
-        description: "",
+        program:""
       });
       setImg(null);
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      navigate("/blogs");
+      navigate("/syllabuss");
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -78,14 +78,12 @@ useEffect(() => {
     }
   };
 
-
-
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Blogs" />
+      <Breadcrumb pageName="Syllabuss" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/blogs">Go to Blogs</NavLink>
+          <NavLink to="/syllabuss">Go to Syllabuss</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -116,22 +114,30 @@ useEffect(() => {
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
-              <div>
-                <label className="mb-3 block text-black dark:text-white">Description</label>
-                <textarea
-                  value={formData.description}
-                  name="description"
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      description: e.target.value,
-                    }))
-                  }
-                  rows={10}
-                  placeholder="Description"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                />
+              
+
+         
+
+            <div>
+                <label className="mb-3 block text-black dark:text-white">Program</label>
+                <select
+                    value={formData.program}
+                    name="program"
+                    onChange={(e) =>
+                        setFormData((prevState) => ({
+                        ...prevState,
+                        program: e.target.value,
+                        }))
+                    }
+                className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                >
+                    <option value="">Select Program</option>
+                    <option value="GRADUATE">GRADUATE</option>
+                    <option value="UNDERGRADUATE">UNDERGRADUATE</option>
+                </select>
+
               </div>
+              
               <div>
                 <label className="mb-3 block text-black dark:text-white">Attach Image</label>
                  {img && (
@@ -167,4 +173,4 @@ useEffect(() => {
   );
 };
 
-export default BlogForm;
+export default SyllabusForm;
