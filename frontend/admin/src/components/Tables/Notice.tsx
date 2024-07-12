@@ -8,7 +8,7 @@ import axios from "axios";
 interface NoticeData {
   id: number;
   title: string;
-  header:boolean;
+  header: boolean;
   img: string;
 }
 
@@ -18,9 +18,10 @@ const Notice = () => {
   const [dataDeleted, setDataDeleted] = useState(false);
 
   useEffect(() => {
-    
     const fetchDocuments = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/notice`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_API_ROOT}/api/notice`
+      );
       const recievedData = response?.data;
       setNotices(recievedData);
     };
@@ -29,16 +30,17 @@ const Notice = () => {
   }, []);
 
   const handleDelete = async (id: number) => {
-    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/notice/${id}`)
+    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/notice/${id}`);
     console.log("Deleted successfully");
-    
-    setNotices((prevNotices) => prevNotices.filter((notice) => notice?.id !== id));
+
+    setNotices((prevNotices) =>
+      prevNotices.filter((notice) => notice?.id !== id)
+    );
     setDataDeleted(true);
 
     setTimeout(() => {
       setDataDeleted(false);
     }, 3000);
-
   };
 
   return (
@@ -65,7 +67,7 @@ const Notice = () => {
                   Id
                 </th>
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Name
+                  Title
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update
@@ -86,7 +88,7 @@ const Notice = () => {
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {notice?.name}
+                      {notice?.title}
                     </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">

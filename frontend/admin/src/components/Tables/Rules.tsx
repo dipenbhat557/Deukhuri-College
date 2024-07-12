@@ -12,12 +12,15 @@ const Rules = () => {
   useEffect(() => {
     const fetchRules = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/rule`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/rule`
+        );
         const rules = response?.data;
+       
         setRules(rules?.[0]?.rules);
-        console.log("rule are ",rules)
+        console.log("rule are ", rules);
       } catch (error) {
-        console.error('Error fetching rules:', error);
+        console.error("Error fetching rules:", error);
       }
     };
     fetchRules();
@@ -32,22 +35,26 @@ const Rules = () => {
     setLoading(true);
 
     try {
-      await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/rule/1`, {rules:rules}, {
-        headers: { 'Content-Type': 'application/json' }
-      });
+      await axios.put(
+        `${import.meta.env.VITE_APP_API_ROOT}/api/rule/1`,
+        { rules: rules },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       setDataSubmitted(true);
       setTimeout(() => {
         setDataSubmitted(false);
       }, 3000);
     } catch (error) {
-      console.error('Error saving rules:', error);
+      console.error("Error saving rules:", error);
     }
 
     setLoading(false);
   };
 
   const handleAddRule = () => {
-    setRules([...rules, ""]);
+    setRules([...rules, " "]);
   };
 
   const handleRuleChange = (index: number, newRule: string) => {
