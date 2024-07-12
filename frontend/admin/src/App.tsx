@@ -11,7 +11,6 @@ import { isLoggedIn } from "./pages/store";
 import Blog from "./components/Tables/Blog";
 import BlogForm from "./pages/Form/BlogForm";
 
-import Dashboard from "./pages/Dashboard/Dashboard";
 import CourseForm from "./pages/Form/CourseForm";
 import Course from "./components/Tables/Course";
 import EventForm from "./pages/Form/EventForm";
@@ -32,6 +31,8 @@ import SubscribedForm from "./pages/Form/SubscribedForm";
 import Subscribed from "./components/Tables/Subscribed";
 import SyllabusForm from "./pages/Form/SyllabusForm";
 import Syllabus from "./components/Tables/Syllabus";
+import AdsForm from "./pages/Form/Adsform";
+import Advertisement from "./components/Tables/Advertisement";
 
 function App() {
   const isLogIn = useRecoilValue(isLoggedIn);
@@ -58,7 +59,6 @@ function App() {
   ) : (
     <>
       <Routes>
-        
         <Route
           path="/signin"
           element={
@@ -80,16 +80,6 @@ function App() {
         />
 
         <Route
-          path="/dashboard"
-          element={
-            <>
-              <PageTitle title="Dashboard" />
-              <Dashboard />
-            </>
-          }
-        />
-        
-        <Route
           path="/rules"
           element={
             <>
@@ -98,8 +88,8 @@ function App() {
             </>
           }
         />
-        
-         <Route
+
+        <Route
           path="/forms/blog-form"
           element={
             <>
@@ -108,7 +98,15 @@ function App() {
             </>
           }
         />
-        
+        <Route
+          path="/forms/advertisement-form"
+          element={
+            <>
+              <PageTitle title="Advertisement Form" />
+              <AdsForm />
+            </>
+          }
+        />
         <Route
           path="/blogs"
           element={
@@ -128,7 +126,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/courses"
           element={
@@ -148,7 +146,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/events"
           element={
@@ -168,7 +166,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/faculties"
           element={
@@ -188,7 +186,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/messages"
           element={
@@ -208,7 +206,15 @@ function App() {
             </>
           }
         />
-        
+        <Route
+          path="/advertisements"
+          element={
+            <>
+              <PageTitle title="Advertisement" />
+              <Advertisement />
+            </>
+          }
+        />
         <Route
           path="/notices"
           element={
@@ -228,7 +234,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/publications"
           element={
@@ -248,7 +254,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/results"
           element={
@@ -268,7 +274,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/statutes"
           element={
@@ -288,7 +294,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/subscribed"
           element={
@@ -308,7 +314,7 @@ function App() {
             </>
           }
         />
-        
+
         <Route
           path="/syllabus"
           element={
@@ -318,8 +324,7 @@ function App() {
             </>
           }
         />
-       
-        </Routes>
+      </Routes>
     </>
   );
 }

@@ -5,36 +5,31 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base64ToFile } from "../store";
 
-const StatuteForm = () => {
+const AdsForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const statute = location?.state?.statute;
+  const advertisement = location?.state?.advertisement;
   const [formData, setFormData] = useState({
-    id: statute?.id || 0,
-    title: statute?.title || "",
-    program: statute?.program || "",
+    id: advertisement?.id || 0,
   });
 
   const [img, setImg] = useState<File | null>(null);
   const [dataSaved, setDataSaved] = useState(false);
 
   useEffect(() => {
-    if (statute?.img) {
+    if (advertisement?.img) {
       const fileName = "example.jpg";
       const mimeType = "image/jpeg";
 
-      const file = base64ToFile(statute?.img, fileName, mimeType);
+      const file = base64ToFile(advertisement?.img, fileName, mimeType);
 
       setImg(file);
     }
-  }, [statute]); // Ensure useEffect runs whenever statute changes
+  }, [advertisement]); // Ensure useEffect runs whenever advertisement changes
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append(
-      "statute",
-      JSON.stringify({ title: formData?.title, program: formData?.program })
-    );
+
     if (img) {
       formDataToSend.append("file", img);
     }
@@ -42,9 +37,11 @@ const StatuteForm = () => {
     console.log(formDataToSend);
 
     try {
-      if (statute?.id) {
+      if (advertisement?.id) {
         await axios.put(
-          `${import.meta.env.VITE_APP_API_ROOT}/api/statute/${statute?.id}`,
+          `${import.meta.env.VITE_APP_API_ROOT}/api/advertisement/${
+            advertisement.id
+          }`,
           formDataToSend,
           {
             headers: {
@@ -54,7 +51,7 @@ const StatuteForm = () => {
         );
       } else {
         await axios.post(
-          `${import.meta.env.VITE_APP_API_ROOT}/api/statute`,
+          `${import.meta.env.VITE_APP_API_ROOT}/api/advertisement`,
           formDataToSend,
           {
             headers: {
@@ -65,13 +62,11 @@ const StatuteForm = () => {
       }
       setFormData({
         id: 0,
-        title: "",
-        program: "",
       });
       setImg(null);
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      navigate("/statutes");
+      navigate("/advertisements");
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -89,10 +84,10 @@ const StatuteForm = () => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Statutes" />
+      <Breadcrumb pageName="Advertisements" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/statutes">Go to Statutes</NavLink>
+          <NavLink to="/advertisements">Go to Advertisements</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -109,46 +104,6 @@ const StatuteForm = () => {
               </h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
-              <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Title
-                </label>
-                <input
-                  value={formData.title}
-                  name="title"
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      title: e.target.value,
-                    }))
-                  }
-                  type="text"
-                  placeholder="Title Input"
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                />
-              </div>
-
-              <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Program
-                </label>
-                <select
-                  value={formData.program}
-                  name="program"
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      program: e.target.value,
-                    }))
-                  }
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                >
-                  <option value="">Select Program</option>
-                  <option value="GRADUATE">GRADUATE</option>
-                  <option value="UNDERGRADUATE">UNDERGRADUATE</option>
-                </select>
-              </div>
-
               <div>
                 <label className="mb-3 block text-black dark:text-white">
                   Attach Image
@@ -190,4 +145,4 @@ const StatuteForm = () => {
   );
 };
 
-export default StatuteForm;
+export default AdsForm;

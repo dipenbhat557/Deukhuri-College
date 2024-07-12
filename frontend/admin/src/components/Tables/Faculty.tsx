@@ -10,7 +10,7 @@ interface FacultyData {
   name: string;
   designation: string;
   img: string;
-  category:string;
+  category: string;
 }
 
 const Faculty = () => {
@@ -19,9 +19,10 @@ const Faculty = () => {
   const [dataDeleted, setDataDeleted] = useState(false);
 
   useEffect(() => {
-    
     const fetchDocuments = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_APP_API_ROOT}/api/faculty`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_API_ROOT}/api/faculty`
+      );
       const recievedData = response?.data;
       setFacultys(recievedData);
     };
@@ -30,21 +31,24 @@ const Faculty = () => {
   }, []);
 
   const handleDelete = async (id: number) => {
-    await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/faculty/${id}`)
+    await axios.delete(
+      `${import.meta.env.VITE_APP_API_ROOT}/api/faculty/${id}`
+    );
     console.log("Deleted successfully");
-    
-    setFacultys((prevFacultys) => prevFacultys.filter((faculty) => faculty?.id !== id));
+
+    setFacultys((prevFacultys) =>
+      prevFacultys.filter((faculty) => faculty?.id !== id)
+    );
     setDataDeleted(true);
 
     setTimeout(() => {
       setDataDeleted(false);
     }, 3000);
-
   };
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Facultys" />
+      <Breadcrumb pageName="Faculties" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">

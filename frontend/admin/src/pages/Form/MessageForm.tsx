@@ -13,53 +13,66 @@ const MessageForm = () => {
     id: message?.id || 0,
     name: message?.name || "",
     designation: message?.designation || "",
-    message: message?.message || ""
+    message: message?.message || "",
   });
 
   const [img, setImg] = useState<File | null>(null);
   const [dataSaved, setDataSaved] = useState(false);
 
+  useEffect(() => {
+    if (message?.img) {
+      const fileName = "example.jpg";
+      const mimeType = "image/jpeg";
 
-useEffect(() => {
-  if (message?.img) {
-    const fileName = "example.jpg";
-    const mimeType = "image/jpeg"; 
+      const file = base64ToFile(message?.img, fileName, mimeType);
 
-    const file = base64ToFile(message?.img, fileName, mimeType);
-
-    setImg(file);
-  }
-}, [message]); // Ensure useEffect runs whenever message changes
-
+      setImg(file);
+    }
+  }, [message]); // Ensure useEffect runs whenever message changes
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("message", JSON.stringify({name:formData?.name,designation:formData?.designation,message:formData?.message}));
+    formDataToSend.append(
+      "message",
+      JSON.stringify({
+        name: formData?.name,
+        designation: formData?.designation,
+        message: formData?.message,
+      })
+    );
     if (img) {
       formDataToSend.append("file", img);
     }
 
-    console.log(formDataToSend)
+    console.log(formDataToSend);
 
     try {
       if (message?.id) {
-        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/message/${message?.id}`, formDataToSend, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.put(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/message/${message?.id}`,
+          formDataToSend,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
       } else {
-        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/message`, formDataToSend, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/message`,
+          formDataToSend,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
       }
       setFormData({
         id: 0,
         name: "",
         designation: "",
-        message:""
+        message: "",
       });
       setImg(null);
       setDataSaved(true);
@@ -74,7 +87,7 @@ useEffect(() => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log("selectef file is ",file)
+    console.log("selectef file is ", file);
     if (file) {
       setImg(file);
     }
@@ -82,10 +95,10 @@ useEffect(() => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Faculties" />
+      <Breadcrumb pageName="Messages" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/faculties">Go to Faculties</NavLink>
+          <NavLink to="/messages">Go to Messages</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -97,11 +110,15 @@ useEffect(() => {
           )}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">Input Fields</h3>
+              <h3 className="font-medium text-black dark:text-white">
+                Input Fields
+              </h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">Name</label>
+                <label className="mb-3 block text-black dark:text-white">
+                  Name
+                </label>
                 <input
                   value={formData.name}
                   name="name"
@@ -117,7 +134,9 @@ useEffect(() => {
                 />
               </div>
               <div>
-                <label className="mb-3 block text-black dark:text-white">Designation</label>
+                <label className="mb-3 block text-black dark:text-white">
+                  Designation
+                </label>
                 <input
                   value={formData.designation}
                   name="designation"
@@ -134,28 +153,36 @@ useEffect(() => {
               </div>
 
               <div>
-                <label className="mb-3 block text-black dark:text-white">Category</label>
+                <label className="mb-3 block text-black dark:text-white">
+                  Category
+                </label>
                 <textarea
-                value={formData.message}
-                name="message"
-                rows={10}
-                onChange={(e) =>
+                  value={formData.message}
+                  name="message"
+                  rows={10}
+                  onChange={(e) =>
                     setFormData((prevState) => ({
-                    ...prevState,
-                    message: e.target.value,
+                      ...prevState,
+                      message: e.target.value,
                     }))
-                }
-                className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                  }
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
-              
+
               <div>
-                <label className="mb-3 block text-black dark:text-white">Attach Image</label>
-                 {img && (
-                    <div className="mt-2">
-                      <img src={URL.createObjectURL(img)} alt="Selected Image" className="max-w-full h-auto" />
-                    </div>
-                  )}
+                <label className="mb-3 block text-black dark:text-white">
+                  Attach Image
+                </label>
+                {img && (
+                  <div className="mt-2">
+                    <img
+                      src={URL.createObjectURL(img)}
+                      alt="Selected Image"
+                      className="max-w-full h-auto"
+                    />
+                  </div>
+                )}
                 <input
                   onChange={handleFileChange}
                   type="file"
