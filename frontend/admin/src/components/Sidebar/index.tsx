@@ -7,7 +7,6 @@ import {   MdSpaceDashboard } from "react-icons/md";
 import {SiStudyverse} from "react-icons/si"
 import {
   FaBlog,
-  FaQuora,
   FaSignOutAlt,
 } from "react-icons/fa";
 
@@ -34,7 +33,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
 
-  // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!sidebar.current || !trigger.current) return;
@@ -145,7 +143,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </li>
               )}
 
-
               <li>
                 <NavLink
                   to="/rules"
@@ -171,21 +168,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
 
-              {/* <!-- Menu Item message from md --> */}
-              {/* <!-- Menu Item FAQ --> */}
-
-              <li>
-                <NavLink
-                  to="/faq"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("FAQ") && "bg - graydark dark:bg-meta-4"
-                  }`}
-                >
-                  <FaQuora className="text-2xl" />
-                  FAQ's
-                </NavLink>
-              </li>
-
               <li>
                 <NavLink
                   to="/blogs"
@@ -198,16 +180,111 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
 
-              
               <li>
                 <NavLink
-                  to="/team"
+                  to="/events"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("team") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("events") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <RiTeamFill className="text-2xl" />
-                  Our Team
+                  Events
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/faculties"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("faculties") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Faculties
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/messages"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("messages") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Messages
+                </NavLink>
+              </li>
+
+               <li>
+                <NavLink
+                  to="/notices"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("notices") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Notices
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/publications"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("publications") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Publications
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/results"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("results") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Results
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/statutes"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("statutes") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Statutes
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/subscribed"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("subscribed") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Subscribed Emails
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/syllabus"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("syllabus") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <RiTeamFill className="text-2xl" />
+                  Syllabuses
                 </NavLink>
               </li>
 
@@ -216,7 +293,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              OTHERS /Logout
+              OTHERS 
             </h3>
 
             <li>

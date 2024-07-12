@@ -43,7 +43,7 @@ const Syllabus = () => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Syllabuss" />
+      <Breadcrumb pageName="Syllabuses" />
 
       <div className="flex justify-end py-2 ">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow ">
