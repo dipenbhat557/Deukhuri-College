@@ -5,6 +5,8 @@ import { form, logo } from "../assets";
 import { styles } from "../styles";
 import { useNavigate } from "react-router-dom";
 import useFetch from "./UseFetch";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const stripHtmlTags = (html) => {
   // Use a regex to remove HTML tags
@@ -13,10 +15,25 @@ const stripHtmlTags = (html) => {
 
 const HeroHeader = () => {
   const navigate = useNavigate();
+    const [headerNotices, setHeaderNotices] = useState([]);
 
-  const headerNotices = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/notice-headers`
-  );
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/notice`
+        );
+        let receivedData = response?.data;
+        receivedData = receivedData?.filter(d=>d?.header === true);
+        setHeaderNotices(receivedData);
+        console.log("header notice i ",headerNotices)
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
 
   // console.log("header notices are ",headerNotices)
 
@@ -70,8 +87,8 @@ const HeroHeader = () => {
             dangerouslySetInnerHTML={{
               __html: stripHtmlTags(
                 index !== headerNotices.length - 1
-                  ? ` ${notice?.title?.rendered || "Loading..."} || &nbsp  `
-                  : ` ${notice?.title?.rendered || "Loading..."} `
+                  ? ` ${notice?.title || "Loading..."} || &nbsp  `
+                  : ` ${notice?.title || "Loading..."} !!`
               ),
             }}
             style={{ display: "inline-block" }}

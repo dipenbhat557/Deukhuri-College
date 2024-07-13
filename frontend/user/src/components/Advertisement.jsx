@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useFetch from "./UseFetch";
 import { FaTimes } from "react-icons/fa";
 import { def } from "../assets";
+import axios from "axios";
 
 const Advertisement = () => {
   const [present, setPresent] = useState(true);
@@ -11,14 +12,22 @@ export default Advertisement;
 
 const Notice = ({ setPresent }) => {
   const [advertisement, setAdvertisement] = useState([]);
-  const newAdvertisement = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/advertisements`
-  );
-  // console.log(advertisement);
-
   useEffect(() => {
-    setAdvertisement(newAdvertisement);
-  }, [newAdvertisement]);
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/advertisement`
+        );
+        let receivedData = await response?.data;
+        console.log("advertisement is ",receivedData)
+        setAdvertisement(receivedData);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -30,7 +39,7 @@ const Notice = ({ setPresent }) => {
         />
         <div className="h-[500px] w-auto ">
           <img
-            src={advertisement?.[0]?.imageUrl || def}
+            src={`data:image/jpeg;base64,${advertisement?.[0]?.img}` || def}
             alt="No notices for now"
             className="w-full h-full object-contain "
           />
