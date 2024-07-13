@@ -5,14 +5,14 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base64ToFile } from "../store";
 
-const ResultForm = () => {
+const StatuteForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const result = location?.state?.result;
+  const statute = location?.state?.statute;
   const [formData, setFormData] = useState({
-    id: result?.id || 0,
-    title: result?.title || "",
-    program: result?.program || ""
+    id: statute?.id || 0,
+    title: statute?.title || "",
+    program: statute?.program || ""
   });
 
   const [img, setImg] = useState<File | null>(null);
@@ -20,20 +20,20 @@ const ResultForm = () => {
 
 
 useEffect(() => {
-  if (result?.img) {
+  if (statute?.img) {
     const fileName = "example.jpg";
     const mimeType = "image/jpeg"; 
 
-    const file = base64ToFile(result?.img, fileName, mimeType);
+    const file = base64ToFile(statute?.img, fileName, mimeType);
 
     setImg(file);
   }
-}, [result]); // Ensure useEffect runs whenever result changes
+}, [statute]); // Ensure useEffect runs whenever statute changes
 
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("result", JSON.stringify({title:formData?.title,program:formData?.program}));
+    formDataToSend.append("statute", JSON.stringify({title:formData?.title,program:formData?.program}));
     if (img) {
       formDataToSend.append("file", img);
     }
@@ -41,14 +41,14 @@ useEffect(() => {
     console.log(formDataToSend)
 
     try {
-      if (result?.id) {
-        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/result/${result?.id}`, formDataToSend, {
+      if (statute?.id) {
+        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/statute/${statute?.id}`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
       } else {
-        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/result`, formDataToSend, {
+        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/statute`, formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -62,7 +62,7 @@ useEffect(() => {
       setImg(null);
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      navigate("/results");
+      navigate("/statutes");
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -80,10 +80,10 @@ useEffect(() => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Results" />
+      <Breadcrumb pageName="Statutes" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/results">Go to Results</NavLink>
+          <NavLink to="/statutes">Go to Statutes</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
@@ -173,4 +173,4 @@ useEffect(() => {
   );
 };
 
-export default ResultForm;
+export default StatuteForm;
