@@ -6,27 +6,40 @@ import { IoMdInformationCircle } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
 import { slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
-import useFetch from "./UseFetch";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Notices = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate();
+  const [notices, setNotices] = useState([]);
 
-  const url =
-    window?.innerWidth < 650
-      ? `${import.meta.env.VITE_APP_API_ROOT}/notices`
-      : `${import.meta.env.VITE_APP_API_ROOT}/notices`;
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/notice`
+        );
+        let receivedData = response?.data;
+        receivedData = receivedData?.filter(d=>d?.header === false);
+        setNotices(receivedData);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
 
-  let notices = useFetch(url);
+    fetchDocuments();
+  }, []);
 
-  // useEffect(() => {
-  //   console.log("Notices : ", notices?.[currentIndex]?.imageUrl);
-  // }, [notices]);
+  const createBlobUrl = (base64Data) => {
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    return URL.createObjectURL(blob);
+  };
 
   return (
     <div
-      className={`${styles.padding} flex flex-col sm:flex-row justify-between items-center w-full h-auto sm:h-[400px]  mt-4`}
+      className={`${styles.padding} flex flex-col sm:flex-row justify-between items-center w-full h-auto sm:h-[400px] mt-4`}
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
@@ -39,38 +52,36 @@ const Notices = () => {
             className="h-full w-[20%] object-contain"
           />
           <p
-            className={`${styles.sectionHeadText}  text-red-900 font-semibold h-full mt-7 ml-4`}
+            className={`${styles.sectionHeadText} text-red-900 font-semibold h-full mt-7 ml-4`}
           >
             Notices
           </p>
         </div>
-
+<div className="flex w-full h-full flex justify-center items-start gap-2">
         {notices?.length > 0 ? (
-          notices?.map((notice, index) => {
-            return (
-              <div
-                key={index}
+          notices.map((notice, index) => (
+            <div
+              key={index}
+              className={`${
+                index === currentIndex ? "border-l-4 border-red-900 " : ""
+              } w-full h-[70px] border-b-2 flex items-center pl-4 cursor-pointer`}
+              onClick={() => setCurrentIndex(index)}
+            >
+              <IoMdInformationCircle
+                className={`${index === currentIndex ? "text-red-900 " : ""}`}
+              />
+              <p
                 className={`${
-                  index == currentIndex ? "border-l-4 border-red-900 " : ""
-                } w-full h-[70px] border-b-2  flex  items-center pl-4 cursor-pointer`}
-                onClick={() => setCurrentIndex(index)}
+                  index === currentIndex ? "font-semibold" : "font-light"
+                } text-[10px] sm:text-[14px] ml-1 sm:ml-4 py-1 line-clamp-1`}
               >
-                <IoMdInformationCircle
-                  className={`${index == currentIndex ? "text-red-900 " : ""}`}
-                />
-                <p
-                  className={`${
-                    index == currentIndex ? "font-semibold" : "font-light"
-                  }text-[10px] sm:text-[14px] ml-1 sm:ml-4 py-1 line-clamp-1`}
-                >
-                  {notice?.title}
-                </p>
-              </div>
-            );
-          })
+                {notice?.title}
+              </p>
+            </div>
+          ))
         ) : (
           <p className="text-[16px] text-red-700 font-semibold">Loading...</p>
-        )}
+        )}</div>
       </motion.div>
 
       <motion.div
@@ -82,19 +93,26 @@ const Notices = () => {
         </p>
         <div className="w-[80%] h-[95%] relative flex justify-center items-center">
           <img
-            src={`data:image/jpeg;base64,${notices?.[currentIndex]?.pimg}` || def}
+            src={`data:image/jpeg;base64,${notices?.[currentIndex]?.img}` || def}
             alt="Notice Image"
-            className="w-[95%] h-[90%] object-contain  -z-1 "
+            className="w-[95%] h-[90%] object-contain -z-1 "
           />
           <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
           <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
-            <a href={`data:image/jpeg;base64,${notices?.[currentIndex]?.pimg}`} target="_blank">
-              <AiOutlineSearch />
-            </a>
+            {notices?.[currentIndex]?.img && (
+              <a
+                href={createBlobUrl(notices[currentIndex].img)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AiOutlineSearch />
+              </a>
+            )}
           </div>
         </div>
       </motion.div>
     </div>
   );
 };
+
 export default SectionWrapper(Notices, "notices");

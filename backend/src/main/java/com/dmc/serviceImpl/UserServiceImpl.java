@@ -40,8 +40,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User getByUsernameAndPassword(String username, String password) {
-        return this.userRepo.findByEmailAndPassword(username, password).orElseThrow(()->new ResourceNotFoundException("Expected user is not found"));
+        return this.userRepo.findByEmailAndPassword(username, password).orElse(null);
     }
+
 
     @Override
     public User getById(int id) {

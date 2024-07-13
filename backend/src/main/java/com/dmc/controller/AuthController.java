@@ -27,10 +27,16 @@ public class AuthController {
     private UserService userService;
 
 
-    @PostMapping("/signin")
-    public ResponseEntity<User> login(@RequestBody AuthRequest req) {
-        return new ResponseEntity<>(this.userService.getByUsernameAndPassword(req.getEmail(), req.getPassword()), HttpStatus.OK);
+  @PostMapping("/signin")
+public ResponseEntity<?> login(@RequestBody AuthRequest req) {
+    User user = this.userService.getByUsernameAndPassword(req.getEmail(), req.getPassword());
+    if (user != null) {
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
     }
+}
+
 
     @PostMapping(value = "/signup", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<User> create(@RequestParam("user") String userJson, @RequestParam("file") MultipartFile file) {

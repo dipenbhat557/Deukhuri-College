@@ -10,6 +10,7 @@ const SignIn: React.FC = () => {
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
+ const [error, setError] = useState<string | null>(null); // Add state for error messages
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,29 +28,34 @@ const SignIn: React.FC = () => {
       );
 
       console.log("response id ",response)
-      const data = await response.data;
-      console.log("data is ",data)
-      setCurrentUser({
-        id:data?.id,
-        email: data?.email,
-        name: data?.name,
-        pimg: data?.img,
-        role: data?.role,
-      });
-
-      localStorage.setItem(
-        "currentUser",
-        JSON.stringify({
-          id:data?.id,
+      
+      const data = response.data;
+      if (response.status === 200) {
+        setCurrentUser({
+          id: data?.id,
           email: data?.email,
           name: data?.name,
+          pimg: data?.img,
           role: data?.role,
-          pimg:data?.img
-        })
-      );
-      navigate("/");
-      setFormData({ email: "", password: "" });
+        });
+
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify({
+            id: data?.id,
+            email: data?.email,
+            name: data?.name,
+            role: data?.role,
+            pimg: data?.img,
+          })
+        );
+        navigate("/");
+        setFormData({ email: "", password: "" });
+      } else {
+        setError("Invalid username or password."); // Set error message
+      }
     } catch (error) {
+      setError("Invalid username or password."); // Set error message on catch
       console.error("Error:", error);
     }
   };
@@ -199,7 +205,8 @@ const SignIn: React.FC = () => {
               <h2 className="mb-9 text-2xl font-bold text-red-900 text-center  dark:text-white sm:text-title-xl2">
                 Sign In to Deukhuri Multiple Campus Console
               </h2>
-
+  {error && <p className="text-red-500 mb-4">{error}</p>} {/* Display error message */}
+           
               <form className="flex gap-2 flex-col" onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
