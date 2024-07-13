@@ -64,7 +64,7 @@ useEffect(() => {
       setImg(null);
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      navigate("/facultys");
+      navigate("/faculties");
     } catch (error) {
       console.error("Error uploading file:", error);
     }

@@ -3,15 +3,12 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import { useRecoilState } from "recoil";
 import { currUser } from "../../pages/store";
-import {   MdSpaceDashboard } from "react-icons/md";
-import {SiStudyverse} from "react-icons/si"
-import {
-  FaBlog,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { MdSpaceDashboard } from "react-icons/md";
+import { SiStudyverse } from "react-icons/si";
+import { FaBlog, FaSignOutAlt } from "react-icons/fa";
 
-import {FcRules} from "react-icons/fc"
-import {  RiTeamFill } from "react-icons/ri";
+import { FcRules } from "react-icons/fc";
+import { RiTeamFill } from "react-icons/ri";
 import { logo } from "../../assets";
 
 interface SidebarProps {
@@ -47,7 +44,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
   });
-
 
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
@@ -90,7 +86,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-2 lg:py-6.5">
         <NavLink to="/" className="flex items-center justify-center ">
-          <img src={logo} className="object-contain h-[10%] w-[40%]" alt="Logo" />
+          <img
+            src={logo}
+            className="object-contain h-[10%] w-[40%]"
+            alt="Logo"
+          />
         </NavLink>
 
         <button
@@ -127,35 +127,30 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
-              {/* <!-- Menu Item Dashboard --> */}
-              {currentUser?.role === "admin" && (
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                      pathname.includes("dashboard") &&
-                      "bg-graydark dark:bg-meta-4"
-                    }`}
-                  >
-                    <MdSpaceDashboard className="text-2xl" />
-                    Dashboard
-                  </NavLink>
-                </li>
-              )}
-
               <li>
                 <NavLink
                   to="/rules"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("Rules") &&
-                    "bg-graydark dark:bg-meta-4"
+                    pathname.includes("Rules") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <FcRules className="text-2xl" />
                   Rules
                 </NavLink>
               </li>
-              
+              <li>
+                <NavLink
+                  to="/advertisements"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("Advertisement") &&
+                    "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <FcRules className="text-2xl" />
+                  Advertisements
+                </NavLink>
+              </li>
+
               <li>
                 <NavLink
                   to="/courses"
@@ -196,7 +191,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <NavLink
                   to="/faculties"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("faculties") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("faculties") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <RiTeamFill className="text-2xl" />
@@ -208,7 +204,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <NavLink
                   to="/messages"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("messages") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("messages") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <RiTeamFill className="text-2xl" />
@@ -216,7 +213,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
 
-               <li>
+              <li>
                 <NavLink
                   to="/notices"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -232,7 +229,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <NavLink
                   to="/publications"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("publications") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("publications") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <RiTeamFill className="text-2xl" />
@@ -256,7 +254,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <NavLink
                   to="/statutes"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("statutes") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("statutes") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <RiTeamFill className="text-2xl" />
@@ -268,7 +267,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <NavLink
                   to="/subscribed"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("subscribed") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("subscribed") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <RiTeamFill className="text-2xl" />
@@ -280,20 +280,20 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <NavLink
                   to="/syllabus"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("syllabus") && "bg-graydark dark:bg-meta-4"
+                    pathname.includes("syllabus") &&
+                    "bg-graydark dark:bg-meta-4"
                   }`}
                 >
                   <RiTeamFill className="text-2xl" />
                   Syllabuses
                 </NavLink>
               </li>
-
             </ul>
           </div>
 
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              OTHERS 
+              OTHERS
             </h3>
 
             <li>
@@ -310,7 +310,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </li>
           </div>
         </nav>
-
       </div>
     </aside>
   );
