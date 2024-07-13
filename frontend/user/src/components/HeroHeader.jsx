@@ -26,7 +26,7 @@ const HeroHeader = () => {
         let receivedData = response?.data;
         receivedData = receivedData?.filter(d=>d?.header === true);
         setHeaderNotices(receivedData);
-        console.log("header notice i ",headerNotices)
+        // console.log("header notice i ",headerNotices)
       } catch (error) {
         console.error("Error fetching notices:", error);
       }

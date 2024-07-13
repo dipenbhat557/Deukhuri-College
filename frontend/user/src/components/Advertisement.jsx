@@ -19,7 +19,7 @@ const Notice = ({ setPresent }) => {
           `${import.meta.env.VITE_APP_API_ROOT}/api/advertisement`
         );
         let receivedData = await response?.data;
-        console.log("advertisement is ",receivedData)
+        // console.log("advertisement is ",receivedData)
         setAdvertisement(receivedData);
       } catch (error) {
         console.error("Error fetching notices:", error);

@@ -4,13 +4,30 @@ import { fadeIn, slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import useFetch from "./UseFetch";
 import { def } from "../assets";
+import { useEffect, useState } from "react";
+import axios from "axios";
 // import { messageItems } from "../constants";
 
 const Messages = () => {
-  const oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
 
-  const messages = oldMessages?.slice()?.reverse();
-  // console.log("Messages : ", messages);
+  const [messages,setMessages] = useState([])
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/message`
+        );
+        let receivedData = await response?.data;
+        console.log("messages are ",receivedData)
+        setMessages(receivedData);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
 
   return (
     <div className={`sm:px-28 px-6 sm:py-6 py-5 w-[95%] h-auto`}>
@@ -35,8 +52,8 @@ const Messages = () => {
               >
                 <img
                   className="rounded-t-xl object-contain w-full h-full rounded-l-xl "
-                  src={messages?.[0]?.imageUrl || def}
-                  alt={messages?.[0]?.title?.rendered}
+                  src={`data:image/jpeg;base64,${messages?.[0]?.img}` || def}
+                  alt={messages?.[0]?.name}
                 />
               </motion.div>
               <motion.div
@@ -48,7 +65,7 @@ const Messages = () => {
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      {messages?.[0]?.title?.rendered}
+                      Message from {messages?.[0]?.designation}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
@@ -59,7 +76,7 @@ const Messages = () => {
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: messages?.[0]?.content?.rendered,
+                      __html: messages?.[0]?.message,
                     }}
                     className="text-[10px] md:text-[14px] h-auto text-justify text-2xl mx-8 "
                   ></p>
@@ -85,26 +102,26 @@ const Messages = () => {
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
                   className="rounded-t-xl w-full object-contain h-[50%]"
-                  src={messages?.[2]?.imageUrl || def}
-                  alt={messages?.[2]?.title?.rendered}
+                  src={`data:image/jpeg;base64,${messages?.[2]?.img}` || def}
+                  alt={messages?.[2]?.name}
                 />
                 <div className="flex flex-col w-full h-[50%]">
                   <div className="flex items-center w-full h-[15%] font-semibold">
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      {messages?.[2]?.title?.rendered}
+                      Message from {messages?.[2]?.designation}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[2]?.["_message_name"] || "Loading..."}
+                    {messages?.[2]?.name || "Loading..."}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: messages?.[2]?.content?.rendered,
+                      __html: messages?.[2]?.message,
                     }}
                     className="text-[10px] md:text-[14px] text-justify text-2xl mx-8 "
                   ></p>
@@ -128,26 +145,26 @@ const Messages = () => {
               <div className=" flex flex-col justify-between items-center w-full h-full shadow-2xl rounded-xl">
                 <img
                   className="rounded-t-xl object-contain w-full h-[50%]"
-                  src={messages?.[1]?.imageUrl || def}
-                  alt={messages?.[1]?.title?.rendered}
+                  src={`data:image/jpeg;base64,${messages?.[1]?.img}` || def}
+                  alt={messages?.[1]?.name}
                 />
                 <div className="flex flex-col w-full h-[50%]">
                   <div className="flex items-center w-full h-[15%] font-semibold">
                     <p
                       className={`${"text-red-900 "}  text-[14px] md:text-[17px] ml-3 md:ml-8`}
                     >
-                      {messages?.[1]?.title.rendered}
+                      Message from {messages?.[1]?.designation}
                     </p>
                     <div
                       className={`${"border-red-900"}  ml-2 w-[8%] h-[2px] border-b-4 rounded-3xl`}
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[1]?.["_message_name"] || "Loading..."}
+                    {messages?.[1]?.name || "Loading..."}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: messages?.[1]?.content?.rendered,
+                      __html: messages?.[1]?.message,
                     }}
                     className="text-[10px] md:text-[14px] text-justify text-2xl mx-8"
                   ></p>
@@ -158,8 +175,8 @@ const Messages = () => {
         </div>
       </div>
       <div
-        className="bg-red-900 w-[80px] h-[14%] hidden md:flex justify-end -mt-24 right-40 rounded-b-xl"
-        style={{ position: "absolute", zIndex: -1 }}
+        className="bg-red-900 w-[80px] h-[14%] hidden md:flex justify-end -mt-24 right-40  rounded-tr-xl"
+        style={{ position: "absolute", zIndex: -10 }}
       ></div>
     </div>
   );
