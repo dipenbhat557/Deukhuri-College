@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  color-scheme: light;
+  min-width: full;
+  /* overflow-x: hidden; */
+}
+
+@media (max-width: 768px) {
+  * {
+    overflow-x: hidden;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.video-slide {
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+.video-fade-in {
+  animation-name: fade-in;
+  animation-fill-mode: forwards;
+}
+
+.video-fade-out {
+  animation-name: fade-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.5);
+  }
+}
+
+.text-slide {
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+
+.text-fade-in {
+  animation-name: tfade-in;
+  animation-fill-mode: forwards;
+}
+
+.text-fade-out {
+  animation-name: tfade-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes tfade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(10%);
+  }
+}
+
+@keyframes tfade-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}

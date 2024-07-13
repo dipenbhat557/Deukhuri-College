@@ -16,7 +16,7 @@ const Notices = () => {
   const url =
     window?.innerWidth < 650
       ? `${import.meta.env.VITE_APP_API_ROOT}/notices`
-      : `${import.meta.env.VITE_APP_API_ROOT}/notices?per_page=100`;
+      : `${import.meta.env.VITE_APP_API_ROOT}/notices`;
 
   let notices = useFetch(url);
 
@@ -46,7 +46,7 @@ const Notices = () => {
         </div>
 
         {notices?.length > 0 ? (
-          notices.map((notice, index) => {
+          notices?.map((notice, index) => {
             return (
               <div
                 key={index}
@@ -63,7 +63,7 @@ const Notices = () => {
                     index == currentIndex ? "font-semibold" : "font-light"
                   }text-[10px] sm:text-[14px] ml-1 sm:ml-4 py-1 line-clamp-1`}
                 >
-                  {notice.title.rendered}
+                  {notice?.title}
                 </p>
               </div>
             );
@@ -78,17 +78,17 @@ const Notices = () => {
         className="flex flex-col w-full sm:w-[60%] h-[400px] items-center justify-around border-x-2 pb-9 border-y-2 border-red-900 rounded-xl p-4"
       >
         <p className="w-[50%] text-[13px] sm:text-[16px] font-semibold h-auto my-4">
-          {notices?.[currentIndex]?.title?.rendered}
+          {notices?.[currentIndex]?.title}
         </p>
         <div className="w-[80%] h-[95%] relative flex justify-center items-center">
           <img
-            src={notices?.[currentIndex]?.imageUrl || def}
+            src={`data:image/jpeg;base64,${notices?.[currentIndex]?.pimg}` || def}
             alt="Notice Image"
             className="w-[95%] h-[90%] object-contain  -z-1 "
           />
           <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
           <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
-            <a href={notices?.[currentIndex]?.imageUrl} target="_blank">
+            <a href={`data:image/jpeg;base64,${notices?.[currentIndex]?.pimg}`} target="_blank">
               <AiOutlineSearch />
             </a>
           </div>
