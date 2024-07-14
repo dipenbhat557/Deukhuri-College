@@ -35,7 +35,7 @@ useEffect(() => {
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("course", JSON.stringify({title:formData?.title,description:formData?.description,program:formData?.program}));
+    formDataToSend.append("course", JSON.stringify({shortTitle:formData?.shortTitle,fullTitle:formData?.fullTitle,description:formData?.description,program:formData?.program}));
     if (img) {
       formDataToSend.append("file", img);
     }

@@ -22,6 +22,8 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public Course create(CourseRequest req, MultipartFile file) {
+        System.out.println("Reached course service with req "+req);
+
         
         Course course = new Course();
 
@@ -38,6 +40,7 @@ public class CourseServiceImpl implements CourseService{
             System.out.println("Could not save image");
         }
 
+System.out.println("created course");
         return this.courseRepo.save(course);
     }
 
@@ -59,7 +62,7 @@ public class CourseServiceImpl implements CourseService{
         course.setFullTitle(req.getFullTitle());
         course.setDescription(req.getDescription());
         course.setProgram(req.getProgram());
-        
+
         try {
             if(file != null){
                 course.setImage(file.getBytes());

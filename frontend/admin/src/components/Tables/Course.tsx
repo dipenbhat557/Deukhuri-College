@@ -7,7 +7,8 @@ import axios from "axios";
 
 interface CourseData {
   id: number;
-  title: string;
+  shortTitle: string;
+  fullTitle:string;
   description: string;
   image: string;
   program:string;
@@ -87,7 +88,7 @@ const Course = () => {
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {course?.title}
+                      {course?.shortTitle}
                     </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">

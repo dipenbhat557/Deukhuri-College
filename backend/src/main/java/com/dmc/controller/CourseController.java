@@ -34,8 +34,11 @@ public class CourseController{
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Course> create(@RequestParam("course") String courseJson, @RequestParam("file") MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println("reaced course controller with courseJson"+courseJson);
+
 
         try {
+            
             CourseRequest req = objectMapper.readValue(courseJson, CourseRequest.class);
             return new ResponseEntity<>(this.courseService.create(req, file),HttpStatus.CREATED);
         } catch (JsonProcessingException e) {
