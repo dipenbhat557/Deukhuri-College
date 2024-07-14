@@ -20,7 +20,9 @@ public class Course{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    private String title;
+    private String shortTitle;
+
+    private String fullTitle;
 
     @Column(length=1000)
     private String description;

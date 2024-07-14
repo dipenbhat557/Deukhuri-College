@@ -25,7 +25,8 @@ public class CourseServiceImpl implements CourseService{
         
         Course course = new Course();
 
-        course.setTitle(req.getTitle());
+        course.setShortTitle(req.getShortTitle());
+        course.setFullTitle(req.getFullTitle());
         course.setDescription(req.getDescription());
         course.setProgram(req.getProgram());
 
@@ -54,10 +55,11 @@ public class CourseServiceImpl implements CourseService{
     public Course updateById(int courseId, CourseRequest req, MultipartFile file) {
         Course course = getById(courseId);
 
-        course.setTitle(req.getTitle());
+        course.setShortTitle(req.getShortTitle());
+        course.setFullTitle(req.getFullTitle());
         course.setDescription(req.getDescription());
         course.setProgram(req.getProgram());
-
+        
         try {
             if(file != null){
                 course.setImage(file.getBytes());

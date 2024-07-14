@@ -11,7 +11,8 @@ const CourseForm = () => {
   const course = location?.state?.course;
   const [formData, setFormData] = useState({
     id: course?.id || 0,
-    title: course?.title || "",
+    shortTitle: course?.shortTitle || "",
+    fullTitle:course?.fullTitle || "",
     description: course?.description || "",
     program: course?.program || "",
   });
@@ -57,7 +58,8 @@ useEffect(() => {
       }
       setFormData({
         id: 0,
-        title: "",
+        shortTitle: "",
+        fullTitle:"",
         description: "",
         program:""
       });
@@ -103,18 +105,34 @@ useEffect(() => {
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">Title</label>
+                <label className="mb-3 block text-black dark:text-white">Short Title</label>
                 <input
-                  value={formData.title}
-                  name="title"
+                  value={formData.shortTitle}
+                  name="shortTitle"
                   onChange={(e) =>
                     setFormData((prevState) => ({
                       ...prevState,
-                      title: e.target.value,
+                      shortTitle: e.target.value,
                     }))
                   }
                   type="text"
-                  placeholder="Title Input"
+                  placeholder="Short Title"
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                />
+              </div>
+              <div>
+                <label className="mb-3 block text-black dark:text-white">Full Title</label>
+                <input
+                  value={formData.fullTitle}
+                  name="fullTitle"
+                  onChange={(e) =>
+                    setFormData((prevState) => ({
+                      ...prevState,
+                      fullTitle: e.target.value,
+                    }))
+                  }
+                  type="text"
+                  placeholder="Full Title"
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>

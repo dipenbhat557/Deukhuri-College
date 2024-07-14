@@ -7,7 +7,8 @@ import axios from "axios";
 
 interface NoticeData {
   id: number;
-  title: string;
+  shortTitle: string;
+  fullTitle:string;
   header: boolean;
   img: string;
 }
