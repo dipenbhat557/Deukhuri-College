@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { graduate, undergraduate } from "../assets";
-import { graduateItems, underGraduateItems } from "../constants";
+// import { graduateItems, underGraduateItems } from "../constants";
 import { styles } from "../styles";
 import { motion } from "framer-motion";
 import { slideIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
+import axios from "axios";
 
 const Programs = () => {
   const [currentGraduateProgramIndex, setCurrentGraduateProgramIndex] =
@@ -13,6 +14,30 @@ const Programs = () => {
     currentUnderGraduateProgramIndex,
     setCurrentUnderGraduateProgramIndex,
   ] = useState(0);
+
+
+  const [graduateItems,setGraduateItems] = useState([]);
+
+  const [underGraduateItems,setUnderGraduateItems] = useState([])
+
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/course`
+        );
+        let receivedData = await response?.data;
+        
+        setGraduateItems(receivedData?.filter(d=> d?.program === "GRADUATE"))
+        
+        setUnderGraduateItems(receivedData?.filter(d=> d?.program === "UNDERGRADUATE"))
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
 
   return (
     <div
@@ -48,7 +73,7 @@ const Programs = () => {
                 </p>
               </div>
               <div className="flex items-center gap-4 w-full h-[30%] ">
-                {graduateItems.map((item, index) => {
+                {graduateItems?.map((item, index) => {
                   return (
                     <button
                       key={index}
@@ -59,7 +84,7 @@ const Programs = () => {
                       } hover:w-[17%] hover:p-3 text-[14px] sm:text-[16px]`}
                       onClick={() => setCurrentGraduateProgramIndex(index)}
                     >
-                      {item.title}
+                      {item?.shortTitle}
                     </button>
                   );
                 })}
@@ -68,10 +93,10 @@ const Programs = () => {
             <hr className="text-slate-500 mx-3" />
             <div className="w-[90%] sm:w-full h-[60%] flex flex-col items-start justify-center mx-4 my-auto">
               <p className="text-[16px] sm:text-[22px] font-light my-2">
-                {graduateItems[currentGraduateProgramIndex].fullTitle}
+                {graduateItems?.[currentGraduateProgramIndex]?.fullTitle}
               </p>
               <p className="text-slate-600 text-[14px] sm:text-[16px] my-2 text-justify">
-                {graduateItems[currentGraduateProgramIndex].content}
+                {graduateItems?.[currentGraduateProgramIndex]?.description}
               </p>
             </div>
           </div>
@@ -109,7 +134,7 @@ const Programs = () => {
                 </p>
               </div>
               <div className="flex items-center  gap-4 w-full my-2">
-                {underGraduateItems.map((item, index) => {
+                {underGraduateItems?.map((item, index) => {
                   return (
                     <button
                       key={index}
@@ -120,7 +145,7 @@ const Programs = () => {
                       } hover:w-[17%] text-[14px] sm:text-[16px] hover:p-3`}
                       onClick={() => setCurrentUnderGraduateProgramIndex(index)}
                     >
-                      {item.title}
+                      {item?.shortTitle}
                     </button>
                   );
                 })}
@@ -129,10 +154,10 @@ const Programs = () => {
             <hr className="text-slate-500 mx-3" />
             <div className="sm:w-full h-[65%] flex flex-col items-start mx-2 w-[90%] justify-center">
               <p className="text-[16px] sm:text-[22px] font-light my-2">
-                {underGraduateItems[currentUnderGraduateProgramIndex].fullTitle}
+                {underGraduateItems?.[currentUnderGraduateProgramIndex]?.fullTitle}
               </p>
               <p className="text-slate-600 my-2 w-[90%] text-[14px] sm:text-[16px] text-justify">
-                {underGraduateItems[currentUnderGraduateProgramIndex].content}
+                {underGraduateItems?.[currentUnderGraduateProgramIndex]?.description}
               </p>
             </div>
           </div>

@@ -1,16 +1,16 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
+import axios from "axios"; // Don't forget to import axios
 import { contactBg, pdf, writingNote } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
-import useFetch from "./UseFetch";
 import Model from "./Model";
+import { RxCrossCircled } from "react-icons/rx";
 
 // TODO: Fix this in future
 const HARDCODED_PASSWORD = "DMC62";
 
-// Lazy-loaded components
 const Loading = lazy(() => import("./Loading"));
 
 const Publications = () => {
@@ -19,18 +19,27 @@ const Publications = () => {
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const [openModel, setOpenModel] = useState(false);
+  const [publications, setPublications] = useState([]);
+  const [selectedPublication, setSelectedPublication] = useState(null);
 
-  const handlePasswordSubmit = () => {
-    // TODO: Use server
-    setPasswordCorrect(password === HARDCODED_PASSWORD);
-    if (password !== HARDCODED_PASSWORD) {
-      setShowError(true);
-    }
-  };
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/publication`
+        );
+        let receivedData = await response?.data;
+        setPublications(receivedData);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
 
-  let publications = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/publications?per_page=100`
-  );
+    fetchDocuments();
+  }, []);
+
+  
+
   const handleScroll = () => {
     if (window.scrollY >= 105) {
       setScrolled(true);
@@ -46,58 +55,34 @@ const Publications = () => {
     };
   }, []);
 
-  if (!passwordCorrect) {
-    return (
-      <div className={`${scrolled ? "flex flex-col" : ""}`}>
-        <Suspense fallback={<Loading />}>
-          {scrolled && <Navbar active="" scrolled={scrolled} />}
-          <HeroHeader />
-        </Suspense>
+  const createBlobUrl = (base64Data) => {
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    return URL.createObjectURL(blob);
+  };
 
-        <form
-          className="flex flex-col items-center lg:p-36 py-36 border border-red-950 lg:m-36"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <h2 className="text-xl text-center font-bold">
-            Inorder to access the page
-          </h2>
-          <h3 className="text-center">Please Enter The Password</h3>
-          <div className="flex gap-1 w-96 justify-center items-center flex-col">
-            <label htmlFor="password">Password: </label>
-            <input
-              onChange={(e) => {
-                setPassword(e.currentTarget.value);
-              }}
-              value={password}
-              id="password"
-              type="password"
-              className="h-full w-full border"
-            />
-            <button
-              onClick={handlePasswordSubmit}
-              className="p-2 bg-red-900 text-[10px] sm:text-[15px] md:text-20px sm:p-111 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
-            >
-              Submit
-            </button>
-            <div
-              className="text-red-500 font-bold"
-              style={{
-                opacity: showError ? 100 : 0,
-              }}
-            >
-              Error, Wrong Password
-            </div>
-          </div>
-        </form>
+  const handlePasswordSubmit = (event) => {
+    event.preventDefault();
+    if (password === HARDCODED_PASSWORD) {
+      setPasswordCorrect(true);
+      setShowError(false);
+      window.open(createBlobUrl(selectedPublication?.file), '_blank');
+    } else {
+      setPasswordCorrect(false);
+      setShowError(true);
+    }
+  };
 
-        <Suspense fallback={<Loading />}>
-          <div className="w-full">
-            <Footer />
-          </div>
-        </Suspense>
-      </div>
-    );
-  }
+  const handlePdfClick = (publication) => {
+    if (publication.hidden) {
+      setSelectedPublication(publication);
+      setOpenModel(true);
+    } else {
+      window.open(createBlobUrl(publication?.file), "_blank");
+    }
+  };
 
   return (
     <div className={`${scrolled ? "flex flex-col relative" : ""}`}>
@@ -136,7 +121,37 @@ const Publications = () => {
       <div className="w-full relative flex items-center justify-center">
         {openModel && (
           <div className="w-[80%] h-[60%] absolute  m-auto">
-            <Model setOpenModel={setOpenModel} />
+            
+              <form
+                className="flex flex-col items-center bg-white p-4 gap-4"
+                onSubmit={handlePasswordSubmit}
+              >
+                <RxCrossCircled onClick={()=>setOpenModel(false)} className="cursor-pointer text-3xl text-red-500 absolute top-2 right-10"/>
+                <h2 className="text-xl text-center font-bold">
+                  Enter Password to View PDF
+                </h2>
+                <div className="flex gap-1 w-96 justify-center items-center flex-col">
+                  <label htmlFor="password">Password: </label>
+                  <input
+                    onChange={(e) => setPassword(e.currentTarget.value)}
+                    value={password}
+                    id="password"
+                    type="password"
+                    className="h-full w-full border"
+                  />
+                  <button
+                    type="submit"
+                    className="p-2 bg-red-900 text-[10px] sm:text-[15px] md:text-20px sm:p-111 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
+                  >
+                    Submit
+                  </button>
+                  {showError && (
+                    <div className="text-red-500 font-bold">
+                      Error, Wrong Password
+                    </div>
+                  )}
+                </div>
+              </form>
           </div>
         )}
         <div
@@ -148,68 +163,28 @@ const Publications = () => {
             Publications
           </p>
           <ol className="w-[80%] sm:w-full h-auto ml-9  my-3 bg-[#D9D9D969]">
-            {publications?.map((publication, index) => {
-              if (publication?.title?.rendered !== "RESPONSE REPORT") {
-                return (
-                  <div
-                    key={index}
-                    className="flex w-full h-[80px] items-center justify-between p-3"
-                  >
-                    <p className="flex gap-3">
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: publication?.content?.rendered,
-                        }}
-                        className="text-[14px] sm:text-[16px] font-medium"
-                      ></p>
-                      <p className="text-[14px] sm:text-[16px] font-medium ">
-                        {publication?.title?.rendered}
-                      </p>
-                    </p>
-                    <a
-                      className="w-[15%] h-full flex items-center"
-                      href={publication?.imageUrl}
-                      target="_blank"
-                    >
-                      <img
-                        src={pdf}
-                        alt="pdf"
-                        className="w-full h-[95%] object-contain"
-                      />
-                    </a>
-                  </div>
-                );
-              } else {
-                return (
-                  <div
-                    key={index}
-                    className="flex w-full h-[80px] items-center justify-between p-3"
-                  >
-                    <p className="flex gap-3">
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: publication?.content?.rendered,
-                        }}
-                        className="text-[14px] sm:text-[16px] font-medium"
-                      ></p>
-                      <p className="text-[14px] sm:text-[16px] font-medium ">
-                        {publication?.title?.rendered}
-                      </p>
-                    </p>
-                    <div
-                      className="w-[15%] h-full flex items-center cursor-pointer rounded-[50%]"
-                      onClick={() => setOpenModel(true)}
-                    >
-                      <img
-                        src={writingNote}
-                        alt="writingNote"
-                        className="w-full h-[95%] object-contain "
-                      />
-                    </div>
-                  </div>
-                );
-              }
-            })}
+            {publications?.map((publication, index) => (
+              <div
+                key={index}
+                className="flex w-full h-[80px] items-center justify-between p-3"
+              >
+                <p className="flex gap-3">
+                  <p className="text-[14px] sm:text-[16px] font-medium ">
+                    {publication?.title}
+                  </p>
+                </p>
+                <div
+                  className="w-[15%] h-full flex items-center cursor-pointer"
+                  onClick={() => handlePdfClick(publication)}
+                >
+                  <img
+                    src={pdf}
+                    alt="pdf"
+                    className="w-full h-[95%] object-contain"
+                  />
+                </div>
+              </div>
+            ))}
           </ol>
         </div>
       </div>
@@ -223,4 +198,5 @@ const Publications = () => {
     </div>
   );
 };
+
 export default Publications;

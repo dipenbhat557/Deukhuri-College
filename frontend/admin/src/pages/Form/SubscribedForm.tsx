@@ -16,13 +16,7 @@ const SubscribedForm = () => {
   const [dataSaved, setDataSaved] = useState(false);
 
   const handleSubmit = async () => {
-    const formDataToSend = new FormData();
-    formDataToSend.append(
-      "subscribed",
-      JSON.stringify({ email: formData?.email })
-    );
-
-    console.log(formDataToSend);
+   
 
     try {
       if (subscribed?.id) {
@@ -30,7 +24,7 @@ const SubscribedForm = () => {
           `${
             import.meta.env.VITE_APP_API_ROOT
           }/api/subscribed/${subscribed?.id}`,
-          formDataToSend,
+          { email: formData?.email },
           {
             headers: {
               "Content-Type": "application/json",
@@ -40,7 +34,7 @@ const SubscribedForm = () => {
       } else {
         await axios.post(
           `${import.meta.env.VITE_APP_API_ROOT}/api/subscribed`,
-          formDataToSend,
+          { email: formData?.email },
           {
             headers: {
               "Content-Type": "application/json",

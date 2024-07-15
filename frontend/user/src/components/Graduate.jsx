@@ -6,6 +6,7 @@ import { pdf, program } from "../assets";
 import { programs } from "../constants";
 import { useNavigate } from "react-router-dom";
 import useFetch from "./UseFetch";
+import axios from "axios";
 
 const HeroHeader = lazy(() => import("./HeroHeader"));
 
@@ -15,21 +16,38 @@ const Graduate = ({ pIndex }) => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
-  const graduate_results = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/pg_results`,
-  );
+  const [graduateResults,setGraduateResults] = useState([])
+  const [underGraduateResults,setUnderGraduateResults] = useState([])
+  const [underGraduateSyllabus,setUnderGraduateSyllabus] = useState([])
+  const [graduateSyllabus,setGraduateSyllabus] = useState([])
 
-  const undergraduate_results = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/ug_results`,
-  );
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const resultResponse = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/result`
+        );
+        let recievedResult = await resultResponse?.data;
+        
+        setGraduateResults(recievedResult?.filter(d=> d?.program === "GRADUATE"))
+        
+        setUnderGraduateResults(receivedData?.filter(d=> d?.program === "UNDERGRADUATE"))
 
-  const undergraduate_syllabus = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/ug_syllabus`,
-  );
+        const syllabusResponse = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/syllabus`
+        );
+        let recievedResponse = await syllabusResponse?.data;
+        
+        setGraduateSyllabus(recievedResponse?.filter(d=> d?.program === "GRADUATE"))
+        
+        setUnderGraduateSyllabus(recievedResponse?.filter(d=> d?.program === "UNDERGRADUATE"))
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
 
-  const graduate_syllabus = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/pg_syllabus`,
-  );
+    fetchDocuments();
+  }, []);
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -46,7 +64,13 @@ const Graduate = ({ pIndex }) => {
     };
   }, []);
 
-  const handleReadMore = () => {};
+  const createBlobUrl = (base64Data) => {
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    return URL.createObjectURL(blob);
+  };
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
@@ -168,26 +192,21 @@ const Graduate = ({ pIndex }) => {
             </p>
             <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
               {programIndex == 0
-                ? graduate_results?.map((result, index) => {
+                ? graduateResults?.map((result, index) => {
                     return (
                       <div
                         key={index}
                         className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html: result?.content?.rendered,
-                            }}
-                            className="text-[14px] sm:text-[16px] font-medium"
-                          ></p>
+                          
                           <p className="text-[14px] sm:text-[16px] font-medium ">
-                            {result?.title?.rendered}
+                            {result?.title}
                           </p>
                         </p>
                         <a
                           className="w-[15%] h-full flex items-center"
-                          href={result?.imageUrl}
+                          href={createBlobUrl(result?.img)}
                           target="_blank"
                         >
                           <img
@@ -199,26 +218,21 @@ const Graduate = ({ pIndex }) => {
                       </div>
                     );
                   })
-                : undergraduate_results?.map((result, index) => {
+                : underGraduateResults?.map((result, index) => {
                     return (
                       <div
                         key={index}
                         className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html: result?.content?.rendered,
-                            }}
-                            className="text-[14px] sm:text-[16px] font-medium"
-                          ></p>
+                          
                           <p className="text-[14px] sm:text-[16px] font-medium ">
-                            {result?.title?.rendered}
+                            {result?.title}
                           </p>
                         </p>
                         <a
                           className="w-[15%] h-full flex items-center"
-                          href={result?.imageUrl}
+                          href={createBlobUrl(result?.img)}
                           target="_blank"
                         >
                           <img
@@ -237,26 +251,21 @@ const Graduate = ({ pIndex }) => {
             </p>
             <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
               {programIndex == 0
-                ? graduate_syllabus?.map((syllabus, index) => {
+                ? graduateSyllabus?.map((syllabus, index) => {
                     return (
                       <div
                         key={index}
                         className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html: syllabus?.content?.rendered,
-                            }}
-                            className="text-[14px] sm:text-[16px] font-medium"
-                          ></p>
+                          
                           <p className="text-[14px] sm:text-[16px] font-medium ">
-                            {syllabus?.title?.rendered}
+                            {syllabus?.title}
                           </p>
                         </p>
                         <a
                           className="w-[15%] h-full flex items-center"
-                          href={syllabus?.imageUrl}
+                          href={createBlobUrl(syllabus?.img)}
                           target="_blank"
                         >
                           <img
@@ -268,26 +277,21 @@ const Graduate = ({ pIndex }) => {
                       </div>
                     );
                   })
-                : undergraduate_syllabus?.map((syllabus, index) => {
+                : underGraduateSyllabus?.map((syllabus, index) => {
                     return (
                       <div
                         key={index}
                         className="flex w-full h-[80px] items-center justify-between p-3"
                       >
                         <p className="flex gap-3">
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html: syllabus?.content?.rendered,
-                            }}
-                            className="text-[14px] sm:text-[16px] font-medium"
-                          ></p>
+                          
                           <p className="text-[14px] sm:text-[16px] font-medium ">
-                            {syllabus?.title?.rendered}
+                            {syllabus?.title}
                           </p>
                         </p>
                         <a
                           className="w-[15%] h-full flex items-center"
-                          href={syllabus?.imageUrl}
+                          href={createBlobUrl(syllabus?.img)}
                           target="_blank"
                         >
                           <img

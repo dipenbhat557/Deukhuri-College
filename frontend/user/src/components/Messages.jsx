@@ -19,7 +19,7 @@ const Messages = () => {
           `${import.meta.env.VITE_APP_API_ROOT}/api/message`
         );
         let receivedData = await response?.data;
-        console.log("messages are ",receivedData)
+        // console.log("messages are ",receivedData)
         setMessages(receivedData);
       } catch (error) {
         console.error("Error fetching notices:", error);
