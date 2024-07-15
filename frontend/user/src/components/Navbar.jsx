@@ -99,7 +99,7 @@ const Navbar = ({ active, scrolled }) => {
       <div className="sm:hidden cursor-pointer flex items-center w-[90%] mr-3 justify-end ">
         {toggle ? (
           <AiOutlineMenuUnfold
-            className="text-2xl text-white"
+            className="text-2xl absolute top-4 right-9 text-white"
             onClick={() => setToggle(!toggle)}
           />
         ) : (
@@ -111,7 +111,7 @@ const Navbar = ({ active, scrolled }) => {
         <ul
           className={`${
             !toggle ? "hidden" : "flex"
-          } p-6 bg-[#ffffff] absolute top-12 right-0 mx-4 my-4 min-w-[140px] z-10 rounded-xl flex flex-col items-end gap-4`}
+          } p-6 bg-[#ffffff]   mx-4 my-4   rounded-xl flex flex-col items-end gap-4`}
         >
           {navLinks.map((link) => (
             <li

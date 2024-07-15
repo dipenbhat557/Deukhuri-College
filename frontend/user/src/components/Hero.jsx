@@ -63,7 +63,7 @@ const Hero = () => {
   return (
     <>
       <div className="w-full h-[500px] sm:h-[616px] relative">
-        <div className="video-container">
+        <div className="video-container ">
           {heroElements.map((element, index) => (
             <div
               key={index}
@@ -108,7 +108,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <div className="w-full z-30 h-full bg-black bg-opacity-30 absolute top-0 left-0 flex flex-col justify-between text-white">
+        <div className="w-full z-30 h-full bg-black bg-opacity-30 relative top-0 left-0 flex flex-col justify-between text-white">
           {scrolled || <Navbar active="HOME" scrolled={scrolled} />}
         </div>
       </div>

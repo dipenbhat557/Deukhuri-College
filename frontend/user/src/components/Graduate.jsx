@@ -31,7 +31,7 @@ const Graduate = ({ pIndex }) => {
         
         setGraduateResults(recievedResult?.filter(d=> d?.program === "GRADUATE"))
         
-        setUnderGraduateResults(receivedData?.filter(d=> d?.program === "UNDERGRADUATE"))
+        setUnderGraduateResults(recievedResult?.filter(d=> d?.program === "UNDERGRADUATE"))
 
         const syllabusResponse = await axios.get(
           `${import.meta.env.VITE_APP_API_ROOT}/api/syllabus`
