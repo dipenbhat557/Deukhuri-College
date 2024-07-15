@@ -6,31 +6,43 @@ import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import useFetch from "./UseFetch";
 import Loading from "./Loading";
+import axios from "axios";
 
 const Faculty = ({ fIndex }) => {
   const [facultyIndex, setFacultyIndex] = useState(fIndex);
 
   const [scrolled, setScrolled] = useState(false);
 
-  const oldAcademicTeam = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/academics?per_page=100`
-  );
+  
+  const [academicTeam,setAcademicTeam] = useState([]);
+  const [administrativeTeam, setAdministrativeTeam] = useState([]);
+  const [managementTeam, setManagementTeam] = useState([])
 
-  const academicTeam = oldAcademicTeam?.slice()?.reverse();
+  const [faculties,setFaculties] = useState([])
 
-  const oldAdministrativeTeam = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/administratives?per_page=100`
-  );
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/faculty`
+        );
+        let receivedData = await response?.data;
 
-  const administrativeTeam = oldAdministrativeTeam?.slice()?.reverse();
+        setAcademicTeam(receivedData?.filter(d=>d?.category === "ACADEMICS"));
+        setAdministrativeTeam(receivedData?.filter(d=>d?.category === "ADMINISTRATIVE"));
+        setManagementTeam(receivedData?.filter(d=>d?.category === "MANAGEMENT"));
+        
+      } catch (error) {
+        console.error("Error fetching faculties:", error);
+      }
+    };
 
-  const oldManagementTeam = useFetch(
-    `${import.meta.env.VITE_APP_API_ROOT}/managements?per_page=100`
-  );
+    fetchDocuments();
 
-  const managementTeam = oldManagementTeam?.slice()?.reverse();
+  }, []);
 
-  const faculties = [
+  useEffect(()=>{
+    setFaculties([
     {
       title: "Meet our Academic Team",
       content: academicTeam,
@@ -43,7 +55,16 @@ const Faculty = ({ fIndex }) => {
       title: "Meet our Management Team",
       content: managementTeam,
     },
-  ];
+  ]);
+  },[academicTeam,administrativeTeam,managementTeam])
+
+  const createBlobUrl = (base64Data) => {
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    return URL.createObjectURL(blob);
+  };
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -156,15 +177,15 @@ const Faculty = ({ fIndex }) => {
                   >
                     <img
                       className="w-full h-[65%] object-contain"
-                      src={faculty?.imageUrl || def}
+                      src={`data:image/jpeg;base64,${faculty?.img}` || def}
                       alt={`faculty-${index}`}
                     />
                     <p className="text-[16px] sm:text-[18px] font-semibold h-[18%] p-3">
-                      {faculty?.title?.rendered}
+                      {faculty?.name}
                     </p>
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: faculty?.content?.rendered,
+                        __html: faculty?.designation,
                       }}
                       className="text-[14px] sm:text-[16px] h-[18%] text-slate-400 hover:text-slate-200 p-3"
                     ></p>
@@ -172,7 +193,7 @@ const Faculty = ({ fIndex }) => {
                 );
               })
             ) : (
-              <Loading />
+              <p className="text-[35px] w-full text-center text-red-900 font-semibold">"No data found"</p>
             )}
           </div>
         </div>

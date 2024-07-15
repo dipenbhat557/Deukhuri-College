@@ -111,14 +111,12 @@ const Navbar = ({ active, scrolled }) => {
         <ul
           className={`${
             !toggle ? "hidden" : "flex"
-          } p-6 bg-[#ffffff]   mx-4 my-4   rounded-xl flex flex-col items-end gap-4`}
+          } p-6 bg-red-900 bg-opacity-50   mx-4 my-4 text-white  rounded-xl flex flex-col items-end gap-4`}
         >
           {navLinks.map((link) => (
             <li
               key={link.id}
-              className={`${
-                active === link.title ? "text-black" : "text-black"
-              } font-poppins text-[17px]   font-medium cursor-pointer hover:bg-[#D9D9D9] hover:p-1 hover:text-[15px] hover:rounded-md`}
+              className={`font-poppins text-[17px]   font-medium cursor-pointer hover:bg-[#D9D9D9] hover:p-1 hover:text-[15px] hover:rounded-md`}
               onClick={() => {
                 setToggle(!toggle);
               }}

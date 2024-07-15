@@ -41,7 +41,7 @@ const Subscription = () => {
               Data Uploaded Successfully !!
             </div>
           )}
-      <div className="flex flex-row w-[25%] items-center justify-center mt-2">
+      <div className="flex flex-row md:w-[25%] items-center justify-center mt-2">
         <div className="w-[8%] h-[5px] border-b-4 border-[#DB0E0E]  mr-2 flex-grow" />
         <p className="font-extrabold text-xl sm:text-2xl">SUBSCRIPTION</p>
         <div className="w-[8%] h-[5px] border-b-4 ml-2 border-[#DB0E0E] flex-grow" />

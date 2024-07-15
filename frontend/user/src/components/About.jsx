@@ -2,7 +2,7 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { aboutBg, pdf } from "../assets";
 import { aboutItems } from "../constants";
 import Loading from "./Loading";
-import useFetch from "./UseFetch";
+import axios from "axios";
 
 const Footer = lazy(() => import("./Footer"));
 const HeroHeader = lazy(() => import("./HeroHeader"));
@@ -12,10 +12,36 @@ const Specifications = lazy(() => import("./Specifications"));
 
 const About = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [rules, setRules] = useState([]);
+  const [statutes, setStatutes] = useState([]);
 
-  const rules = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/rules`);
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/rule`
+        );
+        const r = await response.data;
+        setRules(r);
+        console.log('Fetched rules:', r);
 
-  const statutes = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/statutes`);
+        const statRes = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/statute`
+        );
+        const s = await statRes.data;
+        setStatutes(s);
+        console.log('Fetched statutes:', s);
+      } catch (error) {
+        console.error("Error fetching documents:", error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
+
+  useEffect(() => {
+    console.log('Updated rules state:', rules);
+  }, [rules]);
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -27,11 +53,18 @@ const About = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const createBlobUrl = (base64Data) => {
+    const byteCharacters = atob(base64Data);
+    const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    return URL.createObjectURL(blob);
+  };
 
   return (
     <div className={`${scrolled ? "flex flex-col" : ""}`}>
@@ -47,7 +80,7 @@ const About = () => {
           } items-center text-white`}
         >
           <Suspense fallback={<Loading />}>
-            {scrolled || <Navbar active="ABOUT" scrolled={scrolled} />}
+            {!scrolled && <Navbar active="ABOUT" scrolled={scrolled} />}
           </Suspense>
 
           <div className="w-[60%] h-[15%] flex flex-col ">
@@ -66,8 +99,8 @@ const About = () => {
         />
       </div>
 
-      <div className={`p-4 flex w-full h-auto  justify-between`}>
-        <div className="h-full w-[18%] hidden  sm:flex flex-col shadow-xl p-3 bg-red-900 text-white">
+      <div className={`p-4 flex w-full h-auto justify-between`}>
+        <div className="h-full w-[18%] hidden sm:flex flex-col shadow-xl p-3 bg-red-900 text-white">
           About Deukhuri Multiple Campus
         </div>
 
@@ -75,17 +108,17 @@ const About = () => {
           <p className="text-[14px] font-light w-full text-justify">
             Deukhuri Multiple Campus was established in 2005 AD (2062 BS) as a
             community campus located in Lamahi, Deukhuri, Dang district of
-            Nepal. This campus is running with the supports of community people
-            and University Grants Commission of Nepal. It is affiliated to
+            Nepal. This campus is running with the support of community people
+            and the University Grants Commission of Nepal. It is affiliated with
             Tribhuvan University (TU) for Bachelor and Master Degree programs.
-            It has been imparting quality education in the facilities of
-            Management, Arts and Science. <br /> <br /> Deukhuri Multiple Campus
+            It has been imparting quality education in the faculties of
+            Management, Arts, and Science. <br /> <br /> Deukhuri Multiple Campus
             offers Bachelor level and Master level programs such as Bachelor of
             Arts (BA), Bachelor of Education (B.Ed.), Bachelor of Business
-            Studies (BBS), Master of Education (M.Ed.) programs. It provides
-            various Facilities such as Library, Sports, Cafeteria, Labs,
+            Studies (BBS), and Master of Education (M.Ed.) programs. It provides
+            various facilities such as Library, Sports, Cafeteria, Labs,
             Multimedia, Internet, E-library, Journal, Counselling, Educational
-            Tours, Scholarship, Conference and Internship for deserving
+            Tours, Scholarship, Conference, and Internship for deserving
             students.
           </p>
 
@@ -93,38 +126,39 @@ const About = () => {
             <Specifications />
           </Suspense>
 
-          <p className="text-[16px] font-semibold my-3 ">
+          <p className="text-[16px] font-semibold my-3">
             Rules and Regulations
           </p>
-          <p
-            dangerouslySetInnerHTML={{ __html: rules?.[0]?.content?.rendered }}
-            className="text-[14px] my-3 font-light text-justify"
-          ></p>
+          <ul  className="flex list-disc flex-col gap-3 w-full h-auto">
+            {rules?.[0]?.rules?.map((r, i) => (
+              <li
+                key={i}
+                className="text-[14px] my-3 font-light text-justify"
+              >
+                {r}
+              </li>
+            ))}
+          </ul>
 
-          <p className="text-[16px] font-semibold my-3">Statute of campus</p>
+          <p className="text-[16px] font-semibold my-3">Statute of Campus</p>
 
-          <ol className="w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
+          <ol className="w-[80%] sm:w-full h-auto ml-9 sm:ml-0 my-3 bg-[#D9D9D969]">
             {statutes?.map((statute, index) => {
               return (
                 <div
                   key={index}
                   className="flex w-full h-[60px] items-center justify-between p-3"
                 >
-                  <p className="flex gap-3">
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: statute?.content?.rendered,
-                      }}
-                      className="text-[14px] sm:text-[16px] font-medium"
-                    ></p>
-                    <p className="text-[14px] sm:text-[16px] font-medium ">
-                      {statute?.title?.rendered}
+                  <div className="flex gap-3">
+                    <p className="text-[14px] sm:text-[16px] font-medium">
+                      {statute?.title}
                     </p>
-                  </p>
+                  </div>
                   <a
                     className="w-[15%] h-full flex items-center"
-                    href={statute?.imageUrl}
+                    href={createBlobUrl(statute?.img)}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
                       src={pdf}
@@ -143,10 +177,10 @@ const About = () => {
 
           <p className="text-[14px] my-3 font-light text-justify">
             The mission of DMC is to develop itself as a leading academic
-            institution ensuring the quality education in various discipline and
-            research activities through dedicated human resource at affordable
-            cost to the marginalized and economically deprived students to
-            improve their quality of life contributing local and national
+            institution ensuring quality education in various disciplines and
+            research activities through dedicated human resources at affordable
+            costs to the marginalized and economically deprived students to
+            improve their quality of life contributing to local and national
             community.
           </p>
 

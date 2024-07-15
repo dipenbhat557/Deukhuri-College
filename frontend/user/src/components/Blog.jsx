@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import RegisterSection from "./RegisterSection";
 import Subscription from "./Subscriptions";
 import useFetch from "./UseFetch";
+import axios from "axios";
 
 // Lazy-loaded components
 const Loading = lazy(() => import("./Loading"));
@@ -15,9 +16,23 @@ const Loading = lazy(() => import("./Loading"));
 const Blog = () => {
   const [scrolled, setScrolled] = useState(false);
 
-  let oldMessages = useFetch(`${import.meta.env.VITE_APP_API_ROOT}/messages`);
+  const [blogs,setBlogs] = useState([])
 
-  const messages = oldMessages?.slice()?.reverse();
+useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/blog`
+        );
+        let receivedData = response?.data;
+        setBlogs(receivedData);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -78,8 +93,8 @@ const Blog = () => {
         ></div>
 
         <div className="w-full h-[80%] flex flex-wrap justify-around items-center mb-16">
-          {messages?.length > 0 ? (
-            messages.map((message, index) => (
+          {blogs?.length > 0 ? (
+            blogs.map((blog, index) => (
               <Tilt
                 key={index}
                 options={{
@@ -92,22 +107,19 @@ const Blog = () => {
                 <div className=" flex mt-10 flex-col justify-center items-center w-full h-full shadow-2xl p-4">
                   <img
                     className="rounded-3xl w-[80%] h-[55%]"
-                    src={message.imageUrl || def}
-                    alt={message.title?.rendered}
+                    src={`data:image/jpeg;base64,${blog?.img}` || def}
+                    alt={blog?.title}
                   />
                   <div className="flex flex-col w-full h-[45%]">
                     <div className="flex items-center w-full h-[15%] font-semibold">
                       <p className="text-red-900 text-[12px] md:text-[20px] ml-3 md:ml-9">
-                        {message.title?.rendered}
+                        {blog?.title}
                       </p>
                       <div className="ml-2 w-[8%] h-[2px] border-b-4 border-red-900 rounded-3xl" />
                     </div>
-                    <p className="text-[14px] md:text-[18px] h-[10%] font-semibold text-2xl ml-3 md:ml-9">
-                      {messages?.["_message_name"]}
-                    </p>
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: message?.content?.rendered,
+                        __html: blog?.description
                       }}
                       className="text-[10px] md:text-[16px] h-[85%]  text-2xl mx-8 text-justify"
                     ></p>
