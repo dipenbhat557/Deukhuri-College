@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const StudentForm1 = () => {
@@ -13,6 +13,8 @@ const StudentForm1 = () => {
     majorSubject: "",
   });
 
+  const [isFormValid, setIsFormValid] = useState(false);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,20 +25,24 @@ const StudentForm1 = () => {
     });
   };
 
+  useEffect(() => {
+    const requiredFields = ["program", "academicYear", "yearSemester", "medium", "majorSubject", "shift"];
+    const isValid = requiredFields.every((field) => formData[field].trim() !== "");
+    setIsFormValid(isValid);
+  }, [formData]);
+
   const handleNext = () => {
-    navigate("/detailed-form");
+    navigate("/form2");
   };
 
   return (
-    <div className="p-8 max-w-2xl mx-auto bg-gray-100 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6">
-        Personal and Academic Information
-      </h2>
-      <form>
+    <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6">Personal and Academic Information</h2>
+      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="mb-4">
-          <label className="block mb-2">Program</label>
+          <label className="block mb-2">Program<span className="text-red-500">*</span></label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="program"
             value={formData.program}
@@ -45,9 +51,9 @@ const StudentForm1 = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Academic Year</label>
+          <label className="block mb-2">Academic Year<span className="text-red-500">*</span></label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="academicYear"
             value={formData.academicYear}
@@ -56,9 +62,9 @@ const StudentForm1 = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Year/Semester</label>
+          <label className="block mb-2">Year/Semester<span className="text-red-500">*</span></label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="yearSemester"
             value={formData.yearSemester}
@@ -67,9 +73,9 @@ const StudentForm1 = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Medium</label>
+          <label className="block mb-2">Medium<span className="text-red-500">*</span></label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="medium"
             value={formData.medium}
@@ -80,7 +86,7 @@ const StudentForm1 = () => {
         <div className="mb-4">
           <label className="block mb-2">Section</label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="section"
             value={formData.section}
@@ -91,7 +97,7 @@ const StudentForm1 = () => {
         <div className="mb-4">
           <label className="block mb-2">Team</label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="team"
             value={formData.team}
@@ -100,9 +106,9 @@ const StudentForm1 = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Shift</label>
+          <label className="block mb-2">Shift<span className="text-red-500">*</span></label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="shift"
             value={formData.shift}
@@ -111,23 +117,25 @@ const StudentForm1 = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2">Major Subject</label>
+          <label className="block mb-2">Major Subject <span className="text-red-500">*</span></label>
           <input
-            className="p-2 border border-gray-300 rounded"
+            className="p-2 w-full border border-gray-300 rounded"
             type="text"
             name="majorSubject"
             value={formData.majorSubject}
             onChange={handleChange}
           />
         </div>
-        <button
-          className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700"
+        
+      </form>
+      <div className="flex w-full justify-end"><button
+          className={`py-2 w-[10%] ${isFormValid ? "bg-blue-500 hover:bg-blue-700" : "bg-gray-500"} text-white rounded`}
           type="button"
           onClick={handleNext}
+          disabled={!isFormValid}
         >
           Next
-        </button>
-      </form>
+        </button></div>
     </div>
   );
 };

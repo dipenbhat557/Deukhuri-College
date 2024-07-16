@@ -42,7 +42,7 @@ export const navLinks = [
   {
     id: "admission",
     title: "ADMISSION",
-    route: "/admission",
+    route: "/form1",
   },
   {
     id: "about",

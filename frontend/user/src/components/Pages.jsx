@@ -7,6 +7,8 @@ import Faculty from "./Faculty";
 import Contact from "./Contact";
 import About from "./About";
 import Publications from "./Publications";
+import StudentForm1 from "./Forms/StudentForm1";
+import StudentForm2 from "./Forms/StudentForm2";
 
 function Pages() {
   return (
@@ -36,6 +38,8 @@ function Pages() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/publications" element={<Publications />} />
+        <Route path="/form1" element={<StudentForm1/>}/>
+        <Route path="/form2" element={<StudentForm2/>}/>
       </Routes>
     </BrowserRouter>
   );
