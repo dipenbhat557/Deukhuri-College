@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {MdSkipNext} from "react-icons/md"
+import Footer from "../Footer"
+import HeroHeader from "../HeroHeader"
+import Navbar from "../Navbar"
 
 const StudentForm1 = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +16,7 @@ const StudentForm1 = () => {
     shift: "",
     majorSubject: "",
   });
+  const [error,setError] = useState(false)
 
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -29,6 +34,7 @@ const StudentForm1 = () => {
     const requiredFields = ["program", "academicYear", "yearSemester", "medium", "majorSubject", "shift"];
     const isValid = requiredFields.every((field) => formData[field].trim() !== "");
     setIsFormValid(isValid);
+    setError(!isValid)
   }, [formData]);
 
   const handleNext = () => {
@@ -36,8 +42,12 @@ const StudentForm1 = () => {
   };
 
   return (
+    <>
+    <HeroHeader/>
     <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6">Personal and Academic Information</h2>
+      {error && <p className="text-red-800 text-md">Fill all the compulsory fields first</p>}
+      <p className="text-red-800 text-md">Fields with (*) are compulsory.</p>
       <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="mb-4">
           <label className="block mb-2">Program<span className="text-red-500">*</span></label>
@@ -129,14 +139,17 @@ const StudentForm1 = () => {
         
       </form>
       <div className="flex w-full justify-end"><button
-          className={`py-2 w-[10%] ${isFormValid ? "bg-blue-500 hover:bg-blue-700" : "bg-gray-500"} text-white rounded`}
+          className={`py-2  w-[10%] flex items-center justify-center gap-3 ${isFormValid ? "bg-blue-500 hover:bg-blue-700 cursor-pointer" : "bg-gray-500"} text-white rounded`}
           type="button"
           onClick={handleNext}
           disabled={!isFormValid}
         >
+          <MdSkipNext size={20}/>
           Next
         </button></div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
