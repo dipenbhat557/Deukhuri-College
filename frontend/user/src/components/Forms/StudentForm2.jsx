@@ -68,7 +68,7 @@ const StudentForm2 = () => {
     <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
       <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <h3 className="text-2xl font-bold mb-6 sm:col-span-2">Student Information</h3>
-         {error && <p className="text-red-800 text-md">Fill all the compulsory fields first</p>}
+         {error && <p className="text-red-800 text-md">Fill all the compulsory fields first!!</p>}
       <p className="text-red-800 text-md">Fields with (*) are compulsory.</p>
      
         {[

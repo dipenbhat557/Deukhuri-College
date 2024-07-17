@@ -46,9 +46,10 @@ const StudentForm1 = () => {
     <HeroHeader/>
     <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6">Personal and Academic Information</h2>
-      {error && <p className="text-red-800 text-md">Fill all the compulsory fields first</p>}
-      <p className="text-red-800 text-md">Fields with (*) are compulsory.</p>
+      
       <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {error && <p className="text-red-800 text-md">Fill all the compulsory fields first!!</p>}
+      <p className="text-red-800 text-md">Fields with (*) are compulsory.</p>
         <div className="mb-4">
           <label className="block mb-2">Program<span className="text-red-500">*</span></label>
           <input
