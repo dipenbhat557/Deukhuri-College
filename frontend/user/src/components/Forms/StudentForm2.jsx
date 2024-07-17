@@ -1,50 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { FaSave } from "react-icons/fa"
+import React, { useEffect, useState } from "react";
+import { FaSave } from "react-icons/fa";
+import { MdSkipPrevious } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import studentFormState from "../../store";
 
 const StudentForm2 = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    nameNepali: "",
-    dateOfBirthBS: "",
-    phoneNumber: "",
-    email: "",
-    maritalStatus: "",
-    gender: "",
-    ethnicity: "",
-    caste: "",
-    bloodGroup: "",
-    citizenshipNo: "",
-    religion: "",
-    nationality: "Nepalese",
-    province: "",
-    district: "",
-    municipality: "",
-    wardNo: "",
-    addressNepali: "",
-    temporaryAddress: "",
-    smsNo: "",
-    dormFacility: "",
-    busFacility: "",
-    fatherName: "",
-    fatherPhoneNo: "",
-    fatherQualification: "",
-    motherName: "",
-    motherPhoneNo: "",
-    motherQualification: "",
-  });
-
-  const [error,setError] = useState(false)
-
+  const navigate = useNavigate();
+  const [formData, setFormData] = useRecoilState(studentFormState);
+  const [error, setError] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
   };
 
   useEffect(() => {
@@ -56,8 +28,11 @@ const StudentForm2 = () => {
     ];
     const isValid = requiredFields.every((field) => formData[field].trim() !== "");
     setIsFormValid(isValid);
-    setError(!isValid)
+    setError(!isValid);
   }, [formData]);
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,11 +41,11 @@ const StudentForm2 = () => {
 
   return (
     <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <h3 className="text-2xl font-bold mb-6 sm:col-span-2">Student Information</h3>
-         {error && <p className="text-red-800 text-md">Fill all the compulsory fields first!!</p>}
-      <p className="text-red-800 text-md">Fields with (*) are compulsory.</p>
-     
+      <h3 className="text-2xl font-bold mb-6 sm:col-span-2">Student Information</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{error && <p className="text-red-800 text-md">Fill all the compulsory fields first!!</p>}
+          <p className="text-red-800 text-md">Fields with (*) are compulsory.</p></div>
+        
+      <form  className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {[
           { label: "First Name", name: "firstName", type: "text", required: true },
           { label: "Middle Name", name: "middleName", type: "text" },
@@ -82,12 +57,12 @@ const StudentForm2 = () => {
           { label: "Marital Status", name: "maritalStatus", type: "select", options: ["", "Single", "Married"], required: true },
           { label: "Gender", name: "gender", type: "select", options: ["", "Male", "Female", "Other"], required: true },
           { label: "Ethnicity", name: "ethnicity", type: "text", required: true },
-          { label: "Caste", name: "caste", type: "select", options: [""] /* Add options here */, required: true },
+          { label: "Caste", name: "caste", type: "select", options: ["","Brahmin","Chetri"] /* Add options here */, required: true },
           { label: "Blood Group", name: "bloodGroup", type: "text" },
           { label: "Citizenship No", name: "citizenshipNo", type: "text" },
           { label: "Religion", name: "religion", type: "text", required: true },
           { label: "Nationality", name: "nationality", type: "text", readOnly: true },
-          { label: "Province", name: "province", type: "select", options: [""] /* Add options here */, required: true },
+          { label: "Province", name: "province", type: "select", options: ["","1","2","3","4","5"] /* Add options here */, required: true },
           { label: "District", name: "district", type: "text", required: true },
           { label: "Municipality", name: "municipality", type: "text", required: true },
           { label: "Ward No", name: "wardNo", type: "text", required: true },
@@ -131,10 +106,10 @@ const StudentForm2 = () => {
         {[
           { label: "Father Name", name: "fatherName", type: "text", required: true },
           { label: "Father Phone No", name: "fatherPhoneNo", type: "tel" },
-          { label: "Father Qualification", name: "fatherQualification", type: "select", options: [""] /* Add options here */, required: true },
+          { label: "Father Qualification", name: "fatherQualification", type: "select", options: ["","BBS","BBA"] /* Add options here */, required: true },
           { label: "Mother Name", name: "motherName", type: "text", required: true },
           { label: "Mother Phone No", name: "motherPhoneNo", type: "tel" },
-          { label: "Mother Qualification", name: "motherQualification", type: "select", options: [""] /* Add options here */, required: true },
+          { label: "Mother Qualification", name: "motherQualification", type: "select", options: ["","BBS","BBA"] /* Add options here */, required: true },
         ].map((field, index) => (
           <div key={index} className="mb-4">
             <label className="block mb-2">
@@ -164,18 +139,27 @@ const StudentForm2 = () => {
             )}
           </div>
         ))}
-
-        
+      
+      
       </form>
-      <div className="flex w-full justify-end"><button
-          className={`py-2  w-[10%] flex items-center justify-center gap-3 ${isFormValid ? "bg-blue-500 hover:bg-blue-700 cursor-pointer" : "bg-gray-500"} text-white rounded`}
+      <div className="flex w-full justify-between">
+        <button
+          className={`py-2 w-[25%] md:w-[10%] flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-700 cursor-pointer text-white rounded`}
           type="button"
+          onClick={() => navigate("/form1")}
+        >
+          <MdSkipPrevious size={20} />
+          Prev
+        </button>
+        <button
+          className={`py-2 w-[25%] md:w-[10%] flex items-center justify-center gap-3 ${isFormValid ? "bg-blue-500 hover:bg-blue-700 cursor-pointer" : "bg-gray-500"} text-white rounded`}
           onClick={handleSubmit}
           disabled={!isFormValid}
         >
-          <FaSave size={20}/>
+          <FaSave size={20} />
           Save
-        </button></div>
+        </button>
+      </div>
     </div>
   );
 };
