@@ -9,8 +9,7 @@ import axios from "axios";
 // import { messageItems } from "../constants";
 
 const Messages = () => {
-
-  const [messages,setMessages] = useState([])
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -174,10 +173,6 @@ const Messages = () => {
           </motion.div>
         </div>
       </div>
-      <div
-        className="bg-red-900 w-[80px] h-[14%] hidden md:flex justify-end -mt-24 right-40  rounded-tr-xl"
-        style={{ position: "absolute", zIndex: -10 }}
-      ></div>
     </div>
   );
 };

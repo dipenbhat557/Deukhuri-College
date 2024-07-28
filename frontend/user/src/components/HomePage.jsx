@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import Loading from "./Loading";
 import Advertisement from "./Advertisement";
+import Events from "./Events";
 // import HeaderNotice from "./HeaderNotice";
 
 const Navbar = lazy(() => import("./Navbar"));
@@ -51,6 +52,7 @@ const HomePage = () => {
         <Specifications />
         <RegisterSection />
         <Messages />
+        <Events />
         <Programs />
         <Subscriptions />
         <Footer />
