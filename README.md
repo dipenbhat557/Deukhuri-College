@@ -1,6 +1,6 @@
 # Deukhuri Multiple Campus Website
 
-Welcome to the Deukhuri Multiple Campus website repository! This repository contains the source code for our college's website built using Vite.js.
+Welcome to the Deukhuri Multiple Campus website repository! This repository contains the source code for our college's website built using React.js in frontend and Spring boot in backend.
 
 ## Table of Contents
 
