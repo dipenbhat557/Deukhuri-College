@@ -4,12 +4,35 @@ import { MdSkipPrevious } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import studentFormState from "../../store";
+import axios from "axios";
 
 const StudentForm2 = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useRecoilState(studentFormState);
   const [error, setError] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const [castes, setCastes] = useState([]);
+  const [casteIndexes, setCasteIndexes] = useState([]);
+
+  useEffect(() => {
+    const casteUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/student-academics-sub-caste-list-view/?caste_id=${formData?.ethnicity}`;
+    const something = async () => {
+      if (formData?.ethnicity !== 0) {
+        const res = await axios.get(casteUrl);
+        const finalRes = await res.data.data;
+        // console.log(finalRes);
+        const cas = finalRes?.map((c) => c?.sub_caste_name);
+        setCastes(cas);
+        const casInd = finalRes?.map((c) => c?.sub_caste_id);
+        setCasteIndexes(casInd);
+
+        // console.log("castes are ", castes);
+        // console.log("caste indexes are ", casteIndexes);
+      }
+    };
+    something();
+  }, [formData?.ethnicity]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +41,70 @@ const StudentForm2 = () => {
       [name]: value,
     }));
   };
+  //https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-province-wise-district-list/?province_id=1
+  const [district, setdistrict] = useState([]);
+  const [districtIndexes, setdistrictIndexes] = useState([]);
+
+  useEffect(() => {
+    const districtUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-province-wise-district-list/?province_id=${formData?.province}`;
+    const something = async () => {
+      if (formData?.province !== 0) {
+        const res = await axios.get(districtUrl);
+        const finalRes = await res.data;
+        console.log(finalRes);
+        const dis = finalRes?.map((c) => c?.district_name);
+        setdistrict(dis);
+        const disInd = finalRes?.map((c) => c?.district_id);
+        setdistrictIndexes(disInd);
+
+        // console.log("castes are ", castes);
+        // console.log("caste indexes are ", casteIndexes);
+      }
+    };
+    something();
+  }, [formData?.province]);
+
+  const [municipality, setMunicipality] = useState([]);
+  const [municipalityIndexes, setMunicipalityIndexes] = useState([]);
+
+  useEffect(() => {
+    const municipalityUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-district-wise-municiplity-list/?district_id=${formData?.district}`;
+    const something = async () => {
+      if (formData?.district !== 0) {
+        const res = await axios.get(municipalityUrl);
+        const finalRes = await res.data;
+        console.log(finalRes);
+        const mun = finalRes?.map((c) => c?.mun_name);
+        setMunicipality(mun);
+        const munInd = finalRes?.map((c) => c?.id);
+        setMunicipalityIndexes(munInd);
+
+        // console.log("castes are ", castes);
+        // console.log("caste indexes are ", casteIndexes);
+      }
+    };
+    something();
+  }, [formData?.district]);
+
+  const [qa, setQa] = useState([]);
+  const [qaIndexes, setQaIndexes] = useState([]);
+
+  useEffect(() => {
+    const qaUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-required-data-list/`;
+    const something = async () => {
+      const res = await axios.get(qaUrl);
+      const finalRes = await res.data.program;
+      // console.log(finalRes);
+      const qaf = finalRes?.map((c) => c?.programname);
+      setQa(qaf);
+      const qafInd = finalRes?.map((c) => c?.programid);
+      setQaIndexes(qafInd);
+
+      // console.log("castes are ", castes);
+      // console.log("caste indexes are ", casteIndexes);
+    };
+    something();
+  }, []);
 
   useEffect(() => {
     const requiredFields = [
@@ -112,6 +199,7 @@ const StudentForm2 = () => {
             name: "marital_status",
             type: "select",
             options: ["", "Single", "Married"],
+            values: ["", "1", "2"],
             required: true,
           },
           {
@@ -119,24 +207,56 @@ const StudentForm2 = () => {
             name: "gender",
             type: "select",
             options: ["", "Male", "Female", "Other"],
+            values: ["", "2", "1", "0"],
             required: true,
           },
           {
             label: "Ethnicity",
-            name: "sub_caste",
-            type: "text",
+            name: "ethnicity",
+            options: [
+              "1.EDJ ",
+              "2.Dalits",
+              "3.Madhesi",
+              "4.Others",
+              "5.Janajati",
+            ],
+            values: ["1", "2", "3", "4", "5"],
+            type: "select",
             required: true,
           },
           {
             label: "Caste",
             name: "caste",
             type: "select",
-            options: ["", "Brahmin", "Chetri"] /* Add options here */,
+            options: castes /* Add options here */,
+            values: casteIndexes,
             required: true,
           },
           { label: "Blood Group", name: "bloodgroup", type: "text" },
           { label: "Citizenship No", name: "citiz_no", type: "text" },
-          { label: "Religion", name: "religion", type: "text", required: true },
+          {
+            label: "Religion",
+            name: "religion",
+            type: "select",
+            options: [
+              " ",
+              "Hinduism",
+              "Buddhism",
+              "Christanity",
+              "Jainism",
+              "Judaism",
+              "Sikhism",
+            ],
+            values: [
+              "hinduism",
+              "buddhism",
+              "christanity",
+              "jainism",
+              "judaism",
+              "sikhism",
+            ],
+            required: true,
+          },
           {
             label: "Nationality",
             name: "nationality",
@@ -148,14 +268,33 @@ const StudentForm2 = () => {
             label: "Province",
             name: "province",
             type: "select",
-            options: ["", "1", "2", "3", "4", "5"] /* Add options here */,
+            options: [
+              "",
+              "Province No. 1",
+              "Province No. 2",
+              "Bagmati Province",
+              "Gandaki Province",
+              "Lumbini Province",
+              "Karnali Province",
+              "Sudurpashchim Province",
+            ] /* Add options here */,
+            values: ["", "1", "2", "3", "4", "5", "6", "7"],
             required: true,
           },
-          { label: "District", name: "district", type: "text", required: true },
+          {
+            label: "District",
+            name: "district",
+            type: "select",
+            options: district,
+            values: districtIndexes,
+            required: true,
+          },
           {
             label: "Municipality",
             name: "municipality",
-            type: "text",
+            options: municipality,
+            values: municipalityIndexes,
+            type: "select",
             required: true,
           },
           { label: "Ward No", name: "wardno", type: "text", required: true },
@@ -171,12 +310,14 @@ const StudentForm2 = () => {
             name: "dorm_facility",
             type: "select",
             options: ["", "Yes", "No"],
+            values: ["", "false", "true"],
           },
           {
             label: "Bus Facility",
             name: "bus_facility",
             type: "select",
             options: ["", "Yes", "No"],
+            values: ["", "false", "true"],
           },
         ].map((field, index) => (
           <div key={index} className="mb-4">
@@ -193,7 +334,7 @@ const StudentForm2 = () => {
                 required={field.required}
               >
                 {field.options.map((option, i) => (
-                  <option key={i} value={option.toLowerCase()}>
+                  <option key={i} value={field?.values?.[i]}>
                     {option}
                   </option>
                 ))}
@@ -227,7 +368,8 @@ const StudentForm2 = () => {
             label: "Father Qualification",
             name: "father_qualification ",
             type: "select",
-            options: ["", "BBS", "BBA"] /* Add options here */,
+            options:[ "",...qa],
+            values: qaIndexes,
             required: true,
           },
           {
@@ -241,7 +383,8 @@ const StudentForm2 = () => {
             label: "Mother Qualification",
             name: "mother_qualification",
             type: "select",
-            options: ["", "BBS", "BBA"] /* Add options here */,
+            options:["" ,...qa],
+            values: qaIndexes,
             required: true,
           },
         ].map((field, index) => (
