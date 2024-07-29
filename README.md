@@ -85,3 +85,18 @@ npx tailwindcss init -p
 3. Make your changes and commit them with clear and concise messages.
 4. Push your changes to your fork.
 5. Create a pull request to the main branch of the original repository.
+
+
+Event Model:
+id
+content
+img
+stat
+name
+date
+agenda
+speaker
+sponser
+contact
+food
+audience

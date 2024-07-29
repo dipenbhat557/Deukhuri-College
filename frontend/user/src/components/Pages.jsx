@@ -10,6 +10,7 @@ import Publications from "./Publications";
 import StudentForm1 from "./Forms/StudentForm1";
 import StudentForm2 from "./Forms/StudentForm2";
 import EventPage from "./EventPage";
+import AfterEvent from "./AfterEvent";
 
 function Pages() {
   return (
@@ -42,6 +43,7 @@ function Pages() {
         <Route path="/form1" element={<StudentForm1 />} />
         <Route path="/form2" element={<StudentForm2 />} />
         <Route path="/events" element={<EventPage />} />
+        <Route path="/afterevent" element={<AfterEvent />} />
       </Routes>
     </BrowserRouter>
   );

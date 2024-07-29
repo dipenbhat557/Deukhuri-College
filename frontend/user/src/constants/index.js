@@ -30,9 +30,9 @@ export const navLinks = [
     route: "#",
   },
   {
-    id: "contact",
-    title: "CONTACT",
-    route: "/contact",
+    id: "events",
+    title: "EVENTS",
+    route: "/events",
   },
   {
     id: "blog",
