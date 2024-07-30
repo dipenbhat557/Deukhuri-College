@@ -43,7 +43,7 @@ function Pages() {
         <Route path="/form1" element={<StudentForm1 />} />
         <Route path="/form2" element={<StudentForm2 />} />
         <Route path="/events" element={<EventPage />} />
-        <Route path="/afterevent" element={<AfterEvent />} />
+        <Route path="/afterevent/:id" element={<AfterEvent />} />
       </Routes>
     </BrowserRouter>
   );
