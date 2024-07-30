@@ -50,21 +50,23 @@ const EventPage = () => {
   const navigate = useNavigate();
   const [eventsData, setEventsData] = useState(events);
 
-  //   useEffect(() => {
-  //     const fetchDocuments = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           `${import.meta.env.VITE_APP_API_ROOT}/api/event`
-  //         );
-  //         let receivedData = response?.data;
-  //         setEventsData(receivedData);
-  //       } catch (error) {
-  //         console.error("Error fetching notices:", error);
-  //       }
-  //     };
+  useEffect(() => {
+    window.scrollTo(0, 0);
 
-  //     fetchDocuments();
-  //   }, []);
+    //     const fetchDocuments = async () => {
+    //       try {
+    //         const response = await axios.get(
+    //           `${import.meta.env.VITE_APP_API_ROOT}/api/event`
+    //         );
+    //         let receivedData = response?.data;
+    //         setEventsData(receivedData);
+    //       } catch (error) {
+    //         console.error("Error fetching notices:", error);
+    //       }
+    //     };
+
+    //     fetchDocuments();
+  }, []);
 
   return (
     <>
@@ -108,7 +110,7 @@ const EventPage = () => {
             return (
               <div
                 key={event.id}
-                className="flex flex-col h-[500px] sm:h-[650px] rounded-lg shadow-lg overflow-hidden bg-white hover:bg-[#6D603F] hover:text-white transition duration-300"
+                className="flex flex-col h-[500px] sm:h-[650px] rounded-lg shadow-lg overflow-hidden bg-white hover:bg-red-900 hover:text-white transition duration-300"
               >
                 <div className="relative w-full h-[50%]">
                   <img
@@ -126,7 +128,7 @@ const EventPage = () => {
                   </p>
                 </div>
                 <button
-                  className="mt-auto py-2 px-4 rounded-lg bg-[#6D603F] text-white text-[14px] mx-auto mb-4"
+                  className="mt-auto py-2 px-4 rounded-lg bg-red-900 text-white text-[14px] mx-auto mb-4"
                   onClick={() => navigate(`/afterevent/${event.id}`)}
                 >
                   Know more

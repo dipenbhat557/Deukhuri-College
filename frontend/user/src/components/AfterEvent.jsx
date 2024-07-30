@@ -46,7 +46,7 @@ const oldEvents = [
 ];
 
 const AfterEvent = () => {
-  const { id } = useParams(); // Get the event ID from URL parameters
+  const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [allEvents, setAllEvents] = useState(oldEvents);
   const [otherEvents, setOtherEvents] = useState([]);
@@ -68,6 +68,7 @@ const AfterEvent = () => {
   //   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchEvent = () => {
       let foundEvent = allEvents.find((event) => event.id === parseInt(id));
       setEvent(foundEvent);
