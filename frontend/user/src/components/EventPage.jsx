@@ -5,45 +5,50 @@ import Subscriptions from "./Subscriptions";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
-import useFetch from "./UseFetch";
 import { useEffect, useState } from "react";
 
-const oldEvents = [
+// Sample data
+const events = [
   {
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC", // Base64 encoded 1x1 pixel PNG
-    stat: "001",
-    date: "2024-07-28",
-    content: "Event 1: This is a description of the first event.",
+    id: 1,
+    title: "Event 1",
+    description: "This is a description of the first event.",
+    image:
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
   },
   {
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC", // Base64 encoded 1x1 pixel PNG
-    stat: "002",
-    date: "2024-07-29",
-    content: "Event 2: This is a description of the second event.",
+    id: 2,
+    title: "Event 2",
+    description: "This is a description of the second event.",
+    image:
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
   },
   {
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC", // Base64 encoded 1x1 pixel PNG
-    stat: "003",
-    date: "2024-07-30",
-    content: "Event 3: This is a description of the third event.",
+    id: 3,
+    title: "Event 3",
+    description: "This is a description of the third event.",
+    image:
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
   },
   {
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC", // Base64 encoded 1x1 pixel PNG
-    stat: "004",
-    date: "2024-07-31",
-    content: "Event 4: This is a description of the fourth event.",
+    id: 4,
+    title: "Event 4",
+    description: "This is a description of the fourth event.",
+    image:
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
   },
   {
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC", // Base64 encoded 1x1 pixel PNG
-    stat: "005",
-    date: "2024-08-01",
-    content: "Event 5: This is a description of the fifth event.",
+    id: 5,
+    title: "Event 5",
+    description: "This is a description of the fifth event.",
+    image:
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
   },
 ];
 
 const EventPage = () => {
   const navigate = useNavigate();
-  const [events, setEvents] = useState(oldEvents);
+  const [eventsData, setEventsData] = useState(events);
 
   //   useEffect(() => {
   //     const fetchDocuments = async () => {
@@ -52,7 +57,7 @@ const EventPage = () => {
   //           `${import.meta.env.VITE_APP_API_ROOT}/api/event`
   //         );
   //         let receivedData = response?.data;
-  //         setEvents(receivedData);
+  //         setEventsData(receivedData);
   //       } catch (error) {
   //         console.error("Error fetching notices:", error);
   //       }
@@ -81,7 +86,7 @@ const EventPage = () => {
         <p className="text-[35px] text-[#6D603F]">Events</p>
         <p className="text-[12px] sm:text-[18px] leading-relaxed text-justify ">
           Join us for an exciting and informative event hosted by the Deukhuri
-          Multiple Campus ! We are thrilled to bring together local businesses,
+          Multiple Campus! We are thrilled to bring together local businesses,
           entrepreneurs, and community members to foster collaboration and
           economic growth in Lamahi. The event will feature engaging discussions
           on current business trends, networking opportunities, and
@@ -95,44 +100,34 @@ const EventPage = () => {
         </p>
       </div>
 
-      <div
-        className={`${styles.padding} h-auto w-full flex flex-col items-center justify-between`}
-      >
-        <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between items-start gap-4 h-auto w-full">
-          {events?.map((event, index) => {
-            const img = `data:image/jpeg;base64,${event?.img || ""}` || def;
+      <div className={`${styles.padding} w-full h-auto`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {eventsData.map((event) => {
+            const img = `data:image/jpeg;base64,${event.image || ""}` || def;
 
             return (
               <div
-                key={index}
-                className="h-[600px] sm:h-[680px] w-full sm:w-[28%] flex flex-wrap flex-col justify-between items-center"
+                key={event.id}
+                className="flex flex-col h-[500px] sm:h-[650px] rounded-lg shadow-lg overflow-hidden bg-white hover:bg-[#6D603F] hover:text-white transition duration-300"
               >
-                <div className="flex flex-col justify-around h-[90%] w-full rounded-lg hover:bg-[#6D603F] hover:text-white">
-                  <div className="w-full h-[50%] relative">
-                    <img
-                      src={img}
-                      alt={`img-${index}`}
-                      className="object-cover w-full h-full rounded-t-lg"
-                    />
-                    <p className="absolute bg-[#F1E8D7] text-slate-800 top-0 right-0 text-[12px] w-[27%] h-[13%] p-2 rounded-bl-md rounded-tr-lg">
-                      {`#${event?.stat || "Loading.."}`}
-                    </p>
-                  </div>
-                  <div className="w-[full] h-[50%] flex flex-col ">
-                    <p className="w-full h-[10%] pr-3 text-end mt-2">
-                      {event?.date || "Loading..."}
-                    </p>
-                    <p className="w-full h-[90%] p-3 leading-loose text-[18px] line-clamp-5">
-                      {event?.content || "Loading..."}
-                    </p>
-                  </div>
+                <div className="relative w-full h-[50%]">
+                  <img
+                    src={img}
+                    alt={`img-${event.id}`}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
-
+                <div className="flex flex-col p-4 h-[50%]">
+                  <p className="text-[18px] font-semibold mb-2">
+                    {event.title || "Loading..."}
+                  </p>
+                  <p className="text-[14px] leading-loose line-clamp-4">
+                    {event.description || "Loading..."}
+                  </p>
+                </div>
                 <button
-                  className="border-4 h-[7%] sm:h-[6%] w-[100px] sm:w-[200px] border-[#6D603F] text-[16px] rounded-lg"
-                  onClick={() =>
-                    navigate("/afterevent", { state: { id: index } })
-                  }
+                  className="mt-auto py-2 px-4 rounded-lg bg-[#6D603F] text-white text-[14px] mx-auto mb-4"
+                  onClick={() => navigate(`/afterevent/${event.id}`)}
                 >
                   Know more
                 </button>
