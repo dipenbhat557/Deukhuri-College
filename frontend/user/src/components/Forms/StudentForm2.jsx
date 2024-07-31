@@ -143,11 +143,11 @@ const StudentForm2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details";
+    const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details";
 
-    // const res = await axios.post(admissionURL,formData);
-    // const response = await res.data;
-    // console.log(response)
+    const res = await axios.post(admissionURL,formData);
+    const response = await res.data;
+    console.log(response)
 
     console.log(formData);
   };
