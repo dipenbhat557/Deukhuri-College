@@ -56,7 +56,7 @@ public class Admission {
 
     private String reg_date_n;
 
-    private String photo;
+    private String photo=null;
 
     private String citiz_no = null;
 
