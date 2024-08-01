@@ -48,6 +48,7 @@ const StudentForm1 = () => {
     const isValid = requiredFields.every(
       (field) => formData[field] && formData[field].trim() !== ""
     );
+    console.log(formData);
     setIsFormValid(isValid);
     setError(!isValid);
   }, [formData]);
@@ -159,7 +160,7 @@ const StudentForm1 = () => {
             <select
               className="select w-[80%] p-2"
               name="sec"
-              value={formData.section}
+              value={formData.sec}
               onChange={handleChange}
               required
             >
@@ -204,7 +205,7 @@ const StudentForm1 = () => {
             <select
               className="select w-[80%] p-2"
               name="maj_subj"
-              value={formData.majorSubject}
+              value={formData.maj_subj}
               onChange={handleChange}
             >
               <option value={1}>Default</option>

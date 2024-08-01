@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import { MdSkipPrevious } from "react-icons/md";
@@ -14,6 +15,50 @@ const StudentForm2 = () => {
 
   const [castes, setCastes] = useState([]);
   const [casteIndexes, setCasteIndexes] = useState([]);
+
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      program: prevFormData.program || "",
+      acdmc_year: prevFormData.acdmc_year || "",
+      year_semester: prevFormData.year_semester || "",
+      medium: prevFormData.medium || "",
+      sec: prevFormData.sec || "",
+      team: prevFormData.team || "",
+      shift: prevFormData.shift || "",
+      maj_subj: prevFormData.maj_subj || "",
+      first_name: prevFormData.first_name || "",
+      middle_name: prevFormData.middle_name || "",
+      last_name: prevFormData.last_name || "",
+      name_nep: prevFormData.name_nep || "",
+      dobn: prevFormData.dobn || "",
+      phone: prevFormData.phone || "",
+      email: prevFormData.email || "",
+      marital_status: prevFormData.marital_status || 0,
+      gender: prevFormData.gender || 0,
+      sub_caste: prevFormData.sub_caste || 0,
+      caste: prevFormData.caste || 1,
+      bloodgroup: prevFormData.bloodgroup || "",
+      citiz_no: prevFormData.citiz_no || "",
+      religion: prevFormData.religion || "",
+      nationality: prevFormData.nationality || "Nepalese",
+      province: prevFormData.province || 1,
+      district: prevFormData.district || 0,
+      municipality: prevFormData.municipality || 0,
+      wardno: prevFormData.wardno || 0,
+      add_nep: prevFormData.add_nep || "",
+      tempadd: prevFormData.tempadd || "",
+      sms_mob_no: prevFormData.sms_mob_no || "",
+      dorm_facility: prevFormData.dorm_facility || false,
+      bus_facility: prevFormData.bus_facility || false,
+      father_name: prevFormData.father_name || "",
+      fath_ph: prevFormData.fath_ph || "",
+      father_qualification: prevFormData.father_qualification || 0,
+      mother_name: prevFormData.mother_name || "",
+      moth_ph: prevFormData.moth_ph || "",
+      mother_qualification: prevFormData.mother_qualification || 0,
+    }));
+  }, []);
 
   useEffect(() => {
     const casteUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/student-academics-sub-caste-list-view/?caste_id=${formData?.caste}`;
@@ -113,9 +158,9 @@ const StudentForm2 = () => {
       "mother_name",
       "mother_qualification",
     ];
-    // console.log(formData)
+    console.log(formData);
     const isValid = requiredFields.every(
-      (field) => formData[field] && formData[field].trim() !== ""
+      (field) => formData[field] && formData[field].toString().trim() !== ""
     );
     setIsFormValid(isValid);
     setError(!isValid);
@@ -127,12 +172,13 @@ const StudentForm2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details";
+    // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details";
 
     // const res = await axios.post(admissionURL,formData);
     // const response = await res.data;
     // console.log(response)
     console.log(formData);
+    navigate("/");
   };
 
   return (
@@ -300,8 +346,15 @@ const StudentForm2 = () => {
           {
             label: "Father's Qualification",
             name: "father_qualification",
-            type: "text",
+            type: "select",
+            options:qa,
+            values:qaIndexes,
             required: true,
+          },{
+            label: "Father's Phone No",
+            name: "fath_ph",
+            type: "text",
+            required: false,
           },
           {
             label: "Mother's Name",
@@ -312,9 +365,16 @@ const StudentForm2 = () => {
           {
             label: "Mother's Qualification",
             name: "mother_qualification",
-            type: "text",
+            type: "select",
+            options: qa,
+            values: qaIndexes,
             required: true,
-          },
+          },{
+            label: "Mother's Phone No",
+            name: "moth_ph",
+            type: "text",
+            required: false,
+          }
         ].map(({ label, name, type, options, values, required }) => (
           <div key={name} className="mb-4">
             <label htmlFor={name} className="block text-gray-700">
@@ -329,7 +389,7 @@ const StudentForm2 = () => {
                 value={formData[name] || ""}
                 className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
               >
-                {options.map((option, index) => (
+                {options?.map((option, index) => (
                   <option key={index} value={values[index]}>
                     {option}
                   </option>
