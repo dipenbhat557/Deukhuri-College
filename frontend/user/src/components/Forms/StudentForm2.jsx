@@ -16,23 +16,19 @@ const StudentForm2 = () => {
   const [casteIndexes, setCasteIndexes] = useState([]);
 
   useEffect(() => {
-    const casteUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/student-academics-sub-caste-list-view/?caste_id=${formData?.ethnicity}`;
-    const something = async () => {
-      if (formData?.ethnicity !== 0) {
+    const casteUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/student-academics-sub-caste-list-view/?caste_id=${formData?.caste}`;
+    const fetchCasteData = async () => {
+      if (formData?.caste !== 0) {
         const res = await axios.get(casteUrl);
         const finalRes = await res.data.data;
-        // console.log(finalRes);
         const cas = finalRes?.map((c) => c?.sub_caste_name);
         setCastes(cas);
         const casInd = finalRes?.map((c) => c?.sub_caste_id);
         setCasteIndexes(casInd);
-
-        // console.log("castes are ", castes);
-        // console.log("caste indexes are ", casteIndexes);
       }
     };
-    something();
-  }, [formData?.ethnicity]);
+    fetchCasteData();
+  }, [formData?.caste]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,27 +37,23 @@ const StudentForm2 = () => {
       [name]: value,
     }));
   };
-  //https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-province-wise-district-list/?province_id=1
+
   const [district, setdistrict] = useState([]);
   const [districtIndexes, setdistrictIndexes] = useState([]);
 
   useEffect(() => {
     const districtUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-province-wise-district-list/?province_id=${formData?.province}`;
-    const something = async () => {
+    const fetchDistrictData = async () => {
       if (formData?.province !== 0) {
         const res = await axios.get(districtUrl);
         const finalRes = await res.data;
-        console.log(finalRes);
         const dis = finalRes?.map((c) => c?.district_name);
         setdistrict(dis);
         const disInd = finalRes?.map((c) => c?.district_id);
         setdistrictIndexes(disInd);
-
-        // console.log("castes are ", castes);
-        // console.log("caste indexes are ", casteIndexes);
       }
     };
-    something();
+    fetchDistrictData();
   }, [formData?.province]);
 
   const [municipality, setMunicipality] = useState([]);
@@ -69,21 +61,17 @@ const StudentForm2 = () => {
 
   useEffect(() => {
     const municipalityUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-district-wise-municiplity-list/?district_id=${formData?.district}`;
-    const something = async () => {
+    const fetchMunicipalityData = async () => {
       if (formData?.district !== 0) {
         const res = await axios.get(municipalityUrl);
         const finalRes = await res.data;
-        console.log(finalRes);
         const mun = finalRes?.map((c) => c?.mun_name);
         setMunicipality(mun);
         const munInd = finalRes?.map((c) => c?.id);
         setMunicipalityIndexes(munInd);
-
-        // console.log("castes are ", castes);
-        // console.log("caste indexes are ", casteIndexes);
       }
     };
-    something();
+    fetchMunicipalityData();
   }, [formData?.district]);
 
   const [qa, setQa] = useState([]);
@@ -91,19 +79,15 @@ const StudentForm2 = () => {
 
   useEffect(() => {
     const qaUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-required-data-list/`;
-    const something = async () => {
+    const fetchQaData = async () => {
       const res = await axios.get(qaUrl);
       const finalRes = await res.data.program;
-      // console.log(finalRes);
       const qaf = finalRes?.map((c) => c?.programname);
       setQa(qaf);
       const qafInd = finalRes?.map((c) => c?.programid);
       setQaIndexes(qafInd);
-
-      // console.log("castes are ", castes);
-      // console.log("caste indexes are ", casteIndexes);
     };
-    something();
+    fetchQaData();
   }, []);
 
   useEffect(() => {
@@ -113,14 +97,12 @@ const StudentForm2 = () => {
       "name_nep",
       "dobn",
       "phone",
-      ,
       "marital_status",
       "gender",
       "sub_caste",
       "caste",
       "religion",
       "nationality",
-
       "province",
       "district",
       "municipality",
@@ -131,24 +113,25 @@ const StudentForm2 = () => {
       "mother_name",
       "mother_qualification",
     ];
+    // console.log(formData)
     const isValid = requiredFields.every(
-      (field) => formData[field].trim() !== ""
+      (field) => formData[field] && formData[field].trim() !== ""
     );
     setIsFormValid(isValid);
     setError(!isValid);
   }, [formData]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details";
+     // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details";
 
     // const res = await axios.post(admissionURL,formData);
     // const response = await res.data;
     // console.log(response)
-
     console.log(formData);
   };
 
@@ -218,7 +201,7 @@ const StudentForm2 = () => {
           },
           {
             label: "Ethnicity",
-            name: "ethnicity",
+            name: "caste",
             options: [
               "1.EDJ ",
               "2.Dalits",
@@ -232,9 +215,9 @@ const StudentForm2 = () => {
           },
           {
             label: "Caste",
-            name: "caste",
+            name: "sub_caste",
             type: "select",
-            options: castes /* Add options here */,
+            options: castes,
             values: casteIndexes,
             required: true,
           },
@@ -249,25 +232,18 @@ const StudentForm2 = () => {
               "Hinduism",
               "Buddhism",
               "Christanity",
-              "Jainism",
-              "Judaism",
-              "Sikhism",
+              "Islam",
+              "Others",
             ],
-            values: [
-              "hinduism",
-              "buddhism",
-              "christanity",
-              "jainism",
-              "judaism",
-              "sikhism",
-            ],
+            values: ["", "1", "2", "3", "4", "5"],
             required: true,
           },
           {
             label: "Nationality",
             name: "nationality",
-            type: "text",
-            readOnly: true,
+            type: "select",
+            options: ["", "Nepali", "Indian", "Others"],
+            values: ["", "1", "2", "3"],
             required: true,
           },
           {
@@ -276,14 +252,14 @@ const StudentForm2 = () => {
             type: "select",
             options: [
               "",
-              "Province No. 1",
-              "Province No. 2",
-              "Bagmati Province",
-              "Gandaki Province",
-              "Lumbini Province",
-              "Karnali Province",
-              "Sudurpashchim Province",
-            ] /* Add options here */,
+              "Province 1",
+              "Madesh Pradesh",
+              "Bagmati Pradesh",
+              "Gandaki Pradesh",
+              "Lumbini Pradesh",
+              "Karnali Pradesh",
+              "Sudurpaschim Pradesh",
+            ],
             values: ["", "1", "2", "3", "4", "5", "6", "7"],
             required: true,
           },
@@ -298,156 +274,102 @@ const StudentForm2 = () => {
           {
             label: "Municipality",
             name: "municipality",
+            type: "select",
             options: municipality,
             values: municipalityIndexes,
-            type: "select",
             required: true,
           },
-          { label: "Ward No", name: "wardno", type: "text", required: true },
-          { label: "Address (Nepali)", name: "add_nep", type: "text" },
           {
-            label: "Temporary Address",
-            name: "tempadd",
+            label: "Ward Number",
+            name: "wardno",
             type: "text",
-          },
-          { label: "SMS No", name: "sms_mob_no", type: "text", required: true },
-          {
-            label: "Dorm Facility",
-            name: "dorm_facility",
-            type: "select",
-            options: ["", "Yes", "No"],
-            values: ["", "false", "true"],
+            required: true,
           },
           {
-            label: "Bus Facility",
-            name: "bus_facility",
-            type: "select",
-            options: ["", "Yes", "No"],
-            values: ["", "false", "true"],
+            label: "SMS Mobile Number",
+            name: "sms_mob_no",
+            type: "tel",
+            required: true,
           },
-        ].map((field, index) => (
-          <div key={index} className="mb-4">
-            <label className="block mb-2">
-              {field.label}
-              {field.required && <span className="text-red-500">*</span>}
-            </label>
-            {field.type === "select" ? (
-              <select
-                className="p-2 w-full border border-gray-300 rounded"
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                required={field.required}
-              >
-                {field.options.map((option, i) => (
-                  <option key={i} value={field?.values?.[i]}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <input
-                className="p-2 w-full border border-gray-300 rounded"
-                type={field.type}
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                required={field.required}
-                readOnly={field.readOnly}
-              />
-            )}
-          </div>
-        ))}
-
-        <h3 className="text-2xl font-bold mb-6 sm:col-span-2 mt-8">
-          Parent Information
-        </h3>
-        {[
           {
-            label: "Father Name",
+            label: "Father's Name",
             name: "father_name",
             type: "text",
             required: true,
           },
-          { label: "Father Phone No", name: "fath_ph", type: "tel" },
           {
-            label: "Father Qualification",
-            name: "father_qualification ",
-            type: "select",
-            options:[ "",...qa],
-            values: qaIndexes,
+            label: "Father's Qualification",
+            name: "father_qualification",
+            type: "text",
             required: true,
           },
           {
-            label: "Mother Name",
+            label: "Mother's Name",
             name: "mother_name",
             type: "text",
             required: true,
           },
-          { label: "Mother Phone No", name: "moth_ph", type: "tel" },
           {
-            label: "Mother Qualification",
+            label: "Mother's Qualification",
             name: "mother_qualification",
-            type: "select",
-            options:["" ,...qa],
-            values: qaIndexes,
+            type: "text",
             required: true,
           },
-        ].map((field, index) => (
-          <div key={index} className="mb-4">
-            <label className="block mb-2">
-              {field.label}
-              {field.required && <span className="text-red-500">*</span>}
+        ].map(({ label, name, type, options, values, required }) => (
+          <div key={name} className="mb-4">
+            <label htmlFor={name} className="block text-gray-700">
+              {label}
+              {required && <span className="text-red-500">*</span>}
             </label>
-            {field.type === "select" ? (
+            {type === "select" ? (
               <select
-                className="p-2 w-full border border-gray-300 rounded"
-                name={field.name}
-                value={formData[field.name]}
+                id={name}
+                name={name}
                 onChange={handleChange}
-                required={field.required}
+                value={formData[name] || ""}
+                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
               >
-                {field.options.map((option, i) => (
-                  <option key={i} value={option.toLowerCase()}>
+                {options.map((option, index) => (
+                  <option key={index} value={values[index]}>
                     {option}
                   </option>
                 ))}
               </select>
             ) : (
               <input
-                className="p-2 w-full border border-gray-300 rounded"
-                type={field.type}
-                name={field.name}
-                value={formData[field.name]}
+                id={name}
+                name={name}
+                type={type}
                 onChange={handleChange}
-                required={field.required}
+                value={formData[name] || ""}
+                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                required={required}
               />
             )}
           </div>
         ))}
+        <div className="col-span-2 flex justify-between mt-6">
+          <button
+            type="button"
+            className="px-4 py-2 bg-blue-500 text-white rounded-md flex items-center"
+            onClick={() => navigate(-1)}
+          >
+            <MdSkipPrevious className="mr-2" />
+            Back
+          </button>
+          <button
+            type="submit"
+            className={`px-4 py-2 ${
+              isFormValid ? "bg-green-500" : "bg-gray-500"
+            } text-white rounded-md flex items-center`}
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+          >
+            <FaSave className="mr-2" />
+            Save
+          </button>
+        </div>
       </form>
-      <div className="flex w-full justify-between">
-        <button
-          className={`py-2 w-[25%] md:w-[10%] flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-700 cursor-pointer text-white rounded`}
-          type="button"
-          onClick={() => navigate("/form1")}
-        >
-          <MdSkipPrevious size={20} />
-          Prev
-        </button>
-        <button
-          className={`py-2 w-[25%] md:w-[10%] flex items-center justify-center gap-3 ${
-            isFormValid
-              ? "bg-blue-500 hover:bg-blue-700 cursor-pointer"
-              : "bg-gray-500"
-          } text-white rounded`}
-          onClick={handleSubmit}
-          disabled={!isFormValid}
-        >
-          <FaSave size={20} />
-          Save
-        </button>
-      </div>
     </div>
   );
 };

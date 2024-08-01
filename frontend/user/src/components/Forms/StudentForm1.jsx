@@ -7,9 +7,11 @@ import HeroHeader from "../HeroHeader";
 import studentFormState from "../../store";
 
 const StudentForm1 = () => {
-  const [formData, setFormData] = useRecoilState(studentFormState);
   const [error, setError] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const [formData, setFormData] = useRecoilState(studentFormState);
+
 
   const navigate = useNavigate();
 
@@ -22,6 +24,20 @@ const StudentForm1 = () => {
   };
 
   useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      program: prevFormData.program || "",
+      acdmc_year: prevFormData.acdmc_year || "",
+      year_semester: prevFormData.year_semester || "",
+      medium: prevFormData.medium || "",
+      sec: prevFormData.sec || "",
+      team: prevFormData.team || "",
+      shift: prevFormData.shift || "",
+      maj_subj: prevFormData.maj_subj || ""
+    }));
+  }, []);
+
+  useEffect(() => {
     const requiredFields = [
       "program",
       "acdmc_year",
@@ -30,7 +46,7 @@ const StudentForm1 = () => {
       "shift",
     ];
     const isValid = requiredFields.every(
-      (field) => formData[field].trim() !== ""
+      (field) => formData[field] && formData[field].trim() !== ""
     );
     setIsFormValid(isValid);
     setError(!isValid);
@@ -71,7 +87,7 @@ const StudentForm1 = () => {
               value={formData.program}
               onChange={handleChange}
               required
-              className="select"
+              className="select w-[80%] p-2"
             >
               <option value={1}>BBS</option>
               <option value={2}>MBS</option>
@@ -79,23 +95,16 @@ const StudentForm1 = () => {
               <option value={4}>B.Ed</option>
               <option value={5}>M.Ed</option>
             </select>
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="program"
-              value={formData.program}
-              onChange={handleChange}
-              required
-            />
+           
           </div>
           <div className="mb-4">
             <label className="block mb-2">
               Academic Year<span className="text-red-500">*</span>
             </label>
             <select
-              className="select"
+              className="select w-[80%] p-2"
               name="acdmc_year"
-              value={formData.academicYear}
+              value={formData.acdmc_year}
               onChange={handleChange}
               required
             >
@@ -104,23 +113,16 @@ const StudentForm1 = () => {
               <option value={3}>2078-2082</option>
               <option value={4}>2077-2081</option>
             </select>
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="acdmc_year"
-              value={formData.academicYear}
-              onChange={handleChange}
-              required
-            />
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
               Year/Semester<span className="text-red-500">*</span>
             </label>
             <select
-              className="select"
+              className="select w-[80%] p-2"
               name="year_semester"
-              value={formData.yearSemester}
+              value={formData.year_semester}
               onChange={handleChange}
               required
             >
@@ -131,21 +133,14 @@ const StudentForm1 = () => {
               <option value="Complete Year">Complete Year</option>
             </select>
 
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="year_semester"
-              value={formData.yearSemester}
-              onChange={handleChange}
-              required
-            />
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
               Medium<span className="text-red-500">*</span>
             </label>
             <select
-              className="select"
+              className="select w-[80%] p-2"
               name="medium"
               value={formData.medium}
               onChange={handleChange}
@@ -155,21 +150,14 @@ const StudentForm1 = () => {
               <option value={2}>Nepali</option>
             </select>
 
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="medium"
-              value={formData.medium}
-              onChange={handleChange}
-              required
-            />
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
               Section<span className="text-red-500">*</span>
             </label>
             <select
-              className="select"
+              className="select w-[80%] p-2"
               name="sec"
               value={formData.section}
               onChange={handleChange}
@@ -177,21 +165,14 @@ const StudentForm1 = () => {
             >
               <option value={1}>No Section</option>
             </select>
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="sec"
-              value={formData.section}
-              onChange={handleChange}
-              required
-            />
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
               Team <span className="text-red-500"></span>
             </label>
             <select
-              className="select"
+              className="select w-[80%] p-2"
               name="team"
               value={formData.team}
               onChange={handleChange}
@@ -199,21 +180,14 @@ const StudentForm1 = () => {
             >
               <option value={1}>No Team</option>
             </select>
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="team"
-              value={formData.team}
-              onChange={handleChange}
-              required
-            />
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
               Shift<span className="text-red-500">*</span>
             </label>
             <select
-              className="select"
+              className="select w-[80%] p-2"
               name="shift"
               value={formData.shift}
               onChange={handleChange}
@@ -223,31 +197,19 @@ const StudentForm1 = () => {
               <option value={2}>Evening</option>
               <option value={3}>Night</option>
             </select>
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="shift"
-              value={formData.shift}
-              onChange={handleChange}
-              required
-            />
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">Major Subject </label>
             <select
+              className="select w-[80%] p-2"
               name="maj_subj"
               value={formData.majorSubject}
               onChange={handleChange}
             >
-              <option value={1}></option>
+              <option value={1}>Default</option>
             </select>
-            <input
-              className="p-2 w-full border border-gray-300 rounded"
-              type="text"
-              name="maj_subj"
-              value={formData.majorSubject}
-              onChange={handleChange}
-            />
+           
           </div>
         </form>
         <div className="flex w-full justify-end">
