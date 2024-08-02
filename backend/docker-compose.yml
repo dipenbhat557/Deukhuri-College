@@ -9,6 +9,8 @@ services:
       - 3308:3306
     networks:
       - dmc
+    volumes:
+      - mysql-data:/var/lib/mysql
 
   appservice:
     build: .
@@ -22,7 +24,10 @@ services:
     ports:
       - 8080:8080 
     networks:
-      - dmc 
+      - dmc
 
 networks:
   dmc:
+
+volumes:
+  mysql-data:
