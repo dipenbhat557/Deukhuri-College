@@ -3,9 +3,9 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import { useRecoilState } from "recoil";
 import { currUser } from "../../pages/store";
-import { MdSpaceDashboard } from "react-icons/md";
 import { SiStudyverse } from "react-icons/si";
 import { FaBlog, FaSignOutAlt } from "react-icons/fa";
+import { GiArchiveRegister } from "react-icons/gi";
 
 import { FcRules } from "react-icons/fc";
 import { RiTeamFill } from "react-icons/ri";
@@ -127,6 +127,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
+            <li>
+                <NavLink
+                  to="/admission"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("Admissions") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <GiArchiveRegister className="text-2xl" />
+                  Admissions
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/rules"

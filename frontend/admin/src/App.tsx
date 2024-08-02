@@ -33,6 +33,8 @@ import SyllabusForm from "./pages/Form/SyllabusForm";
 import Syllabus from "./components/Tables/Syllabus";
 import AdsForm from "./pages/Form/Adsform";
 import Advertisement from "./components/Tables/Advertisement";
+import AdmissionForm from "./pages/Form/AdmissionForm";
+import Admission from "./components/Tables/Admission";
 
 function App() {
   const isLogIn = useRecoilValue(isLoggedIn);
@@ -321,6 +323,25 @@ function App() {
             <>
               <PageTitle title="Syllabuses" />
               <Syllabus />
+            </>
+          }
+        />
+        <Route
+          path="/forms/admission-form"
+          element={
+            <>
+              <PageTitle title="Admission Form" />
+              <AdmissionForm />
+            </>
+          }
+        />
+
+        <Route
+          path="/admission"
+          element={
+            <>
+              <PageTitle title="Admissions" />
+              <Admission />
             </>
           }
         />

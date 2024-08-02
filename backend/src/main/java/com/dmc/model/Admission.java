@@ -91,7 +91,6 @@ public class Admission {
         private Integer gender;
     
         @JsonProperty("sub_caste")
-        @NotNull
         private Integer subCaste;
     
         @JsonProperty("caste")

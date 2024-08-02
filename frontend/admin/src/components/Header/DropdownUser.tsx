@@ -2,14 +2,11 @@ import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { currUser } from "../../pages/store";
 import { def } from "../../assets";
-import { useEffect } from "react";
 
 const DropdownUser = () => {
   const currentUser = useRecoilValue(currUser);
 
-  useEffect(()=>{
-    console.log("current user id ",currentUser)
-  },[])
+  
 
   return (
     <div className="relative">

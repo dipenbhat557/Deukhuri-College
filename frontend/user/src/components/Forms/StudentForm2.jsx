@@ -194,16 +194,14 @@ const StudentForm2 = () => {
   
     console.log("Transformed Data: ", transformedData);
   
-    const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details/";
-  
+    // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details/";
+     const admissionURL = `${import.meta.env.VITE_APP_API_ROOT}/api/admission`;
+  //  console.log("admission url is ",admissionURL)
     try {
-      const res = await axios.post(admissionURL, transformedData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const res = await axios.post(admissionURL, transformedData);
       const response = await res.data;
-      console.log(response);
+      // console.log("response is ",response);
+      navigate("/")
     } catch (error) {
       if (error.response) {
         console.error("Response error:", error.response.data);

@@ -48,7 +48,7 @@ const StudentForm1 = () => {
     const isValid = requiredFields.every(
       (field) => formData[field] && formData[field].trim() !== ""
     );
-    console.log(formData);
+    // console.log(formData);
     setIsFormValid(isValid);
     setError(!isValid);
   }, [formData]);
