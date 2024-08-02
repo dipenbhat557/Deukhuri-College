@@ -158,7 +158,7 @@ const StudentForm2 = () => {
       "mother_name",
       "mother_qualification",
     ];
-    console.log(formData);
+    // console.log(formData);
     const isValid = requiredFields.every(
       (field) => formData[field] && formData[field].toString().trim() !== ""
     );
@@ -172,15 +172,49 @@ const StudentForm2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details";
-
-    // const res = await axios.post(admissionURL,formData);
-    // const response = await res.data;
-    // console.log(response)
-    console.log(formData);
-    navigate("/");
+  
+    const transformedData = { ...formData };
+  
+    Object.keys(transformedData).forEach((key) => {
+      if (
+        transformedData[key] === "" ||
+        transformedData[key] === null ||
+        transformedData[key].toString().trim() === ""
+      ) {
+        if (typeof formData[key] === "string") {
+          transformedData[key] = "default";
+        } else if (typeof formData[key] === "number") {
+          transformedData[key] = 1;
+        }
+      } else if (typeof formData[key] === "string" && !isNaN(formData[key])) {
+        transformedData[key] = parseInt(formData[key], 10);
+      }
+    });
+  
+    console.log("Transformed Data: ", transformedData);
+  
+    const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details/";
+  
+    try {
+      const res = await axios.post(admissionURL, transformedData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const response = await res.data;
+      console.log(response);
+    } catch (error) {
+      if (error.response) {
+        console.error("Response error:", error.response.data);
+      } else if (error.request) {
+        console.error("Request error:", error.request);
+      } else {
+        console.error("Error", error.message);
+      }
+      console.error("Error config", error.config);
+    }
   };
-
+  
   return (
     <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
       <h3 className="text-2xl font-bold mb-6 sm:col-span-2">
@@ -219,7 +253,7 @@ const StudentForm2 = () => {
           {
             label: "Date of Birth (BS)",
             name: "dobn",
-            type: "date",
+            type: "text",
             required: true,
           },
           {
@@ -404,6 +438,7 @@ const StudentForm2 = () => {
                 value={formData[name] || ""}
                 className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
                 required={required}
+                placeholder={name==="dobn"?"dd-mm-yyyy":""}
               />
             )}
           </div>

@@ -90,6 +90,7 @@ const StudentForm1 = () => {
               required
               className="select w-[80%] p-2"
             >
+              <option value={0}>Select Program</option>
               <option value={1}>BBS</option>
               <option value={2}>MBS</option>
               <option value={3}>BA</option>
@@ -109,10 +110,12 @@ const StudentForm1 = () => {
               onChange={handleChange}
               required
             >
-              <option value={1}>2080-2084</option>
-              <option value={2}>2079-2083</option>
-              <option value={3}>2078-2082</option>
-              <option value={4}>2077-2081</option>
+              <option value={0}>Select Academic Year</option>
+              <option value={1}>2081-2085</option>
+              <option value={2}>2080-2084</option>
+              <option value={3}>2079-2083</option>
+              <option value={4}>2078-2082</option>
+              <option value={5}>2077-2081</option>
             </select>
             
           </div>
@@ -127,11 +130,12 @@ const StudentForm1 = () => {
               onChange={handleChange}
               required
             >
-              <option value="First Year">First Year</option>
-              <option value="Second Year">Second Year</option>
-              <option value="Third Year">Third Year</option>
-              <option value="Fourth Year">Fourth Year</option>
-              <option value="Complete Year">Complete Year</option>
+              <option value={0}>Select Year/Semester</option>
+              <option value={1}>First Year</option>
+              <option value={2}>Second Year</option>
+              <option value={3}>Third Year</option>
+              <option value={4}>Fourth Year</option>
+              <option value={5}>Complete Year</option>
             </select>
 
             
@@ -147,6 +151,7 @@ const StudentForm1 = () => {
               onChange={handleChange}
               required
             >
+              <option value={0}>Select Medium</option>
               <option value={1}>English</option>
               <option value={2}>Nepali</option>
             </select>
@@ -164,6 +169,7 @@ const StudentForm1 = () => {
               onChange={handleChange}
               required
             >
+              <option value={0}>Select section</option>
               <option value={1}>No Section</option>
             </select>
             
@@ -179,6 +185,7 @@ const StudentForm1 = () => {
               onChange={handleChange}
               required
             >
+              <option value={0}>Select team</option>
               <option value={1}>No Team</option>
             </select>
             
@@ -194,9 +201,9 @@ const StudentForm1 = () => {
               onChange={handleChange}
               required
             >
+              <option value={0}>Select shift</option>
               <option value={1}>Morning</option>
               <option value={2}>Evening</option>
-              <option value={3}>Night</option>
             </select>
             
           </div>
@@ -208,6 +215,7 @@ const StudentForm1 = () => {
               value={formData.maj_subj}
               onChange={handleChange}
             >
+              <option value={0}>Select Major Subject</option>
               <option value={1}>Default</option>
             </select>
            
