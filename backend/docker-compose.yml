@@ -1,28 +1,28 @@
-version: '3.8' # Docker Compose file version
+version: '3.8'
 
 services:
   dbservice:
-    image: mysql # Use the official MySQL Docker image
+    image: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=Mume@143 # Set the root password for MySQL
+      - MYSQL_ROOT_PASSWORD=deukhuri@123
     ports:
-      - 3308:3306 # Map host port 3308 to container port 3306 for MySQL
+      - 3308:3306
     networks:
-      - dmc # Attach the service to the 'reviewapp' network
+      - dmc
 
   appservice:
-    build: . # Build the Docker image for the app service using the current directory (where Dockerfile is)
+    build: .
     depends_on:
-      - dbservice # Specify that the 'appservice' depends on the 'dbservice' (waits for it to start)
+      - dbservice
     environment:
-      - spring.datasource.url=jdbc:mysql://dbservice:3306/dmc_db?createDatabaseIfNotExist=true # Configure the Spring Boot app to use MySQL database at 'dbservice'
-      - spring.datasource.username=root # MySQL username
-      - spring.datasource.password=Mume@143 # MySQL password
+      - spring.datasource.url=jdbc:mysql://dbservice:3306/dmc_db?createDatabaseIfNotExist=true
+      - spring.datasource.username=root
+      - spring.datasource.password=deukhuri@123
       - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
     ports:
-      - 8080:8080 # Map host port 8080 to container port 8080 for the Spring Boot app
+      - 8080:8080 
     networks:
-      - dmc # Attach the service to the 'reviewapp' network
+      - dmc 
 
 networks:
-  dmc: # Define a custom Docker network named 'reviewapp' for services to communicate
+  dmc:

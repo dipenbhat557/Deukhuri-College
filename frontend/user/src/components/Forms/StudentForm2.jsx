@@ -190,6 +190,7 @@ const StudentForm2 = () => {
         transformedData[key] = parseInt(formData[key], 10);
       }
     });
+    transformedData["sub_caste"] = ""
   
     console.log("Transformed Data: ", transformedData);
   
