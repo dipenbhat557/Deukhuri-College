@@ -119,14 +119,17 @@ const Admission = () => {
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
                     <button
-                      onClick={() =>
+                      onClick={() =>{
+                        if(!admission?.verified){
                         navigate("/forms/admission-form", {
                           state: { admission: admission },
                         })
                       }
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                      }
+                      }
+                      className={`${admission?.verified ? "bg-green-500 hover:bg-green-700" : "bg-blue-500 hover:bg-blue-700"} text-white font-bold py-2 px-4 rounded-full`}
                     >
-                      Edit
+                      {admission?.verified ? "Verify":"Verified"}
                     </button>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">

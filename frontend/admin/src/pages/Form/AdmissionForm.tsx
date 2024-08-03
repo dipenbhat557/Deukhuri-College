@@ -98,8 +98,8 @@ const AdmissionForm = () => {
       });
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      await axios.delete(`${import.meta.env.VITE_APP_API_ROOT}/api/admission/${id}`)
-      console.log("Deleted successfully");
+      await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/admission/verify/${id}`)
+      console.log("Verified successfully");
       navigate("/admission");
     } catch (error) {
       console.error("Error saving admission:", error);
