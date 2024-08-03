@@ -67,4 +67,16 @@ public class AdmissionController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/verify/{id}")
+    public ResponseEntity<Admission> verifyAdmission(@PathVariable Integer id){
+        Admission admission = admissionService.getAdmissionById(id);
+        if (admission != null) {
+            admission.isVerified = true;
+            Admission savedAdmission = admissionService.updateAdmission(updatedAdmission);
+            return ResponseEntity.ok(savedAdmission);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

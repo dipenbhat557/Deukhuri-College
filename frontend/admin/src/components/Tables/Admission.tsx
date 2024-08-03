@@ -6,12 +6,40 @@ import { MdDelete } from "react-icons/md";
 import axios from "axios";
 
 interface AdmissionData {
-  id: number;
-  title: string;
-  description: string;
-  img: string;
-}
-
+    id: number;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    name_nep: string;
+    dobn: string;
+    phone: string;
+    email: string;
+    marital_status: number;
+    gender: number;
+    sub_caste: number;
+    caste: number;
+    bloodgroup: string;
+    citiz_no: string;
+    religion: string;
+    nationality: string;
+    province: number;
+    district: number;
+    municipality: number;
+    wardno: number;
+    add_nep: string;
+    tempadd: string;
+    sms_mob_no: string;
+    dorm_facility: boolean;
+    bus_facility: boolean;
+    father_name: string;
+    fath_ph: string;
+    father_qualification: number;
+    mother_name: string;
+    moth_ph: string;
+    mother_qualification: number;
+    verified:boolean;
+  }
+  
 const Admission = () => {
   const [admissions, setAdmissions] = useState<AdmissionData[]>([]);
   const navigate = useNavigate();

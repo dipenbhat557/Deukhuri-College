@@ -40,6 +40,7 @@ const AdmissionForm = () => {
     mother_name: admission?.mother_name || "",
     moth_ph: admission?.moth_ph || "",
     mother_qualification: admission?.mother_qualification || 0,
+    verified: admission?.verified || false
   });
 
   const [dataSaved, setDataSaved] = useState(false);
@@ -93,6 +94,7 @@ const AdmissionForm = () => {
         mother_name: "",
         moth_ph: "",
         mother_qualification: 0,
+        verified:false
       });
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);

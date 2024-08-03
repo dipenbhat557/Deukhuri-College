@@ -170,5 +170,8 @@ public class Admission {
         @JsonProperty("mother_qualification")
         @NotNull
         private Integer motherQualification;
+
+        @JsonProperty("verified")
+        private Boolean verified = false;
     
 }
