@@ -48,9 +48,9 @@ const AdmissionForm = () => {
   const handleSubmit = async () => {
     const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details/";
 
-    const { id, sub_caste, ...dataToSend } = formData;
+    const { id, sub_caste, verified, ...dataToSend } = formData;
 
-    const bodyData = { ...dataToSend, sub_caste: "" };
+    const bodyData = { ...dataToSend, sub_caste: "", verified:true };
     console.log("body data is ",bodyData)
 
     try {
@@ -98,8 +98,8 @@ const AdmissionForm = () => {
       });
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/admission/verify/${id}`)
-      console.log("Verified successfully");
+      // await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/admission/verify/${id}`)
+      // console.log("Verified successfully");
       navigate("/admission");
     } catch (error) {
       console.error("Error saving admission:", error);
