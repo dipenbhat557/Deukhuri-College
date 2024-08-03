@@ -69,6 +69,14 @@ const Admission = () => {
 
   };
 
+  const handleButtonClick = (admission: AdmissionData) => {
+    if (!admission.verified) {
+      navigate("/forms/admission-form", {
+        state: { admission: admission },
+      });
+    }
+  };
+
   return (
     <DefaultLayout>
       <Breadcrumb pageName="Admissions" />
@@ -118,18 +126,14 @@ const Admission = () => {
                     </h5>
                   </td>
                   <td className="border-b  border-[#eee] py-5 px-4 dark:border-strokedark">
-                    <button
-                      onClick={() =>{
-                        if(!admission?.verified){
-                        navigate("/forms/admission-form", {
-                          state: { admission: admission },
-                        })
-                      }
-                      }
-                      }
-                      className={`${admission?.verified ? "bg-green-500 hover:bg-green-700" : "bg-blue-500 hover:bg-blue-700"} text-white font-bold py-2 px-4 rounded-full`}
+                  <button
+                      onClick={() => handleButtonClick(admission)}
+                      className={`text-white font-bold py-2 px-4 rounded-full ${
+                        admission.verified ? "bg-green-500 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-700"
+                      }`}
+                      disabled={admission.verified}
                     >
-                      {admission?.verified ? "Verified":"Verify"}
+                      {admission.verified ? "Verified" : "Verify"}
                     </button>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
