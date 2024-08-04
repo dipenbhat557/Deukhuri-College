@@ -72,8 +72,8 @@ public class AdmissionController {
     public ResponseEntity<Admission> verifyAdmission(@PathVariable Integer id){
         Admission admission = admissionService.getAdmissionById(id);
         if (admission != null) {
-            admission.isVerified = true;
-            Admission savedAdmission = admissionService.updateAdmission(updatedAdmission);
+            admission.setVerified(true);
+            Admission savedAdmission = admissionService.updateAdmission(admission);
             return ResponseEntity.ok(savedAdmission);
         } else {
             return ResponseEntity.notFound().build();

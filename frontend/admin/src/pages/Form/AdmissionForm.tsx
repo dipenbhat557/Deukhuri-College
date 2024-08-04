@@ -50,7 +50,7 @@ const AdmissionForm = () => {
 
     const { id, sub_caste, verified, ...dataToSend } = formData;
 
-    const bodyData = { ...dataToSend, sub_caste: "", verified:true };
+    const bodyData = { ...dataToSend, sub_caste: ""};
     console.log("body data is ",bodyData)
 
     try {
@@ -98,8 +98,8 @@ const AdmissionForm = () => {
       });
       setDataSaved(true);
       setTimeout(() => setDataSaved(false), 3000);
-      // await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/admission/verify/${id}`)
-      // console.log("Verified successfully");
+      await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/admission/verify/${id}`)
+      console.log("Verified successfully");
       navigate("/admission");
     } catch (error) {
       console.error("Error saving admission:", error);
