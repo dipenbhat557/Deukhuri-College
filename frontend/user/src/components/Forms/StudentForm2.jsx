@@ -1,11 +1,11 @@
-
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import { MdSkipPrevious } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import studentFormState from "../../store";
 import axios from "axios";
+import { QrComponent } from "../QrComponent";
 
 const StudentForm2 = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const StudentForm2 = () => {
 
   const [castes, setCastes] = useState([]);
   const [casteIndexes, setCasteIndexes] = useState([]);
+  const [shows, setShow] = useState(false);
 
   useEffect(() => {
     setFormData((prevFormData) => ({
@@ -172,9 +173,9 @@ const StudentForm2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const transformedData = { ...formData };
-  
+
     Object.keys(transformedData).forEach((key) => {
       if (
         transformedData[key] === "" ||
@@ -190,18 +191,19 @@ const StudentForm2 = () => {
         transformedData[key] = parseInt(formData[key], 10);
       }
     });
-    transformedData["sub_caste"] = ""
-  
+    transformedData["sub_caste"] = "";
+
     console.log("Transformed Data: ", transformedData);
-  
+
     // const admissionURL = "https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-details/";
-     const admissionURL = `${import.meta.env.VITE_APP_API_ROOT}/api/admission`;
-  //  console.log("admission url is ",admissionURL)
+    const admissionURL = `${import.meta.env.VITE_APP_API_ROOT}/api/admission`;
+    //  console.log("admission url is ",admissionURL)
     try {
       const res = await axios.post(admissionURL, transformedData);
+      // eslint-disable-next-line no-unused-vars
       const response = await res.data;
       // console.log("response is ",response);
-      navigate("/")
+      navigate("/");
     } catch (error) {
       if (error.response) {
         console.error("Response error:", error.response.data);
@@ -213,258 +215,270 @@ const StudentForm2 = () => {
       console.error("Error config", error.config);
     }
   };
-  
-  return (
-    <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
-      <h3 className="text-2xl font-bold mb-6 sm:col-span-2">
-        Student Information
-      </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {error && (
-          <p className="text-red-800 text-md">
-            Fill all the compulsory fields first!!
-          </p>
-        )}
-        <p className="text-red-800 text-md">Fields with (*) are compulsory.</p>
-      </div>
 
-      <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {[
-          {
-            label: "First Name",
-            name: "first_name",
-            type: "text",
-            required: true,
-          },
-          { label: "Middle Name", name: "middle_name", type: "text" },
-          {
-            label: "Last Name",
-            name: "last_name",
-            type: "text",
-            required: true,
-          },
-          {
-            label: "Name (Nepali)",
-            name: "name_nep",
-            type: "text",
-            required: true,
-          },
-          {
-            label: "Date of Birth (BS)",
-            name: "dobn",
-            type: "text",
-            required: true,
-          },
-          {
-            label: "Phone Number",
-            name: "phone",
-            type: "tel",
-            required: true,
-          },
-          { label: "E-mail", name: "email", type: "email" },
-          {
-            label: "Marital Status",
-            name: "marital_status",
-            type: "select",
-            options: ["", "Single", "Married"],
-            values: ["", "1", "2"],
-            required: true,
-          },
-          {
-            label: "Gender",
-            name: "gender",
-            type: "select",
-            options: ["", "Male", "Female", "Other"],
-            values: ["", "2", "1", "0"],
-            required: true,
-          },
-          {
-            label: "Ethnicity",
-            name: "caste",
-            options: [
-              "1.EDJ ",
-              "2.Dalits",
-              "3.Madhesi",
-              "4.Others",
-              "5.Janajati",
-            ],
-            values: ["1", "2", "3", "4", "5"],
-            type: "select",
-            required: true,
-          },
-          {
-            label: "Caste",
-            name: "sub_caste",
-            type: "select",
-            options: castes,
-            values: casteIndexes,
-            required: true,
-          },
-          { label: "Blood Group", name: "bloodgroup", type: "text" },
-          { label: "Citizenship No", name: "citiz_no", type: "text" },
-          {
-            label: "Religion",
-            name: "religion",
-            type: "select",
-            options: [
-              " ",
-              "Hinduism",
-              "Buddhism",
-              "Christanity",
-              "Islam",
-              "Others",
-            ],
-            values: ["", "1", "2", "3", "4", "5"],
-            required: true,
-          },
-          {
-            label: "Nationality",
-            name: "nationality",
-            type: "select",
-            options: ["", "Nepali", "Indian", "Others"],
-            values: ["", "1", "2", "3"],
-            required: true,
-          },
-          {
-            label: "Province",
-            name: "province",
-            type: "select",
-            options: [
-              "",
-              "Province 1",
-              "Madesh Pradesh",
-              "Bagmati Pradesh",
-              "Gandaki Pradesh",
-              "Lumbini Pradesh",
-              "Karnali Pradesh",
-              "Sudurpaschim Pradesh",
-            ],
-            values: ["", "1", "2", "3", "4", "5", "6", "7"],
-            required: true,
-          },
-          {
-            label: "District",
-            name: "district",
-            type: "select",
-            options: district,
-            values: districtIndexes,
-            required: true,
-          },
-          {
-            label: "Municipality",
-            name: "municipality",
-            type: "select",
-            options: municipality,
-            values: municipalityIndexes,
-            required: true,
-          },
-          {
-            label: "Ward Number",
-            name: "wardno",
-            type: "text",
-            required: true,
-          },
-          {
-            label: "SMS Mobile Number",
-            name: "sms_mob_no",
-            type: "tel",
-            required: true,
-          },
-          {
-            label: "Father's Name",
-            name: "father_name",
-            type: "text",
-            required: true,
-          },
-          {
-            label: "Father's Qualification",
-            name: "father_qualification",
-            type: "select",
-            options:qa,
-            values:qaIndexes,
-            required: true,
-          },{
-            label: "Father's Phone No",
-            name: "fath_ph",
-            type: "text",
-            required: false,
-          },
-          {
-            label: "Mother's Name",
-            name: "mother_name",
-            type: "text",
-            required: true,
-          },
-          {
-            label: "Mother's Qualification",
-            name: "mother_qualification",
-            type: "select",
-            options: qa,
-            values: qaIndexes,
-            required: true,
-          },{
-            label: "Mother's Phone No",
-            name: "moth_ph",
-            type: "text",
-            required: false,
-          }
-        ].map(({ label, name, type, options, values, required }) => (
-          <div key={name} className="mb-4">
-            <label htmlFor={name} className="block text-gray-700">
-              {label}
-              {required && <span className="text-red-500">*</span>}
-            </label>
-            {type === "select" ? (
-              <select
-                id={name}
-                name={name}
-                onChange={handleChange}
-                value={formData[name] || ""}
-                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
-              >
-                {options?.map((option, index) => (
-                  <option key={index} value={values[index]}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <input
-                id={name}
-                name={name}
-                type={type}
-                onChange={handleChange}
-                value={formData[name] || ""}
-                className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
-                required={required}
-                placeholder={name==="dobn"?"dd-mm-yyyy":""}
-              />
+  return (
+    <>
+      {shows ? (
+        <QrComponent qrCodeImage={"#"} />
+      ) : (
+        <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
+          <h3 className="text-2xl font-bold mb-6 sm:col-span-2">
+            Student Information
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {error && (
+              <p className="text-red-800 text-md">
+                Fill all the compulsory fields first!!
+              </p>
             )}
+            <p className="text-red-800 text-md">
+              Fields with (*) are compulsory.
+            </p>
           </div>
-        ))}
-        <div className="col-span-2 flex justify-between mt-6">
-          <button
-            type="button"
-            className="px-4 py-2 bg-blue-500 text-white rounded-md flex items-center"
-            onClick={() => navigate(-1)}
-          >
-            <MdSkipPrevious className="mr-2" />
-            Back
-          </button>
-          <button
-            type="submit"
-            className={`px-4 py-2 ${
-              isFormValid ? "bg-green-500" : "bg-gray-500"
-            } text-white rounded-md flex items-center`}
-            onClick={handleSubmit}
-            disabled={!isFormValid}
-          >
-            <FaSave className="mr-2" />
-            Save
-          </button>
+
+          <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              {
+                label: "First Name",
+                name: "first_name",
+                type: "text",
+                required: true,
+              },
+              { label: "Middle Name", name: "middle_name", type: "text" },
+              {
+                label: "Last Name",
+                name: "last_name",
+                type: "text",
+                required: true,
+              },
+              {
+                label: "Name (Nepali)",
+                name: "name_nep",
+                type: "text",
+                required: true,
+              },
+              {
+                label: "Date of Birth (BS)",
+                name: "dobn",
+                type: "text",
+                required: true,
+              },
+              {
+                label: "Phone Number",
+                name: "phone",
+                type: "tel",
+                required: true,
+              },
+              { label: "E-mail", name: "email", type: "email" },
+              {
+                label: "Marital Status",
+                name: "marital_status",
+                type: "select",
+                options: ["", "Single", "Married"],
+                values: ["", "1", "2"],
+                required: true,
+              },
+              {
+                label: "Gender",
+                name: "gender",
+                type: "select",
+                options: ["", "Male", "Female", "Other"],
+                values: ["", "2", "1", "0"],
+                required: true,
+              },
+              {
+                label: "Ethnicity",
+                name: "caste",
+                options: [
+                  "1.EDJ ",
+                  "2.Dalits",
+                  "3.Madhesi",
+                  "4.Others",
+                  "5.Janajati",
+                ],
+                values: ["1", "2", "3", "4", "5"],
+                type: "select",
+                required: true,
+              },
+              {
+                label: "Caste",
+                name: "sub_caste",
+                type: "select",
+                options: castes,
+                values: casteIndexes,
+                required: true,
+              },
+              { label: "Blood Group", name: "bloodgroup", type: "text" },
+              { label: "Citizenship No", name: "citiz_no", type: "text" },
+              {
+                label: "Religion",
+                name: "religion",
+                type: "select",
+                options: [
+                  " ",
+                  "Hinduism",
+                  "Buddhism",
+                  "Christanity",
+                  "Islam",
+                  "Others",
+                ],
+                values: ["", "1", "2", "3", "4", "5"],
+                required: true,
+              },
+              {
+                label: "Nationality",
+                name: "nationality",
+                type: "select",
+                options: ["", "Nepali", "Indian", "Others"],
+                values: ["", "1", "2", "3"],
+                required: true,
+              },
+              {
+                label: "Province",
+                name: "province",
+                type: "select",
+                options: [
+                  "",
+                  "Province 1",
+                  "Madesh Pradesh",
+                  "Bagmati Pradesh",
+                  "Gandaki Pradesh",
+                  "Lumbini Pradesh",
+                  "Karnali Pradesh",
+                  "Sudurpaschim Pradesh",
+                ],
+                values: ["", "1", "2", "3", "4", "5", "6", "7"],
+                required: true,
+              },
+              {
+                label: "District",
+                name: "district",
+                type: "select",
+                options: district,
+                values: districtIndexes,
+                required: true,
+              },
+              {
+                label: "Municipality",
+                name: "municipality",
+                type: "select",
+                options: municipality,
+                values: municipalityIndexes,
+                required: true,
+              },
+              {
+                label: "Ward Number",
+                name: "wardno",
+                type: "text",
+                required: true,
+              },
+              {
+                label: "SMS Mobile Number",
+                name: "sms_mob_no",
+                type: "tel",
+                required: true,
+              },
+              {
+                label: "Father's Name",
+                name: "father_name",
+                type: "text",
+                required: true,
+              },
+              {
+                label: "Father's Qualification",
+                name: "father_qualification",
+                type: "select",
+                options: qa,
+                values: qaIndexes,
+                required: true,
+              },
+              {
+                label: "Father's Phone No",
+                name: "fath_ph",
+                type: "text",
+                required: false,
+              },
+              {
+                label: "Mother's Name",
+                name: "mother_name",
+                type: "text",
+                required: true,
+              },
+              {
+                label: "Mother's Qualification",
+                name: "mother_qualification",
+                type: "select",
+                options: qa,
+                values: qaIndexes,
+                required: true,
+              },
+              {
+                label: "Mother's Phone No",
+                name: "moth_ph",
+                type: "text",
+                required: false,
+              },
+            ].map(({ label, name, type, options, values, required }) => (
+              <div key={name} className="mb-4">
+                <label htmlFor={name} className="block text-gray-700">
+                  {label}
+                  {required && <span className="text-red-500">*</span>}
+                </label>
+                {type === "select" ? (
+                  <select
+                    id={name}
+                    name={name}
+                    onChange={handleChange}
+                    value={formData[name] || ""}
+                    className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                  >
+                    {options?.map((option, index) => (
+                      <option key={index} value={values[index]}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    id={name}
+                    name={name}
+                    type={type}
+                    onChange={handleChange}
+                    value={formData[name] || ""}
+                    className="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+                    required={required}
+                    placeholder={name === "dobn" ? "dd-mm-yyyy" : ""}
+                  />
+                )}
+              </div>
+            ))}
+            <div className="col-span-2 flex justify-between mt-6">
+              <button
+                type="button"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md flex items-center"
+                onClick={() => navigate(-1)}
+              >
+                <MdSkipPrevious className="mr-2" />
+                Back
+              </button>
+              <button
+                type="submit"
+                className={`px-4 py-2 ${
+                  isFormValid ? "bg-green-500" : "bg-gray-500"
+                } text-white rounded-md flex items-center`}
+                onClick={handleSubmit}
+                disabled={!isFormValid}
+              >
+                <FaSave className="mr-2" />
+                Save
+              </button>
+
+              <button onClick={() => setShow(true)}> show</button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
