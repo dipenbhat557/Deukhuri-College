@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.exception.ResourceNotFoundException;
@@ -11,6 +12,7 @@ import com.dmc.model.Payment;
 import com.dmc.repo.PaymentRepo;
 import com.dmc.service.PaymentService;
 
+@Service
 public class PaymentServiceImpl implements PaymentService {
 
     @Autowired
