@@ -1,5 +1,5 @@
 import logo from "./logo.png";
-
+import Qr from "./Qr.png";
 import vid1 from "./videos/1.mp4";
 import vid2 from "./videos/2.mp4";
 import vid3 from "./videos/3.mp4";
@@ -85,4 +85,5 @@ export {
   form,
   pdf,
   writingNote,
+  Qr,
 };
