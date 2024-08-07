@@ -7,44 +7,7 @@ import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 
-// Sample data
-const events = [
-  {
-    id: 1,
-    title: "Event 1",
-    description: "This is a description of the first event.",
-    image:
-      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 2,
-    title: "Event 2",
-    description: "This is a description of the second event.",
-    image:
-      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 3,
-    title: "Event 3",
-    description: "This is a description of the third event.",
-    image:
-      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 4,
-    title: "Event 4",
-    description: "This is a description of the fourth event.",
-    image:
-      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 5,
-    title: "Event 5",
-    description: "This is a description of the fifth event.",
-    image:
-      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-];
+
 
 const EventPage = () => {
   const navigate = useNavigate();
@@ -53,19 +16,19 @@ const EventPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    //     const fetchDocuments = async () => {
-    //       try {
-    //         const response = await axios.get(
-    //           `${import.meta.env.VITE_APP_API_ROOT}/api/event`
-    //         );
-    //         let receivedData = response?.data;
-    //         setEventsData(receivedData);
-    //       } catch (error) {
-    //         console.error("Error fetching notices:", error);
-    //       }
-    //     };
+        const fetchDocuments = async () => {
+          try {
+            const response = await axios.get(
+              `${import.meta.env.VITE_APP_API_ROOT}/api/event`
+            );
+            let receivedData = response?.data;
+            setEventsData(receivedData);
+          } catch (error) {
+            console.error("Error fetching notices:", error);
+          }
+        };
 
-    //     fetchDocuments();
+        fetchDocuments();
   }, []);
 
   return (

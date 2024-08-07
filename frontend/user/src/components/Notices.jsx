@@ -8,131 +8,28 @@ import { slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 import axios from "axios";
 
-const notices = [
-  {
-    title: "Important Notice #1",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Urgent Update",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Reminder Notice",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Scheduled Maintenance",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "New Policy Announcement",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Holiday Notice",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Office Closure",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "System Upgrade",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Annual Report",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Important Notice #1",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Urgent Update",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Reminder Notice",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Scheduled Maintenance",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Important Notice #1",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Urgent Update",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Reminder Notice",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Scheduled Maintenance",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Important Notice #1",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Urgent Update",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Reminder Notice",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Scheduled Maintenance",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Important Notice #1",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Urgent Update",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Reminder Notice",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-  {
-    title: "Scheduled Maintenance",
-    img: "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QAyRXhpZgAATU0AAgAAIABgAAEAAAABV9ADmUABAD/2wBDAAoHBwkHBgoJCAkLCwoMDxwQDw4NDh4WFxIZJCAmIyIoKSMiLCwoM...",
-  },
-];
-
 const Notices = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  // const [notices, setNotices] = useState([]);
+  const [notices, setNotices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [noticesPerPage] = useState(5);
 
-  // useEffect(() => {
-  //   const fetchDocuments = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `${import.meta.env.VITE_APP_API_ROOT}/api/notice`
-  //       );
-  //       let receivedData = response?.data;
-  //       receivedData = receivedData?.filter((d) => d?.header === false);
-  //       setNotices(receivedData);
-  //     } catch (error) {
-  //       console.error("Error fetching notices:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/notice`
+        );
+        let receivedData = response?.data;
+        receivedData = receivedData?.filter((d) => d?.header === false);
+        setNotices(receivedData);
+      } catch (error) {
+        console.error("Error fetching notices:", error);
+      }
+    };
 
-  //   fetchDocuments();
-  // }, []);
+    fetchDocuments();
+  }, []);
 
   const createBlobUrl = (base64Data) => {
     if (!base64Data || typeof base64Data !== "string") {

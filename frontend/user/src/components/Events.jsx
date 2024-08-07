@@ -1,61 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import { styles } from "../styles";
 import { useEffect, useState } from "react";
-
-// Sample data
-const events = [
-  {
-    id: 1,
-    title: "Event 1",
-    description: "This is a description of the first event.",
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 2,
-    title: "Event 2",
-    description: "This is a description of the second event.",
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 3,
-    title: "Event 3",
-    description: "This is a description of the third event.",
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 4,
-    title: "Event 4",
-    description: "This is a description of the fourth event.",
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-  {
-    id: 5,
-    title: "Event 5",
-    description: "This is a description of the fifth event.",
-    img: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/5+AAwAB/QLADAAEAAAAAElFTkSuQmCC",
-  },
-];
-
 const Events = () => {
   const navigate = useNavigate();
   const [currentEvents, setCurrentEvents] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [events,setEvents] = useState([])
 
-  //   useEffect(() => {
-  //     const fetchDocuments = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           `${import.meta.env.VITE_APP_API_ROOT}/api/event`
-  //         );
-  //         let receivedData = response?.data;
-  //         setEvents(receivedData);
-  //       } catch (error) {
-  //         console.error("Error fetching notices:", error);
-  //       }
-  //     };
+    useEffect(() => {
+      const fetchDocuments = async () => {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_APP_API_ROOT}/api/event`
+          );
+          let receivedData = response?.data;
+          setEvents(receivedData);
+        } catch (error) {
+          console.error("Error fetching notices:", error);
+        }
+      };
 
-  //     fetchDocuments();
-  //   }, []);
+      fetchDocuments();
+    }, []);
 
   const createBlobUrl = (base64Data) => {
     if (!base64Data || typeof base64Data !== "string") {
