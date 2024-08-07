@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Qr } from "../assets";
 
 // eslint-disable-next-line react/prop-types
-export const QrComponent = ({ qrCodeImage }) => {
+export const QrComponent = () => {
   const [showReceiptSection, setShowReceiptSection] = useState(false);
 
   const handleNextClick = () => {
@@ -30,7 +31,7 @@ export const QrComponent = ({ qrCodeImage }) => {
             className="w-full py-2 px-4 bg-white rounded-lg border border-gray-300"
           />
           <button
-            className="w-full py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-700 mt-4"
+            className="w-full py-2 px-4 bg-red-800 text-white rounded-lg hover:bg-red-500 mt-4"
             onClick={() => console.log("Submit receipt button clicked!")}
           >
             Submit Receipt
@@ -42,13 +43,14 @@ export const QrComponent = ({ qrCodeImage }) => {
             Scan to Continue
           </h2>
           <div className="flex justify-center items-center my-12">
-            <img src={qrCodeImage} alt="QR Code" className="w-48 h-48" />
+            <img src={Qr} alt="QR Code" className="w-48 h-48" />
           </div>
           <p className="text-center text-gray-600 mb-4">
-            Scan the QR code to proceed to the next step.
+            Scan the QR code to proceed to the next step. To Upload the payment
+            receipt
           </p>
           <button
-            className="w-full py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-700"
+            className="w-full py-2 px-4 bg-red-800  text-white rounded-lg hover:bg-red-500"
             onClick={handleNextClick}
           >
             Next

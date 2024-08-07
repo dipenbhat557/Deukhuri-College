@@ -219,7 +219,7 @@ const StudentForm2 = () => {
   return (
     <>
       {shows ? (
-        <QrComponent qrCodeImage={"#"} />
+        <QrComponent />
       ) : (
         <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
           <h3 className="text-2xl font-bold mb-6 sm:col-span-2">
