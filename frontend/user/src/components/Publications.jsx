@@ -18,7 +18,7 @@ const Publications = () => {
   const [passwordCorrect, setPasswordCorrect] = useState(false);
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
-  const [openModel, setOpenModel] = useState(false);
+  const [openModel, setOpenModel] = useState(true);
   const [publications, setPublications] = useState([]);
   const [selectedPublication, setSelectedPublication] = useState(null);
 
@@ -68,7 +68,8 @@ const Publications = () => {
     if (password === HARDCODED_PASSWORD) {
       setPasswordCorrect(true);
       setShowError(false);
-      window.open(createBlobUrl(selectedPublication?.file), '_blank');
+      // window.open(createBlobUrl(selectedPublication?.file), '_blank');
+      setOpenModel(false)
     } else {
       setPasswordCorrect(false);
       setShowError(true);
@@ -76,12 +77,12 @@ const Publications = () => {
   };
 
   const handlePdfClick = (publication) => {
-    if (publication.hidden) {
-      setSelectedPublication(publication);
-      setOpenModel(true);
-    } else {
+    // if (publication.hidden) {
+    //   setSelectedPublication(publication);
+    //   setOpenModel(true);
+    // } else {
       window.open(createBlobUrl(publication?.file), "_blank");
-    }
+    // }
   };
 
   return (
@@ -119,6 +120,8 @@ const Publications = () => {
       </div>
 
       <div className="w-full relative flex items-center justify-center">
+        
+      {openModel && <div className="w-full h-[300px] bg-white" />}
         {openModel && (
           <div className="w-[80%] h-[60%] absolute  m-auto">
             
@@ -126,7 +129,7 @@ const Publications = () => {
                 className="flex flex-col items-center bg-white p-4 gap-4"
                 onSubmit={handlePasswordSubmit}
               >
-                <RxCrossCircled onClick={()=>setOpenModel(false)} className="cursor-pointer text-3xl text-red-500 absolute top-2 right-10"/>
+                {/* <RxCrossCircled onClick={()=>setOpenModel(false)} className="cursor-pointer text-3xl text-red-500 absolute top-2 right-10"/> */}
                 <h2 className="text-xl text-center font-bold">
                   Enter Password to View PDF
                 </h2>
@@ -154,7 +157,7 @@ const Publications = () => {
               </form>
           </div>
         )}
-        <div
+        {!openModel &&( <div
           className={`"flex flex-col w-full  mx-auto mt-5 sm:w-[80%]" ${
             openModel ? "-z-10 opacity-80 bg-slate-300" : ""
           }`}
@@ -186,8 +189,9 @@ const Publications = () => {
               </div>
             ))}
           </ol>
-        </div>
+        </div>)}
       </div>
+      
 
       <Suspense fallback={<Loading />}>
         <div className="w-full">
