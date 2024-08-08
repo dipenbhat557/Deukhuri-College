@@ -8,7 +8,6 @@ import Subscription from "./Subscriptions";
 import Model from "./Model";
 import { RxCrossCircled } from "react-icons/rx";
 
-// TODO: Fix this in future
 const HARDCODED_PASSWORD = "DMC62";
 
 const Loading = lazy(() => import("./Loading"));
@@ -38,8 +37,6 @@ const Publications = () => {
     fetchDocuments();
   }, []);
 
-  
-
   const handleScroll = () => {
     if (window.scrollY >= 105) {
       setScrolled(true);
@@ -57,9 +54,11 @@ const Publications = () => {
 
   const createBlobUrl = (base64Data) => {
     const byteCharacters = atob(base64Data);
-    const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+    const byteNumbers = new Array(byteCharacters.length)
+      .fill()
+      .map((_, i) => byteCharacters.charCodeAt(i));
     const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    const blob = new Blob([byteArray], { type: "application/pdf" });
     return URL.createObjectURL(blob);
   };
 

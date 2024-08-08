@@ -13,53 +13,68 @@ const PublicationForm = () => {
     id: publication?.id || 0,
     title: publication?.title || "",
     hidden: publication?.hidden || "",
-    program: publication?.program || ""
+    program: publication?.program || "",
   });
 
   const [img, setImg] = useState<File | null>(null);
   const [dataSaved, setDataSaved] = useState(false);
 
+  useEffect(() => {
+    if (publication?.file) {
+      const fileName = "example.pdf";
+      const mimeType = "application/pdf";
 
-useEffect(() => {
-  if (publication?.file) {
-    const fileName = "example.jpg";
-    const mimeType = "image/jpeg"; 
+      const file = base64ToFile(publication?.file, fileName, mimeType);
 
-    const file = base64ToFile(publication?.file, fileName, mimeType);
-
-    setImg(file);
-  }
-}, [publication]); // Ensure useEffect runs whenever publication changes
-
+      setImg(file);
+    }
+  }, [publication]); // Ensure useEffect runs whenever publication changes
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    formDataToSend.append("publication", JSON.stringify({title:formData?.title,hidden:formData?.hidden,program:formData?.program}));
+    formDataToSend.append(
+      "publication",
+      JSON.stringify({
+        title: formData?.title,
+        hidden: formData?.hidden,
+        program: formData?.program,
+      })
+    );
     if (img) {
       formDataToSend.append("file", img);
     }
 
-    console.log(formDataToSend)
+    console.log(formDataToSend);
 
     try {
       if (publication?.id) {
-        await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/publication/${publication?.id}`, formDataToSend, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.put(
+          `${
+            import.meta.env.VITE_APP_API_ROOT
+          }/api/publication/${publication?.id}`,
+          formDataToSend,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
       } else {
-        await axios.post(`${import.meta.env.VITE_APP_API_ROOT}/api/publication`, formDataToSend, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/publication`,
+          formDataToSend,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
       }
       setFormData({
         id: 0,
         title: "",
         hidden: false,
-        program:""
+        program: "",
       });
       setImg(null);
       setDataSaved(true);
@@ -74,7 +89,7 @@ useEffect(() => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log("selectef file is ",file)
+    console.log("selectef file is ", file);
     if (file) {
       setImg(file);
     }
@@ -97,11 +112,15 @@ useEffect(() => {
           )}
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <h3 className="font-medium text-black dark:text-white">Input Fields</h3>
+              <h3 className="font-medium text-black dark:text-white">
+                Input Fields
+              </h3>
             </div>
             <div className="flex flex-col gap-5.5 p-6.5">
               <div>
-                <label className="mb-3 block text-black dark:text-white">Title</label>
+                <label className="mb-3 block text-black dark:text-white">
+                  Title
+                </label>
                 <input
                   value={formData.title}
                   name="title"
@@ -116,73 +135,85 @@ useEffect(() => {
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
               </div>
-        
-                
-                <div>
-                <label className="mb-3 block text-black dark:text-white">Is Hidden?</label>
-                <div className="flex gap-4">
-                    <label className="flex items-center">
-                    <input
-                        type="radio"
-                        name="hidden"
-                        value="true"
-                        checked={formData.hidden === true}
-                        onChange={() =>
-                        setFormData((prevState) => ({
-                            ...prevState,
-                            hidden: true,
-                        }))
-                        }
-                        className="form-radio"
-                    />
-                    <span className="ml-2 text-black dark:text-white">True</span>
-                    </label>
-                    <label className="flex items-center">
-                    <input
-                        type="radio"
-                        name="hidden"
-                        value="false"
-                        checked={formData.hidden === false}
-                        onChange={() =>
-                        setFormData((prevState) => ({
-                            ...prevState,
-                            hidden: false,
-                        }))
-                        }
-                        className="form-radio"
-                    />
-                    <span className="ml-2 text-black dark:text-white">False</span>
-                    </label>
-                </div>
-            </div>
 
-                <div>
-                <label className="mb-3 block text-black dark:text-white">Program</label>
-                <select
-                    value={formData.program}
-                    name="program"
-                    onChange={(e) =>
-                        setFormData((prevState) => ({
-                        ...prevState,
-                        program: e.target.value,
-                        }))
-                    }
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                >
-                    <option value="">Select Program</option>
-                    <option value="GRADUATE">GRADUATE</option>
-                    <option value="UNDERGRADUATE">UNDERGRADUATE</option>
-                </select>
-
-              </div>
-              
               <div>
-                <label className="mb-3 block text-black dark:text-white">Attach Image</label>
-                 {img && (
-                    <div className="mt-2">
-                      <img src={URL.createObjectURL(img)} alt="Selected Image" className="max-w-full h-auto" />
-                    </div>
-                  )}
+                <label className="mb-3 block text-black dark:text-white">
+                  Is Hidden?
+                </label>
+                <div className="flex gap-4">
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="hidden"
+                      value="true"
+                      checked={formData.hidden === true}
+                      onChange={() =>
+                        setFormData((prevState) => ({
+                          ...prevState,
+                          hidden: true,
+                        }))
+                      }
+                      className="form-radio"
+                    />
+                    <span className="ml-2 text-black dark:text-white">
+                      True
+                    </span>
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name="hidden"
+                      value="false"
+                      checked={formData.hidden === false}
+                      onChange={() =>
+                        setFormData((prevState) => ({
+                          ...prevState,
+                          hidden: false,
+                        }))
+                      }
+                      className="form-radio"
+                    />
+                    <span className="ml-2 text-black dark:text-white">
+                      False
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-3 block text-black dark:text-white">
+                  Program
+                </label>
+                <select
+                  value={formData.program}
+                  name="program"
+                  onChange={(e) =>
+                    setFormData((prevState) => ({
+                      ...prevState,
+                      program: e.target.value,
+                    }))
+                  }
+                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                >
+                  <option value="">Select Program</option>
+                  <option value="GRADUATE">GRADUATE</option>
+                  <option value="UNDERGRADUATE">UNDERGRADUATE</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="mb-3 block text-black dark:text-white">
+                  Attach Image
+                </label>
+                {img && (
+                  <div className="mt-2">
+                    <img
+                      src={URL.createObjectURL(img)}
+                      alt="Selected Image"
+                      className="max-w-full h-auto"
+                    />
+                  </div>
+                )}
                 <input
                   onChange={handleFileChange}
                   type="file"
