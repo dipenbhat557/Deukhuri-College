@@ -38,8 +38,6 @@ const Publications = () => {
     fetchDocuments();
   }, []);
 
-  
-
   const handleScroll = () => {
     if (window.scrollY >= 105) {
       setScrolled(true);
@@ -57,9 +55,11 @@ const Publications = () => {
 
   const createBlobUrl = (base64Data) => {
     const byteCharacters = atob(base64Data);
-    const byteNumbers = new Array(byteCharacters.length).fill().map((_, i) => byteCharacters.charCodeAt(i));
+    const byteNumbers = new Array(byteCharacters.length)
+      .fill()
+      .map((_, i) => byteCharacters.charCodeAt(i));
     const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    const blob = new Blob([byteArray], { type: "application/pdf" });
     return URL.createObjectURL(blob);
   };
 
@@ -68,7 +68,7 @@ const Publications = () => {
     if (password === HARDCODED_PASSWORD) {
       setPasswordCorrect(true);
       setShowError(false);
-      window.open(createBlobUrl(selectedPublication?.file), '_blank');
+      window.open(createBlobUrl(selectedPublication?.file), "_blank");
     } else {
       setPasswordCorrect(false);
       setShowError(true);
@@ -121,37 +121,39 @@ const Publications = () => {
       <div className="w-full relative flex items-center justify-center">
         {openModel && (
           <div className="w-[80%] h-[60%] absolute  m-auto">
-            
-              <form
-                className="flex flex-col items-center bg-white p-4 gap-4"
-                onSubmit={handlePasswordSubmit}
-              >
-                <RxCrossCircled onClick={()=>setOpenModel(false)} className="cursor-pointer text-3xl text-red-500 absolute top-2 right-10"/>
-                <h2 className="text-xl text-center font-bold">
-                  Enter Password to View PDF
-                </h2>
-                <div className="flex gap-1 w-96 justify-center items-center flex-col">
-                  <label htmlFor="password">Password: </label>
-                  <input
-                    onChange={(e) => setPassword(e.currentTarget.value)}
-                    value={password}
-                    id="password"
-                    type="password"
-                    className="h-full w-full border"
-                  />
-                  <button
-                    type="submit"
-                    className="p-2 bg-red-900 text-[10px] sm:text-[15px] md:text-20px sm:p-111 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
-                  >
-                    Submit
-                  </button>
-                  {showError && (
-                    <div className="text-red-500 font-bold">
-                      Error, Wrong Password
-                    </div>
-                  )}
-                </div>
-              </form>
+            <form
+              className="flex flex-col items-center bg-white p-4 gap-4"
+              onSubmit={handlePasswordSubmit}
+            >
+              <RxCrossCircled
+                onClick={() => setOpenModel(false)}
+                className="cursor-pointer text-3xl text-red-500 absolute top-2 right-10"
+              />
+              <h2 className="text-xl text-center font-bold">
+                Enter Password to View PDF
+              </h2>
+              <div className="flex gap-1 w-96 justify-center items-center flex-col">
+                <label htmlFor="password">Password: </label>
+                <input
+                  onChange={(e) => setPassword(e.currentTarget.value)}
+                  value={password}
+                  id="password"
+                  type="password"
+                  className="h-full w-full border"
+                />
+                <button
+                  type="submit"
+                  className="p-2 bg-red-900 text-[10px] sm:text-[15px] md:text-20px sm:p-111 rounded-md sm:rounded-xl cursor-pointer text-white mr-4 hover:bg-red-950"
+                >
+                  Submit
+                </button>
+                {showError && (
+                  <div className="text-red-500 font-bold">
+                    Error, Wrong Password
+                  </div>
+                )}
+              </div>
+            </form>
           </div>
         )}
         <div
