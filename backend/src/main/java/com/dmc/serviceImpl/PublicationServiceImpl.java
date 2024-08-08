@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.Publication;
-import com.dmc.payload.PublicationRequest;
 import com.dmc.repo.PublicationRepo;
 import com.dmc.service.PublicationService;
 
@@ -19,12 +18,10 @@ public class PublicationServiceImpl implements PublicationService{
     private PublicationRepo publicationRepo;
 
     @Override
-    public Publication create(PublicationRequest req, MultipartFile file) {
+    public Publication create(String title, MultipartFile file) {
         Publication publication = new Publication();
 
-        publication.setTitle(req.getTitle());
-        publication.setProgram(req.getProgram());
-        publication.setHidden(req.isHidden());
+        publication.setTitle(title);
 
         try {
             if(file != null){
@@ -48,12 +45,10 @@ public class PublicationServiceImpl implements PublicationService{
     }
 
     @Override
-    public Publication updateById(int publicationId, PublicationRequest req, MultipartFile file) {
+    public Publication updateById(int publicationId, String title, MultipartFile file) {
         Publication publication = this.getById(publicationId);
 
-        publication.setTitle(req.getTitle());
-        publication.setProgram(req.getProgram());
-        publication.setHidden(req.isHidden());
+        publication.setTitle(title);
 
         try {
             if(file != null){

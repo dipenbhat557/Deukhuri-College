@@ -22,11 +22,10 @@ public class Publication{
 
     private String title;
 
-    private boolean hidden;
+    private boolean hidden = false;
 
     @Lob
     @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] file;
 
-    private Program program;
 }

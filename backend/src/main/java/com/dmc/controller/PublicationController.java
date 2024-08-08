@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.model.Publication;
-import com.dmc.payload.PublicationRequest;
 import com.dmc.service.PublicationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,15 +29,10 @@ public class PublicationController{
     private PublicationService publicationService;
 
     @PostMapping(value="",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Publication> create(@RequestParam("publication") String publicationJson, @RequestParam("file") MultipartFile file){
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            PublicationRequest req = objectMapper.readValue(publicationJson, PublicationRequest.class);
-            return new ResponseEntity<>(this.publicationService.create(req, file),HttpStatus.CREATED);
-        } catch (JsonProcessingException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<Publication> create(@RequestParam("title") String title, @RequestParam("file") MultipartFile file){
+        
+            return new ResponseEntity<>(this.publicationService.create(title, file),HttpStatus.CREATED);
+        
     }
 
     @GetMapping
@@ -52,16 +46,8 @@ public class PublicationController{
     }
 
     @PutMapping(value = "/{publicationId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Publication> updateNotice(@PathVariable int publicationId, @RequestParam("publication") String publicationJson, @RequestParam("file") MultipartFile file){
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            PublicationRequest req = objectMapper.readValue(publicationJson, PublicationRequest.class);
-            return new ResponseEntity<>(this.publicationService.updateById(publicationId, req, file),HttpStatus.OK);
-        } catch (JsonProcessingException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public ResponseEntity<Publication> updateNotice(@PathVariable int publicationId, @RequestParam("title") String title, @RequestParam("file") MultipartFile file){
+        return new ResponseEntity<>(this.publicationService.updateById(publicationId, title, file),HttpStatus.OK);
     }
 
     @DeleteMapping("/{publicationId}")
