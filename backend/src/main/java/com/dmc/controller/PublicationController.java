@@ -18,8 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.model.Publication;
 import com.dmc.service.PublicationService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/api/publication")

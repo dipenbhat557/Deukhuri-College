@@ -12,8 +12,6 @@ const PublicationForm = () => {
   const [formData, setFormData] = useState({
     id: publication?.id || 0,
     title: publication?.title || "",
-    hidden: publication?.hidden || "",
-    program: publication?.program || "",
   });
 
   const [img, setImg] = useState<File | null>(null);
@@ -33,12 +31,8 @@ const PublicationForm = () => {
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
     formDataToSend.append(
-      "publication",
-      JSON.stringify({
-        title: formData?.title,
-        hidden: formData?.hidden,
-        program: formData?.program,
-      })
+      "title",
+        formData?.title,
     );
     if (img) {
       formDataToSend.append("file", img);
@@ -60,6 +54,7 @@ const PublicationForm = () => {
           }
         );
       } else {
+        console.log("formdata is" , formData )
         await axios.post(
           `${import.meta.env.VITE_APP_API_ROOT}/api/publication`,
           formDataToSend,
@@ -73,8 +68,6 @@ const PublicationForm = () => {
       setFormData({
         id: 0,
         title: "",
-        hidden: false,
-        program: "",
       });
       setImg(null);
       setDataSaved(true);
@@ -136,80 +129,15 @@ const PublicationForm = () => {
                 />
               </div>
 
-              <div>
+                            <div>
                 <label className="mb-3 block text-black dark:text-white">
-                  Is Hidden?
-                </label>
-                <div className="flex gap-4">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="hidden"
-                      value="true"
-                      checked={formData.hidden === true}
-                      onChange={() =>
-                        setFormData((prevState) => ({
-                          ...prevState,
-                          hidden: true,
-                        }))
-                      }
-                      className="form-radio"
-                    />
-                    <span className="ml-2 text-black dark:text-white">
-                      True
-                    </span>
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="hidden"
-                      value="false"
-                      checked={formData.hidden === false}
-                      onChange={() =>
-                        setFormData((prevState) => ({
-                          ...prevState,
-                          hidden: false,
-                        }))
-                      }
-                      className="form-radio"
-                    />
-                    <span className="ml-2 text-black dark:text-white">
-                      False
-                    </span>
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Program
-                </label>
-                <select
-                  value={formData.program}
-                  name="program"
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      program: e.target.value,
-                    }))
-                  }
-                  className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                >
-                  <option value="">Select Program</option>
-                  <option value="GRADUATE">GRADUATE</option>
-                  <option value="UNDERGRADUATE">UNDERGRADUATE</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="mb-3 block text-black dark:text-white">
-                  Attach Image
+                  Attach File
                 </label>
                 {img && (
                   <div className="mt-2">
                     <img
                       src={URL.createObjectURL(img)}
-                      alt="Selected Image"
+                      alt="Selected File"
                       className="max-w-full h-auto"
                     />
                   </div>
