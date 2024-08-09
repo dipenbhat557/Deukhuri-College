@@ -25,7 +25,7 @@ const PaymentForm = () => {
 
       setImg(file);
     }
-  }, [payment]); 
+  }, [payment]); // Ensure useEffect runs whenever payment changes
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
@@ -84,10 +84,10 @@ const PaymentForm = () => {
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="payments" />
+      <Breadcrumb pageName="Payments" />
       <div className="flex justify-end py-2">
         <button className="bg-gray-300 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-          <NavLink to="/payments">Go to payments</NavLink>
+          <NavLink to="/payments">Go to Payments</NavLink>
         </button>
       </div>
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">

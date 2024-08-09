@@ -35,6 +35,8 @@ import AdsForm from "./pages/Form/Adsform";
 import Advertisement from "./components/Tables/Advertisement";
 import AdmissionForm from "./pages/Form/AdmissionForm";
 import Admission from "./components/Tables/Admission";
+import PaymentForm from "./pages/Form/PaymentForm";
+import Payment from "./components/Tables/Payment";
 
 function App() {
   const isLogIn = useRecoilValue(isLoggedIn);
@@ -342,6 +344,25 @@ function App() {
             <>
               <PageTitle title="Admissions" />
               <Admission />
+            </>
+          }
+        />
+        <Route
+          path="/forms/payment-form"
+          element={
+            <>
+              <PageTitle title="Payment Form" />
+              <PaymentForm />
+            </>
+          }
+        />
+
+        <Route
+          path="/payments"
+          element={
+            <>
+              <PageTitle title="Payments" />
+              <Payment />
             </>
           }
         />

@@ -10,6 +10,7 @@ import { GiArchiveRegister } from "react-icons/gi";
 import { FcRules } from "react-icons/fc";
 import { RiTeamFill } from "react-icons/ri";
 import { logo } from "../../assets";
+import { MdPayments } from "react-icons/md";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -210,6 +211,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Faculties
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/payments"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("payments") &&
+                    "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <MdPayments className="text-2xl" />
+                  Payments
+                </NavLink>
+              </li>
+
 
               <li>
                 <NavLink
