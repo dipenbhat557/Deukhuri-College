@@ -19,6 +19,8 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private boolean verified = false;
+    private int userId;
 
     @Lob
     @Column(name = "img", columnDefinition = "LONGBLOB")

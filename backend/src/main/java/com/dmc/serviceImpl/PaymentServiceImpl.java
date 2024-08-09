@@ -19,10 +19,11 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentRepo paymentRepo;
 
     @Override
-    public Payment create(MultipartFile file) throws IOException {
+    public Payment create(int userId,MultipartFile file) throws IOException {
         Payment payment = new Payment();
 
         payment.setImg(file.getBytes());
+        payment.setUserId(userId);
         payment = this.paymentRepo.save(payment);
 
         return payment;
@@ -41,6 +42,13 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public void delete(int id) {
         this.paymentRepo.delete(this.getById(id));
+    }
+
+    @Override
+    public Payment verify(int id){
+        Payment payment = this.getById(id);
+        payment.setVerified(true);
+        return this.paymentRepo.save(payment);
     }
     
 }
