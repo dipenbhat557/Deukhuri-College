@@ -13,6 +13,8 @@ const AdsForm = () => {
     id: advertisement?.id || 0,
   });
 
+  // const [img, setImg] = (useState < File) | (null > null);
+
   const [img, setImg] = useState<File | null>(null);
   const [dataSaved, setDataSaved] = useState(false);
 

@@ -11,6 +11,7 @@ import StudentForm1 from "./Forms/StudentForm1";
 import StudentForm2 from "./Forms/StudentForm2";
 import EventPage from "./EventPage";
 import AfterEvent from "./AfterEvent";
+import { QrComponent } from "./QrComponent";
 
 function Pages() {
   return (
@@ -44,6 +45,7 @@ function Pages() {
         <Route path="/form2" element={<StudentForm2 />} />
         <Route path="/events" element={<EventPage />} />
         <Route path="/afterevent/:id" element={<AfterEvent />} />
+        <Route path="/qr/:id" element={<QrComponent />} />
       </Routes>
     </BrowserRouter>
   );

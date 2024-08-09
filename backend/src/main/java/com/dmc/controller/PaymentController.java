@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +27,10 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
     
-   @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Payment> create( @RequestParam("file") MultipartFile file ) throws IOException{
+   @PostMapping(value = "/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Payment> create( @PathVariable int userId ,@RequestParam("file") MultipartFile file ) throws IOException{
     
-        return new ResponseEntity<>(this.paymentService.create(file),HttpStatus.CREATED);
+        return new ResponseEntity<>(this.paymentService.create(userId,file),HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -46,5 +47,10 @@ public class PaymentController {
     public ResponseEntity<String> deleteById(@PathVariable int paymentId){
         this.paymentService.delete(paymentId);
         return new ResponseEntity<>("Payment deleted successfully!!",HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/verify/{paymentId}")
+    public ResponseEntity<Payment> verify(@PathVariable int paymentId){
+        return new ResponseEntity<>(this.paymentService.verify(paymentId),HttpStatus.OK);
     }
 }
