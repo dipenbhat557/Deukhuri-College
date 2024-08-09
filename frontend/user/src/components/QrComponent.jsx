@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Qr } from "../assets";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const QrComponent = () => {
   const id = useParams();
 
   const [showReceiptSection, setShowReceiptSection] = useState(false);
+  const navigate = useNavigate();
 
   const [img, setImg] = useState(null);
   const handleNextClick = () => {
@@ -14,6 +15,7 @@ export const QrComponent = () => {
   };
 
   const handleReceiptUpload = (e) => {
+    e.preventDefault();
     const file = e.target.files?.[0];
     console.log("selectef file is ", file);
     if (file) {
@@ -33,6 +35,7 @@ export const QrComponent = () => {
     }
 
     console.log(formDataToSend);
+    console.log("id is ", id?.id);
 
     try {
       await axios.post(
@@ -45,7 +48,7 @@ export const QrComponent = () => {
         }
       );
 
-      setImg(null);
+      // setImg(null);
       // setDataSaved(true);
       // setTimeout(() => setDataSaved(false), 3000);
       navigate("/");
