@@ -3,7 +3,6 @@ import { Qr } from "../assets";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-// eslint-disable-next-line react/prop-types
 export const QrComponent = () => {
   const id = useParams();
 
@@ -49,7 +48,7 @@ export const QrComponent = () => {
       setImg(null);
       // setDataSaved(true);
       // setTimeout(() => setDataSaved(false), 3000);
-      // navigate("/advertisements");
+      navigate("/");
     } catch (error) {
       console.error("Error uploading file:", error);
     }

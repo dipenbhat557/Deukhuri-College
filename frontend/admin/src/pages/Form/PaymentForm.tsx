@@ -38,17 +38,20 @@ const PaymentForm = () => {
 
     try {
       if (payment?.id) {
-        await axios.put(
-          `${import.meta.env.VITE_APP_API_ROOT}/api/payment/${
-            payment.id
-          }`,
-          formDataToSend,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        // await axios.put(
+        //   `${import.meta.env.VITE_APP_API_ROOT}/api/payment/${
+        //     payment.id
+        //   }`,
+        //   formDataToSend,
+        //   {
+        //     headers: {
+        //       "Content-Type": "multipart/form-data",
+        //     },
+        //   }
+        // );
+        await axios.put( `${import.meta.env.VITE_APP_API_ROOT}/api/payment/verify/${
+            payment?.id
+          }`)
       } else {
         await axios.post(
           `${import.meta.env.VITE_APP_API_ROOT}/api/payment`,

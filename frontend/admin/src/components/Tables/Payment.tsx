@@ -3,7 +3,6 @@ import DefaultLayout from "../../layout/DefaultLayout";
 import Breadcrumb from "../Breadcrumbs/Breadcrumb";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { def } from "../../assets";
 import { MdDelete } from "react-icons/md";
 
 interface PaymentData {
