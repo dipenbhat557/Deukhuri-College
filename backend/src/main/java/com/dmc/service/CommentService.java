@@ -1,7 +1,7 @@
 package com.dmc.service;
 
 import com.dmc.model.Comment;
-import com.example.commentsection.repository.CommentRepository;
+import com.dmc.repo.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

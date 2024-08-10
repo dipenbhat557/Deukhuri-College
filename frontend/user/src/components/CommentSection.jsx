@@ -7,7 +7,7 @@ const CommentSection = () => {
 
   useEffect(() => {
     axios
-      .get("/comments")
+      .get( `${import.meta.env.VITE_APP_API_ROOT}/api/comment`)
       .then((response) => {
         setComments(response.data);
       })
@@ -19,7 +19,7 @@ const CommentSection = () => {
   const handleAddComment = () => {
     if (newComment.trim()) {
       axios
-        .post("/comments", { text: newComment })
+        .post( `${import.meta.env.VITE_APP_API_ROOT}/api/comment`, { text: newComment })
         .then((response) => {
           setComments([...comments, response.data]);
           setNewComment("");
@@ -32,6 +32,8 @@ const CommentSection = () => {
 
   return (
     <div className="p-4 max-w-md mx-auto">
+      <h1 className="text-4xl mb-7 text-red-700">Response Section</h1>
+
       <div className="mb-4">
         <textarea
           className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"

@@ -1,12 +1,11 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import axios from "axios"; // Don't forget to import axios
-import { contactBg, pdf, writingNote } from "../assets";
+import { contactBg, pdf } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
 import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
-import Model from "./Model";
-import { RxCrossCircled } from "react-icons/rx";
+import CommentSection from "./CommentSection";
 
 const HARDCODED_PASSWORD = "DMC62";
 
@@ -14,7 +13,6 @@ const Loading = lazy(() => import("./Loading"));
 
 const Publications = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [passwordCorrect, setPasswordCorrect] = useState(false);
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const [openModel, setOpenModel] = useState(true);
@@ -70,7 +68,6 @@ const Publications = () => {
       hidden: false,
     },
   ]);
-  const [selectedPublication, setSelectedPublication] = useState(null);
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -116,12 +113,10 @@ const Publications = () => {
   const handlePasswordSubmit = (event) => {
     event.preventDefault();
     if (password === HARDCODED_PASSWORD) {
-      setPasswordCorrect(true);
       setShowError(false);
       // window.open(createBlobUrl(selectedPublication?.file), '_blank');
       setOpenModel(false);
     } else {
-      setPasswordCorrect(false);
       setShowError(true);
     }
   };
@@ -211,6 +206,7 @@ const Publications = () => {
           </div>
         )}
         {!openModel && (
+          <div className="flex flex-col w-full h-auto">
           <div
             className={`"flex flex-col w-full  mx-auto mt-5 sm:w-[80%]" ${
               openModel ? "-z-10 opacity-80 bg-slate-300" : ""
@@ -244,9 +240,10 @@ const Publications = () => {
               ))}
             </ol>
           </div>
+      <CommentSection /></div>
         )}
       </div>
-
+      
       <Suspense fallback={<Loading />}>
         <div className="w-full">
           <Subscription />
