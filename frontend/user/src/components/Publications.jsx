@@ -64,6 +64,11 @@ const Publications = () => {
       file: "https://drive.google.com/file/d/14tBh6EqM0H15xnmZTBpD8Z7DjxXYFj8-/view?usp=drive_link",
       hidden: false,
     },
+    {
+      title: "SSR ",
+      file: "https://drive.google.com/file/d/1Rk03eJKK3xlyC1MtuIx6tZziZVYHR3sW/view?usp=drive_link",
+      hidden: false,
+    },
   ]);
   const [selectedPublication, setSelectedPublication] = useState(null);
 
