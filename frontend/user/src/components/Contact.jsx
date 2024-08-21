@@ -18,6 +18,7 @@ const Contact = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
@@ -31,36 +32,7 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        "service_htp2klw",
-        "template_a9c3yzv",
-        {
-          from_name: form.name,
-          to_name: "Dipendra",
-          from_email: form.email,
-          to_email: "bhattadipen557@gmail.com",
-          message: form.message,
-        },
-        "70gtdMrv58XYFp0DP"
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.log(error);
-          alert("Something went wrong");
-        }
-      );
+    
   };
 
   const handleScroll = () => {
@@ -112,7 +84,7 @@ const Contact = () => {
         </Suspense>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-between items-start w-[80%] h-auto sm:mx-8 mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-start w-[80%] h-auto  mx-auto">
         <div className=" flex w-full sm:w-[50%] h-auto ml-0  sm:ml-10">
           {/* Contact form section */}
           <Suspense fallback={<Loading />}>
@@ -144,7 +116,18 @@ const Contact = () => {
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="What's your web address?"
+                    placeholder="Email Address"
+                    className=" py-4 px-3 sm:px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
+                  />
+                </label>
+                <label className="flex flex-col">
+                  <span className=" font-medium my-4">Subject *</span>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    placeholder="Subject"
                     className=" py-4 px-3 sm:px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
                   />
                 </label>
@@ -173,7 +156,8 @@ const Contact = () => {
         </div>
 
         <Suspense fallback={<Loading />}>
-          <div className="h-auto w-[80% ] sm:w-[35%] flex flex-col my-4 ">
+        <div className="sm:h-full w-[80%] sm:w-[35%] items-center justify-center my-auto">
+          <div className="h-auto  flex flex-col my-4 ">
             <p className="text-[18px] p-3">Deukhuri Multiple Campus</p>
             <p className="text-[16px] text-slate-600 p-2">
               Lamahi-5, Dang, Nepal
@@ -216,6 +200,7 @@ const Contact = () => {
                 />
               </a>
             </div>
+          </div>
           </div>
         </Suspense>
       </div>
