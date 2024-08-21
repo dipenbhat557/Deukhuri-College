@@ -125,10 +125,10 @@ const StudentForm2 = () => {
     const qaUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-required-data-list/`;
     const fetchQaData = async () => {
       const res = await axios.get(qaUrl);
-      const finalRes = await res.data.program;
-      const qaf = finalRes?.map((c) => c?.programname);
+      const finalRes = await res.data.qualification;
+      const qaf = finalRes?.map((c) => c?.qualification_name);
       setQa(qaf);
-      const qafInd = finalRes?.map((c) => c?.programid);
+      const qafInd = finalRes?.map((c) => c?.sn);
       setQaIndexes(qafInd);
     };
     fetchQaData();
