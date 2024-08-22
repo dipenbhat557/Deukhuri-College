@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
-import emailjs from "emailjs-com";
 import { contactBg, facebook, youtube, twitter } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
@@ -7,6 +6,7 @@ import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import { motion } from "framer-motion";
 import { slideIn } from "../utils/motion";
+import axios from "axios";
 
 // Lazy-loaded components
 const Loading = lazy(() => import("./Loading"));
@@ -28,12 +28,30 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    
-  };
+    const contactURL = `${import.meta.env.VITE_APP_API_ROOT}/api/contact/send`;
+    try {
+      const res = await axios.post(contactURL, form);
+      const response = await res.data;
+      console.log("response is ",response)
+
+      setLoading(false)
+      alert("Thank you for connecting with us... We will get back to you soon!!")
+    } catch (error) {
+      if (error.response) {
+        console.error("Response error:", error.response.data);
+      } else if (error.request) {
+        console.error("Request error:", error.request);
+      } else {
+        console.error("Error", error.message);
+      }
+      console.error("Error config", error.config);
+      setLoading(false)
+    }
+};
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {

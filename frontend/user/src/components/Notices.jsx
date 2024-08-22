@@ -22,6 +22,7 @@ const Notices = () => {
         );
         let receivedData = response?.data;
         receivedData = receivedData?.filter((d) => d?.header === false);
+        receivedData = receivedData?.reverse();
         setNotices(receivedData);
       } catch (error) {
         console.error("Error fetching notices:", error);
