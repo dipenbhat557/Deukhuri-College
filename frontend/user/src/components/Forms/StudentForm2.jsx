@@ -78,7 +78,7 @@ const StudentForm2 = () => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: name === "citiz_no" ? value.toString() : value,
     }));
   };
 
