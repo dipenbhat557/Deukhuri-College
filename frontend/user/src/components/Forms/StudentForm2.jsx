@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import studentFormState from "../../store";
 import axios from "axios";
-
 const StudentForm2 = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useRecoilState(studentFormState);
@@ -58,8 +57,7 @@ const StudentForm2 = () => {
       mother_qualification: prevFormData.mother_qualification || 0,
     }));
   }, []);
-
-  useEffect(() => {
+	useEffect(() => {
     const casteUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/student-academics-sub-caste-list-view/?caste_id=${formData?.caste}`;
     const fetchCasteData = async () => {
       if (formData?.caste !== 0) {
@@ -74,15 +72,15 @@ const StudentForm2 = () => {
     fetchCasteData();
   }, [formData?.caste]);
 
-  const handleChange = (e) => {
+const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: name === "citiz_no" ? value.toString() : value, 
     }));
   };
 
-  const [district, setdistrict] = useState([]);
+	const [district, setdistrict] = useState([]);
   const [districtIndexes, setdistrictIndexes] = useState([]);
 
   useEffect(() => {
@@ -125,16 +123,15 @@ const StudentForm2 = () => {
     const qaUrl = `https://dmcapi.prefacetechnology.com.np/nexapp-college-academics/academics-student-add-required-data-list/`;
     const fetchQaData = async () => {
       const res = await axios.get(qaUrl);
-      const finalRes = await res.data.program;
-      const qaf = finalRes?.map((c) => c?.programname);
+      const finalRes = await res.data.qualification;
+      const qaf = finalRes?.map((c) => c?.qualification_name);
       setQa(qaf);
-      const qafInd = finalRes?.map((c) => c?.programid);
+      const qafInd = finalRes?.map((c) => c?.sn);
       setQaIndexes(qafInd);
     };
     fetchQaData();
   }, []);
-
-  useEffect(() => {
+	useEffect(() => {
     const requiredFields = [
       "first_name",
       "last_name",
@@ -214,8 +211,7 @@ const StudentForm2 = () => {
       console.error("Error config", error.config);
     }
   };
-
-  return (
+	return (
     <>
       <div className="p-8 w-full bg-gray-100 rounded-lg shadow-md">
         <h3 className="text-2xl font-bold mb-6 sm:col-span-2">
@@ -448,7 +444,7 @@ const StudentForm2 = () => {
               )}
             </div>
           ))}
-          <div className="col-span-2 flex justify-between mt-6">
+		<div className="col-span-2 flex justify-between mt-6">
             <button
               type="button"
               className="px-4 py-2 bg-blue-500 text-white rounded-md flex items-center"

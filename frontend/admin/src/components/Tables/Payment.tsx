@@ -77,7 +77,7 @@ const Payment = () => {
                   Id
                 </th>
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  User Id
+                  Admission Id
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Update

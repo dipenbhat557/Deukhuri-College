@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
-import emailjs from "emailjs-com";
 import { contactBg, facebook, youtube, twitter } from "../assets";
 import Footer from "./Footer";
 import HeroHeader from "./HeroHeader";
@@ -7,6 +6,7 @@ import Navbar from "./Navbar";
 import Subscription from "./Subscriptions";
 import { motion } from "framer-motion";
 import { slideIn } from "../utils/motion";
+import axios from "axios";
 
 // Lazy-loaded components
 const Loading = lazy(() => import("./Loading"));
@@ -18,6 +18,7 @@ const Contact = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
@@ -27,41 +28,30 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        "service_htp2klw",
-        "template_a9c3yzv",
-        {
-          from_name: form.name,
-          to_name: "Dipendra",
-          from_email: form.email,
-          to_email: "bhattadipen557@gmail.com",
-          message: form.message,
-        },
-        "70gtdMrv58XYFp0DP"
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
+    const contactURL = `${import.meta.env.VITE_APP_API_ROOT}/api/contact/send`;
+    try {
+      const res = await axios.post(contactURL, form);
+      const response = await res.data;
+      console.log("response is ",response)
 
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.log(error);
-          alert("Something went wrong");
-        }
-      );
-  };
+      setLoading(false)
+      alert("Thank you for connecting with us... We will get back to you soon!!")
+    } catch (error) {
+      if (error.response) {
+        console.error("Response error:", error.response.data);
+      } else if (error.request) {
+        console.error("Request error:", error.request);
+      } else {
+        console.error("Error", error.message);
+      }
+      console.error("Error config", error.config);
+      setLoading(false)
+    }
+};
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -112,7 +102,7 @@ const Contact = () => {
         </Suspense>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-between items-start w-[80%] h-auto sm:mx-8 mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-start w-[80%] h-auto  mx-auto">
         <div className=" flex w-full sm:w-[50%] h-auto ml-0  sm:ml-10">
           {/* Contact form section */}
           <Suspense fallback={<Loading />}>
@@ -144,7 +134,18 @@ const Contact = () => {
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="What's your web address?"
+                    placeholder="Email Address"
+                    className=" py-4 px-3 sm:px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
+                  />
+                </label>
+                <label className="flex flex-col">
+                  <span className=" font-medium my-4">Subject *</span>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={form.subject}
+                    onChange={handleChange}
+                    placeholder="Subject"
                     className=" py-4 px-3 sm:px-6 placeholder:text-slate-400 bg-slate-100 rounded-lg  font-medium"
                   />
                 </label>
@@ -173,7 +174,8 @@ const Contact = () => {
         </div>
 
         <Suspense fallback={<Loading />}>
-          <div className="h-auto w-[80% ] sm:w-[35%] flex flex-col my-4 ">
+        <div className="sm:h-full w-[80%] sm:w-[35%] items-center justify-center my-auto">
+          <div className="h-auto  flex flex-col my-4 ">
             <p className="text-[18px] p-3">Deukhuri Multiple Campus</p>
             <p className="text-[16px] text-slate-600 p-2">
               Lamahi-5, Dang, Nepal
@@ -217,6 +219,7 @@ const Contact = () => {
               </a>
             </div>
           </div>
+          </div>
         </Suspense>
       </div>
 
@@ -239,3 +242,4 @@ const Contact = () => {
   );
 };
 export default Contact;
+
