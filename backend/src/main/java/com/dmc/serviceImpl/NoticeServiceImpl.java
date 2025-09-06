@@ -2,7 +2,6 @@ package com.dmc.serviceImpl;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +39,7 @@ public class NoticeServiceImpl implements NoticeService{
 
     @Override
     public List<NoticeResponse> getAll() {
-        return this.noticeRepo.findAll().stream().map(notice -> new NoticeResponse(notice.getId(), notice.getTitle(), notice.isHeader())).collect(Collectors.toList());
+        return this.noticeRepo.findAllNoticeResponses();
     }
 
     @Override
