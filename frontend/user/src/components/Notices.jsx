@@ -13,6 +13,8 @@ const Notices = () => {
   const [notices, setNotices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [noticesPerPage] = useState(5);
+  const [loadingImages, setLoadingImages] = useState({});
+  const [noticeImages, setNoticeImages] = useState({});
 
   useEffect(() => {
     const fetchDocuments = async () => {
@@ -22,8 +24,8 @@ const Notices = () => {
         );
         let receivedData = response?.data;
         receivedData = receivedData?.filter((d) => d?.header === false);
-        const newData = receivedData?.reverse();
-	setNotices(newData);
+        receivedData = receivedData?.reverse();
+        setNotices(receivedData);
       } catch (error) {
         console.error("Error fetching notices:", error);
       }
@@ -31,6 +33,38 @@ const Notices = () => {
 
     fetchDocuments();
   }, []);
+
+  useEffect(() => {
+    if (notices.length > 0 && currentNotices.length > 0 && currentNotices[0]?.id) {
+      fetchNoticeImage(currentNotices[0].id);
+    }
+  }, [notices, currentPage]);
+
+  const fetchNoticeImage = async (noticeId) => {
+    if (noticeImages[noticeId] || loadingImages[noticeId]) {
+      return; 
+    }
+
+    setLoadingImages(prev => ({ ...prev, [noticeId]: true }));
+
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_API_ROOT}/api/notice/${noticeId}/img`,
+        { responseType: 'arraybuffer' }
+      );
+      
+      const base64 = btoa(
+        new Uint8Array(response.data)
+          .reduce((data, byte) => data + String.fromCharCode(byte), '')
+      );
+      
+      setNoticeImages(prev => ({ ...prev, [noticeId]: base64 }));
+    } catch (error) {
+      console.error("Error fetching notice image:", error);
+    } finally {
+      setLoadingImages(prev => ({ ...prev, [noticeId]: false }));
+    }
+  };
 
   const createBlobUrl = (base64Data) => {
     if (!base64Data || typeof base64Data !== "string") {
@@ -58,6 +92,14 @@ const Notices = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleNoticeClick = (index) => {
+    setCurrentIndex(index);
+    const notice = currentNotices[index];
+    if (notice && notice.id) {
+      fetchNoticeImage(notice.id);
+    }
   };
 
   return (
@@ -88,7 +130,7 @@ const Notices = () => {
                 className={`${
                   index === currentIndex ? "border-l-4 border-red-900 " : ""
                 } w-full h-[70px] border-b-2 flex items-center pl-4 cursor-pointer`}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => handleNoticeClick(index)}
               >
                 <IoMdInformationCircle
                   className={`${index === currentIndex ? "text-red-900 " : ""}`}
@@ -133,26 +175,35 @@ const Notices = () => {
           {currentNotices[currentIndex]?.title}
         </p>
         <div className="w-[80%] h-[95%] relative flex justify-center items-center">
-          <img
-            src={
-              `data:image/jpeg;base64,${currentNotices[currentIndex]?.img}` ||
-              def
-            }
-            alt="Notice Image"
-            className="w-[95%] h-[90%] object-contain -z-1 "
-          />
-          <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
-          <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
-            {currentNotices[currentIndex]?.img && (
-              <a
-                href={createBlobUrl(currentNotices[currentIndex].img)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiOutlineSearch />
-              </a>
-            )}
-          </div>
+          {loadingImages[currentNotices[currentIndex]?.id] ? (
+            <div className="w-[95%] h-[90%] flex items-center justify-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-900"></div>
+            </div>
+          ) : (
+            <>
+              <img
+                src={
+                  currentNotices[currentIndex]?.id && noticeImages[currentNotices[currentIndex].id]
+                    ? `data:image/jpeg;base64,${noticeImages[currentNotices[currentIndex].id]}`
+                    : def
+                }
+                alt="Notice Image"
+                className="w-[95%] h-[90%] object-contain -z-1 "
+              />
+              <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
+              <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
+                {currentNotices[currentIndex]?.id && noticeImages[currentNotices[currentIndex].id] && (
+                  <a
+                    href={createBlobUrl(noticeImages[currentNotices[currentIndex].id])}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <AiOutlineSearch />
+                  </a>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </motion.div>
     </div>

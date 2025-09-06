@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { MdSkipNext } from "react-icons/md";
@@ -11,6 +11,7 @@ const StudentForm1 = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const [formData, setFormData] = useRecoilState(studentFormState);
+
 
   const navigate = useNavigate();
 
@@ -25,14 +26,14 @@ const StudentForm1 = () => {
   useEffect(() => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      program: prevFormData.program || 0,
-      acdmc_year: prevFormData.acdmc_year || 0,
-      year_semester: prevFormData.year_semester || 0,
-      medium: prevFormData.medium || 0,
-      sec: prevFormData.sec || 0,
-      team: prevFormData.team || 0,
-      shift: prevFormData.shift || 0,
-      maj_subj: prevFormData.maj_subj || 0,
+      program: prevFormData.program || "",
+      acdmc_year: prevFormData.acdmc_year || "",
+      year_semester: prevFormData.year_semester || "",
+      medium: prevFormData.medium || "",
+      sec: prevFormData.sec || "",
+      team: prevFormData.team || "",
+      shift: prevFormData.shift || "",
+      maj_subj: prevFormData.maj_subj || ""
     }));
   }, []);
 
@@ -96,6 +97,7 @@ const StudentForm1 = () => {
               <option value={4}>B.Ed</option>
               <option value={5}>M.Ed</option>
             </select>
+           
           </div>
           <div className="mb-4">
             <label className="block mb-2">
@@ -115,6 +117,7 @@ const StudentForm1 = () => {
               <option value={4}>2078-2082</option>
               <option value={5}>2077-2081</option>
             </select>
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
@@ -134,6 +137,8 @@ const StudentForm1 = () => {
               <option value={4}>Fourth Year</option>
               <option value={5}>Complete Year</option>
             </select>
+
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
@@ -150,6 +155,8 @@ const StudentForm1 = () => {
               <option value={1}>English</option>
               <option value={2}>Nepali</option>
             </select>
+
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
@@ -165,6 +172,7 @@ const StudentForm1 = () => {
               <option value={0}>Select section</option>
               <option value={1}>No Section</option>
             </select>
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
@@ -180,6 +188,7 @@ const StudentForm1 = () => {
               <option value={0}>Select team</option>
               <option value={1}>No Team</option>
             </select>
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">
@@ -196,6 +205,7 @@ const StudentForm1 = () => {
               <option value={1}>Morning</option>
               <option value={2}>Evening</option>
             </select>
+            
           </div>
           <div className="mb-4">
             <label className="block mb-2">Major Subject </label>
@@ -208,6 +218,7 @@ const StudentForm1 = () => {
               <option value={0}>Select Major Subject</option>
               <option value={1}>Default</option>
             </select>
+           
           </div>
         </form>
         <div className="flex w-full justify-end">
@@ -232,4 +243,3 @@ const StudentForm1 = () => {
 };
 
 export default StudentForm1;
-

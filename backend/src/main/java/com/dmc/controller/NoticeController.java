@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.model.Notice;
 import com.dmc.payload.NoticeRequest;
+import com.dmc.payload.NoticeResponse;
 import com.dmc.service.NoticeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,8 +44,13 @@ public class NoticeController{
     }
 
     @GetMapping
-    public ResponseEntity<List<Notice>> getAll(){
+    public ResponseEntity<List<NoticeResponse>> getAll(){
         return new ResponseEntity<>(this.noticeService.getAll(),HttpStatus.OK);
+    }
+
+    @GetMapping("/{noticeId}/img")
+    public ResponseEntity<byte[]> getImgById(@PathVariable int noticeId){
+        return new ResponseEntity<>(this.noticeService.getImgById(noticeId),HttpStatus.OK);
     }
 
     @GetMapping("/{noticeId}")

@@ -2,6 +2,7 @@ package com.dmc.serviceImpl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.Notice;
 import com.dmc.payload.NoticeRequest;
+import com.dmc.payload.NoticeResponse;
 import com.dmc.repo.NoticeRepo;
 import com.dmc.service.NoticeService;
 
@@ -37,8 +39,13 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    public List<Notice> getAll() {
-        return this.noticeRepo.findAll();
+    public List<NoticeResponse> getAll() {
+        return this.noticeRepo.findAll().stream().map(notice -> new NoticeResponse(notice.getId(), notice.getTitle(), notice.isHeader())).collect(Collectors.toList());
+    }
+
+    @Override
+    public byte[] getImgById(int noticeId) {
+        return this.noticeRepo.findById(noticeId).orElseThrow(()-> new ResourceNotFoundException("Notice not found")).getImg();
     }
 
     @Override

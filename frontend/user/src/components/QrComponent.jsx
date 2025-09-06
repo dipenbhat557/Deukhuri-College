@@ -15,6 +15,7 @@ export const QrComponent = () => {
   };
 
   const handleReceiptUpload = (e) => {
+    e.preventDefault();
     const file = e.target.files?.[0];
     console.log("selectef file is ", file);
     if (file) {
@@ -22,8 +23,7 @@ export const QrComponent = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (!img) {
       alert("Please upload a receipt before submitting.");
       return;
@@ -106,4 +106,3 @@ export const QrComponent = () => {
     </div>
   );
 };
-
