@@ -3,7 +3,6 @@ import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLayout";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { base64ToFile } from "../store";
 
 const PublicationForm = () => {
   const location = useLocation();
@@ -18,21 +17,30 @@ const PublicationForm = () => {
   const [dataSaved, setDataSaved] = useState(false);
 
   useEffect(() => {
-    if (publication?.file) {
-      const fileName = "example.pdf";
-      const mimeType = "application/pdf";
+    const fetchFile = async () => {
+      if (publication?.id) {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_APP_API_ROOT}/api/publication/${publication.id}/file`,
+            { responseType: 'arraybuffer' }
+          );
+          const blob = new Blob([response.data], { type: 'application/pdf' });
+          const file = new File([blob], 'publication.pdf', { type: 'application/pdf' });
+          setImg(file);
+        } catch (error) {
+          console.log('No existing file or error fetching file');
+        }
+      }
+    };
 
-      const file = base64ToFile(publication?.file, fileName, mimeType);
-
-      setImg(file);
-    }
+    fetchFile();
   }, [publication]); // Ensure useEffect runs whenever publication changes
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
     formDataToSend.append(
       "title",
-        formData?.title,
+      formData?.title,
     );
     if (img) {
       formDataToSend.append("file", img);
@@ -43,8 +51,7 @@ const PublicationForm = () => {
     try {
       if (publication?.id) {
         await axios.put(
-          `${
-            import.meta.env.VITE_APP_API_ROOT
+          `${import.meta.env.VITE_APP_API_ROOT
           }/api/publication/${publication?.id}`,
           formDataToSend,
           {
@@ -54,7 +61,7 @@ const PublicationForm = () => {
           }
         );
       } else {
-        console.log("formdata is" , formData )
+        console.log("formdata is", formData)
         await axios.post(
           `${import.meta.env.VITE_APP_API_ROOT}/api/publication`,
           formDataToSend,
@@ -129,7 +136,7 @@ const PublicationForm = () => {
                 />
               </div>
 
-                            <div>
+              <div>
                 <label className="mb-3 block text-black dark:text-white">
                   Attach File
                 </label>

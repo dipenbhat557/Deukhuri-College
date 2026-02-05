@@ -121,7 +121,7 @@ const Publications = () => {
     }
   };
 
-  const handlePdfClick = (publication) => {
+  const handlePdfClick = async (publication) => {
     // if (publication.hidden) {
     //   setSelectedPublication(publication);
     //   setOpenModel(true);
@@ -129,7 +129,18 @@ const Publications = () => {
     if (publication?.title?.slice(0, 5) === "Annex") {
       window.open(publication?.file, "_blank");
     } else {
-      window.open(createBlobUrl(publication?.file), "_blank");
+      // Fetch the PDF from the backend on-demand
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_APP_API_ROOT}/api/publication/${publication.id}/file`,
+          { responseType: 'arraybuffer' }
+        );
+        const blob = new Blob([response.data], { type: 'application/pdf' });
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, "_blank");
+      } catch (error) {
+        console.error("Error fetching PDF:", error);
+      }
     }
 
     // }
@@ -151,9 +162,8 @@ const Publications = () => {
 
         <Suspense fallback={<Loading />}>
           <div
-            className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${
-              scrolled ? "justify-end" : "justify-between"
-            } items-center text-white`}
+            className={`w-full h-full bg-black bg-opacity-20 absolute top-0 left-0 flex flex-col ${scrolled ? "justify-end" : "justify-between"
+              } items-center text-white`}
           >
             {scrolled || <Navbar active="" scrolled={scrolled} />}
 
@@ -207,9 +217,8 @@ const Publications = () => {
         )}
         {!openModel && (
           <div
-            className={`"flex flex-col w-full  mx-auto mt-5 sm:w-[80%]" ${
-              openModel ? "-z-10 opacity-80 bg-slate-300" : ""
-            }`}
+            className={`"flex flex-col w-full  mx-auto mt-5 sm:w-[80%]" ${openModel ? "-z-10 opacity-80 bg-slate-300" : ""
+              }`}
           >
             <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
               Publications
