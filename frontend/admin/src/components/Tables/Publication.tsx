@@ -9,8 +9,6 @@ interface PublicationData {
   id: number;
   title: string;
   hidden: boolean;
-  program:string;
-  file: string;
 }
 
 const Publication = () => {

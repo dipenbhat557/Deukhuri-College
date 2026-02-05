@@ -9,11 +9,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dmc.exception.ResourceNotFoundException;
 import com.dmc.model.Publication;
+import com.dmc.payload.PublicationResponse;
 import com.dmc.repo.PublicationRepo;
 import com.dmc.service.PublicationService;
 
 @Service
-public class PublicationServiceImpl implements PublicationService{
+public class PublicationServiceImpl implements PublicationService {
     @Autowired
     private PublicationRepo publicationRepo;
 
@@ -24,7 +25,7 @@ public class PublicationServiceImpl implements PublicationService{
         publication.setTitle(title);
 
         try {
-            if(file != null){
+            if (file != null) {
                 publication.setFile(file.getBytes());
             }
         } catch (IOException ex) {
@@ -35,13 +36,19 @@ public class PublicationServiceImpl implements PublicationService{
     }
 
     @Override
-    public List<Publication> getAll() {
-        return this.publicationRepo.findAll();
+    public List<PublicationResponse> getAll() {
+        return this.publicationRepo.findAllPublicationResponses();
+    }
+
+    @Override
+    public byte[] getFileById(int publicationId) {
+        return this.getById(publicationId).getFile();
     }
 
     @Override
     public Publication getById(int publicationId) {
-        return this.publicationRepo.findById(publicationId).orElseThrow(()->new ResourceNotFoundException("Publication not found"));
+        return this.publicationRepo.findById(publicationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Publication not found"));
     }
 
     @Override
@@ -51,7 +58,7 @@ public class PublicationServiceImpl implements PublicationService{
         publication.setTitle(title);
 
         try {
-            if(file != null){
+            if (file != null) {
                 publication.setFile(file.getBytes());
             }
         } catch (IOException ex) {
