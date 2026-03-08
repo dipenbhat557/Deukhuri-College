@@ -29,9 +29,10 @@ public class PublicationController {
 
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Publication> create(@RequestParam("title") String title,
+            @RequestParam(value = "type", required = false) String type,
             @RequestParam("file") MultipartFile file) {
 
-        return new ResponseEntity<>(this.publicationService.create(title, file), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.publicationService.create(title, type, file), HttpStatus.CREATED);
 
     }
 
@@ -52,8 +53,10 @@ public class PublicationController {
 
     @PutMapping(value = "/{publicationId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Publication> updateNotice(@PathVariable int publicationId,
-            @RequestParam("title") String title, @RequestParam("file") MultipartFile file) {
-        return new ResponseEntity<>(this.publicationService.updateById(publicationId, title, file), HttpStatus.OK);
+            @RequestParam("title") String title,
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "file", required = false) MultipartFile file) {
+        return new ResponseEntity<>(this.publicationService.updateById(publicationId, title, type, file), HttpStatus.OK);
     }
 
     @DeleteMapping("/{publicationId}")

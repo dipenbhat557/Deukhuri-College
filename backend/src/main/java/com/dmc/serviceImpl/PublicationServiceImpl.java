@@ -19,17 +19,20 @@ public class PublicationServiceImpl implements PublicationService {
     private PublicationRepo publicationRepo;
 
     @Override
-    public Publication create(String title, MultipartFile file) {
+    public Publication create(String title, String type, MultipartFile file) {
         Publication publication = new Publication();
 
         publication.setTitle(title);
+        if (type != null && !type.isBlank()) {
+            publication.setType(type.trim());
+        }
 
         try {
-            if (file != null) {
+            if (file != null && !file.isEmpty()) {
                 publication.setFile(file.getBytes());
             }
         } catch (IOException ex) {
-            System.out.println("Could not save image");
+            System.out.println("Could not save file");
         }
 
         return this.publicationRepo.save(publication);
@@ -52,17 +55,20 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     @Override
-    public Publication updateById(int publicationId, String title, MultipartFile file) {
+    public Publication updateById(int publicationId, String title, String type, MultipartFile file) {
         Publication publication = this.getById(publicationId);
 
         publication.setTitle(title);
+        if (type != null && !type.isBlank()) {
+            publication.setType(type.trim());
+        }
 
         try {
-            if (file != null) {
+            if (file != null && !file.isEmpty()) {
                 publication.setFile(file.getBytes());
             }
         } catch (IOException ex) {
-            System.out.println("Could not save image");
+            System.out.println("Could not save file");
         }
 
         return this.publicationRepo.save(publication);

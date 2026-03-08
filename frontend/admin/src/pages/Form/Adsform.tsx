@@ -17,6 +17,7 @@ const AdsForm = () => {
 
   const [img, setImg] = useState<File | null>(null);
   const [dataSaved, setDataSaved] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (advertisement?.img) {
@@ -38,6 +39,7 @@ const AdsForm = () => {
 
     console.log(formDataToSend);
 
+    setIsSubmitting(true);
     try {
       if (advertisement?.id) {
         await axios.put(
@@ -71,6 +73,8 @@ const AdsForm = () => {
       navigate("/advertisements");
     } catch (error) {
       console.error("Error uploading file:", error);
+    } finally {
+      setIsSubmitting(false);
     }
 
     window.scrollTo(0, 0);
@@ -134,9 +138,20 @@ const AdsForm = () => {
               <div>
                 <button
                   onClick={handleSubmit}
-                  className="bg-blue-500 tracking-wide text-white font-bold py-2 px-9 rounded opacity-80 shadow-1"
+                  disabled={isSubmitting}
+                  className="bg-blue-500 hover:bg-blue-600 hover:opacity-100 opacity-90 tracking-wide text-white font-bold py-2 px-9 rounded shadow-1 transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-blue-500 flex items-center justify-center gap-2 min-w-[120px]"
                 >
-                  <span className="tracking-wider px-3">Post</span>
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      <span className="tracking-wider">Posting...</span>
+                    </>
+                  ) : (
+                    <span className="tracking-wider px-3">Post</span>
+                  )}
                 </button>
               </div>
             </div>

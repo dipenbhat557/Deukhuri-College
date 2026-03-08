@@ -28,6 +28,8 @@ public class WebConfig {
         configuration.addAllowedOrigin("https://api.deukhurimultiplecampus.edu.np");
         configuration.addAllowedOrigin("https://deukhurimultiplecampus.edu.np");
         configuration.addAllowedOrigin("https://www.deukhurimultiplecampus.edu.np");
+        configuration.addAllowedOrigin("http://localhost:5174");
+        configuration.addAllowedOrigin("http://localhost:5173");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.setMaxAge(3600L);

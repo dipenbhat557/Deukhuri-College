@@ -12,59 +12,32 @@ const HARDCODED_PASSWORD = "DMC62";
 
 const Loading = lazy(() => import("./Loading"));
 
+const ANNEX_LIST = [
+  { title: "Annex I", file: "https://drive.google.com/file/d/17XQRRg-Hzwc0KmcFerpc5KgqOh7T1903/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex II", file: "https://drive.google.com/file/d/1XoM4yqBbvufITJ3yPgSoZckLGzjE5Sqj/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex III", file: "https://drive.google.com/file/d/1nF7QHaKoWdatLKYZJsie_NvjQkncYccS/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex IV", file: "https://drive.google.com/file/d/1E6tg932fsZP0w4bpPsTKhlrPk_pHARqd/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex V", file: "https://drive.google.com/file/d/1t8_As1mhPIbuVphdidK23OH2HVqxqkzD/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex VI", file: "https://drive.google.com/file/d/1JVDYmh7uGcngPbDIAydKsJw-7QY_e9fD/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex VII", file: "https://drive.google.com/file/d/1F21h4MHiSVJzOZ25iTiVLEPbTCE8XTGo/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex VIII", file: "https://drive.google.com/file/d/16Q1QC24q66FYO1Ggku1EGPy0uvYnqLSi/view?usp=drive_link", hidden: false, type: "Annex" },
+  { title: "Annex IX", file: "https://drive.google.com/file/d/14tBh6EqM0H15xnmZTBpD8Z7DjxXYFj8-/view?usp=drive_link", hidden: false, type: "Annex" },
+];
+
+function normalizeType(t) {
+  if (t == null) return "Other";
+  const s = String(t).trim();
+  return s === "" ? "Other" : s;
+}
+
 const Publications = () => {
   const [scrolled, setScrolled] = useState(false);
   const [passwordCorrect, setPasswordCorrect] = useState(false);
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const [openModel, setOpenModel] = useState(true);
-  const [publications, setPublications] = useState([
-    {
-      title: "Annex I",
-      file: "https://drive.google.com/file/d/17XQRRg-Hzwc0KmcFerpc5KgqOh7T1903/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex II",
-      file: "https://drive.google.com/file/d/1XoM4yqBbvufITJ3yPgSoZckLGzjE5Sqj/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex III",
-      file: "https://drive.google.com/file/d/1nF7QHaKoWdatLKYZJsie_NvjQkncYccS/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex IV",
-      file: "https://drive.google.com/file/d/1E6tg932fsZP0w4bpPsTKhlrPk_pHARqd/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex V",
-      file: "https://drive.google.com/file/d/1t8_As1mhPIbuVphdidK23OH2HVqxqkzD/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex VI",
-      file: "https://drive.google.com/file/d/1JVDYmh7uGcngPbDIAydKsJw-7QY_e9fD/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex VII",
-      file: "https://drive.google.com/file/d/1F21h4MHiSVJzOZ25iTiVLEPbTCE8XTGo/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex VIII",
-      file: "https://drive.google.com/file/d/16Q1QC24q66FYO1Ggku1EGPy0uvYnqLSi/view?usp=drive_link",
-      hidden: false,
-    },
-    {
-      title: "Annex IX",
-      file: "https://drive.google.com/file/d/14tBh6EqM0H15xnmZTBpD8Z7DjxXYFj8-/view?usp=drive_link",
-      hidden: false,
-    },
-  ]);
+  const [publications, setPublications] = useState([]);
+  const [activeTab, setActiveTab] = useState(null);
   const [selectedPublication, setSelectedPublication] = useState(null);
 
   useEffect(() => {
@@ -73,15 +46,36 @@ const Publications = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_APP_API_ROOT}/api/publication`
         );
-        let receivedData = await response?.data;
-        setPublications([...publications, ...receivedData]);
+        const receivedData = response?.data ?? [];
+        const normalized = (Array.isArray(receivedData) ? receivedData : []).map((p) => ({
+          ...p,
+          type: normalizeType(p.type),
+        }));
+        setPublications([...ANNEX_LIST, ...normalized]);
       } catch (error) {
-        console.error("Error fetching notices:", error);
+        console.error("Error fetching publications:", error);
+        setPublications([...ANNEX_LIST]);
       }
     };
 
     fetchDocuments();
   }, []);
+
+  const tabs = React.useMemo(() => {
+    const types = [...new Set(publications.map((p) => p.type))];
+    types.sort((a, b) => (a === "Other" ? 1 : b === "Other" ? -1 : a.localeCompare(b)));
+    return types;
+  }, [publications]);
+
+  React.useEffect(() => {
+    if (tabs.length > 0 && (activeTab === null || !tabs.includes(activeTab))) {
+      setActiveTab(tabs[0]);
+    }
+  }, [tabs, activeTab]);
+
+  const publicationsInTab = activeTab
+    ? publications.filter((p) => p.type === activeTab)
+    : publications;
 
   const handleScroll = () => {
     if (window.scrollY >= 105) {
@@ -217,22 +211,39 @@ const Publications = () => {
         )}
         {!openModel && (
           <div
-            className={`"flex flex-col w-full  mx-auto mt-5 sm:w-[80%]" ${openModel ? "-z-10 opacity-80 bg-slate-300" : ""
-              }`}
+            className={`flex flex-col w-full mx-auto mt-5 sm:w-[80%] ${openModel ? "-z-10 opacity-80 bg-slate-300" : ""}`}
           >
             <p className="w-full text-center ml-9 sm:ml-0 text-[22px] font-semibold my-3">
               Publications
             </p>
-            <ol className="w-[80%] sm:w-full h-auto ml-9  my-3 bg-[#D9D9D969]">
-              {publications?.map((publication, index) => (
+            {tabs.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-3 ml-9 sm:ml-0 border-b border-stroke pb-2">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setActiveTab(tab)}
+                    className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                      activeTab === tab
+                        ? "bg-red-900 text-white"
+                        : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+            )}
+            <ol className="w-[80%] sm:w-full h-auto ml-9 my-3 bg-[#D9D9D969]">
+              {publicationsInTab?.map((publication, index) => (
                 <div
-                  key={index}
+                  key={publication?.id ?? `annex-${index}`}
                   className="flex w-full h-[80px] items-center justify-between p-3"
                 >
                   <p className="flex gap-3">
-                    <p className="text-[14px] sm:text-[16px] font-medium ">
+                    <span className="text-[14px] sm:text-[16px] font-medium">
                       {publication?.title}
-                    </p>
+                    </span>
                   </p>
                   <div
                     className="w-[15%] h-full flex items-center cursor-pointer"

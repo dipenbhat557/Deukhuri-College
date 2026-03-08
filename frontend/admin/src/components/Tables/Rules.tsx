@@ -76,11 +76,23 @@ const Rules = () => {
             )}
             <div className="w-full h-[10%] flex items-center justify-end">
               <button
-                className="text-white bg-[#06905E] px-12 rounded-full py-1"
+                className="text-white bg-[#06905E] hover:bg-[#057a4a] px-12 rounded-full py-1 transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-[#06905E] flex items-center justify-center gap-2 min-w-[100px]"
                 onClick={editable ? handleSaveClick : handleEditClick}
                 disabled={loading}
               >
-                {editable ? (loading ? "Saving..." : "Save") : "Edit"}
+                {editable && loading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    <span>Saving...</span>
+                  </>
+                ) : editable ? (
+                  "Save"
+                ) : (
+                  "Edit"
+                )}
               </button>
             </div>
             <div className="w-[80%] h-[90%] sm:h-[75%] flex flex-col sm:flex-row justify-around gap-5">

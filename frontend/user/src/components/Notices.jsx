@@ -89,6 +89,13 @@ const Notices = () => {
   const indexOfLastNotice = currentPage * noticesPerPage;
   const indexOfFirstNotice = indexOfLastNotice - noticesPerPage;
   const currentNotices = notices.slice(indexOfFirstNotice, indexOfLastNotice);
+  const totalPages = Math.ceil(notices.length / noticesPerPage) || 1;
+  const maxVisiblePages = 5;
+  const halfVisible = Math.floor(maxVisiblePages / 2);
+  const visibleEnd = Math.min(totalPages, currentPage + halfVisible);
+  const visibleStart = Math.max(1, visibleEnd - maxVisiblePages + 1);
+  const visiblePageNumbers = [];
+  for (let i = visibleStart; i <= visibleEnd; i++) visiblePageNumbers.push(i);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -108,28 +115,30 @@ const Notices = () => {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="w-full sm:w-[30%] h-full flex flex-col justify-around items-center mb-5 sm:mb-0 overflow-y-scroll"
+        className="w-full sm:w-[30%] h-full sm:min-h-[650px] flex flex-col items-center mb-5 sm:mb-0 overflow-hidden"
       >
-        <div className="flex w-full h-[25%] justify-start items-center">
+        {/* Sticky header: does not scroll */}
+        <div className="flex w-full flex-shrink-0 justify-start items-center sticky top-0 z-10 bg-white py-2">
           <img
             src={noticeBg}
             alt="Notice bg"
-            className="h-full w-[20%] object-contain"
+            className="h-16 w-[20%] object-contain"
           />
           <p
-            className={`${styles.sectionHeadText} text-red-900 font-semibold h-full mt-7 ml-4`}
+            className={`${styles.sectionHeadText} text-red-900 font-semibold mt-7 ml-4`}
           >
             Notices
           </p>
         </div>
-        <div className="flex w-full h-[65%]  flex-col items-start gap-2">
+        {/* Scrollable notice list only */}
+        <div className="flex w-full flex-1 min-h-0 flex-col items-start gap-2 overflow-y-auto">
           {currentNotices.length > 0 ? (
             currentNotices.map((notice, index) => (
               <div
                 key={index}
                 className={`${
                   index === currentIndex ? "border-l-4 border-red-900 " : ""
-                } w-full h-[70px] border-b-2 flex items-center pl-4 cursor-pointer`}
+                } w-full h-[70px] flex-shrink-0 border-b-2 flex items-center pl-4 cursor-pointer`}
                 onClick={() => handleNoticeClick(index)}
               >
                 <IoMdInformationCircle
@@ -148,22 +157,37 @@ const Notices = () => {
             <p className="text-[16px] text-red-700 font-semibold">Loading...</p>
           )}
         </div>
-        <div className="flex justify-center h-[10%] items-center gap-2 mt-4">
-          {[...Array(Math.ceil(notices.length / noticesPerPage)).keys()].map(
-            (page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page + 1)}
-                className={`px-3 py-1 rounded ${
-                  currentPage === page + 1
-                    ? "bg-red-900 text-white"
-                    : "bg-gray-200"
-                }`}
-              >
-                {page + 1}
-              </button>
-            )
-          )}
+        {/* Pagination: max 5 numbers + Prev/Next */}
+        <div className="flex flex-shrink-0 justify-center items-center gap-1 sm:gap-2 mt-4 pb-2">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage <= 1}
+            className="px-2 py-1 rounded bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 text-sm font-medium"
+            aria-label="Previous page"
+          >
+            Prev
+          </button>
+          {visiblePageNumbers.map((page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={`min-w-[32px] px-2 py-1 rounded text-sm ${
+                currentPage === page
+                  ? "bg-red-900 text-white"
+                  : "bg-gray-200 hover:bg-gray-300"
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+            className="px-2 py-1 rounded bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300 text-sm font-medium"
+            aria-label="Next page"
+          >
+            Next
+          </button>
         </div>
       </motion.div>
 

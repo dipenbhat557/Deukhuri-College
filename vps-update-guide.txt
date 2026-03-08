@@ -1,0 +1,50 @@
+
+STEP 1 — SSH into your VPS
+ssh root@82.112.234.220
+passoword: aafno-jaila-use-garney-passoword + @
+
+
+STEP 2 — Pull latest code from GitHub (covers everything)
+bashcd /home/root/Deukhuri-College
+git fetch origin
+git reset --hard origin/nothing
+
+STEP 3 — Build & restart Backend
+bashcd /home/root/Deukhuri-College/backend
+mvn clean package -DskipTests
+sudo systemctl restart deukhuri-backend
+journalctl -u deukhuri-backend -f
+Wait for Started DmcApplication in X seconds then press Ctrl+C
+
+STEP 4 — Build Frontend (User)
+bashcd /home/root/Deukhuri-College/frontend/user
+npm install
+npm run build
+
+STEP 5 — Build Frontend (Admin)
+bashcd /home/root/Deukhuri-College/frontend/admin
+npm install
+npm run build
+
+STEP 6 — Reload Nginx
+bashsudo nginx -t
+sudo systemctl reload nginx
+
+STEP 7 — Verify everything is running
+bashsudo systemctl status deukhuri-backend
+sudo systemctl status nginx
+sudo systemctl status mysql
+
+
+
+
+
+
+
+
+
+
+
+local :-
+cd /Users/avashneupane/FullStack_Projects/Deukhuri-College/backend
+SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3308/dmc_db?createDatabaseIfNotExist=true SPRING_DATASOURCE_USERNAME=root SPRING_DATASOURCE_PASSWORD=deukhuri@123 ./mvnw spring-boot:run

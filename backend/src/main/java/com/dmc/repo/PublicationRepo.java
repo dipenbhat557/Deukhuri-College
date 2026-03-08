@@ -9,6 +9,6 @@ import com.dmc.payload.PublicationResponse;
 
 public interface PublicationRepo extends JpaRepository<Publication, Integer> {
 
-    @Query("SELECT new com.dmc.payload.PublicationResponse(p.id, p.title, p.hidden) FROM Publication p")
+    @Query("SELECT new com.dmc.payload.PublicationResponse(p.id, p.title, p.type, p.hidden) FROM Publication p")
     List<PublicationResponse> findAllPublicationResponses();
 }

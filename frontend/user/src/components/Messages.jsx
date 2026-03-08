@@ -71,7 +71,7 @@ const Messages = () => {
                     />
                   </div>
                   <p className="text-[14px] md:text-[18px] h-[15%] font-semibold text-2xl ml-3 md:ml-8">
-                    {messages?.[0]?.["_message_name"] || "Loading..."}
+                    {messages?.[0]?.name || "Loading..."}
                   </p>
                   <p
                     dangerouslySetInnerHTML={{

@@ -55,23 +55,34 @@ const Advertisement = () => {
               Data Deleted Successfully !!
             </div>
           )}
-          <div>
+          <div className="mb-4">
             <img
               src={`data:image/jpeg;base64,${advertisements?.[0]?.img}` || def}
-              className="rounded-full h-[100%] w-[100%]"
-              alt="User"
+              className="rounded-lg max-h-40 w-auto max-w-xs object-contain border border-stroke"
+              alt="Advertisement"
             />
           </div>
-          <button
-            onClick={() =>
-              navigate("/forms/advertisement-form", {
-                state: { advertisement: advertisements?.[0] },
-              })
-            }
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          >
-            Edit
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() =>
+                navigate("/forms/advertisement-form", {
+                  state: { advertisement: advertisements?.[0] },
+                })
+              }
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Edit
+            </button>
+            {advertisements?.[0]?.id != null && (
+              <button
+                onClick={() => handleDelete(advertisements[0].id)}
+                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded flex items-center gap-1"
+              >
+                <MdDelete className="w-5 h-5" />
+                Delete
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </DefaultLayout>

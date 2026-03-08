@@ -22,6 +22,8 @@ public class Publication{
 
     private String title;
 
+    private String type;
+
     private boolean hidden = false;
 
     @Lob

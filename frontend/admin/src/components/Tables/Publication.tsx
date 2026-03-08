@@ -8,6 +8,7 @@ import axios from "axios";
 interface PublicationData {
   id: number;
   title: string;
+  type?: string;
   hidden: boolean;
 }
 

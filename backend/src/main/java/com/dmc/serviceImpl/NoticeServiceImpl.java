@@ -28,7 +28,7 @@ public class NoticeServiceImpl implements NoticeService{
         notice.setHeader(req.isHeader());
 
         try {
-            if(file != null){
+            if (file != null && !file.isEmpty()) {
                 notice.setImg(file.getBytes());
             }
         } catch (IOException ex) {
@@ -60,7 +60,7 @@ public class NoticeServiceImpl implements NoticeService{
         notice.setHeader(req.isHeader());
 
         try {
-            if(file != null){
+            if (file != null && !file.isEmpty()) {
                 notice.setImg(file.getBytes());
             }
         } catch (IOException ex) {
