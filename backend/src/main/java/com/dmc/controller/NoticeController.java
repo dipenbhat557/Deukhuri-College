@@ -31,7 +31,7 @@ public class NoticeController{
     private NoticeService noticeService;
 
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Notice> create(@RequestParam("notice") String noticeJson, @RequestParam("file") MultipartFile file ){
+    public ResponseEntity<Notice> create(@RequestParam("notice") String noticeJson, @RequestParam(value = "file", required = false) MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -59,7 +59,7 @@ public class NoticeController{
     }
 
     @PutMapping(value = "/{noticeId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Notice> updateNotice(@PathVariable int noticeId, @RequestParam("notice") String noticeJson, @RequestParam("file") MultipartFile file){
+    public ResponseEntity<Notice> updateNotice(@PathVariable int noticeId, @RequestParam("notice") String noticeJson, @RequestParam(value = "file", required = false) MultipartFile file){
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {

@@ -27,7 +27,7 @@ public class MessageServiceImpl implements MessageService{
         message.setDesignation(req.getDesignation());
         message.setName(req.getName());
          try {
-            if(file != null){
+            if (file != null && !file.isEmpty()) {
                 message.setImg(file.getBytes());
             }
         } catch (IOException ex) {
@@ -48,6 +48,11 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
+    public byte[] getImgById(int messageId) {
+        return getById(messageId).getImg();
+    }
+
+    @Override
     public Message updateById(int messageId, MessageRequest req, MultipartFile file) {
         Message message = getById(messageId);
 
@@ -55,7 +60,7 @@ public class MessageServiceImpl implements MessageService{
         message.setDesignation(req.getDesignation());
         message.setName(req.getName());
          try {
-            if(file != null){
+            if (file != null && !file.isEmpty()) {
                 message.setImg(file.getBytes());
             }
         } catch (IOException ex) {

@@ -15,6 +15,8 @@ public interface MessageService{
 
     public Message getById(int messageId);
 
+    public byte[] getImgById(int messageId);
+
     public Message updateById(int messageId, MessageRequest req, MultipartFile file);
 
     public void deleteById(int messageId);

@@ -1,5 +1,7 @@
 package com.dmc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,13 +19,14 @@ import lombok.NoArgsConstructor;
 public class Notice{
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String title;
 
     private boolean header;
 
+    @JsonIgnore
     @Lob
     @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] img;

@@ -17,6 +17,7 @@ const BlogForm = () => {
 
   const [img, setImg] = useState<File | null>(null);
   const [dataSaved, setDataSaved] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 useEffect(() => {
@@ -40,6 +41,7 @@ useEffect(() => {
 
     console.log(formDataToSend)
 
+    setIsSubmitting(true);
     try {
       if (blog?.id) {
         await axios.put(`${import.meta.env.VITE_APP_API_ROOT}/api/blog/${blog.id}`, formDataToSend, {
@@ -65,6 +67,8 @@ useEffect(() => {
       navigate("/blogs");
     } catch (error) {
       console.error("Error uploading file:", error);
+    } finally {
+      setIsSubmitting(false);
     }
 
     window.scrollTo(0, 0);
@@ -149,16 +153,32 @@ useEffect(() => {
           </div>
         </div>
         <div className="flex flex-col gap-9 sm:fixed right-16">
-          <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div className="flex flex-col gap-5.5 p-40 items-center justify-evenly">
-              <div>
-                <button
-                  onClick={handleSubmit}
-                  className="bg-blue-500 tracking-wide text-white font-bold py-2 px-9 rounded opacity-80 shadow-1"
-                >
-                  <span className="tracking-wider px-3">Post</span>
-                </button>
-              </div>
+          <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark w-[160px]">
+            <div className="flex flex-col gap-5.5 p-6 items-center">
+              <button
+                type="button"
+                onClick={() => navigate("/blogs")}
+                className="w-full rounded border border-stroke bg-gray-100 py-2 px-4 text-center text-black font-medium hover:bg-gray-200 dark:border-strokedark dark:bg-meta-4 dark:text-white dark:hover:bg-meta-3 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-1 transition-colors duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-blue-500 flex items-center justify-center gap-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    <span>Posting...</span>
+                  </>
+                ) : (
+                  <span>Post</span>
+                )}
+              </button>
             </div>
           </div>
         </div>

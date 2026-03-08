@@ -8,7 +8,7 @@ import com.dmc.model.Publication;
 import com.dmc.payload.PublicationResponse;
 
 public interface PublicationService {
-    public Publication create(String title, MultipartFile file);
+    public Publication create(String title, String type, MultipartFile file);
 
     public List<PublicationResponse> getAll();
 
@@ -16,7 +16,7 @@ public interface PublicationService {
 
     public byte[] getFileById(int publicationId);
 
-    public Publication updateById(int publicationId, String title, MultipartFile file);
+    public Publication updateById(int publicationId, String title, String type, MultipartFile file);
 
     public void deleteById(int publicationId);
 }

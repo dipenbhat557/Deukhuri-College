@@ -29,8 +29,13 @@ public class MessageController{
     @Autowired
     private MessageService messageService;
 
+    @GetMapping("/{messageId}/img")
+    public ResponseEntity<byte[]> getImgById(@PathVariable int messageId) {
+        return new ResponseEntity<>(this.messageService.getImgById(messageId), HttpStatus.OK);
+    }
+
     @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Message> create(@RequestParam("message") String messageJson, @RequestParam("file") MultipartFile file ){
+    public ResponseEntity<Message> create(@RequestParam("message") String messageJson, @RequestParam(value = "file", required = false) MultipartFile file ){
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -53,7 +58,7 @@ public class MessageController{
     }
 
     @PutMapping(value = "/{messageId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Message> updateMessage(@PathVariable int messageId, @RequestParam("message") String messageJson, @RequestParam("file") MultipartFile file){
+    public ResponseEntity<Message> updateMessage(@PathVariable int messageId, @RequestParam("message") String messageJson, @RequestParam(value = "file", required = false) MultipartFile file){
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {

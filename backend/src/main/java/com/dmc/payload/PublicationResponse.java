@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class PublicationResponse {
     private Integer id;
     private String title;
+    private String type;
     private boolean hidden;
 }
