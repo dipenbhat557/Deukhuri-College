@@ -29,10 +29,14 @@ public class NoticeServiceImpl implements NoticeService{
 
         try {
             if (file != null && !file.isEmpty()) {
-                notice.setImg(file.getBytes());
+                String contentType = file.getContentType();
+                if (contentType != null && (contentType.startsWith("image/") || contentType.equals("application/pdf"))) {
+                    notice.setImg(file.getBytes());
+                    notice.setFileType(contentType);
+                }
             }
         } catch (IOException ex) {
-            System.out.println("Could not save image");
+            System.out.println("Could not save file");
         }
         return this.noticeRepo.save(notice);
     }
@@ -61,10 +65,14 @@ public class NoticeServiceImpl implements NoticeService{
 
         try {
             if (file != null && !file.isEmpty()) {
-                notice.setImg(file.getBytes());
+                String contentType = file.getContentType();
+                if (contentType != null && (contentType.startsWith("image/") || contentType.equals("application/pdf"))) {
+                    notice.setImg(file.getBytes());
+                    notice.setFileType(contentType);
+                }
             }
         } catch (IOException ex) {
-            System.out.println("Could not save image");
+            System.out.println("Could not save file");
         }
         return this.noticeRepo.save(notice);
     }

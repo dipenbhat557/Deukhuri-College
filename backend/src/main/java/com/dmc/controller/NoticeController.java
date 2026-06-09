@@ -50,7 +50,15 @@ public class NoticeController{
 
     @GetMapping("/{noticeId}/img")
     public ResponseEntity<byte[]> getImgById(@PathVariable int noticeId){
-        return new ResponseEntity<>(this.noticeService.getImgById(noticeId),HttpStatus.OK);
+        Notice notice = this.noticeService.getById(noticeId);
+        byte[] img = notice.getImg();
+        if (img == null || img.length == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        String contentType = notice.getFileType() != null ? notice.getFileType() : "image/jpeg";
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .body(img);
     }
 
     @GetMapping("/{noticeId}")

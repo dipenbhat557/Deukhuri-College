@@ -9,6 +9,6 @@ import com.dmc.payload.NoticeResponse;
 
 public interface NoticeRepo extends JpaRepository<Notice, Integer> {
     
-    @Query("SELECT new com.dmc.payload.NoticeResponse(n.id, n.title, n.header) FROM Notice n")
+    @Query("SELECT new com.dmc.payload.NoticeResponse(n.id, n.title, n.header, n.fileType) FROM Notice n")
     List<NoticeResponse> findAllNoticeResponses();
 }

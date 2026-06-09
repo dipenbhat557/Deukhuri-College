@@ -5,7 +5,7 @@ passoword: aafno-jaila-use-garney-passoword + @
 
 
 STEP 2 — Pull latest code from GitHub (covers everything)
-bashcd /home/root/Deukhuri-College
+cd /home/root/Deukhuri-College
 git fetch origin
 git reset --hard origin/nothing
 
@@ -27,7 +27,7 @@ npm install
 npm run build
 
 STEP 6 — Reload Nginx
-bashsudo nginx -t
+bash sudo nginx -t
 sudo systemctl reload nginx
 
 STEP 7 — Verify everything is running
