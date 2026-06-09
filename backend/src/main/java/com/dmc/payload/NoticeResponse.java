@@ -11,4 +11,5 @@ public class NoticeResponse {
     private Integer id;
     private String title;
     private boolean header;
+    private String fileType;
 }

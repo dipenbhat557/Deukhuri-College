@@ -47,7 +47,7 @@ const NoticeForm = () => {
         )
         .then((response) => {
           if (response.data && (response.data as ArrayBuffer).byteLength > 0) {
-            const blob = new Blob([response.data], { type: "image/jpeg" });
+            const blob = new Blob([response.data], { type: notice?.fileType || "image/jpeg" });
             const url = URL.createObjectURL(blob);
             setExistingImagePreviewUrl(url);
             setExistingImageLoaded(true);
@@ -233,44 +233,56 @@ const NoticeForm = () => {
 
               <div>
                 <label className="mb-3 block text-black dark:text-white">
-                  Attach Image
+                  Attach Image or PDF
                 </label>
-                {(existingImagePreviewUrl || img) && (
-                  <>
-                    <div className="mt-2 mb-2 p-3 rounded-lg border border-stroke bg-meta-2 dark:bg-boxdark dark:border-strokedark">
-                      {existingImageLoaded && (existingImagePreviewUrl || img) ? (
-                        <p className="text-sm text-black dark:text-white">
-                          Current image (from server). <span className="font-medium text-bodydark dark:text-bodydark">Uploading a new one replaces the old one.</span>
-                        </p>
-                      ) : img ? (
-                        <p className="text-sm text-bodydark dark:text-bodydark">
-                          New image selected: <span className="font-semibold text-black dark:text-white">{img.name}</span>
-                        </p>
-                      ) : null}
-                    </div>
-                    <div className="mt-2">
-                      <img
-                        src={existingImagePreviewUrl || newImagePreviewUrl || ""}
-                        alt={existingImageLoaded && existingImagePreviewUrl ? "Current notice image" : "Selected image"}
-                        className="max-w-full h-auto max-h-48 object-contain rounded border border-stroke"
-                      />
-                    </div>
-                  </>
-                )}
+                {(existingImagePreviewUrl || img) && (() => {
+                  const isPdf = img ? img.type === 'application/pdf' : notice?.fileType === 'application/pdf';
+                  const previewUrl = existingImagePreviewUrl || newImagePreviewUrl || "";
+                  return (
+                    <>
+                      <div className="mt-2 mb-2 p-3 rounded-lg border border-stroke bg-meta-2 dark:bg-boxdark dark:border-strokedark">
+                        {existingImageLoaded && (existingImagePreviewUrl || img) ? (
+                          <p className="text-sm text-black dark:text-white">
+                            Current file (from server). <span className="font-medium text-bodydark dark:text-bodydark">Uploading a new one replaces the old one.</span>
+                          </p>
+                        ) : img ? (
+                          <p className="text-sm text-bodydark dark:text-bodydark">
+                            New file selected: <span className="font-semibold text-black dark:text-white">{img.name}</span>
+                          </p>
+                        ) : null}
+                      </div>
+                      <div className="mt-2">
+                        {isPdf ? (
+                          <embed
+                            src={previewUrl}
+                            type="application/pdf"
+                            className="w-full h-48 rounded border border-stroke"
+                          />
+                        ) : (
+                          <img
+                            src={previewUrl}
+                            alt={existingImageLoaded && existingImagePreviewUrl ? "Current notice file" : "Selected file"}
+                            className="max-w-full h-auto max-h-48 object-contain rounded border border-stroke"
+                          />
+                        )}
+                      </div>
+                    </>
+                  );
+                })()}
                 <input
                   onChange={handleFileChange}
                   type="file"
-                  accept="image/*"
+                  accept="image/*,application/pdf"
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white mt-2"
                 />
                 {notice?.id && !img && !existingImagePreviewUrl && existingImageLoading && (
                   <p className="text-xs text-bodydark dark:text-bodydark mt-1">
-                    Loading current image…
+                    Loading current file…
                   </p>
                 )}
                 {notice?.id && !img && !existingImagePreviewUrl && !existingImageLoading && (
                   <p className="text-xs text-bodydark dark:text-bodydark mt-1">
-                    No image for this notice.
+                    No file attached to this notice.
                   </p>
                 )}
               </div>

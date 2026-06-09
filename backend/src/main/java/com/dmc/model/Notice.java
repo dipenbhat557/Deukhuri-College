@@ -30,4 +30,7 @@ public class Notice{
     @Lob
     @Column(name = "img", columnDefinition = "LONGBLOB")
     private byte[] img;
+
+    @Column(name = "file_type", columnDefinition = "VARCHAR(50) DEFAULT 'image/jpeg'")
+    private String fileType;
 }

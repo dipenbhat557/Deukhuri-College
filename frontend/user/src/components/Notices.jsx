@@ -66,7 +66,7 @@ const Notices = () => {
     }
   };
 
-  const createBlobUrl = (base64Data) => {
+  const createBlobUrl = (base64Data, fileType = "image/jpeg") => {
     if (!base64Data || typeof base64Data !== "string") {
       console.error("Invalid base64 data");
       return "";
@@ -78,7 +78,7 @@ const Notices = () => {
         .fill()
         .map((_, i) => byteCharacters.charCodeAt(i));
       const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "image/jpeg" });
+      const blob = new Blob([byteArray], { type: fileType });
       return URL.createObjectURL(blob);
     } catch (e) {
       console.error("Failed to decode base64 data:", e);
@@ -203,31 +203,54 @@ const Notices = () => {
             <div className="w-[95%] h-[90%] flex items-center justify-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-900"></div>
             </div>
-          ) : (
-            <>
-              <img
-                src={
-                  currentNotices[currentIndex]?.id && noticeImages[currentNotices[currentIndex].id]
-                    ? `data:image/jpeg;base64,${noticeImages[currentNotices[currentIndex].id]}`
-                    : def
-                }
-                alt="Notice Image"
-                className="w-[95%] h-[90%] object-contain -z-1 "
-              />
-              <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
-              <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
-                {currentNotices[currentIndex]?.id && noticeImages[currentNotices[currentIndex].id] && (
-                  <a
-                    href={createBlobUrl(noticeImages[currentNotices[currentIndex].id])}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <AiOutlineSearch />
-                  </a>
+          ) : (() => {
+            const currentNotice = currentNotices[currentIndex];
+            const imageData = currentNotice?.id ? noticeImages[currentNotice.id] : null;
+            const fileType = currentNotice?.fileType || "image/jpeg";
+            const isPdf = fileType === "application/pdf";
+
+            return (
+              <>
+                {isPdf ? (
+                  imageData ? (
+                    <embed
+                      src={createBlobUrl(imageData, "application/pdf")}
+                      type="application/pdf"
+                      className="w-[95%] h-[90%]"
+                    />
+                  ) : (
+                    <div className="w-[95%] h-[90%] flex items-center justify-center text-gray-400 text-sm">
+                      No file attached
+                    </div>
+                  )
+                ) : (
+                  <>
+                    <img
+                      src={
+                        currentNotice?.id && imageData
+                          ? `data:${fileType};base64,${imageData}`
+                          : def
+                      }
+                      alt="Notice Image"
+                      className="w-[95%] h-[90%] object-contain -z-1"
+                    />
+                    <div className="w-[93%] sm:w-[82%] h-[60%] sm:h-[90%] bg-black absolute bg-opacity-20 hover:bg-opacity-0" />
+                  </>
                 )}
-              </div>
-            </>
-          )}
+                <div className="bg-white w-[50px] h-[50px] flex items-center justify-center rounded-full left-[50%] top-[45%] text-red-900 absolute text-3xl hover:bg-red-900 hover:text-white">
+                  {currentNotice?.id && imageData && (
+                    <a
+                      href={createBlobUrl(imageData, fileType)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <AiOutlineSearch />
+                    </a>
+                  )}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </motion.div>
     </div>
